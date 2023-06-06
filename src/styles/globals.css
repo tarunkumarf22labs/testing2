@@ -2,9 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+@font-face {
+  font-family: "Brandon-Grotesque";
+  src: url("../../fonts/Brandon_thin.otf");
+  font-weight: thin;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon-Grotesque";
+  src: url("../../fonts/Brandon_med.otf");
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon-Grotesque";
+  src: url("../../fonts/Brandon_reg.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon-Grotesque";
+  src: url("../../fonts/Brandon_bld.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon-Grotesque";
+  src: url("../../fonts/Brandon_blk.otf");
+  font-weight: bulk;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon-Grotesque";
+  src: url("../../fonts/Brandon_light.otf");
+  font-weight: light;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Centaur";
+  src: url("../../fonts/CENTAUR.TTF");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
   }
+}
+
+body {
+  font-family: "Brandon-Grotesque";
 }

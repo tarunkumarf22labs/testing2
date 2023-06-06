@@ -1,9 +1,14 @@
+import Layout from "@/components/Layout";
 import type { NextPage } from "next";
-import Head from "next/head";
-import styles from "./index.module.css";
 
 const Home: NextPage = () => {
-  return <>Welcome to LuxUnlock Project</>;
+  return (
+    <>
+      <Layout title="LuxUnlock">
+        <>Welcome to LuxUnlock</>
+      </Layout>
+    </>
+  );
 };
 
 export default Home;
