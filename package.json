@@ -51,6 +51,7 @@
   "dependencies": {
     "@heroicons/react": "2.0.13",
     "@rehookify/datepicker": "^5.2.1",
+    "@phosphor-icons/react": "^2.0.9",
     "classnames": "2.3.2",
     "clsx": "^1.2.1",
     "next": "13.1.2",

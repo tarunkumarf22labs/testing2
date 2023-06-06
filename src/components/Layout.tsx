@@ -5,9 +5,10 @@ import Footer from "./Footer/Footer";
 
 interface LayoutProps {
   title: string;
+  children?: React.ReactElement;
 }
 
-export default function Layout({ title }: LayoutProps) {
+export default function Layout({ title, children }: LayoutProps) {
   return (
     <>
       <Head>
@@ -15,9 +16,9 @@ export default function Layout({ title }: LayoutProps) {
       </Head>
       <div>
         <Header />
-        {/* <Footer /> */}
+        {children}
+        <Footer />
       </div>
     </>
   );
 }
-                               
