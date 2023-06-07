@@ -18,7 +18,6 @@ interface NavbarProps {
 
 const Navbar = (props: NavbarProps) => {
   const { options, onMenuSelectedHandler } = props;
-  console.log(options, "options");
   return (
     <>
       <ul className="w-full flex justify-between items-center ">

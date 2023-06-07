@@ -83,15 +83,15 @@ export const AmenitiesSection = ({
     iconsArray.length > 9 ? iconsArray.slice(0, 9) : iconsArray;
 
   return (
-    <div className="flex py-8 mx-5 md:mx-auto h-auto xl:max-w-[1240px]">
-      <div className="">
+    <div className="flex justify-between py-8 xl:py-20 mx-5 xl:mx-auto h-auto xl:max-w-7xl">
+      <div>
         <div className="uppercase pb-7">
           <p className="text-sm text-[#8A1E61] pb-2 tracking-wider">
             {heading}
           </p>
           <p className="text-3xl">Amenities</p>
         </div>
-        <div className="space-y-7 md:hidden text-[#545456]">
+        <div className="space-y-7 xl:hidden text-[#545456]">
           {maxEightIcons.map((icon, index) => (
             <p key={index} className="flex">
               {icons[icon.icon]}{" "}
@@ -99,7 +99,7 @@ export const AmenitiesSection = ({
             </p>
           ))}
         </div>
-        <div className="hidden md:grid md:grid-cols-2 gap-y-6 md:max-w-3xl md:min-w-[700px] text-[#545456]">
+        <div className="hidden xl:grid md:grid-cols-2 gap-y-6 md:max-w-3xl md:min-w-[700px] text-[#545456]">
           {iconsArray.map((icon, index) => (
             <p key={index} className="flex">
               {icons[icon.icon]}{" "}
@@ -109,7 +109,7 @@ export const AmenitiesSection = ({
             </p>
           ))}
         </div>
-        <div className="uppercase text-xs text-[#8A1E61] md:hidden mt-5">
+        <div className="uppercase text-xs text-[#8A1E61] xl:hidden mt-5">
           VIEW ALL 20 AMENITIES
         </div>
       </div>
@@ -119,7 +119,6 @@ export const AmenitiesSection = ({
           alt="amenities1"
           width={462}
           height={673}
-          className=""
         />
         <Image
           src="/images/Amenities2.png"

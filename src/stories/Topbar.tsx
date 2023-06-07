@@ -90,7 +90,6 @@ function Topbar() {
           <Navbar
             options={options}
             onMenuSelectedHandler={(menu) => {
-              console.log(menu);
             }}
           />
         </div>
@@ -139,7 +138,6 @@ function Topbar() {
         <MobileNavbar
           options={options}
           onMenuSelectedHandler={(menu: optionsInterface) => {
-            console.log(menu);
           }}
           showMobileMenu={showMobileMenu}
         />

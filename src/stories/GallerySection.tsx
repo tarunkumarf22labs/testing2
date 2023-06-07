@@ -37,22 +37,24 @@ export const GallerySection = ({
   smallImages = ImagesSmall,
 }: IGallery) => {
   return (
-    <div className={classNames("my-10")}>
-      <div className="uppercase sm:pl-60">
-        <p className="sm:text-sm sm:text-[#8A1E61] sm:mb-5 sm:tracking-widest">
+    <div className="my-10">
+      <div className="uppercase pb-6 pl-5 md:pl-20 lg:pl-40 xl:pl-60  sm:pb-10">
+        <p className="text-sm text-[#8A1E61] mb-5 tracking-widest">
           {heading.subHeading}
         </p>
-        <p className="sm:text-5xl sm:text-[#1C1917]">{heading.heading}</p>
+        <p className="text-3xl sm:text-5xl sm:text-[#1C1917]">
+          {heading.heading}
+        </p>
       </div>
       <div>
-        <div className="sm:flex sm:overflow-x-scroll sm:space-x-5 sm:w-screen sm:mb-6 sm:pl-60 no-scrollbar">
+        <div className="flex overflow-x-scroll space-x-5 w-screen mb-6 pl-5 md:pl-20 lg:pl-40 xl:pl-60 no-scrollbar">
           {bigImages.map((image, index) => (
-            <div key={index} className="sm:min-w-[530px]">
+            <div key={index} className="min-w-[290px] sm:min-w-[530px]">
               <Image src={image} alt={String(index)} width={530} height={354} />
             </div>
           ))}
         </div>
-        <div className="sm:flex sm:space-x-3 sm:pl-60 sm:overflow-x-scroll no-scrollbar">
+        <div className="hidden md:flex overflow-x-scroll space-x-3 pl-5 md:pl-20 lg:pl-40 xl:pl-60 no-scrollbar">
           {smallImages.map((image, index) => (
             <div
               key={index}

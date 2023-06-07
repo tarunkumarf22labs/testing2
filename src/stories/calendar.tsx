@@ -65,9 +65,9 @@ export const Calendar: FC<CalendarProps> = ({
       </div>
       <main className="grid grid-cols-7 gap-y-2 text-red ">
         {days.map((d) => {
-        //   console.log(d);
+          //   console.log(d);
           return (
-            // <button className=""   key={d.$date.toString()}
+            // <button   key={d.$date.toString()}
             // >
             //     {d.day}
             // </button>

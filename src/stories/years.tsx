@@ -13,7 +13,6 @@ export const Years = () => {
     data: { years },
     propGetters: { previousYearsButton, nextYearsButton, yearButton },
   } = useDatePickerContext();
-  console.log(years, 'years')
 
   return (
     <Section>

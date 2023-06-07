@@ -17,7 +17,7 @@ const MobileNavOptions = (props: OptionProps) => {
   const { title, options, id, onMenuSelectedHandler } = props;
   const [showOptions, setShowOptions] = useState(false);
   return (
-    <div className="">
+    <div>
       <div
         className=" h-12 flex justify-between items-center p-2 text-xs"
         onClick={() => setShowOptions(!showOptions)}

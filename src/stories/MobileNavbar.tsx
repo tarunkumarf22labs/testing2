@@ -19,7 +19,6 @@ interface NavbarProps {
 
 function MobileNavbar(props: NavbarProps) {
   const { options, onMenuSelectedHandler, showMobileMenu } = props;
-  console.log(options, onMenuSelectedHandler, showMobileMenu);
   return (
     <>
       {showMobileMenu && (

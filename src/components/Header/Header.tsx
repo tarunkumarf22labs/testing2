@@ -26,14 +26,13 @@ const Header = () => {
   return (
     <>
       <Topbar />
-      <Carousal images={images} />
-     {/* <div className="-mt-20"> */}
-     <Search 
-      />
-     {/* </div> */}
-      <p>
+      {/* <Carousal images={images} /> */}
+      {/* <div className="-mt-20"> */}
+      {/* <Search /> */}
+      {/* </div> */}
+      {/* <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt obcaecati numquam ex magni, distinctio accusamus. Consequatur, dolores doloribus! Sit ducimus officia illum, porro recusandae nesciunt sunt fugiat voluptatem, dolore in rerum impedit rem sapiente! Beatae magni asperiores aspernatur atque ipsam doloribus exercitationem laboriosam! Inventore modi corporis laborum cum amet minus. Modi minus non illo impedit alias voluptatum soluta a repudiandae neque error, ipsa, accusantium doloremque quo maxime nostrum cupiditate numquam. Repellendus quia tenetur vitae iste, dolores nostrum modi, quas sapiente delectus dolorum similique, ullam fugit id! Cupiditate veniam fuga nisi iure autem optio nesciunt et laudantium facilis, id soluta ab harum. Non, velit dignissimos. Molestias rem deserunt neque ratione expedita non qui odio facilis. Ut voluptatum accusamus similique, aliquam reprehenderit doloremque architecto assumenda, officia dolore deserunt quibusdam eaque voluptatem nesciunt facilis praesentium dolorem vel dolor exercitationem recusandae alias fuga dolores illo itaque. Eaque cum repudiandae similique, delectus, aperiam ipsa velit quo explicabo, magni nihil reprehenderit eligendi iusto odit. Eveniet facilis, sed consequatur saepe porro dolores laborum, facere, a nemo architecto iste eaque! Alias quidem quam dolor eaque quod. Debitis blanditiis amet laborum eveniet aspernatur reiciendis necessitatibus commodi obcaecati cum voluptatum? Tenetur, eos atque aperiam quae laudantium nisi fugit deserunt ab?
-      </p>
+      </p> */}
       {/* <Datepicker /> */}
     </>
   );

@@ -48,10 +48,17 @@ export const RoomCard = ({ image, roomName, amenities }: IRoomCard) => {
 
   return (
     <div className="p-3 flex flex-col sm:p-4 border border-[#7B8084] sm:flex-row sm:max-w-3xl">
-      <div className="w-full mb-2 sm:mb-0 sm:min-w-[290px] sm:mr-4 sm:w-72 sm:max-w-[290px]">
-        <Image src={image} alt={roomName} width={326} height={209} />
+      {/* w-full mb-2 sm:mb-0 sm:min-w-[290px] sm:mr-4 sm:w-72 sm:max-w-[290px] */}
+      <div className="w-full mb-3 sm:mb-0 sm:mr-4">
+        <Image
+          src={image}
+          alt={roomName}
+          width={326}
+          height={209}
+          className="w-full"
+        />
       </div>
-      <div className="flex flex-col justify-between capitalize min-h-full w-full max-w-[410px]">
+      <div className="flex flex-col justify-between capitalize min-h-full w-full sm:max-w-[410px]">
         <div className="mb-8">
           <div className="text-xl font-bold mb-1">{roomName}</div>
           <div className="text-xs text-[#545456] mb-4">
@@ -61,21 +68,23 @@ export const RoomCard = ({ image, roomName, amenities }: IRoomCard) => {
             <input type="text" />
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          <div className="flex sm:space-x-6">
-            <div className="hidden space-x-6 sm:flex sm:flex-row">
+        <div className="flex justify-between items-center space-x-6">
+          <div className="flex justify-between">
+            <div className="hidden space-x-6 md:flex md:flex-row">
               {maxEightIcons.map((icon, index) => (
                 <div key={index}> {icons[icon]}</div>
               ))}
             </div>
-            <div className="flex space-x-6 sm:hidden">
+            <div className="flex space-x-6 md:hidden">
               {maxFourIcons.map((icon, index) => (
                 <div key={index}> {icons[icon]}</div>
               ))}
             </div>
           </div>
           {iconsArr.length > 8 && (
-            <div className="text-xs text-[#8A1E61]">+15 More</div>
+            <div className="text-xs text-[#8A1E61] whitespace-nowrap">
+              +15 More
+            </div>
           )}
         </div>
       </div>

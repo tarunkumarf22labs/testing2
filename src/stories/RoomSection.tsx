@@ -10,7 +10,7 @@ interface IRoomSection {
 
 export const RoomSection = ({ heading }: IRoomSection) => {
   return (
-    <div className="px-5 pt-10 uppercase sm:max-w-[810px] sm:w-full sm:p-8 sm:my-10 bg-white">
+    <div className="px-5 pt-10 uppercase md:max-w-[810px] sm:w-full sm:p-8 sm:my-10 bg-white">
       <p className="text-sm text-[#8A1E61] sm:mb-5 sm:uppercase">
         {heading.subHeading}
       </p>

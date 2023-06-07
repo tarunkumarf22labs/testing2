@@ -27,13 +27,7 @@ function Root(props: DatePickerProps) {
   const { previousMonthButton, nextMonthButton } =
     useContextMonthsPropGetters();
   const { selectedDates } = useDatePickerState();
-  console.log(calendars)
   const [start, end] = formattedDates;
-   console.log('start',start)  
-
-  console.log(">", selectedDates);
-
-  console.log(formattedDates, 'formattedDates)');
   
   setStartDate(start);
   setEndDate(end);
@@ -109,8 +103,6 @@ const Datepicker = (props: DatePickerProps) => {
   const Y = now.getFullYear();
   const D = now.getDate();
   const [selectedDates, onDatesChange] = useState<Date[]>([]);
-
-  console.log(">>", selectedDates);
 
   return (
     <DatePickerStateProvider
