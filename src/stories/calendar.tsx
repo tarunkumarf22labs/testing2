@@ -10,7 +10,7 @@ import {
 // import { getDayClassName } from '../classnames-utils';
 // import { getDayClassName } from '../classnames-utils';
 import { getDayClassName } from "./classnames-utils";
-import { Button } from "./button";
+import { Button } from "./DayButton";
 import { Section } from "./section";
 import { SectionHeader } from "./section-header";
 

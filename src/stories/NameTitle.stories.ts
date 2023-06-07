@@ -12,17 +12,7 @@ type Story = StoryObj<typeof NameTitle>;
 
 export const Default: Story = {
   args: {
-    image: "/images/Room1.png",
-    roomName: "Second Bedrom",
-    icons: [
-      "wifi",
-      "broom",
-      "fork",
-      "bed",
-      "bathtub",
-      "thermometer",
-      "flash",
-      "drop",
-    ],
+    propertyName: "Deja View's",
+    title: "Inclusions",
   },
 };

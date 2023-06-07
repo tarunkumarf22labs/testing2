@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 // import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 //   import { Button, Calendar } from "./components";
-import { Button } from "./button";
+import { Button } from "./DayButton";
 import { Calendar } from "./calendar";
 
 interface DatePickerProps {
@@ -22,13 +22,13 @@ interface DatePickerProps {
 
 function Root(props: DatePickerProps) {
   const { startDate, setStartDate, endDate, setEndDate } = props;
-  const { calendars,  } = useContextCalendars();
+  const { calendars } = useContextCalendars();
   const { formattedDates } = useContextDays();
   const { previousMonthButton, nextMonthButton } =
     useContextMonthsPropGetters();
   const { selectedDates } = useDatePickerState();
   const [start, end] = formattedDates;
-  
+
   setStartDate(start);
   setEndDate(end);
   return (
@@ -114,14 +114,18 @@ const Datepicker = (props: DatePickerProps) => {
           minDate: new Date(Y, M - 2, 1),
           // maxDate: new Date(Y, M + 2, 0),
           selectSameDate: true,
-        //   toggle: true
+          //   toggle: true
         },
         calendar: {
           offsets: [-1, 1],
         },
         exclude: {
           day: [],
-          date: [new Date("2023-06-10T12:39:02.476Z"), new Date("2023-06-15T12:39:02.476Z"), new Date("2023-06-25T12:39:02.476Z")],
+          date: [
+            new Date("2023-06-10T12:39:02.476Z"),
+            new Date("2023-06-15T12:39:02.476Z"),
+            new Date("2023-06-25T12:39:02.476Z"),
+          ],
         },
       }}
     >
