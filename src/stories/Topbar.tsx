@@ -134,7 +134,7 @@ function Topbar() {
           <HeaderLogo />
         </div>
       </div>
-      <div className="fixed w-[100%] flex-col z-[101] top-16 bg-white top-44flex md:hidden">
+      <div className="fixed w-[100%] flex-col z-[101] top-16 flex md:hidden">
         <MobileNavbar
           options={options}
           onMenuSelectedHandler={(menu: optionsInterface) => {
