@@ -28,14 +28,13 @@ export default function Carousal(props: CarousalProps) {
         {images.map((ele, idx) => {
           return (
             <SwiperSlide key={idx}>
-              <div className="w-full h-screen ease-in-out ">
+              <div className="w-full ease-in-out ">
                 <Image
                   src={ele}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center"
+                  width={1920}
+                  height={1080}
                   alt="Poster Image"
-                  className="block w-full h-screen"
+                  className=" h-[410px] sm:h-[500px] md:h-[810px]"
                 />
               </div>
             </SwiperSlide>
