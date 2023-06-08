@@ -25,6 +25,7 @@ import {
 import { DetailedDescriptionSection } from "src/stories/DetailedDescriptionSection";
 import { FloorSection } from "src/stories/FloorSection";
 import { PropertyReviewSection } from "src/stories/PropertyReviewSection";
+import Map from "src/stories/Map";
 
 const Home: NextPage = () => {
   let x = useRef(0);
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
     <>
       <Layout title="LuxUnlock">
         <div className="bg-[#f8f8f9]">
-          <div className="sm:max-w-7xl sm:m-auto my-10">
+          <div className="my-10 sm:max-w-7xl sm:m-auto">
             <RoomSection heading={heading} />
           </div>
           <GallerySection
@@ -65,6 +66,9 @@ const Home: NextPage = () => {
           />
           <FloorSection floorPlanImages={floorPlanImages} />
           <PropertyReviewSection />
+          <div className="h-[500px] px-5 py-10 lg:max-w-7xl lg:mx-auto">
+          <Map/>
+          </div>
         </div>
       </Layout>
     </>
