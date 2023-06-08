@@ -19,6 +19,12 @@ interface DatePickerProps {
   endDate: string | undefined;
   setEndDate: React.Dispatch<string | undefined>;
 }
+// numberOfGuests,
+// setNumberOfGuests,
+// startDate,
+// setStartDate,
+// endDate,
+// setEndDate,
 
 function Root(props: DatePickerProps) {
   const { startDate, setStartDate, endDate, setEndDate } = props;
