@@ -132,3 +132,7 @@ body {
 .will-be-range-end:nth-child(7n + 1) {
   border-radius: var(--border-radius) !important;
 }
+
+.Home-page-text-div {
+  transform: translate(-50%, -50%);
+}
