@@ -7,21 +7,68 @@ import {
   useContextDays,
   useContextMonthsPropGetters,
 } from "@rehookify/datepicker";
+import { motion } from "framer-motion";
+const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
+const variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const testVariants = {
+  animate: {
+    y:'10vh',
+    opacity: 2,
+  },
+  initial: {
+    opacity: 0.5,
+  },
+  transition: {
+    type: "spring",
+    // duration: 2
+    stiffness: 60,
+    damping: 100
+  }
+}
 
 const Search = () => {
   const [showDate, setShowDate] = useState(false);
   const [startDate, setStartDate] = useState<string | undefined>("");
   const [endDate, setEndDate] = useState<string | undefined>("");
 
-  useEffect (() => {
-    // console.log(showDate === false)
-    // endDate && showDate === false ? setShowDate(true): setShowDate(false)
-    setShowDate(false)
-  },[endDate])
+  useEffect(() => {
+    let datesFlag = (!startDate && !endDate) || (startDate && endDate);
+   
+    datesFlag ? setShowDate(false) : setShowDate(true);
+    
+  }, [endDate, startDate]);
+
   return (
     <>
-      <div className="relative m-auto z-[60]  border mw-11/12 lg:flex md:justify-between md:items-center md:w-9/12 lg:11/12">
-        {/* <input type="select" name="" id="" placeholder='Select Destination'/> */}
+      <motion.div
+        style={{opacity: 0.2}}
+        // variants={testVariants}
+        animate={{
+            // y: "10vh",
+            opacity: 1,
+            // backgroundColor:"blue",
+            // scale: 2,
+            // rotate: isAnimating ? 360 : 0
+        }}
+        initial={{
+            opacity: 0
+        }}
+        transition={{
+            // type: "spring",
+            duration: 3
+            // stiffness: 60,
+            // damping: 100
+        }}
+      className="bg-[#FFFFFF] -mt-[50px] relative m-auto z-[60]  border md:w-11/12 lg:flex md:justify-between md:items-center  lg:w-full xl:w-9/12">
         <div className="sm:flex justify-evenly items-center lg:w-[52%]">
           <div className="mb-8 ml-3 mr-3 border-b-2 sm:w-5/12 md:mb-11">
             <select
@@ -39,7 +86,7 @@ const Search = () => {
             className="flex items-center justify-between mt-4 ml-3 mr-3 border-b-2 sm:w-5/12 md:m-0"
             onClick={() => setShowDate(!showDate)}
           >
-            {startDate ? <p>{startDate}</p> : <p>00/00/0000</p>}
+            {startDate ? <p>{startDate}</p> : <p>CHECK IN </p>}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -58,10 +105,11 @@ const Search = () => {
         </div>
         <div
           className="sm:flex justify-evenly items-center lg:w-[52%]"
-          onClick={() => setShowDate(!showDate)}
         >
-          <div className="flex items-center justify-between mt-8 ml-3 mr-3 border-b-2 sm:w-5/12 md:m-0">
-          {endDate ? <p>{endDate}</p> : <p>00/00/0000</p>}
+          <div className="flex items-center justify-between mt-8 ml-3 mr-3 border-b-2 sm:w-5/12 md:m-0" 
+          onClick={() => setShowDate(!showDate)}
+          >
+            {endDate ? <p>{endDate}</p> : <p>CHECK OUT</p>}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -84,9 +132,9 @@ const Search = () => {
               placeholder="Select Destination"
               className="w-full border border-b-2 border-none outline-none mt-7 "
             >
-              <option value="Chennai">Chennai</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Mumbai">Mumbai</option>
+                {Array.from({ length: 20 }, (_, index) => (
+                  <option key={index + 1} value={index + 1} className="-mb-2">{index + 1}</option>
+                ))}
             </select>
           </div>
         </div>
@@ -97,19 +145,19 @@ const Search = () => {
             SEARCH{" "}
           </button>
         </div>
-      </div>
-       {/* <div className={`${showDate === false ? 'hidden' : 'block'}`}> */}
-         <Datepicker
+      </motion.div>
+      <div className={`${showDate === false ? "hidden" : "block"}`}>
+        <Datepicker
           startDate={startDate}
           setStartDate={setStartDate}
           endDate={endDate}
           setEndDate={setEndDate}
+          inVillaDetails={false}
         />
-       {/* </div> */}
+      </div>
     </>
   );
 };
 
 export default Search;
 
-// hidden z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden  sm:px-3.5 md:flex xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28
