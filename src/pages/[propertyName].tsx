@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import type { NextPage } from "next";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AmenitiesSection,
   iconsArray as amenitiesIconsArray,
@@ -32,9 +32,18 @@ const locations = [
   { address: "Address2", lat: 18.5314, lng: 73.8446 },
   { address: "Address3", lat: 18.5642, lng: 73.7769 }
 ]
+import { GuestsInterface } from "src/Interface";
+import Reserve from "src/stories/Reserve";
 
 const Home: NextPage = () => {
   let x = useRef(0);
+  const [numberOfGuests, setNumberOfGuests] = useState<GuestsInterface>({
+    adults: 1,
+    children: 0,
+    infants: 0,
+    pets: 0,
+    additional_guests: 0,
+  });
 
   return (
     <>
@@ -43,6 +52,9 @@ const Home: NextPage = () => {
           <div className="my-10 sm:max-w-7xl sm:m-auto">
             <RoomSection heading={heading} />
           </div>
+            <div className="w-full  m-auto mt-5 lg:w-[30%] lg:mr-0 lg:ml-[5%] bg-white">
+              <Reserve  numberOfGuests={numberOfGuests} setNumberOfGuests={setNumberOfGuests}/>
+            </div>
           <GallerySection
             heading={{ heading: "Gallery", subHeading: "Deja View's" }}
             bigImages={ImagesBig}
