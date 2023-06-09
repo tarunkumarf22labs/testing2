@@ -61,6 +61,7 @@ const options: IMenu[] = [
 function Topbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [navbarColor, setNavbarColor] = useState("");
+  const [animate, setAnimate] = useState(false);
 
   function changeColor() {
     window.scrollY <= 100
@@ -74,6 +75,17 @@ function Topbar() {
     return () => {
       window.removeEventListener("scroll", changeColor);
     };
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setAnimate(true);
+    }, 300); // Start animation after 2000 milliseconds (2 seconds)
+
+    return () =>{
+      clearTimeout(timeout);
+      setAnimate(false);
+    } // Clean up the timeout on component unmount
   }, []);
 
   return (
@@ -94,8 +106,8 @@ function Topbar() {
           />
         </div>
       </div>
-      <hr className="sticky bg-black top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28 " />
-
+      <hr className={`${animate ? 'block animate-fade-in-down' : 'hidden'} sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`} />
+      {/* ${animate ? 'animate-spin' : ''} */}
       <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden ">
         <div className="flex items-center justify-between w-5/12 sm:w-4/12">
           {!showMobileMenu ? (

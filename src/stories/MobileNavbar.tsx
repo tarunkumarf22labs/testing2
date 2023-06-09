@@ -22,7 +22,7 @@ function MobileNavbar(props: NavbarProps) {
   return (
     <>
       {showMobileMenu && (
-        <div className="flex flex-col md:hidden">
+        <div className="flex flex-col duration-100 bg-white md:hidden animate-fade-in-down">
           {options.map((ele, idx) => {
             return (
               <MobileNavOptions
