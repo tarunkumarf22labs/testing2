@@ -80,7 +80,7 @@ function Topbar() {
     <>
     
       <div
-        className={`hidden z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden  sm:px-3.5 md:flex xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
+        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden  sm:px-3.5 md:flex xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
       >
         <div className="h-8 ml-10 border w-36">
           <HeaderLogo />
