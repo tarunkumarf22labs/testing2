@@ -20,7 +20,7 @@ const Navbar = (props: NavbarProps) => {
   const { options, onMenuSelectedHandler } = props;
   return (
     <>
-      <ul className="w-full flex justify-between items-center ">
+      <ul className="flex items-center justify-between w-full ">
         {options.map((ele, idx) => {
           return (
             <Option
