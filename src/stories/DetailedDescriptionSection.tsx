@@ -1,5 +1,6 @@
 import React from "react";
 import { heading } from "src/data/constants";
+import { Container } from "./Container";
 
 interface IDetailedDescriptionSection {
   detailedDescription: {
@@ -15,7 +16,8 @@ export const DetailedDescriptionSection = ({
 }: IDetailedDescriptionSection) => {
   const { propertyName, title, plainPara, listPara } = detailedDescription;
   return (
-    <div className="w-full px-5 py-10 lg:max-w-7xl lg:mx-auto">
+    <Container>
+      {/* <div className="w-full px-5 py-10 lg:max-w-7xl lg:mx-auto"> */}
       <div className="uppercase pb-6 md:pb-10">
         <p className="text-sm text-[#8A1E61] md:mb-5">{propertyName}</p>
         <p className="text-3xl md:text-5xl text-[#18181B]">{title}</p>
@@ -46,6 +48,7 @@ export const DetailedDescriptionSection = ({
           })}
         </div>
       </div>
-    </div>
+      {/* </div> */}
+    </Container>
   );
 };

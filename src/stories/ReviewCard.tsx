@@ -2,11 +2,12 @@ import classNames from "classnames";
 import Image from "next/image";
 import React from "react";
 
-interface IReviewCard {
+export interface IReviewCard {
   top?: boolean;
   reviewText?: string;
   name?: string;
   state?: string;
+  img?: string;
   customClasses?: string;
 }
 
@@ -15,32 +16,33 @@ export const ReviewCard = ({
   reviewText,
   name,
   state,
+  img,
   customClasses,
 }: IReviewCard) => {
   return (
     <div
       className={classNames(
-        "text-[#545456] mt-4 mb-3 sm:bg-white sm:max-w-lg sm:h-auto sm:p-6 flex",
-        top ? "flex-col-reverse" : "flex-col",
+        "text-[#545456] mt-4 mb-3  md:max-w-lg md:h-auto flex",
+        top ? "flex-col-reverse md:px-0 py-2" : "flex-col sm:bg-white md:p-6 ",
         customClasses
       )}
     >
       <p
         className={classNames(
-          "text-base sm:text-2xl mb-10 font-centaur",
-          top ? "mt-4" : ""
+          "font-centaur",
+          top ? "mt-2 mb-3 text-xl" : "text-base mb-10 sm:text-2xl"
         )}
       >
         {reviewText}
       </p>
       <div
         className={classNames(
-          "flex justify-center sm:justify-start",
-          top ? "justify-start items-start" : ""
+          "flex sm:justify-start",
+          top ? "justify-start" : "justify-center "
         )}
       >
         <Image
-          src="/images/Avatar_image.png"
+          src={img}
           alt="Avatar"
           width={60}
           height={60}

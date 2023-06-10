@@ -86,3 +86,184 @@ export const floorPlanImages = [
   { src: "/images/FloorPlan1.png", w: 536, h: 445 },
   { src: "/images/FloorPlan2.png", w: 215, h: 217 },
 ];
+
+export const ReviewCardsCollection = [
+  {
+    reviewText:
+      "In a village overlooking the backwaters of the Vembanad Lake near Cochin, experience an unimaginably perfect abode under the stars and reflected in water. Here is a beautiful and soulful luxury home in Kerala that invites you to live in the moment. ",
+    name: "Atul Malhotra",
+    state: "December 2022",
+    img: "/images/Avatar_image.webp",
+  },
+  {
+    reviewText:
+      "It was an amazing stay at this place and a really good experience to stay back in the coffee estate.",
+    name: "Siddhika Jain",
+    state: "October 2022",
+    img: "/images/Avatar_image2.webp",
+  },
+  {
+    reviewText:
+      "Beautiful property to spend a weekend at! The staff were organised and carefully took care of all our needs.Thumbs up, for the kind and respectful behaviour they had",
+    name: "Ruchika Dave",
+    state: "December 2022",
+    img: "/images/Avatar_image4.webp",
+  },
+  {
+    reviewText:
+      "Mouth watering food, beautiful place and friendly staff with clean pool.",
+    name: "Avani Jain",
+    state: "October 2022",
+    img: "/images/Avatar_image5.webp",
+  },
+  {
+    reviewText:
+      "Great place with privacy. Completely secluded from the main Chikmagalur crowded areas.",
+    name: "Rahul Subramaniam",
+    state: "December 2022",
+    img: "/images/Avatar_image6.webp",
+  },
+  {
+    reviewText:
+      "the place is very good. Amazing home cooked food and very friendly staff.. perfect stay in Chikmagalur.",
+    name: "Avanish Jain",
+    state: "October 2022",
+    img: "/images/Avatar_image3.webp",
+  },
+];
+
+export const faqs = [
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "Lorem ipsum dolor sit amet, consectetur adipiscing",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+  },
+  {
+    question: "Lorem ipsum dolor sit amet, consectetur adipiscing",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+  },
+  {
+    question: "Lorem ipsum dolor sit amet",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+  },
+  {
+    question: "Lorem ipsum dolor sit amet, consectetur adipiscing",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+  },
+  {
+    question: "Lorem ipsum dolor sit amet, consectetur adipiscing",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+  },
+];
+
+export const beforeYouBook = [
+  {
+    title: "Payment Terms",
+    conditions: [
+      {
+        label: "Modes of Payment",
+        text: "Mode of payments here",
+      },
+      {
+        label: "Payment Deadlines",
+        text: "Payment Deadline",
+      },
+    ],
+  },
+  {
+    title: "Security Deposit",
+    conditions: [
+      {
+        label: "Amount",
+        text: "Payment Amount",
+      },
+      {
+        label: "Payment Collection Date",
+        text: "Date",
+      },
+      {
+        label: "Payment Return Date",
+        text: "Date",
+      },
+      {
+        label: "How it is used",
+        text: "Detail Here",
+      },
+    ],
+  },
+  {
+    title: "Cancellation Policy",
+    conditions: "50% refund up to 60 days before arrival.",
+  },
+  {
+    title: "House Rules",
+    conditions: [
+      {
+        label: "Check-In",
+        text: "2:00 PM",
+      },
+      {
+        label: "Check-Out",
+        text: "10:00 AM",
+      },
+      {
+        label: "Extra Guest",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Children Policy ",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Smoking & Substances",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Parties and Events",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Pet Policy",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Alcohol Policy",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Music",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Villa Staff",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Accompanying Guest’s Staff",
+        text: "Lorem Ipsum",
+      },
+    ],
+  },
+];
+
+export const homeTruths = [
+  "Gramercy House is serviced with daytime housekeepers, a groundskeeper and gardener, and 24 x 7 staffed security. There is also a full-time resident chef who can do South Indian, North Indian, Chinese, and Indian street-food snacks. In addition, your dedicated LuxUnlock Location Manager is available on-call or WA for any assistance.",
+  "Electricity supply by the government is both erratic and of poor quality throughout the year in Kodaikanal. Do expect frequent power cuts through-out the day. The house comes with an incoming servo-stabiliser and 100% automatic power back up with diesel genset.",
+  "Water is highly scarce in Kodaikanal and the house does not have a municipal water connection. It depends upon rainwater storage, and open well and borewell. Water is pumped to the overhead tanks automatically and nothing needs to be done. Please use water prudently.",
+  "Heating is available in all rooms with portable heaters in all three rooms and all shared spaces. There are two working fireplaces in the living and dining area and an electric fireplace in the TV room. All bedrooms have individual hot water geysers.",
+  "Access to the washing machine & dryer is restricted to the housekeeper. Please handover your laundry and she will have it done. Charges apply for washing and folding only. Ironing facility is for self-use. Clothes are sun-dried in the back yard.",
+  "There are two kitchens - a main kitchen for vegetarian food at the back of the house on the ground floor, and one separate non-vegetarian kitchen at the bottom of the rear building. Please do comply with the rules of cooking, if you are using your own accompanying cook or cooking for yourself.",
+  "Accompanying staff accommodation is available on the premises with beds, room heating, and clean bathrooms with hot water.",
+  "Kodaikanal has a major human animal conflict problem with Indian bison. Due to habitat destruction and lack of predators, bison numbers have increased and they often are found in residential and public areas, and occasionally in our estate. Please be careful when walking. Increasingly, monkeys have also become a menace and be careful as they do raid indoor spaces looking for food.",
+  "As this is a house using antique and salvaged furniture and woodwork, doors and cupboards may be a bit quirky. Due to its age, some electrical switches may behave inconsistently. Floorboards creak.",
+];

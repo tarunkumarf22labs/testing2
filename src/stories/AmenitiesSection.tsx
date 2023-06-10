@@ -125,7 +125,7 @@ export const AmenitiesSection = ({
           alt="amenities2"
           width={300}
           height={200}
-          className="absolute left-64 top-[403px]"
+          className="absolute 2xl:-right-[15%] right-0 top-[403px]"
         />
       </div>
     </div>

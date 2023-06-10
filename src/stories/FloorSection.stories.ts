@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { FloorSection } from "./FloorSection";
+import { FloorSection, IFloorPlanImages } from "./FloorSection";
+import { floorPlanImages } from "../data/constants";
 
 const meta: Meta<typeof FloorSection> = {
   title: "Component/FloorSection",
@@ -11,5 +12,7 @@ export default meta;
 type Story = StoryObj<typeof FloorSection>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    floorPlanImages,
+  },
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { NameTitle } from "./NameTitle";
 import Image from "next/image";
 
-interface IFloorPlanImages {
+export interface IFloorPlanImages {
   floorPlanImages: { src: string; w: number; h: number }[];
 }
 
