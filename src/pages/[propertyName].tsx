@@ -26,6 +26,7 @@ import { DetailedDescriptionSection } from "src/stories/DetailedDescriptionSecti
 import { FloorSection } from "src/stories/FloorSection";
 import { PropertyReviewSection } from "src/stories/PropertyReviewSection";
 import Map from "src/stories/Map";
+import { VillaBanner } from "src/stories/VillaBanner";
 
 const locations = [
   { address: "Address1", lat: 18.5204, lng: 73.8567 },
@@ -39,6 +40,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout title="LuxUnlock">
+      <VillaBanner title="Deja-View" />
         <div className="bg-[#f8f8f9]">
           <div className="my-10 sm:max-w-7xl sm:m-auto">
             <RoomSection heading={heading} />
