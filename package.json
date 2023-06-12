@@ -50,10 +50,11 @@
   },
   "dependencies": {
     "@heroicons/react": "2.0.13",
-    "@rehookify/datepicker": "^5.2.1",
     "@phosphor-icons/react": "^2.0.9",
+    "@rehookify/datepicker": "^5.2.1",
     "classnames": "2.3.2",
     "clsx": "^1.2.1",
+    "framer-motion": "^10.12.16",
     "next": "13.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
