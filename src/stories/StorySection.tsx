@@ -31,7 +31,7 @@ export const StorySection = ({
             {heading}
           </p>
         )}
-        <p className="uppercase text-3xl md:text-5xl mb-6">
+        <p className="uppercase text-3xl md:text-5xl mb-6 font-light">
           {" "}
           {isStory ? "STORY" : "Getting there"}
         </p>

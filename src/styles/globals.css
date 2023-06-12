@@ -5,49 +5,49 @@
 @font-face {
   font-family: "Brandon-Grotesque";
   src: url("../../fonts/Brandon_thin.otf");
-  font-weight: thin;
+  font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Brandon-Grotesque";
   src: url("../../fonts/Brandon_med.otf");
-  font-weight: medium;
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Brandon-Grotesque";
   src: url("../../fonts/Brandon_reg.otf");
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Brandon-Grotesque";
   src: url("../../fonts/Brandon_bld.otf");
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Brandon-Grotesque";
   src: url("../../fonts/Brandon_blk.otf");
-  font-weight: bulk;
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Brandon-Grotesque";
   src: url("../../fonts/Brandon_light.otf");
-  font-weight: light;
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Centaur";
   src: url("../../fonts/CENTAUR.TTF");
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
 }
 

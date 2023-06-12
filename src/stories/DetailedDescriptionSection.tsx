@@ -20,7 +20,9 @@ export const DetailedDescriptionSection = ({
       {/* <div className="w-full px-5 py-10 lg:max-w-7xl lg:mx-auto"> */}
       <div className="uppercase pb-6 md:pb-10">
         <p className="text-sm text-[#8A1E61] md:mb-5">{propertyName}</p>
-        <p className="text-3xl md:text-5xl text-[#18181B]">{title}</p>
+        <p className="text-3xl md:text-5xl text-[#18181B] font-light">
+          {title}
+        </p>
       </div>
       <div className="space-y-10">
         <div className="space-y-10">

@@ -89,7 +89,7 @@ export const AmenitiesSection = ({
           <p className="text-sm text-[#8A1E61] pb-2 tracking-wider">
             {heading}
           </p>
-          <p className="text-3xl">Amenities</p>
+          <p className="text-3xl font-light">Amenities</p>
         </div>
         <div className="space-y-7 xl:hidden text-[#545456]">
           {maxEightIcons.map((icon, index) => (
