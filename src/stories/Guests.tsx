@@ -1,13 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { GuestsInterface } from "src/Interface";
-interface ReserveInterface {
-  numberOfGuests: GuestsInterface;
-  setNumberOfGuests: Dispatch<SetStateAction<GuestsInterface>>;
-}
+import React, { Dispatch, SetStateAction, useContext, useState } from "react";
+import { AppContext } from "src/Context";
 
-const Guests = (props: ReserveInterface) => {
-  const { numberOfGuests, setNumberOfGuests } = props;
-
+const Guests = () => {
+  const { setNumberOfGuests,numberOfGuests } = useContext(AppContext)
   const capacity = 15;
 
   function IncreaseNumberOfGuest(type: string): void {
