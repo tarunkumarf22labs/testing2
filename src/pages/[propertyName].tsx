@@ -44,7 +44,8 @@ const Home: NextPage = () => {
       <VillaBanner 
       bannerText="DEJA-VIEW" 
       bannerTextStyle="hidden sm:block text-[#F8F8F9] capitalize absolute top-[50%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]"
-      bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]" />
+      bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]"
+      VillaImage='/images/a01.png' />
         <div className="bg-[#f8f8f9]">
           <div className="my-10 sm:max-w-7xl sm:m-auto">
             <RoomSection heading={heading} />

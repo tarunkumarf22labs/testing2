@@ -139,3 +139,21 @@ body {
 .Home-page-text-div {
   transform: translate(-50%, -50%);
 }
+
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-down {
+  animation-name: slide-down;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
