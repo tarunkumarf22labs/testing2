@@ -32,11 +32,8 @@ const PropertyOverview = () => {
           </p>
           <div className="flex items-center mt-2">
             {amenities?.map((el, index) => (
-              <div className="flex items-center">
-                <p
-                  key={el}
-                  className="font-centaur text-xs text-[#545456] md:text-base md:leading-[18px]"
-                >
+              <div key={el} className="flex items-center">
+                <p className="font-centaur text-xs text-[#545456] md:text-base md:leading-[18px]">
                   {el}
                 </p>
                 {index === amenities?.length - 1 ? null : (
@@ -45,7 +42,10 @@ const PropertyOverview = () => {
               </div>
             ))}
           </div>
-          <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:text-[22px] md:leading-8">
+          <p className="hidden md:block my-8 text-[#18181B] text-[22px] leading-8">
+            Experience luxury in the lap of nature!
+          </p>
+          <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
             In a village overlooking the backwaters of the Vembanad Lake near
             Cochin, experience an unimaginably perfect abode under the stars and
             reflected in water. Here is a beautiful and soulful luxury home in
