@@ -66,7 +66,7 @@ function Topbar() {
   function changeColor() {
     window.scrollY <= 100
       ? setNavbarColor("")
-      : setNavbarColor("bg-[#8A1E61] text-white");
+      : setNavbarColor("bg-white text-[#8A1E61]");
   }
   useEffect(() => {
     // adding the event when scroll change Logo
@@ -90,15 +90,14 @@ function Topbar() {
 
   return (
     <>
-    
       <div
-        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden  sm:px-3.5 md:flex xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
+        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden font-bold sm:px-3.5 md:flex `}
       >
-        <div className="h-8 ml-10 border w-36">
+        <div className="h-8 ml-10 border w-36 md:ml-20">
           <HeaderLogo />
         </div>
 
-        <div className="flex items-center justify-between w-2/6 h-8 mr-10 md:w-3/5 lg:w-5/12 xl:w-5/12">
+        <div className={`${navbarColor} flex items-center justify-between w-2/6 h-8 mr-10 md:w-3/5 lg:mr-20 lg:w-5/12 xl:w-5/12 2xl:w-4/12`}>
           <Navbar
             options={options}
             onMenuSelectedHandler={(menu) => {
@@ -117,7 +116,7 @@ function Topbar() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 font-bold"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
               <path
@@ -133,7 +132,7 @@ function Topbar() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 font-bold"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
               <path
@@ -154,7 +153,6 @@ function Topbar() {
           showMobileMenu={showMobileMenu}
         />
       </div>
-      {/* )} */}
     </>
   );
 }

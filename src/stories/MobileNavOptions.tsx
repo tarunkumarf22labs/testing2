@@ -19,7 +19,7 @@ const MobileNavOptions = (props: OptionProps) => {
   return (
     <div>
       <div
-        className="flex items-center justify-between h-12 p-2 text-xs"
+        className="text-[#8A1E61] flex items-center justify-between h-12 p-2 text-xs font-bold "
         onClick={() => setShowOptions(!showOptions)}
         key={id}
       >
@@ -65,7 +65,7 @@ const MobileNavOptions = (props: OptionProps) => {
             return (
               <li
                 key={id}
-                className="h-5 mb-1 ml-2 text-xs cursor-pointer hover:underline"
+                className="h-5 mb-1 ml-2 text-xs font-bold cursor-pointer hover:underline"
                 onClick={() => {
                   onMenuSelectedHandler(ele);
                 }}
