@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import type { NextPage } from "next";
-import { useContext,useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   AmenitiesSection,
   iconsArray as amenitiesIconsArray,
@@ -26,7 +26,6 @@ import { DetailedDescriptionSection } from "src/stories/DetailedDescriptionSecti
 import { FloorSection } from "src/stories/FloorSection";
 import { PropertyReviewSection } from "src/stories/PropertyReviewSection";
 import Map from "src/stories/Map";
-import { AppContext } from "src/Context";
 
 const locations = [
   { address: "Address1", lat: 18.5204, lng: 73.8567 },
@@ -36,7 +35,7 @@ const locations = [
 
 const Home: NextPage = () => {
   let x = useRef(0);
-  const { startDate, endDate } = useContext(AppContext)
+
   return (
     <>
       <Layout title="LuxUnlock">
@@ -44,7 +43,6 @@ const Home: NextPage = () => {
           <div className="my-10 sm:max-w-7xl sm:m-auto">
             <RoomSection heading={heading} />
           </div>
-          <h1>{startDate}{endDate}</h1>
           <GallerySection
             heading={{ heading: "Gallery", subHeading: "Deja View's" }}
             bigImages={ImagesBig}
