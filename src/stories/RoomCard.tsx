@@ -64,9 +64,9 @@ export const RoomCard = ({ image, roomName, amenities }: IRoomCard) => {
           <div className="text-xs text-[#545456] mb-4">
             2-3 Guest . Personal Bedroom
           </div>
-          <div className="hidden sm:block">
+          {/* <div className="hidden sm:block">
             <input type="text" />
-          </div>
+          </div> */}
         </div>
         <div className="flex justify-between items-center space-x-6">
           <div className="flex justify-between">

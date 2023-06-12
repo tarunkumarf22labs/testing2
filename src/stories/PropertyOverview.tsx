@@ -13,7 +13,7 @@ const PropertyOverview = () => {
   return (
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
       <div>
-        <div className="flex items-center text-[#8A1E61]">
+        <div className="flex items-center text-[#8A1E61] mt-4 md:pl-3">
           <button className="flex items-center justify-center p-5">
             <Export className="text-md md:text-2xl" />
             <p className="pl-3 text-sm md:text-base">Share</p>
@@ -23,7 +23,7 @@ const PropertyOverview = () => {
             <p className="pl-3 text-sm md:text-base">Download Brochure</p>
           </button>
         </div>
-        <div className="px-5">
+        <div className="px-5 md:px-8">
           <h1 className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px]">
             Deja View
           </h1>
@@ -46,12 +46,16 @@ const PropertyOverview = () => {
             Experience luxury in the lap of nature!
           </p>
           <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
-            In a village overlooking the backwaters of the Vembanad Lake near
-            Cochin, experience an unimaginably perfect abode under the stars and
-            reflected in water. Here is a beautiful and soulful luxury home in
-            Kerala that invites you to live in the moment. Built by one of
-            India's best-known ad-film makers as a passion project, with
-            incredible attention to detail.
+            Deja View is a beautiful 2-bedroom plantation-style luxury villa
+            with locally-inspired design and contemporary interiors that makes
+            it one of the most romantic vacation homes in South India. The villa
+            is part of a private community of six homes set on top of a hill in
+            a 14-acre coffee & cardamom plantation in Eastern Wayanad, Kerala.
+            From your verandah enjoy sweeping and unhindered views of rainforest
+            clad hills. Indoors, an open plan design comprising two tastefully
+            furnished bedrooms and a gorgeous loft make for an intimate &
+            enjoyable holiday. Make time for nature walks & cycling, discovering
+            ancient history, and savouring the delicious cuisine of Wayanad.
           </p>
           <hr className="my-6" />
         </div>

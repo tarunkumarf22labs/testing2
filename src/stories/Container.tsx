@@ -9,7 +9,7 @@ interface IContainer {
 export const Container = ({ children, bgWhite = true }: IContainer) => {
   return (
     <div className={classNames(bgWhite ? "bg-white" : "bg-[#f8f8f9]")}>
-      <div className="px-5 py-10 xl:max-w-7xl xl:mx-auto lg:py-20">
+      <div className="px-5 xl:px-0 py-10 xl:max-w-7xl xl:mx-auto lg:py-20">
         {children}
       </div>
     </div>

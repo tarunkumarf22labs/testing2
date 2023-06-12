@@ -11,9 +11,13 @@ export const PropertyReviewSection = ({
   reviewCardsCollection,
 }: IPropertyReviewSection) => {
   return (
-    <div className={classNames("px-5 py-10 lg:max-w-7xl lg:mx-auto")}>
+    <div
+      className={classNames(
+        "px-5 py-10 xl:px-0 lg:py-20 lg:max-w-7xl lg:mx-auto"
+      )}
+    >
       <NameTitle propertyName="Deja View's" title="Guest Experience" />
-      <div className="flex flex-col md:flex-row md:items-start md:flex-wrap md:gap-x-24">
+      <div className="flex flex-col justify-between md:flex-row md:items-start md:flex-wrap md:gap-x-24">
         {reviewCardsCollection.map((review, index) => {
           const { reviewText, name, state, img } = review;
           return (

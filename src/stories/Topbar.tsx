@@ -66,7 +66,7 @@ function Topbar() {
   function changeColor() {
     window.scrollY <= 100
       ? setNavbarColor("")
-      : setNavbarColor("bg-[#8A1E61] text-white");
+      : setNavbarColor("bg-[#8A1E61] group isScrolled");
   }
   useEffect(() => {
     // adding the event when scroll change Logo
@@ -91,14 +91,17 @@ function Topbar() {
   return (
     <>
       <div
-        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden  sm:px-3.5 md:flex xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
+        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-[100px] md:block`}
       >
-        <div className="h-8 ml-10 border w-36">
-          <HeaderLogo />
-        </div>
-
-        <div className="flex items-center justify-between w-2/6 h-8 mr-10 md:w-3/5 lg:w-5/12 xl:w-5/12">
-          <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
+        <div
+          className={`flex flex-1 w-full h-full max-w-7xl mx-auto border-b group-[.isScrolled]:border-b-0 text-white font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
+        >
+          <div className="border">
+            <HeaderLogo />
+          </div>
+          <div className="flex items-center justify-between h-8">
+            <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
+          </div>
         </div>
       </div>
       <hr
@@ -107,8 +110,8 @@ function Topbar() {
         } sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
       />
       {/* ${animate ? 'animate-spin' : ''} */}
-      <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden ">
-        <div className="flex items-center justify-between w-5/12 sm:w-4/12">
+      <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex h-16 justify-between items-center px-5  md:hidden ">
+        <div className="flex items-center">
           {!showMobileMenu ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"

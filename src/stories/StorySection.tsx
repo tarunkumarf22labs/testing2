@@ -1,3 +1,4 @@
+import ReadMore from "@/components/ReadMore/ReadMore";
 import Image from "next/image";
 import React from "react";
 
@@ -15,7 +16,7 @@ export const StorySection = ({
   image,
 }: IStorySection) => {
   return (
-    <div className="my-8 sm:my-10">
+    <div>
       <div className="-z-10 sm:min-w-screen">
         <Image
           src={image}
@@ -32,12 +33,15 @@ export const StorySection = ({
           </p>
         )}
         <p className="uppercase text-3xl md:text-5xl mb-6 font-light">
-          {" "}
           {isStory ? "STORY" : "Getting there"}
         </p>
-        <p className="text-base text-[color: #545456;] font-centaur md:text-2xl ">
-          {story}
-        </p>
+        <ReadMore
+          text={story}
+          textClassName={
+            "text-base text-[#545456] font-centaur leading-[34px] md:text-2xl"
+          }
+          readMoreTextClassName={"text-[#8A1E61]"}
+        />
       </div>
     </div>
   );

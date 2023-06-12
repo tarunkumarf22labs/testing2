@@ -13,7 +13,7 @@ export const InclusionsExclusionsSection = ({
 }: IInclusionsExclusionsSection) => {
   return (
     <div className="bg-white w-full">
-      <div className="flex flex-col md:flex-row py-10 md:py-20 px-5 space-y-16 md:space-y-0 md:space-x-20 xl:max-w-7xl xl:mx-auto">
+      <div className="flex flex-col md:flex-row py-10 lg:py-20 px-5 xl:px-0 space-y-16 md:space-y-0 md:space-x-20 xl:max-w-7xl xl:mx-auto">
         <InclusionsExlusions
           heading={heading}
           inclusions={inclusions}

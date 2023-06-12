@@ -26,7 +26,7 @@ const Option = (props: OptionProps) => {
       onClick={() => {
         setShowOptions(!showOptions);
       }}
-      className="relative cursor-pointer hover:underline"
+      className="relative cursor-pointer hover:underline px-2 lg:px-5"
     >
       {title}
       {options && options.length === 0 ? (
@@ -72,7 +72,7 @@ const Option = (props: OptionProps) => {
               return (
                 <li
                   key={idx}
-                  className="mb-3 ml-1 text-sm cursor-pointer hover:underline"
+                  className="mb-3 ml-1 text-sm cursor-pointer hover:underline "
                   onClick={() => {
                     onMenuSelectedHandler(opt);
                   }}

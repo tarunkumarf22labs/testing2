@@ -47,7 +47,7 @@ export const detailedDescription = {
   title: "Detailed Description",
   plainPara: [
     {
-      heading: "SLeeping Spaces",
+      heading: "Sleeping Spaces",
       detail:
         "Two bedrooms lead off from the communal space. The large master bedroom has a romantic four-poster king bed, beautiful furnishings and a luxurious ensuite bathroom with twin-vanity sinks. The spacious second bedroom has a king bed and is adorned with original art. The ensuite bathroom is equally luxurious. Steps at the rear lead up to a window-lined mezzanine loft that looks onto the lower level and has space for yoga or can sleep extra guests.",
     },
