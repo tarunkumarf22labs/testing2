@@ -1,6 +1,7 @@
-import Layout from "@/components/Layout";
-import type { NextPage } from "next";
 import { useRef } from "react";
+import Layout from "@/components/Layout";
+import Image from "next/image";
+import type { NextPage } from "next";
 import {
   AmenitiesSection,
   iconsArray as amenitiesIconsArray,
@@ -33,7 +34,13 @@ import { FaqsSection } from "src/stories/FaqsSection";
 import { BeforeYouBook } from "src/stories/BeforeYouBook";
 import { HomeTruthsSection } from "src/stories/HomeTruthsSection";
 import PropertyOverview from "src/stories/PropertyOverview";
-import Image from "next/image";
+import Map from "src/stories/Map";
+
+const locations = [
+  { address: "Address1", lat: 18.5204, lng: 73.8567 },
+  { address: "Address2", lat: 18.5314, lng: 73.8446 },
+  { address: "Address3", lat: 18.5642, lng: 73.7769 },
+];
 
 const Home: NextPage = () => {
   let x = useRef(0);
@@ -95,6 +102,9 @@ const Home: NextPage = () => {
           <PropertyReviewSection
             reviewCardsCollection={ReviewCardsCollection}
           />
+          <div className="h-[500px] px-5 py-10 lg:max-w-7xl lg:mx-auto">
+            <Map markers={locations} />
+          </div>
           <FaqsSection faqs={faqs} />
           <BeforeYouBook beforeYouBook={beforeYouBook} />
         </div>

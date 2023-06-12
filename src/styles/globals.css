@@ -132,3 +132,7 @@ body {
 .will-be-range-end:nth-child(7n + 1) {
   border-radius: var(--border-radius) !important;
 }
+.map-container {
+  height: 100%;
+  width: 100%;
+}
