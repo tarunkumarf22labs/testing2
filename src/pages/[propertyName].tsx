@@ -27,6 +27,12 @@ import { FloorSection } from "src/stories/FloorSection";
 import { PropertyReviewSection } from "src/stories/PropertyReviewSection";
 import Map from "src/stories/Map";
 
+const locations = [
+  { address: "Address1", lat: 18.5204, lng: 73.8567 },
+  { address: "Address2", lat: 18.5314, lng: 73.8446 },
+  { address: "Address3", lat: 18.5642, lng: 73.7769 }
+]
+
 const Home: NextPage = () => {
   let x = useRef(0);
 
@@ -67,7 +73,7 @@ const Home: NextPage = () => {
           <FloorSection floorPlanImages={floorPlanImages} />
           <PropertyReviewSection />
           <div className="h-[500px] px-5 py-10 lg:max-w-7xl lg:mx-auto">
-          <Map/>
+          <Map markers = {locations}/>
           </div>
         </div>
       </Layout>

@@ -1,13 +1,6 @@
-// /* global google */
-const markers = [
-  { address: "Address1", lat: 18.5204, lng: 73.8567 },
-  { address: "Address2", lat: 18.5314, lng: 73.8446 },
-  { address: "Address3", lat: 18.5642, lng: 73.7769 },
-];
-
 import {
   GoogleMap,
-  InfoWindow,
+  InfoWindowF,
   MarkerF,
   useLoadScript,
 } from "@react-google-maps/api";
@@ -18,7 +11,17 @@ interface setInfoWindowDataInterface {
   id: number;
 }
 
-const Map = () => {
+interface Imarker {
+  address: string;
+  lat: number;
+  lng: number;
+}
+
+interface Imarkers {
+  markers: Imarker[];
+}
+
+const Map = ({ markers }: Imarkers) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAP_API_KEY,
   });
@@ -56,17 +59,16 @@ const Map = () => {
               onClick={() => {
                 handleMarkerClick(ind, lat, lng, address);
               }}
-              // icon={customMarker}
             >
               {isOpen && infoWindowData?.id === ind && (
-                <InfoWindow
+                <InfoWindowF
                   onCloseClick={() => {
                     setIsOpen(false);
                   }}
                   position={{ lat, lng }}
                 >
-                  <h3 >{infoWindowData.address}</h3>
-                </InfoWindow>
+                  <h3>{infoWindowData.address}</h3>
+                </InfoWindowF>
               )}
             </MarkerF>
           ))}
