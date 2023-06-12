@@ -19,12 +19,6 @@ interface DatePickerProps {
   setEndDate: React.Dispatch<React.SetStateAction<string>>;
   inVillaDetails: boolean;
 }
-// numberOfGuests,
-// setNumberOfGuests,
-// startDate,
-// setStartDate,
-// endDate,
-// setEndDate,
 
 function Root(props: DatePickerProps) {
   const {startDate,setStartDate, endDate, setEndDate, inVillaDetails } = props;
