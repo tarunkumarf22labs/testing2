@@ -5,10 +5,10 @@ const FooterLogo = () => {
   return (
     <Image
       src="/images/FooterLogo.png"
-      width={96}
-      height={50}
+      width={388}
+      height={299}
       alt="LuxUnlock Footer Logo"
-      className="pb-4"
+      className="w-24 pb-4 mt-10 sm:w-36 md:w-48"
     />
   );
 };
