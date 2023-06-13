@@ -33,6 +33,8 @@ const locations = [
   { address: "Address2", lat: 18.5314, lng: 73.8446 },
   { address: "Address3", lat: 18.5642, lng: 73.7769 }
 ]
+import { GuestsInterface } from "src/Interface";
+import Reserve from "src/stories/Reserve";
 
 const Home: NextPage = () => {
   let x = useRef(0);
@@ -44,7 +46,6 @@ const Home: NextPage = () => {
           <div className="my-10 sm:max-w-7xl sm:m-auto">
             <RoomSection heading={heading} />
           </div>
-          <h1>{startDate}{endDate}</h1>
           <GallerySection
             heading={{ heading: "Gallery", subHeading: "Deja View's" }}
             bigImages={ImagesBig}
