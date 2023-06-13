@@ -106,15 +106,10 @@ function Topbar() {
           </div>
         </div>
       </div>
-      <hr
-        className={`${
-          animate ? "block animate-fade-in-down" : "hidden"
-        } sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
-      />
-      <div
-        className={`fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex h-16 justify-between items-center px-5  md:hidden`}
-      >
-        <div className="flex items-center">
+      <hr className={`${animate ? 'block animate-fade-in-down' : 'hidden'} sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28 z-[150]`} />
+      {/* ${animate ? 'animate-spin' : ''} */}
+      <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden ">
+        <div className="flex items-center justify-between w-5/12 sm:w-4/12">
           {!showMobileMenu ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
