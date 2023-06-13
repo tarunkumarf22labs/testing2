@@ -3,6 +3,9 @@ import type { NextPage } from "next";
 import Carousal from "src/stories/Carousal";
 import { HomeBannerimages } from "src/data/constants";
 import Search from "src/stories/Search";
+import { AppContext } from "src/Context";
+import { useContext } from "react";
+
 
 const Home: NextPage = () => {
   const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
@@ -12,14 +15,9 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout title="LuxUnlock">
-        <>
-          <Carousal
-            images={HomeBannerimages}
-            bannerImageStyle={bannerImageStyle}
-            bannerTextStyle={bannerTextStyle}
-            bannerText={bannerText}
-          />
-        </>
+           <>
+           <Carousal images={HomeBannerimages} bannerImageStyle={bannerImageStyle} bannerTextStyle={bannerTextStyle} bannerText={bannerText}/>
+           </>
       </Layout>
     </>
   );
