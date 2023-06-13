@@ -1,23 +1,23 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-
+import { motion } from "framer-motion"
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 interface CarousalProps {
   images: string[];
+  bannerImageStyle: string;
+  bannerTextStyle: string;
+  bannerText: string;
 }
+import { Autoplay } from "swiper";
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
-
-export default function Carousal(props: CarousalProps) {
-  const { images } = props;
+export default function Carousal({ images,bannerImageStyle,bannerTextStyle,bannerText }: CarousalProps) {
+    
   return (
-    <div className="relative md:-mt-16">
+    <div className="relative text-center md:-mt-16">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -25,38 +25,29 @@ export default function Carousal(props: CarousalProps) {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        // pagination={{
-        //   clickable: true,
-        // }}
-        // navigation={true}
         modules={[Autoplay]}
-        // modules={[Autoplay, Pagination, Navigation]}
-
         className="mySwiper"
       >
         {images.map((ele, idx) => {
           return (
             <SwiperSlide key={idx}>
-              <div className="w-full h-screen ease-in-out ">
+              <div className="w-full ease-in-out ">
                 <Image
                   src={ele}
-                  width={100}
-                  height={100}
+                  width={1920}
+                  height={1080}
                   alt="Poster Image"
-                  className="block w-full h-screen"
+                  className={bannerImageStyle}
                 />
               </div>
             </SwiperSlide>
           );
         })}
-        {/* max-w-md */}
       </Swiper>
-      {/* <div className="font-light max-w-xs m-auto absolute sm:max-w-md  left-[20%] sm:w-96 sm:left-[30%] lg:left-[35%] bottom-[60%] text-white bg-transparent text-center text-4xl font-[Brandon Grotesque] tracking-wide z-50">
-         <p>UNLOCK THE LUXURY WITH LUXUNLOCK</p>
-      </div> */}
-        <div className="font-light w-64 md:w-96 absolute  top-2/4 left-1/4 md:left-[40%] text-center text-white text-4xl font-[Brandon Grotesque] tracking-wide z-50">
-         <p>UNLOCK THE LUXURY WITH LUXUNLOCK</p>
+      <div className={`overflow-hidden ${bannerTextStyle} Home-page-text-div font-[Brandon Grotesque] tracking-wide text-4xl md:text-5xl`}>
+        <p className="capitalize animate-slide-down">{bannerText}</p>
       </div>
+
     </div>
   );
 }

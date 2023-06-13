@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import  Carousal  from './Carousal';
 
 const meta: Meta<typeof Carousal> = {
-  title: 'Carousal',
+  title: 'Component/Carousal',
   component: Carousal,
 
 };
