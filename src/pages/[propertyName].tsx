@@ -26,22 +26,24 @@ import { DetailedDescriptionSection } from "src/stories/DetailedDescriptionSecti
 import { FloorSection } from "src/stories/FloorSection";
 import { PropertyReviewSection } from "src/stories/PropertyReviewSection";
 import Map from "src/stories/Map";
-import { AppContext } from "src/Context";
 
 const locations = [
   { address: "Address1", lat: 18.5204, lng: 73.8567 },
   { address: "Address2", lat: 18.5314, lng: 73.8446 },
   { address: "Address3", lat: 18.5642, lng: 73.7769 }
 ]
-import { GuestsInterface } from "src/Interface";
-import Reserve from "src/stories/Reserve";
+import { VillaBanner } from "src/stories/VillaBanner";
 
 const Home: NextPage = () => {
-  let x = useRef(0);
-  const { startDate, endDate } = useContext(AppContext)
   return (
     <>
       <Layout title="LuxUnlock">
+        <>
+      <VillaBanner 
+      bannerText="DEJA-VIEW" 
+      bannerTextStyle="hidden sm:block text-[#F8F8F9] capitalize absolute top-[50%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]"
+      bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]"
+      VillaImage='/images/a01.png' />
         <div className="bg-[#f8f8f9]">
           <div className="my-10 sm:max-w-7xl sm:m-auto">
             <RoomSection heading={heading} />
@@ -79,6 +81,7 @@ const Home: NextPage = () => {
           <Map markers = {locations}/>
           </div>
         </div>
+        </>
       </Layout>
     </>
   );
