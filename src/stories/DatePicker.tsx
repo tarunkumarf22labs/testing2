@@ -7,35 +7,38 @@ import {
   useDatePicker,
   useDatePickerState,
 } from "@rehookify/datepicker";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DayButton } from "./DayButton";
 import { Calendar } from "./Calendar";
-
+import { AppContext } from "src/Context";
 
 interface DatePickerProps {
-  startDate: string;
-  setStartDate: React.Dispatch<React.SetStateAction<string>>;
-  endDate: string;
-  setEndDate: React.Dispatch<React.SetStateAction<string>>;
   inVillaDetails: boolean;
 }
 
-function Root(props: DatePickerProps) {
-  const {startDate,setStartDate, endDate, setEndDate, inVillaDetails } = props;
+
+function Root({inVillaDetails}: DatePickerProps) {
   const { calendars } = useContextCalendars();
   const { formattedDates } = useContextDays();
   const { previousMonthButton, nextMonthButton } =
     useContextMonthsPropGetters();
   const { selectedDates } = useDatePickerState();
-  
+  const { setStartDate, setEndDate } =
+    useContext(AppContext);
+
   const [start, end] = formattedDates;
-
-  setStartDate(start);
-  setEndDate(end);
-
   
+  useEffect(() => {
+    start ? setStartDate(start) : null;
+    end ? setEndDate(end) : null;
+  }, [start, end]);
+
   return (
-    <div className={`z-[150] block ${inVillaDetails ? '' : 'absolute ' }w-[100%]  bg-white  top-50 p-4  rounded shadow-xs shadow shadow-slate-300  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-4/12 2xl:left-[17vw]`}>
+    <div
+      className={`z-[150] block ${
+        inVillaDetails ? "" : "absolute "
+      }w-[100%]  bg-white  top-50 p-4  rounded shadow-xs shadow shadow-slate-300  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-4/12 2xl:left-[17vw]`}
+    >
       <div>
         <div className="flex items-center justify-between w-full bg-white z-[150]">
           <p>
@@ -83,7 +86,6 @@ function Root(props: DatePickerProps) {
               </svg>
             </DayButton>
           </p>
-          
         </div>
       </div>
       <main className="grid grid-cols-1 gap-x-6 sm:grid-cols-2 border-green z-[150]">
@@ -136,17 +138,15 @@ function Root(props: DatePickerProps) {
       </main>
     </div>
   );
-} 
+}
 
 const Datepicker = (props: DatePickerProps) => {
-  const {startDate,setStartDate, endDate, setEndDate, inVillaDetails } = props;
+  const { inVillaDetails } = props;
   const now = new Date();
   const M = now.getMonth();
   const Y = now.getFullYear();
   const D = now.getDate();
   const [selectedDates, onDatesChange] = useState<Date[]>([]);
-
-  console.log(">>", selectedDates);
 
   return (
     <DatePickerStateProvider
@@ -156,7 +156,6 @@ const Datepicker = (props: DatePickerProps) => {
         dates: {
           mode: "range",
           minDate: new Date(Y, M - 2, 1),
-          // maxDate: new Date(Y, M + 2, 0),
           selectSameDate: true,
           //   toggle: true
         },
@@ -174,11 +173,7 @@ const Datepicker = (props: DatePickerProps) => {
       }}
     >
       <Root
-          startDate={startDate}
-          setStartDate={setStartDate}
-          endDate={endDate}
-          setEndDate={setEndDate}
-          inVillaDetails= {false}
+        inVillaDetails={false}
       />
     </DatePickerStateProvider>
   );
