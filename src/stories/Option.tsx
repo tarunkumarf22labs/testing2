@@ -23,13 +23,10 @@ const Option = (props: OptionProps) => {
   return (
     <li
       key={id}
-      onMouseEnter={() => {
-        setShowOptions(true);
+      onClick={() => {
+        setShowOptions(!showOptions);
       }}
-      onMouseLeave={() => {
-        setShowOptions(false);
-      }}
-      className="cursor-pointer relative hover:underline"
+      className="relative cursor-pointer hover:underline"
     >
       {title}
       {options && options.length === 0 ? (
@@ -41,7 +38,7 @@ const Option = (props: OptionProps) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-4 h-4 inline-flex ml-1 -mt-1"
+          className="inline-flex w-4 h-4 ml-1 -mt-1"
         >
           <path
             strokeLinecap="round"
@@ -56,7 +53,7 @@ const Option = (props: OptionProps) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-4 h-4 inline-flex ml-1 -mt-1"
+          className="inline-flex w-4 h-4 ml-1 -mt-1"
         >
           <path
             strokeLinecap="round"
@@ -67,7 +64,7 @@ const Option = (props: OptionProps) => {
       )}
       {options && options.length > 0 && (
         <ul
-          className={`${shouldShow}  absolute  -left-48 w-[621px] grid grid-cols-3 bg-white md:top-12 lg:top-12  lg:-left-[440px] xl:right-1 xl:top-11`}
+          className={`${shouldShow} absolute  text-black  -left-48 w-[621px] grid grid-cols-3 bg-white md:top-12 lg:top-12  lg:-left-[440px] xl:right-1 xl:top-11 `}
         >
           {options &&
             options.length > 0 &&
@@ -75,7 +72,7 @@ const Option = (props: OptionProps) => {
               return (
                 <li
                   key={idx}
-                  className=" text-sm mb-3 ml-1 hover:underline cursor-pointer "
+                  className="mb-3 ml-1 text-sm cursor-pointer hover:underline"
                   onClick={() => {
                     onMenuSelectedHandler(opt);
                   }}

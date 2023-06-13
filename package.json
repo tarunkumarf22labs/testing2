@@ -51,6 +51,7 @@
   "dependencies": {
     "@heroicons/react": "2.0.13",
     "@phosphor-icons/react": "^2.0.9",
+    "@react-google-maps/api": "^2.18.1",
     "@rehookify/datepicker": "^5.2.1",
     "classnames": "2.3.2",
     "clsx": "^1.2.1",

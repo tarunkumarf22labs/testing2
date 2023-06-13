@@ -61,6 +61,7 @@ const options: IMenu[] = [
 function Topbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [navbarColor, setNavbarColor] = useState("");
+  const [animate, setAnimate] = useState(false);
 
   function changeColor() {
     window.scrollY <= 100
@@ -76,11 +77,22 @@ function Topbar() {
     };
   }, []);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setAnimate(true);
+    }, 300); // Start animation after 2000 milliseconds (2 seconds)
+
+    return () =>{
+      clearTimeout(timeout);
+      setAnimate(false);
+    } // Clean up the timeout on component unmount
+  }, []);
+
   return (
     <>
     
       <div
-        className={`hidden z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden  sm:px-3.5 md:flex xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
+        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden  sm:px-3.5 md:flex xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
       >
         <div className="h-8 ml-10 border w-36">
           <HeaderLogo />
@@ -94,8 +106,8 @@ function Topbar() {
           />
         </div>
       </div>
-      <hr className="sticky bg-black top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28 " />
-
+      <hr className={`${animate ? 'block animate-fade-in-down' : 'hidden'} sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`} />
+      {/* ${animate ? 'animate-spin' : ''} */}
       <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden ">
         <div className="flex items-center justify-between w-5/12 sm:w-4/12">
           {!showMobileMenu ? (
@@ -134,7 +146,7 @@ function Topbar() {
           <HeaderLogo />
         </div>
       </div>
-      <div className="fixed w-[100%] flex-col z-[101] top-16 bg-white top-44flex md:hidden">
+      <div className="fixed w-[100%] flex-col z-[101] top-16 flex md:hidden">
         <MobileNavbar
           options={options}
           onMenuSelectedHandler={(menu: optionsInterface) => {
