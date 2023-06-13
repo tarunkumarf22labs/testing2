@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import Datepicker from "./DatePicker";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -33,12 +33,21 @@ const testVariants = {
 const Search = () => {
   const [showDate, setShowDate] = useState(false);
   const { startDate, endDate } = useContext(AppContext);
+  const [guestsValue, setGuestsValue] = useState("");
 
   useEffect(() => {
     let datesFlag = (!startDate && !endDate) || (startDate && endDate);
 
     datesFlag ? setShowDate(false) : setShowDate(true);
   }, [endDate, startDate]);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const parsedValue = Number(value);
+    if (!isNaN(parsedValue) && parsedValue >= 1) {
+      setGuestsValue(value);
+    }
+  };
 
   return (
     <>
@@ -61,7 +70,7 @@ const Search = () => {
           // stiffness: 60,
           // damping: 100
         }}
-        className="bg-[#FFFFFF] -mt-[50px] relative m-auto z-[60]  border md:w-11/12 lg:flex md:justify-between md:items-center  lg:w-full xl:w-9/12 font-[Brandon Grotesque] text-[#7B8084]"
+        className="bg-[#FFFFFF] -mt-[50px] relative m-auto z-[49]  border md:w-11/12 lg:flex md:justify-between md:items-center  lg:w-full xl:w-9/12 font-[Brandon Grotesque] text-[#7B8084]"
       >
         <div className="sm:flex justify-evenly items-center lg:w-[52%]">
           <div className="mb-8 ml-3 mr-3 border-b-2 sm:w-5/12 md:mb-11">
@@ -71,10 +80,9 @@ const Search = () => {
               placeholder="Select Destination"
               className="w-full border border-b-2 border-none outline-none mt-7 focus:ring-0 custom-select"
             >
-              
-              <option value="Chennai" >Chennai</option>
-              <option value="Delhi" >Delhi</option>
-              <option value="Mumbai" >Mumbai</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Mumbai">Mumbai</option>
             </select>
           </div>
           <div
@@ -120,20 +128,26 @@ const Search = () => {
             </svg>
           </div>
           <div className="flex items-center justify-between mb-4 ml-3 mr-3 border-b-2 sm:w-5/12 md:mb-11">
-            <input type="number" className="w-full border-none mt-7 focus:ring-0" placeholder="Guest" min={1}/>
+            <input
+              type="number"
+              className="w-full border-none mt-7 focus:ring-0"
+              placeholder="Guest"
+              min={1}
+              max={20}
+              value={guestsValue}
+              onChange={handleChange}
+            />
           </div>
         </div>
 
-        <div className="bg-[#8A1E61] flex justify-between items-center ml-3 mr-3 mb-4 h-12 sm:mt-5 md:w-11/12 md:-mt-4 md:m-auto md:mb-2 lg:w-[10%] lg:mr-[3%]">
-          <button className="bg-[#8A1E61] text-white text-center m-auto h-full font-[Brandon Grotesque]">
+        <div className="bg-[#8A1E61] flex justify-between items-center ml-3 mr-3 mb-4 h-12 sm:mt-5 md:w-11/12 md:-mt-4 md:m-auto md:mb-2 lg:w-[10%] lg:mr-[3%] rounded-sm">
+          <button className="bg-[#8A1E61] text-white text-center m-auto h-full font-[Brandon Grotesque]rounded-sm">
             <Link href={"/chloe"}>SEARCH</Link>
           </button>
         </div>
       </motion.div>
       <div className={`${showDate === false ? "hidden" : "block"}`}>
-        <Datepicker
-          inVillaDetails={false}
-        />
+        <Datepicker inVillaDetails={false} />
       </div>
     </>
   );
