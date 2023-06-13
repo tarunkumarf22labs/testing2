@@ -132,14 +132,10 @@ body {
 .will-be-range-end:nth-child(7n + 1) {
   border-radius: var(--border-radius) !important;
 }
-.map-container {
-  height: 100%;
-  width: 100%;
-}
+
 .Home-page-text-div {
   transform: translate(-50%, -50%);
 }
-
 
 @keyframes slide-down {
   0% {
@@ -156,4 +152,9 @@ body {
   animation-name: slide-down;
   animation-duration: 1s;
   animation-fill-mode: both;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
 }

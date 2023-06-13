@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import type { NextPage } from "next";
-import { useEffect, useRef } from "react";
+import { useContext,useRef } from "react";
 import {
   AmenitiesSection,
   iconsArray as amenitiesIconsArray,
@@ -26,17 +26,15 @@ import { DetailedDescriptionSection } from "src/stories/DetailedDescriptionSecti
 import { FloorSection } from "src/stories/FloorSection";
 import { PropertyReviewSection } from "src/stories/PropertyReviewSection";
 import Map from "src/stories/Map";
-import { VillaBanner } from "src/stories/VillaBanner";
 
 const locations = [
   { address: "Address1", lat: 18.5204, lng: 73.8567 },
   { address: "Address2", lat: 18.5314, lng: 73.8446 },
   { address: "Address3", lat: 18.5642, lng: 73.7769 }
 ]
+import { VillaBanner } from "src/stories/VillaBanner";
 
 const Home: NextPage = () => {
-  let x = useRef(0);
-
   return (
     <>
       <Layout title="LuxUnlock">
