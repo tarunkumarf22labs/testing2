@@ -47,50 +47,21 @@ const Result: NextPage = () => {
   }, []);
   console.log(cardTopPosition);
   return (
-    <Layout title="LuxUnlock">
-      <>
-        <Carousal
-          images={HomeBannerimages}
-          bannerImageStyle={bannerImageStyle}
-          bannerTextStyle={bannerTextStyle}
-          bannerText={bannerText}
-        />
-        <div className="w-11/12 m-auto border-4">
-          <h1 className="text-5xl font-[Brandon Grotesque]">10 STAYS</h1>
-          <SearchedVillaCard
-            amenities={SearchedresultVillaData.amenities}
-            city={SearchedresultVillaData.city}
-            state={SearchedresultVillaData.state}
-            title={SearchedresultVillaData.title}
-            description={SearchedresultVillaData.description}
-            available={SearchedresultVillaData.available}
-            availableDates={SearchedresultVillaData.availableDates}
-            villaPrice={SearchedresultVillaData.villaPrice}
-            roomPrice={SearchedresultVillaData.roomPrice}
-          />
-
-          <div className="flex justify-between ">
-            <div className="w-[48%] border-4 " ref={cardRef}>
-              {locations.map((ele, idx) => {
-                return (
-                  <div
-                    className="w-full border-4 h-[700px] mb-10"
-                    key={idx}
-                  ></div>
-                );
-              })}
-            </div>
-            <div
-              className="w-[48%] border-4 h-[700px] sticky top-20"
-              ref={divRef}
-            >
-              <Map markers={locations} highlight={cardTopPosition} />
-              <p>{cardTopPosition}</p>
-            </div>
-          </div>
-        </div>
-      </>
-    </Layout>
+    <div>
+      <SearchedVillaCard
+        bannerImage={SearchedresultVillaData.bannerImage}
+        image={SearchedresultVillaData.image}
+        amenities={SearchedresultVillaData.amenities}
+        city={SearchedresultVillaData.city}
+        state={SearchedresultVillaData.state}
+        title={SearchedresultVillaData.title}
+        description={SearchedresultVillaData.description}
+        available={SearchedresultVillaData.available}
+        availableDates={SearchedresultVillaData.availableDates}
+        villaPrice={SearchedresultVillaData.villaPrice}
+        roomPrice={SearchedresultVillaData.roomPrice}
+      />
+    </div>
   );
 };
 
