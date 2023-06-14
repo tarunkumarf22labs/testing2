@@ -6,6 +6,8 @@ const result = () => {
   return (
     <div>
       <SearchedVillaCard
+      bannerImage={SearchedresultVillaData.bannerImage}
+      image={SearchedresultVillaData.image}
         amenities={SearchedresultVillaData.amenities}
         city={SearchedresultVillaData.city}
         state={SearchedresultVillaData.state}
