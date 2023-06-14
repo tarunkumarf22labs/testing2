@@ -13,6 +13,7 @@ interface CarousalProps {
   bannerText: string | (JSX.Element | string)[];
 }
 import { Autoplay } from "swiper";
+import Search from "./Search";
 
 export default function Carousal({ images,bannerImageStyle,bannerTextStyle,bannerText }: CarousalProps) {
     
@@ -47,7 +48,9 @@ export default function Carousal({ images,bannerImageStyle,bannerTextStyle,banne
       <div className={`overflow-hidden ${bannerTextStyle} Home-page-text-div font-[Brandon Grotesque] tracking-wide text-4xl md:text-5xl`}>
         <p className="capitalize animate-slide-down">{bannerText}</p>
       </div>
-
+      <div className="relative m-auto bg-[#FFFFFF] lg:absolute top-[60%] lg:left-14 lg:right-14 xl:left-28 xl:right-24 w-[90%]">
+        <Search/>
+      </div>
     </div>
   );
 }

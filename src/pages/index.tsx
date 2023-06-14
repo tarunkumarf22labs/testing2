@@ -5,7 +5,18 @@ import { HomeBannerimages } from "src/data/constants";
 import Search from "src/stories/Search";
 import { AppContext } from "src/Context";
 import { useContext } from "react";
+import MediaListing from "src/stories/MediaListing";
 
+const MediaImages = [
+  '/images/architectural-digest.png',
+  '/images/plateform.png',
+  '/images/traveller.png',
+  '/images/the-hindu-group.png',
+  '/images/architectural-digest.png',
+  '/images/plateform.png',
+  '/images/traveller.png',
+  '/images/the-hindu-group.png'
+]
 
 const Home: NextPage = () => {
   const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
@@ -17,6 +28,7 @@ const Home: NextPage = () => {
       <Layout title="LuxUnlock">
            <>
            <Carousal images={HomeBannerimages} bannerImageStyle={bannerImageStyle} bannerTextStyle={bannerTextStyle} bannerText={bannerText}/>
+           <MediaListing MediaImages={MediaImages}/>
            </>
       </Layout>
     </>
