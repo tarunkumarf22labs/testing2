@@ -178,3 +178,16 @@ export const HomeBannerimages = [
   "/images/a07.png",
   "/images/a08.png",
 ];
+
+// shahbaz
+
+export const mediaImages = [
+  '/images/architectural-digest.png',
+  '/images/plateform.png',
+  '/images/traveller.png',
+  '/images/the-hindu-group.png',
+  '/images/architectural-digest.png',
+  '/images/plateform.png',
+  '/images/traveller.png',
+  '/images/the-hindu-group.png'
+]
