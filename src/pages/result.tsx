@@ -4,6 +4,8 @@ import type { NextPage } from "next";
 import { HomeBannerimages } from "src/data/constants";
 import Carousal from "src/stories/Carousal";
 import Map from "src/stories/Map";
+import SearchedVillaCard from "src/stories/SearchedVillaCard";
+import { SearchedresultVillaData } from "src/data/constants";
 
 const locations = [
   { address: "Address1", lat: 18.5204, lng: 73.8567 },
@@ -32,6 +34,7 @@ const Result: NextPage = () => {
       const div = divRef.current.getBoundingClientRect();
 
       let a = Math.floor(Math.abs(card.top / 800));
+
       // console.log(card.top / 800);
       setCardTopPosition(a);
     };
@@ -54,6 +57,17 @@ const Result: NextPage = () => {
         />
         <div className="w-11/12 m-auto border-4">
           <h1 className="text-5xl font-[Brandon Grotesque]">10 STAYS</h1>
+          <SearchedVillaCard
+            amenities={SearchedresultVillaData.amenities}
+            city={SearchedresultVillaData.city}
+            state={SearchedresultVillaData.state}
+            title={SearchedresultVillaData.title}
+            description={SearchedresultVillaData.description}
+            available={SearchedresultVillaData.available}
+            availableDates={SearchedresultVillaData.availableDates}
+            villaPrice={SearchedresultVillaData.villaPrice}
+            roomPrice={SearchedresultVillaData.roomPrice}
+          />
 
           <div className="flex justify-between ">
             <div className="w-[48%] border-4 " ref={cardRef}>
