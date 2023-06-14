@@ -13,7 +13,7 @@ type Story = StoryObj<typeof MediaListing>;
 
 export const Primary: Story = {
 args: {
-    MediaImages: [
+    mediaImages: [
         '/images/architectural-digest.png',
         '/images/plateform.png',
         '/images/traveller.png',
