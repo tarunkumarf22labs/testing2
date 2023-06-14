@@ -10,7 +10,7 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  plugins: [forms, typography],
+  plugins: [forms, typography, require("tailwind-scrollbar-hide")],
   theme: {
     extend: {
       keyframes: {
