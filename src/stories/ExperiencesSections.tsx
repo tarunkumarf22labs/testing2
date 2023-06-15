@@ -3,6 +3,7 @@ import ExperienceCard from "./ExperienceCard";
 import { ScrollButton } from "./ScrollButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import useIsMobile from "@/hooks/useIsMobile";
 
 const experiences = [
   "/images/GalleryRoom1.png",
@@ -22,6 +23,9 @@ const experiences = [
 const ExperiencesSections = () => {
   const swiperOneRef = useRef(null);
   const swiperTwoRef = useRef(null);
+
+  const isMobile = useIsMobile();
+
   return (
     <div className="mt-10 lg:mt-20">
       <div className="bg-white relative py-10 lg:py-20">
@@ -41,8 +45,8 @@ const ExperiencesSections = () => {
             }}
             slidesPerView={"auto"}
             className="relative"
-            centeredSlides
-            centeredSlidesBounds
+            centeredSlides={isMobile}
+            centeredSlidesBounds={isMobile}
           >
             {experiences?.map((el, idx) => {
               return (
@@ -85,8 +89,8 @@ const ExperiencesSections = () => {
             }}
             slidesPerView={"auto"}
             className="relative"
-            centeredSlides
-            centeredSlidesBounds
+            centeredSlides={isMobile}
+            centeredSlidesBounds={isMobile}
           >
             {experiences?.map((el, idx) => {
               return (

@@ -1,6 +1,11 @@
-import Image from "next/image";
 import React from "react";
 import { Export, DownloadSimple } from "@phosphor-icons/react";
+import { Calendar } from "./Calendar";
+import {
+  useContextCalendars,
+  useContextDays,
+  useContextMonthsPropGetters,
+} from "@rehookify/datepicker";
 
 const amenities = [
   "6 Guest",
@@ -10,6 +15,10 @@ const amenities = [
 ];
 
 const PropertyOverview = () => {
+  const { calendars } = useContextCalendars();
+  const { formattedDates } = useContextDays();
+  const { previousMonthButton, nextMonthButton } =
+    useContextMonthsPropGetters();
   return (
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
       <div>
@@ -58,6 +67,11 @@ const PropertyOverview = () => {
             ancient history, and savouring the delicious cuisine of Wayanad.
           </p>
           <hr className="my-6" />
+
+          <div className="flex">
+            <Calendar MonthOrder="first" calendar={calendars[1]} year="2023" />
+            <Calendar MonthOrder="second" calendar={calendars[0]} year="2023" />
+          </div>
         </div>
       </div>
     </div>

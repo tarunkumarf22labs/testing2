@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ScrollButton } from "./ScrollButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import useIsMobile from "@/hooks/useIsMobile";
 
 interface IGallery {
   heading: {
@@ -45,6 +46,7 @@ export const GallerySection = ({
   smallImages = ImagesSmall,
 }: IGallery) => {
   const swiperRef = useRef(null);
+  const isMobile = useIsMobile();
 
   return (
     <div className="mt-10 lg:mt-20 relative md:ml-[max(0px,(100%_-_80rem)/2)]">
@@ -64,8 +66,8 @@ export const GallerySection = ({
           }}
           slidesPerView={"auto"}
           className="relative mb-6"
-          centeredSlides
-          centeredSlidesBounds
+          centeredSlides={isMobile}
+          centeredSlidesBounds={isMobile}
         >
           {bigImages.map((image, index) => (
             <SwiperSlide

@@ -35,15 +35,36 @@ import LocationAndDetails from "src/stories/LocationAndDetails";
 import ExperiencesSections from "src/stories/ExperiencesSections";
 import PropertyDetailsHeroSection from "src/stories/PropertyDetailsHeroSection";
 import SimilarStaysSection from "src/stories/SimilarStaysSection";
+import { DatePickerStateProvider } from "@rehookify/datepicker";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+  const now = new Date();
+  const M = now.getMonth();
+  const Y = now.getFullYear();
+  const [selectedDates, onDatesChange] = useState<Date[]>([]);
   return (
     <Layout title="LuxUnlock">
       <div className="bg-[#f8f8f9]">
         <PropertyDetailsHeroSection />
         <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
           <div className="flex flex-col flex-1 lg:flex-[2]">
-            <PropertyOverview />
+            <DatePickerStateProvider
+              config={{
+                selectedDates,
+                onDatesChange,
+                dates: {
+                  mode: "range",
+                  minDate: new Date(Y, M - 2, 1),
+                  maxDate: new Date(Y, M + 2, 0),
+                },
+                calendar: {
+                  offsets: [-1, 1],
+                },
+              }}
+            >
+              <PropertyOverview />
+            </DatePickerStateProvider>
             {/* Desktop */}
             <div className="bg-white flex flex-1 h-fit md:hidden">
               <LocationAndDetails />

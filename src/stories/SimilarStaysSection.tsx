@@ -3,6 +3,7 @@ import SimilarStaysCard from "./SimilarStaysCard";
 import { ScrollButton } from "./ScrollButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import useIsMobile from "@/hooks/useIsMobile";
 
 const stays = [
   "/images/GalleryRoom1.png",
@@ -21,6 +22,7 @@ const stays = [
 
 const SimilarStaysSection = () => {
   const swiperRef = useRef(null);
+  const isMobile = useIsMobile();
   return (
     <div className="bg-white relative py-10 lg:py-20">
       <div className="relative pl-5 md:ml-[max(0px,(100%_-_80rem)/2)] xl:pl-0">
@@ -39,8 +41,8 @@ const SimilarStaysSection = () => {
           }}
           slidesPerView={"auto"}
           className="relative"
-          centeredSlides
-          centeredSlidesBounds
+          centeredSlides={isMobile}
+          centeredSlidesBounds={isMobile}
         >
           {stays?.map((el, idx) => {
             return (
