@@ -64,6 +64,7 @@ export const GallerySection = ({
           }}
           slidesPerView={"auto"}
           className="relative mb-6"
+          spaceBetween={20}
         >
           {bigImages.map((image, index) => (
             <SwiperSlide

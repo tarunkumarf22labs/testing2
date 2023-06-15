@@ -23,7 +23,6 @@ import {
   faqs,
   beforeYouBook,
   homeTruths,
-  gettingThere,
 } from "../data/constants";
 import { DetailedDescriptionSection } from "src/stories/DetailedDescriptionSection";
 import { FloorSection } from "src/stories/FloorSection";
@@ -35,6 +34,7 @@ import PropertyOverview from "src/stories/PropertyOverview";
 import LocationAndDetails from "src/stories/LocationAndDetails";
 import ExperiencesSections from "src/stories/ExperiencesSections";
 import PropertyDetailsHeroSection from "src/stories/PropertyDetailsHeroSection";
+import SimilarStaysSection from "src/stories/SimilarStaysSection";
 
 const Home: NextPage = () => {
   return (
@@ -76,11 +76,6 @@ const Home: NextPage = () => {
           exclusions={exclusions}
         />
         <HomeTruthsSection homeTruths={homeTruths} />
-        <StorySection
-          isStory={false}
-          story={gettingThere}
-          image={"/images/GettingThere.png"}
-        />
         <DetailedDescriptionSection
           image={"/images/StoryImage.png"}
           detailedDescription={detailedDescription}
@@ -89,6 +84,7 @@ const Home: NextPage = () => {
         <PropertyReviewSection reviewCardsCollection={ReviewCardsCollection} />
         <FaqsSection faqs={faqs} />
         <BeforeYouBook beforeYouBook={beforeYouBook} />
+        <SimilarStaysSection />
       </div>
     </Layout>
   );
