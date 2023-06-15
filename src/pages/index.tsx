@@ -5,6 +5,8 @@ import { HomeBannerimages } from "src/data/constants";
 import Search from "src/stories/Search";
 import { AppContext } from "src/Context";
 import { useContext } from "react";
+import MediaListing from "src/stories/MediaListing";
+import { mediaImages } from "src/data/constants";
 
 
 const Home: NextPage = () => {
