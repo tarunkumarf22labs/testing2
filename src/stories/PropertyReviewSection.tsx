@@ -31,6 +31,9 @@ export const PropertyReviewSection = ({
           );
         })}
       </div>
+      <p className="text-[#8A1E61] text-xs md:text-sm font-medium tracking-wide">
+        VIEW ALL 20 REVIEWS
+      </p>
     </div>
   );
 };

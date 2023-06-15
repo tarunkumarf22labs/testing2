@@ -32,13 +32,13 @@ export const StorySection = ({
             {heading}
           </p>
         )}
-        <p className="uppercase text-3xl md:text-5xl mb-6 font-light ">
+        <p className="uppercase text-3xl md:text-5xl mb-6 font-light">
           {isStory ? "STORY" : "Getting there"}
         </p>
         <ReadMore
           text={story}
           textClassName={
-            "text-base text-[#545456] font-centaur leading-[34px] md:text-[22px]"
+            "text-base text-[#545456] font-centaur leading-[22px] md:leading-[34px] md:text-[22px]"
           }
           readMoreTextClassName={"text-[#8A1E61]"}
         />

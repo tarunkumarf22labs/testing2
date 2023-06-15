@@ -43,7 +43,7 @@ const InclusionsExlusions = ({
     <div className="md:w-1/2">
       <p className="uppercase text-sm text-[#8A1E61] mb-2">{heading}</p>
       <p className="uppercase text-xl md:text-5xl text-[#18181B] mb-6 font-light">
-        {inclusion ? "Inclusions" : "Exclusions"}
+        {inclusion ? "Included services" : "Available services*"}
       </p>
       <ul className="hidden md:block list-disc font-centaur text-base text-[#545456] space-y-4">
         {array.map((item, index) => (
@@ -55,7 +55,14 @@ const InclusionsExlusions = ({
           <List item={item} key={index} />
         ))}
       </ul>
-      <p className="text-[#8A1E61] uppercase md:hidden">VIEW ALL INCLUSIONS</p>
+      {!inclusion ? (
+        <p className="text-[#8A1E61] mt-4 text-xs">
+          * Services are availalbe at extra cost at villa.
+        </p>
+      ) : null}
+      <p className="text-[#8A1E61] uppercase mt-5 text-xs md:hidden">
+        VIEW ALL INCLUSIONS
+      </p>
     </div>
   );
 };

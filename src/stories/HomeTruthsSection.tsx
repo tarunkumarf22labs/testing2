@@ -27,7 +27,10 @@ export const HomeTruthsSection = ({ homeTruths }) => {
           <ul className="list-disc space-y-6">
             {homeTruths.map((item, index) => {
               return (
-                <li className="text-sm md:text-base font-centaur" key={index}>
+                <li
+                  className="text-sm text-[#545456] ml-2 md:ml-0 md:text-base font-centaur"
+                  key={index}
+                >
                   {item}
                 </li>
               );

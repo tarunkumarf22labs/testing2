@@ -8,7 +8,7 @@ export interface IFloorPlanImages {
 
 export const FloorSection = ({ floorPlanImages }: IFloorPlanImages) => {
   return (
-    <div className="bg-white lg:py-20 lg:mt-20">
+    <div className="bg-white py-10 mt-10 lg:py-20 lg:mt-20">
       <div className="px-5 xl:px-0 lg:max-w-7xl lg:mx-auto">
         <NameTitle propertyName={"Deja View's"} title={"Floor Plan"} />
         <div className="flex flex-col space-y-3 md:flex-row md:space-x-3 items-center justify-center">

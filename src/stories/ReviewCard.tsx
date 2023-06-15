@@ -29,7 +29,7 @@ export const ReviewCard = ({
     >
       <p
         className={classNames(
-          "font-centaur",
+          "font-centaur text-[#545456]",
           top ? "mt-2 mb-3 text-xl" : "text-base mb-10 sm:text-2xl"
         )}
       >

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { NameTitle } from "./NameTitle";
 
 interface IDetailedDescriptionSection {
   image: string;
@@ -30,19 +31,14 @@ export const DetailedDescriptionSection = ({
         />
       </div>
       <div className=" relative -mt-16 sm:-mt-24 xl:-mt-60  xl:w-full xl:max-w-7xl bg-white mx-5  xl:mx-auto px-4 py-8 z-10 md:px-8 md:py-11">
-        <div className="uppercase pb-6 md:pb-10">
-          <p className="text-sm text-[#8A1E61] md:mb-5">{propertyName}</p>
-          <p className="text-3xl md:text-5xl text-[#18181B] font-light">
-            {title}
-          </p>
-        </div>
+        <NameTitle propertyName={propertyName} title={title} />
         <div className="space-y-10">
           <div className="space-y-10">
             {plainPara.map((item, index) => {
               return (
                 <div key={index}>
                   <p className="uppercase text-base mb-4">{item.heading}</p>
-                  <p className="text-xl text-[#545456] font-centaur leading-[34px]">
+                  <p className="text-base md:text-xl text-[#545456] font-centaur leading-[22px] md:leading-[34px]">
                     {item.detail}
                     {!readMore && (
                       <span>
@@ -66,7 +62,7 @@ export const DetailedDescriptionSection = ({
                 return (
                   <div key={index}>
                     <p className="uppercase text-base mb-4">{item.heading}</p>
-                    <p className="text-xl text-[#545456] font-centaur leading-[34px]">
+                    <p className="text-base md:text-xl text-[#545456] font-centaur leading-[22px] md:leading-[34px]">
                       {item.detail}
                     </p>
                   </div>

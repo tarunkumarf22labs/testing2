@@ -15,13 +15,13 @@ const ExperienceCard = ({
   subHeading,
 }: ExperienceCardTypes) => {
   return (
-    <div className="min-w-[min(100%,373px)] max-w-[373px]">
+    <div className="w-full max-w-[290px] md:max-w-[373px]">
       <Image
         src={imageUrl}
         width={0}
         height={0}
         sizes="100vw"
-        className="w-[373px] h-[234px] bg-red-500 object-cover aspect-video"
+        className="w-[290px] h-[182px] md:w-[373px] md:h-[234px] bg-red-500 object-cover aspect-video"
         alt="experience_image"
       />
       {subHeading && (
@@ -29,7 +29,7 @@ const ExperienceCard = ({
           2 Nights
         </p>
       )}
-      <h1 className="text-[#18181B] font-medium text-xl leading-7 mt-[10px]">
+      <h1 className="text-[#18181B] font-medium text-xl leading-7 mt-[10px] md:text-base md:leading-[18px]">
         Sultan’s Battery
       </h1>
       <p className="text-[#545456] text-xs leading-4 font-centaur mt-[6px] flex flex-1">

@@ -64,6 +64,8 @@ export const GallerySection = ({
           }}
           slidesPerView={"auto"}
           className="relative mb-6"
+          centeredSlides
+          centeredSlidesBounds
         >
           {bigImages.map((image, index) => (
             <SwiperSlide
@@ -73,13 +75,14 @@ export const GallerySection = ({
               <Image src={image} alt={String(index)} width={530} height={354} />
             </SwiperSlide>
           ))}
-          <div className="absolute top-[50%] -translate-y-[50%] right-5 z-10">
+          <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
             <ScrollButton
               onNextPress={() => swiperRef?.current?.slideNext()}
               onPrevPress={() => swiperRef?.current?.slidePrev()}
             />
           </div>
         </Swiper>
+        <p className="text-[#8A1E61] text-xs uppercase md:hidden">VIEW ALL</p>
         <div className="hidden max-w-7xl h-[106px] pr-5 md:flex xl:pr-0">
           <div className="flex h-full w-[calc(100%_-_91px)] overflow-x-scroll space-x-3 no-scrollbar">
             {smallImages.map((image, index) => (

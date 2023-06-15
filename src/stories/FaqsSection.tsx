@@ -28,7 +28,7 @@ export const FaqsSection = ({ faqs }: IFaqs) => {
               );
             })}
           </div>
-          <div className="uppercase text-sm text-[#8A1E61] font-semibold mt-5">
+          <div className="text-[#8A1E61] mt-5 text-xs md:text-sm font-medium tracking-wide">
             VIEW ALL FAQs
           </div>
         </div>

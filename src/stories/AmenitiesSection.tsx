@@ -83,7 +83,7 @@ export const AmenitiesSection = ({
     iconsArray.length > 9 ? iconsArray.slice(0, 9) : iconsArray;
 
   return (
-    <div className="flex justify-between py-8 xl:py-20 mx-5 xl:mx-auto h-auto xl:max-w-7xl">
+    <div className="flex justify-between py-10 xl:py-20 mx-5 xl:mx-auto h-auto xl:max-w-7xl">
       <div>
         <div className="uppercase pb-7">
           <p className="text-sm text-[#8A1E61] pb-2 tracking-wider">

@@ -26,7 +26,7 @@ const LocationAndDetails = () => {
           return (
             <li
               key={el}
-              className="text-[#545456] font-centaur text-lg leading-[34px]"
+              className="text-[#545456] font-centaur text-lg md:text-lg leading-[34px]"
             >
               {el}
             </li>

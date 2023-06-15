@@ -112,13 +112,13 @@ const Reserve = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="w-5 h-5"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M4.5 15.75l7.5-7.5 7.5 7.5"
               />
             </svg>
@@ -135,7 +135,8 @@ const Reserve = () => {
         onClick={() => setGuestsSelectorOpen(!guestsSelectorOpen)}
       >
         <p className="flex items-center justify-start w-6/12 h-full">
-          {TotalGuests}{TotalGuests > 1 ? ' Guests' : ' Guest'}
+          {TotalGuests}
+          {TotalGuests > 1 ? " Guests" : " Guest"}
         </p>
         {guestsSelectorOpen ? (
           <svg

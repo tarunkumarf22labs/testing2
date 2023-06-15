@@ -41,12 +41,14 @@ const ExperiencesSections = () => {
             }}
             slidesPerView={"auto"}
             className="relative"
+            centeredSlides
+            centeredSlidesBounds
           >
             {experiences?.map((el, idx) => {
               return (
                 <SwiperSlide
                   key={`${idx + 1}`}
-                  className="w-full max-w-[373px] pr-5"
+                  className="w-full max-w-[290px] md:max-w-[373px] pr-5"
                 >
                   <ExperienceCard
                     heading=""
@@ -57,7 +59,7 @@ const ExperiencesSections = () => {
                 </SwiperSlide>
               );
             })}
-            <div className="absolute top-[50%] -translate-y-[50%] right-5 z-10">
+            <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
               <ScrollButton
                 onNextPress={() => swiperOneRef?.current?.slideNext()}
                 onPrevPress={() => swiperOneRef?.current?.slidePrev()}
@@ -83,18 +85,20 @@ const ExperiencesSections = () => {
             }}
             slidesPerView={"auto"}
             className="relative"
+            centeredSlides
+            centeredSlidesBounds
           >
             {experiences?.map((el, idx) => {
               return (
                 <SwiperSlide
                   key={`${idx + 1}`}
-                  className="w-full max-w-[373px] pr-5"
+                  className="w-full max-w-[290px] md:max-w-[373px] pr-5"
                 >
                   <ExperienceCard heading="" paragraph="" imageUrl={el} />
                 </SwiperSlide>
               );
             })}
-            <div className="absolute top-[50%] -translate-y-[50%] right-5 z-10">
+            <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
               <ScrollButton
                 onNextPress={() => swiperTwoRef?.current?.slideNext()}
                 onPrevPress={() => swiperTwoRef?.current?.slidePrev()}
