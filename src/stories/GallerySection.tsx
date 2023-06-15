@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import classNames from "classnames";
 import Image from "next/image";
 import { ScrollButton } from "./ScrollButton";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 interface IGallery {
   heading: {
@@ -42,6 +44,8 @@ export const GallerySection = ({
   bigImages = ImagesBig,
   smallImages = ImagesSmall,
 }: IGallery) => {
+  const swiperRef = useRef(null);
+
   return (
     <div className="mt-10 lg:mt-20 relative md:ml-[max(0px,(100%_-_80rem)/2)]">
       <div className="uppercase pb-6 pl-5 xl:pl-0 sm:pb-10">
@@ -52,17 +56,30 @@ export const GallerySection = ({
           {heading.heading}
         </p>
       </div>
-      <div className="overflow-hidden">
-        <div className="flex overflow-x-scroll space-x-5 w-screen mb-6 pl-5 xl:pl-0 no-scrollbar">
+      <div className="pl-5 xl:pl-0">
+        <Swiper
+          ref={swiperRef}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          slidesPerView={"auto"}
+          className="relative mb-6"
+        >
           {bigImages.map((image, index) => (
-            <div key={index} className="min-w-[290px] sm:min-w-[530px]">
+            <SwiperSlide
+              key={index}
+              className="w-full pr-5 max-w-[290px] sm:max-w-[530px]"
+            >
               <Image src={image} alt={String(index)} width={530} height={354} />
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
-        <div className="absolute top-40 right-5 sm:top-72 sm:right-20">
-          <ScrollButton />
-        </div>
+          <div className="absolute top-[50%] -translate-y-[50%] right-5 z-10">
+            <ScrollButton
+              onNextPress={() => swiperRef?.current?.slideNext()}
+              onPrevPress={() => swiperRef?.current?.slidePrev()}
+            />
+          </div>
+        </Swiper>
         <div className="hidden max-w-7xl h-[106px] pr-5 md:flex xl:pr-0">
           <div className="flex h-full w-[calc(100%_-_91px)] overflow-x-scroll space-x-3 pl-5 no-scrollbar xl:pl-0">
             {smallImages.map((image, index) => (

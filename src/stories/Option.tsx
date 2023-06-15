@@ -17,9 +17,7 @@ const Option = (props: OptionProps) => {
   const { title, options, id, onMenuSelectedHandler } = props;
   const [showOptions, setShowOptions] = useState(false);
 
-  const shouldShow = showOptions
-    ? "absolute bg-[#f5f5f5] p-2"
-    : "hidden bg-[#f5f5f5] p-2";
+  const shouldShow = showOptions ? "absolute" : "hidden";
   return (
     <li
       key={id}
@@ -64,7 +62,7 @@ const Option = (props: OptionProps) => {
       )}
       {options && options.length > 0 && (
         <ul
-          className={`${shouldShow} absolute  text-black  -left-48 w-[621px] grid grid-cols-3 bg-white md:top-12 lg:top-12  lg:-left-[440px] xl:right-1 xl:top-11 `}
+          className={`${shouldShow} absolute p-5 text-black -left-48 w-[621px] grid grid-cols-3 bg-white shadow-2xl md:top-[58px] lg:-left-[440px] xl:right-1`}
         >
           {options &&
             options.length > 0 &&

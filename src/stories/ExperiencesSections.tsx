@@ -1,5 +1,6 @@
 import React from "react";
 import ExperienceCard from "./ExperienceCard";
+import { ScrollButton } from "./ScrollButton";
 
 const experiences = [
   "/images/GalleryRoom1.png",
@@ -19,7 +20,7 @@ const experiences = [
 const ExperiencesSections = () => {
   return (
     <div className="mt-10 lg:mt-20">
-      <div className="bg-white py-10 lg:py-20">
+      <div className="bg-white relative py-10 lg:py-20">
         <div className="relative px-5 md:ml-[max(0px,(100%_-_80rem)/2)] xl:px-0">
           <div className="uppercase pb-6 sm:pb-10">
             <p className="text-sm text-[#8A1E61] mb-5 tracking-widest">
@@ -42,8 +43,11 @@ const ExperiencesSections = () => {
             })}
           </div>
         </div>
+        <div className="absolute top-40 right-5 sm:top-72 sm:right-20">
+          <ScrollButton />
+        </div>
       </div>
-      <div className="py-10 lg:py-20">
+      <div className="relative py-10 lg:py-20">
         <div className="relative px-5 md:ml-[max(0px,(100%_-_80rem)/2)] xl:px-0">
           <div className="uppercase pb-6 sm:pb-10">
             <p className="text-sm text-[#8A1E61] mb-5 tracking-widest">
@@ -58,6 +62,9 @@ const ExperiencesSections = () => {
               return <ExperienceCard heading="" paragraph="" imageUrl={el} />;
             })}
           </div>
+        </div>
+        <div className="absolute top-40 right-5 sm:top-72 sm:right-20">
+          <ScrollButton />
         </div>
       </div>
     </div>

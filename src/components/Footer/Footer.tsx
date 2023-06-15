@@ -1,5 +1,6 @@
 import React from "react";
 import FooterLogo from "./FooterLogo";
+import { DeviceMobileCamera } from "@phosphor-icons/react";
 
 const Villas = [
   "Villas in Chettinad",
@@ -77,23 +78,8 @@ const Footer = () => {
                 LuxUnlock Private Limited, B-4, RM Towers, 108 Chamiers Road,
                 Chennai 600 018, India
               </p>
-              <p className="pb-5 relative">
-                <span className="inline-block">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 absolute"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
-                    />
-                  </svg>
-                </span>{" "}
+              <p className="pb-5 relative flex items-center">
+                <DeviceMobileCamera className="w-6 h-6 mr-1" />
                 +91 63695 55363 | +91 98400 60393
               </p>
               <p>reservations@luxunlock.com</p>
