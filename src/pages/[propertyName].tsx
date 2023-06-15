@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import Image from "next/image";
 import type { NextPage } from "next";
 import {
   AmenitiesSection,
@@ -24,6 +23,7 @@ import {
   faqs,
   beforeYouBook,
   homeTruths,
+  gettingThere,
 } from "../data/constants";
 import { DetailedDescriptionSection } from "src/stories/DetailedDescriptionSection";
 import { FloorSection } from "src/stories/FloorSection";
@@ -32,7 +32,6 @@ import { FaqsSection } from "src/stories/FaqsSection";
 import { BeforeYouBook } from "src/stories/BeforeYouBook";
 import { HomeTruthsSection } from "src/stories/HomeTruthsSection";
 import PropertyOverview from "src/stories/PropertyOverview";
-import PrimaryButton from "src/stories/PrimaryButton";
 import LocationAndDetails from "src/stories/LocationAndDetails";
 import ExperiencesSections from "src/stories/ExperiencesSections";
 import PropertyDetailsHeroSection from "src/stories/PropertyDetailsHeroSection";
@@ -77,6 +76,11 @@ const Home: NextPage = () => {
           exclusions={exclusions}
         />
         <HomeTruthsSection homeTruths={homeTruths} />
+        <StorySection
+          isStory={false}
+          story={gettingThere}
+          image={"/images/GettingThere.png"}
+        />
         <DetailedDescriptionSection
           image={"/images/StoryImage.png"}
           detailedDescription={detailedDescription}

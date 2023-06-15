@@ -93,42 +93,42 @@ export const ReviewCardsCollection = [
       "In a village overlooking the backwaters of the Vembanad Lake near Cochin, experience an unimaginably perfect abode under the stars and reflected in water. Here is a beautiful and soulful luxury home in Kerala that invites you to live in the moment. ",
     name: "Atul Malhotra",
     state: "December 2022",
-    img: "/images/Avatar_image.webp",
+    img: "/images/Avatar_image.png",
   },
   {
     reviewText:
       "It was an amazing stay at this place and a really good experience to stay back in the coffee estate.",
     name: "Siddhika Jain",
     state: "October 2022",
-    img: "/images/Avatar_image2.webp",
+    img: "/images/Avatar_image2.png",
   },
   {
     reviewText:
       "Beautiful property to spend a weekend at! The staff were organised and carefully took care of all our needs.Thumbs up, for the kind and respectful behaviour they had",
     name: "Ruchika Dave",
     state: "December 2022",
-    img: "/images/Avatar_image4.webp",
+    img: "/images/Avatar_image4.png",
   },
   {
     reviewText:
       "Mouth watering food, beautiful place and friendly staff with clean pool.",
     name: "Avani Jain",
     state: "October 2022",
-    img: "/images/Avatar_image5.webp",
+    img: "/images/Avatar_image5.png",
   },
   {
     reviewText:
       "Great place with privacy. Completely secluded from the main Chikmagalur crowded areas.",
     name: "Rahul Subramaniam",
     state: "December 2022",
-    img: "/images/Avatar_image6.webp",
+    img: "/images/Avatar_image6.png",
   },
   {
     reviewText:
       "the place is very good. Amazing home cooked food and very friendly staff.. perfect stay in Chikmagalur.",
     name: "Avanish Jain",
     state: "October 2022",
-    img: "/images/Avatar_image3.webp",
+    img: "/images/Avatar_image3.png",
   },
 ];
 
@@ -165,6 +165,45 @@ export const faqs = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
   },
 ];
+
+export const HomeBannerimages = [
+  "/images/02_Exterior_1.jpg",
+  "/images/a01.png",
+  "/images/a02.png",
+  "/images/a03.png",
+  "/images/a04.png",
+  "/images/a05.png",
+  "/images/a06.png",
+  "/images/a07.png",
+  "/images/a08.png",
+];
+
+// shahbaz
+
+export const mediaImages = [
+  "/images/architectural-digest.png",
+  "/images/plateform.png",
+  "/images/traveller.png",
+  "/images/the-hindu-group.png",
+  "/images/architectural-digest.png",
+  "/images/plateform.png",
+  "/images/traveller.png",
+  "/images/the-hindu-group.png",
+];
+export const SearchedresultVillaData = {
+  bannerImage: "/images/a030.png",
+  image: "/images/a019.png",
+  amenities: ["6 Guest", "3 Bedrooms", "2 Bathrooms", "English-Style Cottage"],
+  city: "Coonoor",
+  state: "Tamil Nadu",
+  title: "Chole Cottage",
+  description:
+    " In a village overlooking the backwaters of the Vembanad Lake near Cochin, experience an unimaginably perfect abode under the stars and reflected in water. Here is a beautiful and soulful luxury home in Kerala that invites you to live in the moment. Built by one of India's best-known ad-film makers as a passion project, with incredible attention to detail.",
+  available: true,
+  availableDates: "28 Jun - 31 MAY",
+  villaPrice: "₹12,589",
+  roomPrice: "₹5,589",
+};
 
 export const beforeYouBook = [
   {

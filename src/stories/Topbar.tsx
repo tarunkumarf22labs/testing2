@@ -60,13 +60,13 @@ const options: IMenu[] = [
 
 function Topbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [navbarColor, setNavbarColor] = useState("");
+  const [navbarColor, setNavbarColor] = useState("text-white");
   const [animate, setAnimate] = useState(false);
 
   function changeColor() {
     window.scrollY <= 100
-      ? setNavbarColor("")
-      : setNavbarColor("bg-[#8A1E61] group isScrolled");
+      ? setNavbarColor("text-white")
+      : setNavbarColor("bg-white text-[#8A1E61] group isScrolled");
   }
   useEffect(() => {
     // adding the event when scroll change Logo
@@ -91,10 +91,10 @@ function Topbar() {
   return (
     <>
       <div
-        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-[100px] md:block`}
+        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-[100px] font-bold md:block`}
       >
         <div
-          className={`flex flex-1 w-full h-full max-w-7xl mx-auto border-b group-[.isScrolled]:border-b-0 text-white font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
+          className={`flex flex-1 w-full h-full max-w-7xl mx-auto border-b group-[.isScrolled]:border-b-0 font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
         >
           <div className="border">
             <HeaderLogo />
@@ -110,7 +110,9 @@ function Topbar() {
         } sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
       />
       {/* ${animate ? 'animate-spin' : ''} */}
-      <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex h-16 justify-between items-center px-5  md:hidden ">
+      <div
+        className={`fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex h-16 justify-between items-center px-5  md:hidden`}
+      >
         <div className="flex items-center">
           {!showMobileMenu ? (
             <svg
@@ -119,7 +121,7 @@ function Topbar() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 font-bold"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
               <path
@@ -135,7 +137,7 @@ function Topbar() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 font-bold"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
               <path
@@ -157,7 +159,6 @@ function Topbar() {
           showMobileMenu={showMobileMenu}
         />
       </div>
-      {/* )} */}
     </>
   );
 }

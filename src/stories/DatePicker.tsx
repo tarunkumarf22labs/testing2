@@ -7,41 +7,43 @@ import {
   useDatePicker,
   useDatePickerState,
 } from "@rehookify/datepicker";
-import React, { useState } from "react";
-// import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
-//   import { Button, Calendar } from "./components";
-import { Button } from "./DayButton";
-import { Calendar } from "./calendar";
+import React, { useContext, useEffect, useState } from "react";
+import { DayButton } from "./DayButton";
+import { Calendar } from "./Calendar";
+import { AppContext } from "src/Context";
 
 interface DatePickerProps {
-  startDate: string | undefined;
-  setStartDate: React.Dispatch<string | undefined>;
-  endDate: string | undefined;
-  setEndDate: React.Dispatch<string | undefined>;
+  inVillaDetails: boolean;
 }
 
-function Root(props: DatePickerProps) {
-  const { startDate, setStartDate, endDate, setEndDate } = props;
+
+function Root({inVillaDetails}: DatePickerProps) {
   const { calendars } = useContextCalendars();
   const { formattedDates } = useContextDays();
   const { previousMonthButton, nextMonthButton } =
     useContextMonthsPropGetters();
   const { selectedDates } = useDatePickerState();
-  const [start, end] = formattedDates;
+  const { setStartDate, setEndDate } =
+    useContext(AppContext);
 
-  setStartDate(start);
-  setEndDate(end);
+  const [start, end] = formattedDates;
+  
+  useEffect(() => {
+    start ? setStartDate(start) : null;
+    end ? setEndDate(end) : null;
+  }, [start, end]);
+
   return (
-    <div className="block absolute bg-white w-[80%] left-10 sm:left-[5%] sm:w-[90%] top-50 p-4 border border-slate-300 rounded shadow-xs shadow shadow-slate-300  m-auto md:w-[75%] md:left-[12.5%] lg:w-[50%] lg:left-[30%] xl:w-[35%]">
-      {/* <h1 className="w-full mb-6 text-2xl text-center">
-        {start ? start : "..."}&nbsp; - &nbsp;{end ? end : "..."}
-      </h1> */}
-      <main className="grid grid-cols-1 gap-x-6 sm:grid-cols-2 border-green">
-        <Calendar
-          prevButton={
-            <Button className="w-8" {...previousMonthButton()}>
-              {/* <IoChevronBack /> */}
-              {/* {"<"} */}
+    <div
+      className={`z-[150] block ${
+        inVillaDetails ? "" : "absolute "
+      }w-[100%]  bg-white  top-50 p-4  rounded shadow-xs shadow shadow-slate-300  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-4/12 2xl:left-[17vw]`}
+    >
+      <div>
+        <div className="flex items-center justify-between w-full bg-white z-[150]">
+          <p>
+            {" "}
+            <DayButton className="w-8" {...previousMonthButton()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -56,20 +58,18 @@ function Root(props: DatePickerProps) {
                   d="M15.75 19.5L8.25 12l7.5-7.5"
                 />
               </svg>
-            </Button>
-          }
-          calendar={calendars[1]}
-          MonthOrder="first"
-          year={calendars[1].year}
-        />
-        {/* <Calendar
-            calendar={calendars[0]}
-          /> */}
-        <Calendar
-          nextButton={
-            <Button className="w-8" {...nextMonthButton()}>
-              {/* <IoChevronForward /> */}
-              {/* {">"} */}
+            </DayButton>
+            {""}
+          </p>
+          <p className="text-center ">
+            {calendars[0].year} {calendars[0].month}
+          </p>
+          <p className="hidden text-center sm:block">
+            {calendars[1].year} {calendars[1].month}
+          </p>
+          <p>
+            {" "}
+            <DayButton className="w-8" {...nextMonthButton()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -84,9 +84,53 @@ function Root(props: DatePickerProps) {
                   d="M8.25 4.5l7.5 7.5-7.5 7.5"
                 />
               </svg>
-            </Button>
+            </DayButton>
+          </p>
+        </div>
+      </div>
+      <main className="grid grid-cols-1 gap-x-6 sm:grid-cols-2 border-green z-[150]">
+        <Calendar
+          prevButton={
+            <DayButton className="w-8" {...previousMonthButton()}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </DayButton>
           }
-          // calendar={calendars[2]}
+          calendar={calendars[1]}
+          MonthOrder="first"
+          year={calendars[1].year}
+        />
+        <Calendar
+          nextButton={
+            <DayButton className="w-8" {...nextMonthButton()}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </DayButton>
+          }
           calendar={calendars[0]}
           MonthOrder="second"
           year={calendars[0].year}
@@ -94,10 +138,10 @@ function Root(props: DatePickerProps) {
       </main>
     </div>
   );
-} // maxDate: new Date(Y, M + 2, 0),
+}
 
 const Datepicker = (props: DatePickerProps) => {
-  const { startDate, setStartDate, endDate, setEndDate } = props;
+  const { inVillaDetails } = props;
   const now = new Date();
   const M = now.getMonth();
   const Y = now.getFullYear();
@@ -112,7 +156,6 @@ const Datepicker = (props: DatePickerProps) => {
         dates: {
           mode: "range",
           minDate: new Date(Y, M - 2, 1),
-          // maxDate: new Date(Y, M + 2, 0),
           selectSameDate: true,
           //   toggle: true
         },
@@ -130,10 +173,7 @@ const Datepicker = (props: DatePickerProps) => {
       }}
     >
       <Root
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
+        inVillaDetails={false}
       />
     </DatePickerStateProvider>
   );
