@@ -1,5 +1,8 @@
+import { useState } from "react";
 import Layout from "@/components/Layout";
 import type { NextPage } from "next";
+import { DatePickerStateProvider } from "@rehookify/datepicker";
+
 import {
   AmenitiesSection,
   iconsArray as amenitiesIconsArray,
@@ -31,12 +34,10 @@ import { FaqsSection } from "src/stories/FaqsSection";
 import { BeforeYouBook } from "src/stories/BeforeYouBook";
 import { HomeTruthsSection } from "src/stories/HomeTruthsSection";
 import PropertyOverview from "src/stories/PropertyOverview";
-import LocationAndDetails from "src/stories/LocationAndDetails";
 import ExperiencesSections from "src/stories/ExperiencesSections";
 import PropertyDetailsHeroSection from "src/stories/PropertyDetailsHeroSection";
 import SimilarStaysSection from "src/stories/SimilarStaysSection";
-import { DatePickerStateProvider } from "@rehookify/datepicker";
-import { useState } from "react";
+import ReserveAndLocationDetailsSection from "src/stories/ReserveAndLocationDetailsSection";
 
 const Home: NextPage = () => {
   const now = new Date();
@@ -65,15 +66,15 @@ const Home: NextPage = () => {
             >
               <PropertyOverview />
             </DatePickerStateProvider>
-            {/* Desktop */}
-            <div className="bg-white flex flex-1 h-fit md:hidden">
-              <LocationAndDetails />
+            {/* Mobile */}
+            <div className="flex flex-1 flex-col h-fit md:hidden">
+              <ReserveAndLocationDetailsSection />
             </div>
             <RoomSection heading={heading} />
           </div>
-          {/* Mobile */}
-          <div className="bg-white hidden flex-1 mt-[60px] max-w-[350px] h-fit md:flex">
-            <LocationAndDetails />
+          {/* Desktop */}
+          <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
+            <ReserveAndLocationDetailsSection />
           </div>
         </div>
         <GallerySection

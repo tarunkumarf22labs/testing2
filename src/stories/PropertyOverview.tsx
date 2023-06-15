@@ -1,11 +1,9 @@
 import React from "react";
-import { Export, DownloadSimple } from "@phosphor-icons/react";
+import { Export, DownloadSimple, Heart } from "@phosphor-icons/react";
 import { Calendar } from "./Calendar";
-import {
-  useContextCalendars,
-  useContextDays,
-  useContextMonthsPropGetters,
-} from "@rehookify/datepicker";
+import { useContextCalendars } from "@rehookify/datepicker";
+import { Button } from "./Button";
+import useIsMobile from "@/hooks/useIsMobile";
 
 const amenities = [
   "6 Guest",
@@ -16,20 +14,26 @@ const amenities = [
 
 const PropertyOverview = () => {
   const { calendars } = useContextCalendars();
-  const { formattedDates } = useContextDays();
-  const { previousMonthButton, nextMonthButton } =
-    useContextMonthsPropGetters();
+  const isMobile = useIsMobile();
   return (
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
       <div>
-        <div className="flex items-center text-[#8A1E61] mt-4 md:pl-3">
-          <button className="flex items-center justify-center p-5">
+        <div className="flex items-center text-[#8A1E61] mt-4 justify-between md:pl-3 md:justify-start">
+          <button className="flex items-center justify-center p-3 md:p-5">
             <Export className="text-md md:text-2xl" />
-            <p className="pl-3 text-sm md:text-base">Share</p>
+            <p className="pl-2 text-sm md:text-base md:pl-3">Share</p>
           </button>
-          <button className="flex items-center justify-center p-5">
+          <button className="flex items-center justify-center p-3 md:p-5">
             <DownloadSimple className="text-md md:text-2xl" />
-            <p className="pl-3 text-sm md:text-base">Download Brochure</p>
+            <p className="pl-2 text-sm md:text-base md:pl-3">
+              Download Brochure
+            </p>
+          </button>
+          <button className="flex items-center justify-center p-3 md:p-5">
+            <Heart className="text-md md:text-2xl" />
+            <p className="pl-2 text-sm md:text-base md:pl-3">
+              Add To Favourites
+            </p>
           </button>
         </div>
         <div className="px-5 md:px-8">
@@ -67,10 +71,22 @@ const PropertyOverview = () => {
             ancient history, and savouring the delicious cuisine of Wayanad.
           </p>
           <hr className="my-6" />
-
-          <div className="flex">
+          <p className="text-[#545456] font-medium text-xl">Available Days</p>
+          <div className="flex mt-5">
             <Calendar MonthOrder="first" calendar={calendars[1]} year="2023" />
-            <Calendar MonthOrder="second" calendar={calendars[0]} year="2023" />
+            {!isMobile && (
+              <Calendar
+                MonthOrder="second"
+                calendar={calendars[0]}
+                year="2023"
+              />
+            )}
+          </div>
+          <div className="flex items-center justify-between mb-8">
+            <p className="bg-[#8A1E611A] text-[#8A1E61] text-xs md:text-base px-[10px] py-2">
+              Check-in: Mar 8, Check-out: Mar 21
+            </p>
+            <Button text="CLEAR DATES" />
           </div>
         </div>
       </div>
