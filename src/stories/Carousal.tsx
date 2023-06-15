@@ -10,7 +10,7 @@ interface CarousalProps {
   images: string[];
   bannerImageStyle: string;
   bannerTextStyle: string;
-  bannerText: string;
+  bannerText: string | (JSX.Element | string)[];
 }
 import { Autoplay } from "swiper";
 
