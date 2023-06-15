@@ -63,12 +63,14 @@ function Topbar() {
   const [navbarColor, setNavbarColor] = useState("text-white");
   const [animate, setAnimate] = useState(false);
 
-  function changeColor() {
-    window.scrollY <= 100
-      ? setNavbarColor("text-white")
-      : setNavbarColor("bg-white text-[#8A1E61] group isScrolled");
-  }
   useEffect(() => {
+    function changeColor() {
+      if (window?.scrollY > 100) {
+        setNavbarColor("bg-white shadow-md text-[#8A1E61] group isScrolled");
+      } else {
+        setNavbarColor("text-white");
+      }
+    }
     // adding the event when scroll change Logo
     window.addEventListener("scroll", changeColor);
     // Clean up the event listener on component unmount
@@ -109,7 +111,6 @@ function Topbar() {
           animate ? "block animate-fade-in-down" : "hidden"
         } sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
       />
-      {/* ${animate ? 'animate-spin' : ''} */}
       <div
         className={`fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex h-16 justify-between items-center px-5  md:hidden`}
       >
