@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-interface CarousalProps {
+interface CarouselProps {
   images: string[];
   bannerImageStyle: string;
   bannerTextStyle: string;
@@ -14,7 +14,7 @@ interface CarousalProps {
 }
 import { Autoplay } from "swiper";
 
-export default function Carousal({ images,bannerImageStyle,bannerTextStyle,bannerText }: CarousalProps) {
+export default function Carousel({ images,bannerImageStyle,bannerTextStyle,bannerText }: CarouselProps) {
     
   return (
     <div className="relative text-center md:-mt-16">
