@@ -64,7 +64,6 @@ export const GallerySection = ({
           }}
           slidesPerView={"auto"}
           className="relative mb-6"
-          spaceBetween={20}
         >
           {bigImages.map((image, index) => (
             <SwiperSlide
@@ -82,7 +81,7 @@ export const GallerySection = ({
           </div>
         </Swiper>
         <div className="hidden max-w-7xl h-[106px] pr-5 md:flex xl:pr-0">
-          <div className="flex h-full w-[calc(100%_-_91px)] overflow-x-scroll space-x-3 pl-5 no-scrollbar xl:pl-0">
+          <div className="flex h-full w-[calc(100%_-_91px)] overflow-x-scroll space-x-3 no-scrollbar">
             {smallImages.map((image, index) => (
               <div
                 key={index}

@@ -15,7 +15,7 @@ const ExperienceCard = ({
   subHeading,
 }: ExperienceCardTypes) => {
   return (
-    <div className="min-w-[min(100%,373px)]">
+    <div className="min-w-[min(100%,373px)] max-w-[373px]">
       <Image
         src={imageUrl}
         width={0}
