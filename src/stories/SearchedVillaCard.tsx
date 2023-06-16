@@ -30,9 +30,9 @@ const SearchedVillaCard = ({
 }: IVillaCard) => {
   const [roomSelected, setRoomSelected] = useState(false);
   return (
-    <div className="font-[Brandon Grotesque] w-[90vw] sm:max-w-[608px] bg-[#FFFFFF]">
-      <div className="w-full shadow-md ml-[5vw] sm:max-w-xl rounded-t-sm rounded-b-none">
-        <div className="relative w-full mt-8 rounded-t-sm rounded-b-none">
+    <div className="font-[Brandon Grotesque] w-full bg-[#FFFFFF] flex justify-center mb-10">
+      <div className="w-full rounded-t-sm rounded-b-none shadow-md ">
+        <div className="relative w-full rounded-t-sm rounded-b-none">
           <Image
             src={bannerImage}
             alt="villa"
@@ -46,7 +46,7 @@ const SearchedVillaCard = ({
               alt="small-image"
               width={229}
               height={152}
-              className="absolute hidden rounded-t-sm top-64 left-80 sm:block"
+              className="absolute hidden rounded-t-sm top-[22rem] left-[25rem] sm:block"
             />
           </div>
         </div>

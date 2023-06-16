@@ -19,9 +19,11 @@ interface Imarker {
 
 interface Imarkers {
   markers: Imarker[];
+  highlight?: number;
+  handleClick?: (number) => void;
 }
 
-const Map = ({ markers }: Imarkers) => {
+const Map = ({ markers, highlight, handleClick }: Imarkers) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAP_API_KEY,
   });
@@ -42,6 +44,7 @@ const Map = ({ markers }: Imarkers) => {
     setInfoWindowData({ id, address });
     setIsOpen(true);
   };
+
   return (
     <div className="w-[100%] h-[100%] border-red ">
       {!isLoaded ? (
@@ -52,26 +55,41 @@ const Map = ({ markers }: Imarkers) => {
           onLoad={onMapLoad}
           onClick={() => setIsOpen(false)}
         >
-          {markers?.map(({ address, lat, lng }, ind) => (
-            <MarkerF
-              key={lat + lng}
-              position={{ lat, lng }}
-              onClick={() => {
-                handleMarkerClick(ind, lat, lng, address);
-              }}
-            >
-              {isOpen && infoWindowData?.id === ind && (
-                <InfoWindowF
-                  onCloseClick={() => {
-                    setIsOpen(false);
-                  }}
+          {markers?.map(({ address, lat, lng }, ind) => {
+            return (
+                <MarkerF
+                  key={lat + lng}
                   position={{ lat, lng }}
+                  onClick={() => {
+                    handleMarkerClick(ind, lat, lng, address);
+                    handleClick(ind);
+                  }}
+                  options={{
+                    icon: !Number.isInteger(highlight)
+                      ? ""
+                      : highlight === 0 && highlight === ind
+                      ? "/images/lux2.svg"
+                      : highlight && highlight == ind
+                      ? "/images/lux2.svg"
+                      : "/images/lux.svg",
+                  }}
                 >
-                  <h3>{infoWindowData.address}</h3>
-                </InfoWindowF>
-              )}
-            </MarkerF>
-          ))}
+                  {isOpen && infoWindowData?.id === ind && (
+                    <InfoWindowF
+                      onCloseClick={() => {
+                        setIsOpen(false);
+                        handleClick(ind);
+                      }}
+                      position={{ lat, lng }}
+                    >
+                      <h3>
+                        {infoWindowData.address}
+                      </h3>
+                    </InfoWindowF>
+                  )}
+                </MarkerF>
+            );
+          })}
         </GoogleMap>
       )}
     </div>

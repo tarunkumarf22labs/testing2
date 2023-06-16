@@ -52,7 +52,7 @@ export const Calendar: FC<CalendarProps> = ({
           return (
             <DayButton
               key={d.$date.toString()}
-              className={getDayClassName("w-[4.9rem] sm:w-12 md:w-14 lg:w-10 xl:w-9 text-xs", d)}
+              className={getDayClassName("w-[4.9rem] sm:w-12 md:w-14 lg:w-10 xl:w-9 text-xs 2xl:w-12", d)}
               {...dayButton(d)}
             >
               {d.day}
