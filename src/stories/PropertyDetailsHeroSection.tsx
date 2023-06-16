@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import PrimaryButton from "./PrimaryButton";
+import { viewAllPhotos } from "src/data/constants";
 
 const PropertyDetailsHeroSection = () => {
   return (
@@ -14,7 +15,7 @@ const PropertyDetailsHeroSection = () => {
         alt="property_images"
       />
       <PrimaryButton
-        title="View all photos"
+        title={viewAllPhotos}
         onClick={() => {}}
         disabled={false}
         className="hidden absolute bottom-12 right-[max(0px,(100%_-_80rem)/2)] w-[213px] md:block md:mr-5 xl:mr-0"

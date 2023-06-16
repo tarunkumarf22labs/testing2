@@ -1,20 +1,8 @@
 import { useState } from "react";
-import Layout from "@/components/Layout";
 import type { NextPage } from "next";
 import { DatePickerStateProvider } from "@rehookify/datepicker";
+import Layout from "@/components/Layout";
 
-import {
-  AmenitiesSection,
-  iconsArray as amenitiesIconsArray,
-} from "src/stories/AmenitiesSection";
-import {
-  GallerySection,
-  ImagesBig,
-  ImagesSmall,
-} from "src/stories/GallerySection";
-import { InclusionsExclusionsSection } from "src/stories/InclusionsExclusionsSection";
-import { RoomSection } from "src/stories/RoomSection";
-import { StorySection } from "src/stories/StorySection";
 import {
   heading,
   storySection,
@@ -27,17 +15,28 @@ import {
   beforeYouBook,
   homeTruths,
 } from "../data/constants";
-import { DetailedDescriptionSection } from "src/stories/DetailedDescriptionSection";
-import { FloorSection } from "src/stories/FloorSection";
-import { PropertyReviewSection } from "src/stories/PropertyReviewSection";
-import { FaqsSection } from "src/stories/FaqsSection";
-import { BeforeYouBook } from "src/stories/BeforeYouBook";
-import { HomeTruthsSection } from "src/stories/HomeTruthsSection";
-import PropertyOverview from "src/stories/PropertyOverview";
-import ExperiencesSections from "src/stories/ExperiencesSections";
-import PropertyDetailsHeroSection from "src/stories/PropertyDetailsHeroSection";
-import SimilarStaysSection from "src/stories/SimilarStaysSection";
-import ReserveAndLocationDetailsSection from "src/stories/ReserveAndLocationDetailsSection";
+
+import {
+  AmenitiesSection,
+  GallerySection,
+  InclusionsExclusionsSection,
+  RoomSection,
+  StorySection,
+  DetailedDescriptionSection,
+  FloorSection,
+  PropertyReviewSection,
+  FaqsSection,
+  BeforeYouBook,
+  HomeTruthsSection,
+  PropertyOverview,
+  ExperiencesSections,
+  PropertyDetailsHeroSection,
+  SimilarStaysSection,
+  ReserveAndLocationDetailsSection,
+} from "src/stories";
+
+import { iconsArray as amenitiesIconsArray } from "src/stories/AmenitiesSection";
+import { ImagesBig, ImagesSmall } from "src/stories/GallerySection";
 
 const Home: NextPage = () => {
   const now = new Date();

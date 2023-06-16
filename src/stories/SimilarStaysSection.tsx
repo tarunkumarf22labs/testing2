@@ -4,6 +4,7 @@ import { ScrollButton } from "./ScrollButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import useIsMobile from "@/hooks/useIsMobile";
+import { similarStaysForYou } from "src/data/constants";
 
 const stays = [
   "/images/GalleryRoom1.png",
@@ -31,7 +32,7 @@ const SimilarStaysSection = () => {
             {"LuxUNLOCK’s"}
           </p>
           <p className="text-3xl sm:text-5xl sm:text-[#1C1917] font-light">
-            {"SMILAR STAYS FOR YOU"}
+            {similarStaysForYou}
           </p>
         </div>
         <Swiper

@@ -4,6 +4,10 @@ import { ScrollButton } from "./ScrollButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import useIsMobile from "@/hooks/useIsMobile";
+import {
+  curatedExperiences,
+  experiencesAndAttraction,
+} from "src/data/constants";
 
 const experiences = [
   "/images/GalleryRoom1.png",
@@ -35,7 +39,7 @@ const ExperiencesSections = () => {
               {"DEJA VIEW'S"}
             </p>
             <p className="text-3xl sm:text-5xl sm:text-[#1C1917] font-light">
-              {"CURATED EXPERIENCES"}
+              {curatedExperiences}
             </p>
           </div>
           <Swiper
@@ -79,7 +83,7 @@ const ExperiencesSections = () => {
               {"DEJA VIEW'S"}
             </p>
             <p className="text-3xl uppercase sm:text-5xl sm:text-[#1C1917] font-light">
-              {"Experiences and attraction"}
+              {experiencesAndAttraction}
             </p>
           </div>
           <Swiper

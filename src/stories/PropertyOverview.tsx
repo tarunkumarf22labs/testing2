@@ -4,6 +4,28 @@ import { Calendar } from "./Calendar";
 import { useContextCalendars } from "@rehookify/datepicker";
 import { Button } from "./Button";
 import useIsMobile from "@/hooks/useIsMobile";
+import {
+  availableDays,
+  checkIn,
+  checkOut,
+  clearDates,
+  propertyOverviewActions,
+} from "src/data/constants";
+
+const actions = [
+  {
+    name: propertyOverviewActions[0],
+    Icon: Export,
+  },
+  {
+    name: propertyOverviewActions[1],
+    Icon: DownloadSimple,
+  },
+  {
+    name: propertyOverviewActions[2],
+    Icon: Heart,
+  },
+];
 
 const amenities = [
   "6 Guest",
@@ -19,22 +41,14 @@ const PropertyOverview = () => {
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
       <div>
         <div className="flex items-center text-[#8A1E61] mt-4 justify-between md:pl-3 md:justify-start">
-          <button className="flex items-center justify-center p-3 md:p-5">
-            <Export className="text-md md:text-2xl" />
-            <p className="pl-2 text-sm md:text-base md:pl-3">Share</p>
-          </button>
-          <button className="flex items-center justify-center p-3 md:p-5">
-            <DownloadSimple className="text-md md:text-2xl" />
-            <p className="pl-2 text-sm md:text-base md:pl-3">
-              Download Brochure
-            </p>
-          </button>
-          <button className="flex items-center justify-center p-3 md:p-5">
-            <Heart className="text-md md:text-2xl" />
-            <p className="pl-2 text-sm md:text-base md:pl-3">
-              Add To Favourites
-            </p>
-          </button>
+          {actions?.map(({ name, Icon }) => {
+            return (
+              <button className="flex items-center justify-center p-3 md:p-5">
+                <Icon className="text-md md:text-2xl" />
+                <p className="pl-2 text-sm md:text-base md:pl-3">{name}</p>
+              </button>
+            );
+          })}
         </div>
         <div className="px-5 md:px-8">
           <h1 className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px]">
@@ -71,7 +85,7 @@ const PropertyOverview = () => {
             ancient history, and savouring the delicious cuisine of Wayanad.
           </p>
           <hr className="my-6" />
-          <p className="text-[#545456] font-medium text-xl">Available Days</p>
+          <p className="text-[#545456] font-medium text-xl">{availableDays}</p>
           <div className="flex mt-5">
             <Calendar MonthOrder="first" calendar={calendars[1]} year="2023" />
             {!isMobile && (
@@ -84,9 +98,9 @@ const PropertyOverview = () => {
           </div>
           <div className="flex items-center justify-between mb-8">
             <p className="bg-[#8A1E611A] text-[#8A1E61] text-xs md:text-base px-[10px] py-2">
-              Check-in: Mar 8, Check-out: Mar 21
+              {checkIn}: Mar 8, {checkOut}: Mar 21
             </p>
-            <Button text="CLEAR DATES" />
+            <Button text={clearDates} />
           </div>
         </div>
       </div>

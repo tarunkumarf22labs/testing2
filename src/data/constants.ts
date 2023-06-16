@@ -306,3 +306,22 @@ export const homeTruths = [
   "Kodaikanal has a major human animal conflict problem with Indian bison. Due to habitat destruction and lack of predators, bison numbers have increased and they often are found in residential and public areas, and occasionally in our estate. Please be careful when walking. Increasingly, monkeys have also become a menace and be careful as they do raid indoor spaces looking for food.",
   "As this is a house using antique and salvaged furniture and woodwork, doors and cupboards may be a bit quirky. Due to its age, some electrical switches may behave inconsistently. Floorboards creak.",
 ];
+
+export const viewAllPhotos = "View all photos";
+export const propertyOverviewActions = [
+  "Share",
+  "Download Brochure",
+  "Add To Favourites",
+];
+export const availableDays = "Available Days";
+export const checkIn = "Check-in";
+export const checkOut = "Check-out";
+export const clearDates = "Clear Dates";
+export const curatedExperiences = "CURATED EXPERIENCES";
+export const experiencesAndAttraction = "Experiences and attraction";
+export const includedServices = "Included services";
+export const availableServices = "Available services*";
+export const villaServiceDisclaimer =
+  "* Services are availalbe at extra cost at villa.";
+export const viewAllInclusions = " VIEW ALL INCLUSIONS";
+export const similarStaysForYou = "SMILAR STAYS FOR YOU";
