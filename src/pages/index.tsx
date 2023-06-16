@@ -19,6 +19,7 @@ const Home: NextPage = () => {
       <Layout title="LuxUnlock">
            <>
            <Carousel images={HomeBannerimages} bannerImageStyle={bannerImageStyle} bannerTextStyle={bannerTextStyle} bannerText={bannerText}/>
+           <MediaListing mediaImages={mediaImages}/>
            </>
       </Layout>
     </>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-import { motion } from "framer-motion"
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -10,7 +9,7 @@ interface CarouselProps {
   images: string[];
   bannerImageStyle: string;
   bannerTextStyle: string;
-  bannerText: string;
+  bannerText: string | (JSX.Element | string)[];
 }
 import { Autoplay } from "swiper";
 import Search from "./Search";
@@ -18,7 +17,7 @@ import Search from "./Search";
 export default function Carousel({ images,bannerImageStyle,bannerTextStyle,bannerText }: CarouselProps) {
     
   return (
-    <div className="relative text-center md:-mt-16">
+    <div className="relative m-auto text-center md:-mt-16">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
