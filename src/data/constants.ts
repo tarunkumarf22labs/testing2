@@ -47,7 +47,7 @@ export const detailedDescription = {
   title: "Detailed Description",
   plainPara: [
     {
-      heading: "SLeeping Spaces",
+      heading: "Sleeping Spaces",
       detail:
         "Two bedrooms lead off from the communal space. The large master bedroom has a romantic four-poster king bed, beautiful furnishings and a luxurious ensuite bathroom with twin-vanity sinks. The spacious second bedroom has a king bed and is adorned with original art. The ensuite bathroom is equally luxurious. Steps at the rear lead up to a window-lined mezzanine loft that looks onto the lower level and has space for yoga or can sleep extra guests.",
     },
@@ -166,7 +166,6 @@ export const faqs = [
   },
 ];
 
-
 export const HomeBannerimages = [
   "/images/02_Exterior_1.jpg",
   "/images/a01.png",
@@ -182,36 +181,154 @@ export const HomeBannerimages = [
 // shahbaz
 
 export const SearchedresultVillaData = {
-  bannerImage:'/images/a030.png',
-  image:'/images/a019.png',
-  amenities : [
-    "6 Guest",
-    "3 Bedrooms",
-    "2 Bathrooms",
-    "English-Style Cottage",
-  ],
-  city: 'Coonoor',
-  state: 'Tamil Nadu',
-  title:'Chole Cottage',
-  description: " In a village overlooking the backwaters of the Vembanad Lake near Cochin, experience an unimaginably perfect abode under the stars and reflected in water. Here is a beautiful and soulful luxury home in Kerala that invites you to live in the moment. Built by one of India's best-known ad-film makers as a passion project, with incredible attention to detail.",
+  bannerImage: "/images/a030.png",
+  image: "/images/a019.png",
+  amenities: ["6 Guest", "3 Bedrooms", "2 Bathrooms", "English-Style Cottage"],
+  city: "Coonoor",
+  state: "Tamil Nadu",
+  title: "Chole Cottage",
+  description:
+    " In a village overlooking the backwaters of the Vembanad Lake near Cochin, experience an unimaginably perfect abode under the stars and reflected in water. Here is a beautiful and soulful luxury home in Kerala that invites you to live in the moment. Built by one of India's best-known ad-film makers as a passion project, with incredible attention to detail.",
   available: true,
-  availableDates: '28 Jun - 31 MAY',
-  villaPrice: '₹12,589',
-  roomPrice: "₹5,589"
-}
+  availableDates: "28 Jun - 31 MAY",
+  villaPrice: "₹12,589",
+  roomPrice: "₹5,589",
+};
+
+export const beforeYouBook = [
+  {
+    title: "Payment Terms",
+    conditions: [
+      {
+        label: "Modes of Payment",
+        text: "Mode of payments here",
+      },
+      {
+        label: "Payment Deadlines",
+        text: "Payment Deadline",
+      },
+    ],
+  },
+  {
+    title: "Security Deposit",
+    conditions: [
+      {
+        label: "Amount",
+        text: "Payment Amount",
+      },
+      {
+        label: "Payment Collection Date",
+        text: "Date",
+      },
+      {
+        label: "Payment Return Date",
+        text: "Date",
+      },
+      {
+        label: "How it is used",
+        text: "Detail Here",
+      },
+    ],
+  },
+  {
+    title: "Cancellation Policy",
+    conditions: "50% refund up to 60 days before arrival.",
+  },
+  {
+    title: "House Rules",
+    conditions: [
+      {
+        label: "Check-In",
+        text: "2:00 PM",
+      },
+      {
+        label: "Check-Out",
+        text: "10:00 AM",
+      },
+      {
+        label: "Extra Guest",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Children Policy ",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Smoking & Substances",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Parties and Events",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Pet Policy",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Alcohol Policy",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Music",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Villa Staff",
+        text: "Lorem Ipsum",
+      },
+      {
+        label: "Accompanying Guest’s Staff",
+        text: "Lorem Ipsum",
+      },
+    ],
+  },
+];
+
+export const homeTruths = [
+  "Gramercy House is serviced with daytime housekeepers, a groundskeeper and gardener, and 24 x 7 staffed security. There is also a full-time resident chef who can do South Indian, North Indian, Chinese, and Indian street-food snacks. In addition, your dedicated LuxUnlock Location Manager is available on-call or WA for any assistance.",
+  "Electricity supply by the government is both erratic and of poor quality throughout the year in Kodaikanal. Do expect frequent power cuts through-out the day. The house comes with an incoming servo-stabiliser and 100% automatic power back up with diesel genset.",
+  "Water is highly scarce in Kodaikanal and the house does not have a municipal water connection. It depends upon rainwater storage, and open well and borewell. Water is pumped to the overhead tanks automatically and nothing needs to be done. Please use water prudently.",
+  "Heating is available in all rooms with portable heaters in all three rooms and all shared spaces. There are two working fireplaces in the living and dining area and an electric fireplace in the TV room. All bedrooms have individual hot water geysers.",
+  "Access to the washing machine & dryer is restricted to the housekeeper. Please handover your laundry and she will have it done. Charges apply for washing and folding only. Ironing facility is for self-use. Clothes are sun-dried in the back yard.",
+  "There are two kitchens - a main kitchen for vegetarian food at the back of the house on the ground floor, and one separate non-vegetarian kitchen at the bottom of the rear building. Please do comply with the rules of cooking, if you are using your own accompanying cook or cooking for yourself.",
+  "Accompanying staff accommodation is available on the premises with beds, room heating, and clean bathrooms with hot water.",
+  "Kodaikanal has a major human animal conflict problem with Indian bison. Due to habitat destruction and lack of predators, bison numbers have increased and they often are found in residential and public areas, and occasionally in our estate. Please be careful when walking. Increasingly, monkeys have also become a menace and be careful as they do raid indoor spaces looking for food.",
+  "As this is a house using antique and salvaged furniture and woodwork, doors and cupboards may be a bit quirky. Due to its age, some electrical switches may behave inconsistently. Floorboards creak.",
+];
+
+export const viewAllPhotos = "View all photos";
+export const propertyOverviewActions = [
+  "Share",
+  "Download Brochure",
+  "Add To Favourites",
+];
+export const availableDays = "Available Days";
+export const checkIn = "Check-in";
+export const checkOut = "Check-out";
+export const clearDates = "Clear Dates";
+export const curatedExperiences = "CURATED EXPERIENCES";
+export const experiencesAndAttraction = "Experiences and attraction";
+export const includedServices = "Included services";
+export const availableServices = "Available services*";
+export const villaServiceDisclaimer =
+  "* Services are availalbe at extra cost at villa.";
+export const viewAllInclusions = " VIEW ALL INCLUSIONS";
+export const similarStaysForYou = "SMILAR STAYS FOR YOU";
+export const readMoreText = "read more";
 
 export const mediaImages = [
-  '/images/architectural-digest.png',
-  '/images/plateform.png',
-  '/images/traveller.png',
-  '/images/the-hindu-group.png',
-  '/images/architectural-digest.png',
-  '/images/plateform.png',
-  '/images/traveller.png',
-  '/images/the-hindu-group.png'
-]
+  "/images/architectural-digest.png",
+  "/images/plateform.png",
+  "/images/traveller.png",
+  "/images/the-hindu-group.png",
+  "/images/architectural-digest.png",
+  "/images/plateform.png",
+  "/images/traveller.png",
+  "/images/the-hindu-group.png",
+];
 
-//shahbaz 
+//shahbaz
 export const locations = [
   { id: 0, address: "Delhi", lat: 28.7041, lng: 77.1025 },
   { id: 1, address: "Haryana", lat: 29.0588, lng: 76.0856 },

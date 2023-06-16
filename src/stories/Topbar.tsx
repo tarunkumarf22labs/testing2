@@ -60,15 +60,17 @@ const options: IMenu[] = [
 
 function Topbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [navbarColor, setNavbarColor] = useState("");
+  const [navbarColor, setNavbarColor] = useState("text-white");
   const [animate, setAnimate] = useState(false);
 
-  function changeColor() {
-    window.scrollY <= 100
-      ? setNavbarColor("")
-      : setNavbarColor("bg-white text-[#8A1E61]");
-  }
   useEffect(() => {
+    function changeColor() {
+      if (window?.scrollY > 100) {
+        setNavbarColor("bg-white shadow-md text-[#8A1E61] group isScrolled");
+      } else {
+        setNavbarColor("text-white");
+      }
+    }
     // adding the event when scroll change Logo
     window.addEventListener("scroll", changeColor);
     // Clean up the event listener on component unmount
@@ -82,33 +84,37 @@ function Topbar() {
       setAnimate(true);
     }, 300); // Start animation after 2000 milliseconds (2 seconds)
 
-    return () =>{
+    return () => {
       clearTimeout(timeout);
       setAnimate(false);
-    } // Clean up the timeout on component unmount
+    }; // Clean up the timeout on component unmount
   }, []);
 
   return (
     <>
       <div
-        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-16 py-6 font-[Brandon grotesque] content-center justify-between items-center text-xs sm:hidden font-bold sm:px-3.5 md:flex `}
+        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-[100px] font-bold md:block`}
       >
-        <div className="h-8 ml-10 border w-36 md:ml-20">
-          <HeaderLogo />
-        </div>
-
-        <div className={`${navbarColor} flex items-center justify-between w-2/6 h-8 mr-10 md:w-3/5 lg:mr-20 lg:w-5/12 xl:w-5/12 2xl:w-4/12`}>
-          <Navbar
-            options={options}
-            onMenuSelectedHandler={(menu) => {
-            }}
-          />
+        <div
+          className={`flex flex-1 w-full h-full max-w-7xl mx-auto border-b group-[.isScrolled]:border-b-0 font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
+        >
+          <div className="border">
+            <HeaderLogo />
+          </div>
+          <div className="flex items-center justify-between h-8">
+            <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
+          </div>
         </div>
       </div>
-      <hr className={`${animate ? 'block animate-fade-in-down' : 'hidden'} sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`} />
-      {/* ${animate ? 'animate-spin' : ''} */}
-      <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden ">
-        <div className="flex items-center justify-between w-5/12 sm:w-4/12">
+      <hr
+        className={`${
+          animate ? "block animate-fade-in-down" : "hidden"
+        } sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
+      />
+      <div
+        className={`fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex h-16 justify-between items-center px-5  md:hidden`}
+      >
+        <div className="flex items-center">
           {!showMobileMenu ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -142,14 +148,15 @@ function Topbar() {
               />
             </svg>
           )}
-          <HeaderLogo />
+          <div className="ml-3">
+            <HeaderLogo />
+          </div>
         </div>
       </div>
       <div className="fixed w-[100%] flex-col z-[101] top-16 flex md:hidden">
         <MobileNavbar
           options={options}
-          onMenuSelectedHandler={(menu: optionsInterface) => {
-          }}
+          onMenuSelectedHandler={(menu: optionsInterface) => {}}
           showMobileMenu={showMobileMenu}
         />
       </div>

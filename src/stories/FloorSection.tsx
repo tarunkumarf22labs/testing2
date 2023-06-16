@@ -2,16 +2,16 @@ import React from "react";
 import { NameTitle } from "./NameTitle";
 import Image from "next/image";
 
-interface IFloorPlanImages {
+export interface IFloorPlanImages {
   floorPlanImages: { src: string; w: number; h: number }[];
 }
 
 export const FloorSection = ({ floorPlanImages }: IFloorPlanImages) => {
   return (
-    <div className="bg-white">
-      <div className="px-5 py-8  lg:max-w-7xl lg:mx-auto">
+    <div className="bg-white py-10 mt-10 lg:py-20 lg:mt-20">
+      <div className="px-5 xl:px-0 lg:max-w-7xl lg:mx-auto">
         <NameTitle propertyName={"Deja View's"} title={"Floor Plan"} />
-        <div className="flex flex-col space-y-3 md:flex-row md:space-x-3 items-center">
+        <div className="flex flex-col space-y-3 md:flex-row md:space-x-3 items-center justify-center">
           {floorPlanImages.map((image, index) => {
             return (
               <Image

@@ -5,10 +5,11 @@ function HeaderLogo() {
   return (
     <Image
       src="/images/Logo.png"
-      width={138}
-      height={26}
+      width={0}
+      height={0}
+      sizes="100vw"
       alt="Lux Unlock Logo"
-      className="md:w-40 md:h-8"
+      className="object-contain w-[128px] h-[26px] md:w-[208px] md:h-[38px]"
     />
   );
 }

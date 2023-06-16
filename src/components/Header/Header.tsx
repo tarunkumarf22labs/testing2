@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Topbar from "src/stories/Topbar";
 
-
 const Header = () => {
-  return (
-    <>
-      <Topbar />
-    </>
-  );
+  return <Topbar />;
 };
 
 export default Header;
