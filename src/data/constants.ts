@@ -325,3 +325,4 @@ export const villaServiceDisclaimer =
   "* Services are availalbe at extra cost at villa.";
 export const viewAllInclusions = " VIEW ALL INCLUSIONS";
 export const similarStaysForYou = "SMILAR STAYS FOR YOU";
+export const readMoreText = "read more";

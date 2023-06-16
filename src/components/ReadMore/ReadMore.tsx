@@ -1,16 +1,19 @@
 import classNames from "classnames";
 import React, { useState } from "react";
+import { readMoreText } from "src/data/constants";
 
 type ReadMoreTypes = {
   text: string;
   textClassName?: string;
   readMoreTextClassName?: string;
+  maxChars: number;
 };
 
 const ReadMore = ({
   text,
   textClassName,
   readMoreTextClassName,
+  maxChars,
 }: ReadMoreTypes) => {
   const [readMore, setReadmore] = useState(false);
 
@@ -19,10 +22,10 @@ const ReadMore = ({
       <p className={textClassName}>
         {readMore
           ? text
-          : text?.length > 500
-          ? text?.slice(0, 496) + "... "
+          : text?.length > maxChars
+          ? text?.slice(0, maxChars - 3) + "... "
           : text}
-        {!readMore && text?.length > 500 && (
+        {!readMore && text?.length > maxChars && (
           <span
             onClick={() => setReadmore(true)}
             className={classNames(
@@ -30,7 +33,7 @@ const ReadMore = ({
               readMoreTextClassName
             )}
           >
-            read more
+            {readMoreText}
           </span>
         )}
       </p>

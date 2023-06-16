@@ -41,6 +41,7 @@ export const StorySection = ({
             "text-base text-[#545456] font-centaur leading-[22px] md:leading-[34px] md:text-[22px]"
           }
           readMoreTextClassName={"text-[#8A1E61]"}
+          maxChars={500}
         />
       </div>
     </div>
