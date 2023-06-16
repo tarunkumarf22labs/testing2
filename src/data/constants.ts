@@ -180,16 +180,6 @@ export const HomeBannerimages = [
 
 // shahbaz
 
-export const mediaImages = [
-  "/images/architectural-digest.png",
-  "/images/plateform.png",
-  "/images/traveller.png",
-  "/images/the-hindu-group.png",
-  "/images/architectural-digest.png",
-  "/images/plateform.png",
-  "/images/traveller.png",
-  "/images/the-hindu-group.png",
-];
 export const SearchedresultVillaData = {
   bannerImage: "/images/a030.png",
   image: "/images/a019.png",
@@ -326,6 +316,17 @@ export const villaServiceDisclaimer =
 export const viewAllInclusions = " VIEW ALL INCLUSIONS";
 export const similarStaysForYou = "SMILAR STAYS FOR YOU";
 export const readMoreText = "read more";
+
+export const mediaImages = [
+  "/images/architectural-digest.png",
+  "/images/plateform.png",
+  "/images/traveller.png",
+  "/images/the-hindu-group.png",
+  "/images/architectural-digest.png",
+  "/images/plateform.png",
+  "/images/traveller.png",
+  "/images/the-hindu-group.png",
+];
 
 //shahbaz
 export const locations = [
