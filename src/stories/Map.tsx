@@ -4,7 +4,7 @@ import {
   MarkerF,
   useLoadScript,
 } from "@react-google-maps/api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface setInfoWindowDataInterface {
   address: string;
@@ -19,10 +19,11 @@ interface Imarker {
 
 interface Imarkers {
   markers: Imarker[];
-  highlight: number;
+  highlight?: number;
+  handleClick?: (number) => void;
 }
 
-const Map = ({ markers, highlight }: Imarkers) => {
+const Map = ({ markers, highlight, handleClick }: Imarkers) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAP_API_KEY,
   });
@@ -43,11 +44,7 @@ const Map = ({ markers, highlight }: Imarkers) => {
     setInfoWindowData({ id, address });
     setIsOpen(true);
   };
-  console.log(highlight, "highlight");
 
-  useEffect(() => {
-    console.log("ekcd", highlight);
-  }, [highlight, markers]);
   return (
     <div className="w-[100%] h-[100%] border-red ">
       {!isLoaded ? (
@@ -59,47 +56,38 @@ const Map = ({ markers, highlight }: Imarkers) => {
           onClick={() => setIsOpen(false)}
         >
           {markers?.map(({ address, lat, lng }, ind) => {
-            console.log("Again", ind, highlight);
-
             return (
-              <MarkerF
-                key={lat + lng}
-                position={{ lat, lng }}
-                onClick={() => {
-                  handleMarkerClick(ind, lat, lng, address);
-                }}
-                // onLoad={(marker) => {
-                //   highlight == ind
-                //     ? marker.setIcon(
-                //         "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-                //       )
-                //     : null;
-                // }}
-                options={{
-                  icon:
-                    highlight == ind-1
-                      ? "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-                      : "",
-                }}
-
-                //  icon={highlight == ind ? "http://maps.google.com/mapfiles/ms/icons/green-dot.png" : ''}
-                // icon={
-                //   highlight == ind
-                //     ? "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-                //     : ""
-                // }
-              >
-                {isOpen && infoWindowData?.id === ind && (
-                  <InfoWindowF
-                    onCloseClick={() => {
-                      setIsOpen(false);
-                    }}
-                    position={{ lat, lng }}
-                  >
-                    <h3>{infoWindowData.address}</h3>
-                  </InfoWindowF>
-                )}
-              </MarkerF>
+                <MarkerF
+                  key={lat + lng}
+                  position={{ lat, lng }}
+                  onClick={() => {
+                    handleMarkerClick(ind, lat, lng, address);
+                    handleClick(ind);
+                  }}
+                  options={{
+                    icon: !Number.isInteger(highlight)
+                      ? ""
+                      : highlight === 0 && highlight === ind
+                      ? "/images/lux2.svg"
+                      : highlight && highlight == ind
+                      ? "/images/lux2.svg"
+                      : "/images/lux.svg",
+                  }}
+                >
+                  {isOpen && infoWindowData?.id === ind && (
+                    <InfoWindowF
+                      onCloseClick={() => {
+                        setIsOpen(false);
+                        handleClick(ind);
+                      }}
+                      position={{ lat, lng }}
+                    >
+                      <h3>
+                        {infoWindowData.address}
+                      </h3>
+                    </InfoWindowF>
+                  )}
+                </MarkerF>
             );
           })}
         </GoogleMap>

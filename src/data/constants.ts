@@ -199,3 +199,25 @@ export const SearchedresultVillaData = {
   villaPrice: '₹12,589',
   roomPrice: "₹5,589"
 }
+
+export const mediaImages = [
+  '/images/architectural-digest.png',
+  '/images/plateform.png',
+  '/images/traveller.png',
+  '/images/the-hindu-group.png',
+  '/images/architectural-digest.png',
+  '/images/plateform.png',
+  '/images/traveller.png',
+  '/images/the-hindu-group.png'
+]
+
+//shahbaz 
+export const locations = [
+  { id: 0, address: "Delhi", lat: 28.7041, lng: 77.1025 },
+  { id: 1, address: "Haryana", lat: 29.0588, lng: 76.0856 },
+  { id: 2, address: "Mumbai", lat: 19.076, lng: 72.8777 },
+  { id: 3, address: "Bengaluru", lat: 12.9716, lng: 77.5946 },
+  { id: 4, address: "Chennai", lat: 13.0827, lng: 80.2707 },
+  { id: 5, address: "Bihar", lat: 25.0961, lng: 85.3131 },
+  { id: 6, address: "Jharkhand", lat: 23.6102, lng: 85.2799 },
+];
