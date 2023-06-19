@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { DatePickerStateProvider } from "@rehookify/datepicker";
 import Layout from "@/components/Layout";
 
+
 import {
   heading,
   storySection,
@@ -37,6 +38,8 @@ import {
 
 import { iconsArray as amenitiesIconsArray } from "src/stories/AmenitiesSection";
 import { ImagesBig, ImagesSmall } from "src/stories/GallerySection";
+import MediaListing from "src/stories/MediaListing";
+import { mediaImages } from "src/data/constants";
 
 const Home: NextPage = () => {
   const now = new Date();
@@ -66,7 +69,7 @@ const Home: NextPage = () => {
               <PropertyOverview />
             </DatePickerStateProvider>
             {/* Mobile */}
-            <div className="flex flex-1 flex-col h-fit md:hidden">
+            <div className="flex flex-col flex-1 h-fit md:hidden">
               <ReserveAndLocationDetailsSection />
             </div>
             <RoomSection heading={heading} />
@@ -106,6 +109,7 @@ const Home: NextPage = () => {
         <FaqsSection faqs={faqs} />
         <BeforeYouBook beforeYouBook={beforeYouBook} />
         <SimilarStaysSection />
+        <MediaListing mediaImages={mediaImages}/>
       </div>
     </Layout>
   );
