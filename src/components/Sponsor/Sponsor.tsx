@@ -1,11 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
-import ad from '../../../public/images/architectural-digest.png'
-import platform from '../../../public/images/plateform.png'
-import traveller from '../../../public/images/traveller.png'
-import hindugroup from '../../../public/images/the-hindu-group.png'
+import ad from '@/images/architectural-digest.png'
+import platform from '@/images/plateform.png'
+import traveller from '@/images/traveller.png'
+import hindugroup from '@/images/the-hindu-group.png'
 
-export default function Sponser () {
+export default function Sponsor () {
   const data = [hindugroup, platform, traveller, ad]
   return (
     <div className='flex max-[720px]:flex-col gap-10 justify-evenly py-12 items-center '>

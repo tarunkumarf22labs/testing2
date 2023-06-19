@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Filter from "src/stories/Filter/Filter";
 import GalleryView from "src/stories/GalleryView/GalleryView";
-import logo from "../../../public/images/Minto1.jpg";
-import logo2 from "../../../public/images/Minto2.jpg";
+import logo from "@/images/Minto1.jpg"
+import logo2 from "@/images/Minto2.jpg"
 import { HomeBannerimages } from "src/data/constants";
 import Layout from "../Layout";
 import Carousel from "src/stories/Carousel";
-// import Image from "next/image";
-import Sponser from "../Sponser/Sponser";
-
+import Sponsor from "../Sponsor/Sponsor";
 
 export default function ImageGallery() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -78,11 +76,10 @@ export default function ImageGallery() {
               ]}
             />
           </div>
-         <Sponser/>
+         <Sponsor/>
         </div>         
       </Layout>
 
-     
     </div>
   );
 }
