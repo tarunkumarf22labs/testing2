@@ -6,9 +6,10 @@ import logo2 from "../../../public/images/Minto2.jpg";
 import { HomeBannerimages } from "src/data/constants";
 import Layout from "../Layout";
 import Carousel from "src/stories/Carousel";
-// import Image from "next/image";
-import Sponser from "../Sponser/Sponser";
-
+import Image from "next/image";
+import Sponsor from "../Sponsor/Sponsor";
+import Modal from "src/stories/Modal/Modal";
+// import VillaDetails from "../VillaDetails/VillaDetails";
 
 export default function ImageGallery() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -78,11 +79,17 @@ export default function ImageGallery() {
               ]}
             />
           </div>
-         <Sponser/>
+         <Sponsor/>
         </div>         
       </Layout>
 
-     
+      <Modal
+        isOpen={isModalOpen}
+        onClose={toggleModal}
+        title={"Verandah with master bedroom"}
+      >
+        <Image src={logo2} alt="" />
+      </Modal>
     </div>
   );
 }
