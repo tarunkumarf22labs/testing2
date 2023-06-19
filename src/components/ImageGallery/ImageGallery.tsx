@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Filter from "src/stories/Filter/Filter";
 import GalleryView from "src/stories/GalleryView/GalleryView";
-import logo from "@/images/Minto1.jpg"
-import logo2 from "@/images/Minto2.jpg"
+import logo from "@/images/gallery01.jpg";
+import logo2 from "@/images/Minto2.jpg";
 import { HomeBannerimages } from "src/data/constants";
-import Layout from "../Layout";
+import Layout from "@/components/Layout";
 import Carousel from "src/stories/Carousel";
-import Sponsor from "../Sponsor/Sponsor";
+import Image from "next/image";
+import Sponsor from "@/components/Sponsor/Sponsor";
+import Modal from "src/stories/Modal/Modal";
 
 export default function ImageGallery() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -79,6 +81,14 @@ export default function ImageGallery() {
          <Sponsor/>
         </div>         
       </Layout>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={toggleModal}
+        title={"Verandah with master bedroom"}
+      >
+        <Image src={logo2} alt="" />
+      </Modal>
 
     </div>
   );
