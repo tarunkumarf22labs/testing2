@@ -9,7 +9,6 @@ import Carousel from "src/stories/Carousel";
 import Image from "next/image";
 import Sponsor from "../Sponsor/Sponsor";
 import Modal from "src/stories/Modal/Modal";
-// import VillaDetails from "../VillaDetails/VillaDetails";
 
 export default function ImageGallery() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -90,6 +89,7 @@ export default function ImageGallery() {
       >
         <Image src={logo2} alt="" />
       </Modal>
+
     </div>
   );
 }
