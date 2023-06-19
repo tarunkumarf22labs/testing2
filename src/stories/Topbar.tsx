@@ -98,7 +98,7 @@ function Topbar() {
         className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-[100px] font-bold md:block`}
       >
         <div
-          className={`flex flex-1 w-full h-full max-w-7xl mx-auto group-[.isScrolled]:border-b-0 font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
+          className={`flex flex-1 w-full h-full max-w-7xl mx-auto font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
         >
           <div className="border">
             <HeaderLogo />
@@ -111,7 +111,7 @@ function Topbar() {
           </div>
         </div>
       </div>
-      <div className={`${animate ? 'block animate-fade-in-down' : 'hidden'}  duration-75 animate-fade-in-down sticky top-16  z-[150] w-full`}>
+      <div className={`${animate ? 'block animate-fade-in-down' : 'hidden'}  duration-75 animate-fade-in-down sticky top-16  z-[150] w-full ${navbarColor == 'text-white' ? '' : 'hidden'}`}>
       <hr className={` h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`} />
       </div>
       {/* ${animate ? 'animate-spin' : ''} */}
