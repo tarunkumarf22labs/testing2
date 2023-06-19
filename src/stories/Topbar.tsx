@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import HeaderLogo from "./HeaderLogo";
 import MobileNavbar from "./MobileNavbar";
 import Navbar from "./Navbar";
+import googleIcon from "../../public/images/googleIcon.svg";
+import Image from "next/image";
 
 interface optionsInterface {
   id: number;
@@ -96,25 +98,25 @@ function Topbar() {
         className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-[100px] font-bold md:block`}
       >
         <div
-          className={`flex flex-1 w-full h-full max-w-7xl mx-auto border-b group-[.isScrolled]:border-b-0 font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
+          className={`flex flex-1 w-full h-full max-w-7xl mx-auto font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
         >
           <div className="border">
             <HeaderLogo />
           </div>
           <div className="flex items-center justify-between h-8">
             <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
+          <div className="cursor-pointer">
+            <Image src={googleIcon} height={28} width={28} alt="google icon" />
+          </div>
           </div>
         </div>
       </div>
-      <hr
-        className={`${
-          animate ? "block animate-fade-in-down" : "hidden"
-        } sticky duration-75 bg-black animate-fade-in-down top-16 xl:ml-20 xl:mr-20 2xl:ml-28 2xl:mr-28`}
-      />
-      <div
-        className={`fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex h-16 justify-between items-center px-5  md:hidden`}
-      >
-        <div className="flex items-center">
+      <div className={`${animate ? 'block animate-fade-in-down' : 'hidden'}  duration-75 animate-fade-in-down sticky top-16  z-[150] w-full ${navbarColor == 'text-white' ? '' : 'hidden'}`}>
+      <hr className={` h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`} />
+      </div>
+      {/* ${animate ? 'animate-spin' : ''} */}
+      <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden  ">
+        <div className="flex items-center justify-between w-5/12 sm:w-4/12">
           {!showMobileMenu ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -159,6 +161,7 @@ function Topbar() {
           onMenuSelectedHandler={(menu: optionsInterface) => {}}
           showMobileMenu={showMobileMenu}
         />
+
       </div>
     </>
   );
