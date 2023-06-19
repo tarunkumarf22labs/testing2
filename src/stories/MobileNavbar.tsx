@@ -1,5 +1,7 @@
 import React from "react";
 import MobileNavOptions from "./MobileNavOptions";
+import googleIcon from "../../public/images/googleIcon.svg";
+import Image from "next/image";
 
 interface optionsInterface {
   id: number;
@@ -34,6 +36,10 @@ function MobileNavbar(props: NavbarProps) {
               />
             );
           })}
+          <div className="text-[#8A1E61] flex items-center justify-start h-12 p-2 text-xs font-bold cursor-pointer">
+          <Image src={googleIcon} height={28} width={28} alt="google icon" />
+          <p className="ml-4 text-xs">Authenticate Your Account</p>
+          </div>
         </div>
       )}
     </>

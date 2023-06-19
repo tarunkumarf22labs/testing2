@@ -18,7 +18,7 @@ export default function Carousel({ images,bannerImageStyle,bannerTextStyle,banne
     
   return (
     <>
-    <div className="relative text-center md:-mt-16">
+    <div className="relative text-center md:-mt-28">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
