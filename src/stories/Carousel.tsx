@@ -17,7 +17,7 @@ import Search from "./Search";
 export default function Carousel({ images,bannerImageStyle,bannerTextStyle,bannerText }: CarouselProps) {
     
   return (
-    <div className="relative m-auto text-center md:-mt-16">
+    <div className="relative m-auto text-center md:-mt-28">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

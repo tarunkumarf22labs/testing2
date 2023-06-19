@@ -1,4 +1,4 @@
-import React,{ FC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import {
   DPCalendar as CalendarType,
   useContextCalendars,
@@ -16,6 +16,7 @@ interface CalendarProps {
   calendar: CalendarType;
   MonthOrder: string;
   year: string;
+  inVillaDetails?: Boolean;
 }
 
 export const Calendar: FC<CalendarProps> = ({
@@ -24,17 +25,17 @@ export const Calendar: FC<CalendarProps> = ({
   calendar,
   MonthOrder,
   year,
+  inVillaDetails,
 }) => {
   const { weekDays } = useContextCalendars();
   const { dayButton } = useContextDaysPropGetters();
   const { days, month } = calendar;
-  //   console.log(days);
 
   return (
     <Section className="border-red w-full md:w-[90%] m-auto">
       <div
         className={`
-        ${MonthOrder === "second" ? "hidden sm:grid" : "" } 
+        ${MonthOrder === "second" ? "hidden sm:grid" : ""} 
         grid items-center h-8 grid-cols-7 mb-2 gsm:rid gap-y-2`}
       >
         {weekDays.map((d) => (
@@ -45,14 +46,14 @@ export const Calendar: FC<CalendarProps> = ({
       </div>
       <main
         className={`
-        ${MonthOrder === "second" ? "hidden sm:grid" : "" } 
-          grid grid-cols-7 gap-y-2 text-red `}
+        ${MonthOrder === "second" ? "hidden sm:grid " : ""} 
+          grid grid-cols-7 gap-x-0 text-red `}
       >
         {days.map((d) => {
           return (
             <DayButton
               key={d.$date.toString()}
-              className={getDayClassName("w-[4.9rem] sm:w-12 md:w-14 lg:w-10 xl:w-9 text-xs 2xl:w-12", d)}
+              className={getDayClassName("", d)}
               {...dayButton(d)}
             >
               {d.day}

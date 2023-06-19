@@ -73,7 +73,9 @@ body {
 .day {
   --border-color: rgb(51 65 85); /* slate-700 */
   /* --in-range-bg: rgb(148 163 184); slate-400 */
-  --in-range-bg: #855372;
+  /* --in-range-bg: #855372; */
+  --in-range-bg: #8A1E611A;
+
   --border-radius: 4px;
 }
 /* #8A1E61 */
@@ -100,9 +102,16 @@ body {
 .in-range,
 .range-start,
 .range-end {
-  color: white;
+  /* color: white; */
+  color: black;
+  width: 100% !important;
 }
-
+.range-start,
+.range-end {
+  background-color: #8A1E61;
+  opacity: 0.5;
+}
+/* #8A1E61 */
 .in-range {
   background-color: var(--in-range-bg);
 }

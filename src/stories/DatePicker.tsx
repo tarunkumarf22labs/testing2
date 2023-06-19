@@ -13,7 +13,7 @@ import { Calendar } from "./Calendar";
 import { AppContext } from "src/Context";
 
 interface DatePickerProps {
-  inVillaDetails: boolean;
+  inVillaDetails?: boolean;
 }
 
 
@@ -35,7 +35,7 @@ function Root({inVillaDetails}: DatePickerProps) {
 
   return (
     <div
-      className={`z-[150] block ${
+      className={`z-[49] block ${
         inVillaDetails ? "" : "absolute "
       }w-[100%]  bg-white  top-50 p-4  rounded shadow-xs shadow shadow-slate-300  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-4/12 2xl:left-[17vw]`}
     >
@@ -111,6 +111,7 @@ function Root({inVillaDetails}: DatePickerProps) {
           calendar={calendars[1]}
           MonthOrder="first"
           year={calendars[1].year}
+          inVillaDetails={inVillaDetails}
         />
         <Calendar
           nextButton={
@@ -134,6 +135,7 @@ function Root({inVillaDetails}: DatePickerProps) {
           calendar={calendars[0]}
           MonthOrder="second"
           year={calendars[0].year}
+          inVillaDetails={inVillaDetails}
         />
       </main>
     </div>

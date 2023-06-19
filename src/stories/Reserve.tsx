@@ -16,7 +16,7 @@ const Reserve = () => {
     numberOfGuests.infants;
 
   return (
-    <div className="w-[390px] m-auto lg:w-[350px]">
+    <div className="m-auto">
       <p className="text-center">
         <b>₹12,450 </b>/ night
       </p>

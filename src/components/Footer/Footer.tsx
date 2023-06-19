@@ -121,13 +121,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="w-full bg-[#545456] pt-6 pb-6 flex justify-between items-center font-[Brandon Grotesque] flex-col-reverse md:flex-row">
-        <div className="flex items-center justify-between w-72 text-[#FFFFFF] font-medium m-auto md:ml-32">
-          <p className="mr-8">Terms & Conditions</p>
-          <p>Privacy Policy</p>
+      <div className="w-full bg-[#545456] pt-6 pb-6 flex justify-between items-center font-[Brandon Grotesque] flex-col-reverse xl:flex-row">
+        <div className="flex items-center justify-between flex-col xl:flex-row w-4/5 xl:w-[34%] 2xl:w-[28%] text-[#FFFFFF] font-medium m-auto xl:ml-32">
+          <div className="flex items-center justify-between mb-4 xl:w-1/2">
+          <p className="mr-8 xl:mr-0">Terms & Conditions</p>
+          <p className="">Privacy Policy</p>
+          </div>
+          <p className="mb-3">Refund & Cancellation Policy</p>
         </div>
-        <hr className="w-[80%] m-auto mt-7 mb-7 border-t border-[#737373] md:hidden" />
-        <div className="flex items-center justify-between m-auto md:mr-32 w-72">
+        <hr className="w-[80%] m-auto mt-7 mb-7 border-t border-[#737373] xl:hidden" />
+        <div className="flex items-center justify-between m-auto xl:mr-32 w-72">
           <div>
             <FacebookLogo size={24} color="#FFFFFF" />
           </div>

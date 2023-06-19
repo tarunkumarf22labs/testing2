@@ -7,6 +7,9 @@ import Map from "src/stories/Map";
 import SearchedVillaCard from "src/stories/SearchedVillaCard";
 import { SearchedresultVillaData } from "src/data/constants";
 import { locations } from "src/data/constants";
+import SortVilla from "src/stories/SortVilla";
+import { mediaImages } from "src/data/constants";
+import MediaListing from "src/stories/MediaListing";
 
 const Result: NextPage = () => {
   const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
@@ -61,8 +64,11 @@ const Result: NextPage = () => {
           bannerTextStyle={bannerTextStyle}
           bannerText={bannerText}
         />
-        <div className="w-11/12 m-auto border-4 sm:w-full xl:max-w-[1440px]">
-          <h1 className="text-5xl font-[Brandon Grotesque] mb-10 ml-14">10 STAYS</h1>
+        <div className="w-11/12 m-auto xl:max-w-[1440px] xl:m-auto">
+          <SortVilla />
+          <div className="w-11/12 m-auto">
+          <h1 className="text-5xl font-[Brandon Grotesque] mb-10">10 STAYS</h1>
+          </div>
 
           <div className="flex flex-col-reverse justify-between xl:flex-row ">
             <div className="w-full xl:w-[60%] " ref={cardRef}>
@@ -98,10 +104,10 @@ const Result: NextPage = () => {
                 highlight={cardTopPosition}
                 handleClick={handleClick}
               />
-              <p>{cardTopPosition}</p>
             </div>
           </div>
         </div>
+        <MediaListing mediaImages={mediaImages}/>
       </div>
     </Layout>
   );

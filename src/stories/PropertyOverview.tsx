@@ -41,9 +41,9 @@ const PropertyOverview = () => {
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
       <div>
         <div className="flex items-center text-[#8A1E61] mt-4 justify-between md:pl-3 md:justify-start">
-          {actions?.map(({ name, Icon }) => {
+          {actions?.map(({ name, Icon },id) => {
             return (
-              <button className="flex items-center justify-center p-3 md:p-5">
+              <button className="flex items-center justify-center p-3 md:p-5" key={id}>
                 <Icon className="text-md md:text-2xl" />
                 <p className="pl-2 text-sm md:text-base md:pl-3">{name}</p>
               </button>
