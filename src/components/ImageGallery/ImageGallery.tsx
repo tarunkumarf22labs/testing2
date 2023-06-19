@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Filter from "src/stories/Filter/Filter";
 import GalleryView from "src/stories/GalleryView/GalleryView";
-import logo from "@/images/Minto1.jpg";
+import logo from "@/images/gallery01.jpg";
 import logo2 from "@/images/Minto2.jpg";
 import { HomeBannerimages } from "src/data/constants";
 import Layout from "@/components/Layout";
