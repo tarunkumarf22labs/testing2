@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from "next/image";
-import styles from './GalleryView.module.css'
+import styles from './galleryView.module.css'
 
 export default function GalleryView({data}) {
   return (

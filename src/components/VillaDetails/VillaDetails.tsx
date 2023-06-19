@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import Modal from 'src/stories/Modal/Modal'
-import logo2 from "../../../public/images/Minto2.jpg"
+import logo2 from "@/images/Minto2.jpg"
 
 import { WifiIcon } from "@heroicons/react/24/solid";
 import { UserCircleIcon, BoltIcon } from "@heroicons/react/24/outline";

@@ -10,9 +10,16 @@ export default meta;
 
 type Story = StoryObj<typeof Filter>;
 
-export const Block: Story = {
+export const Primary: Story = {
   args: {
-    
+    options: [
+      "all",
+      "exterior",
+      "living",
+      "bedrooms",
+      "bathrooms",
+      "common areas",
+    ]
   },
 };
 
