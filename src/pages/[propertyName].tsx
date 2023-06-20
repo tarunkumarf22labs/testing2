@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import { DatePickerStateProvider } from "@rehookify/datepicker";
 import Layout from "@/components/Layout";
 
-
 import {
   heading,
   storySection,
@@ -40,12 +39,26 @@ import { iconsArray as amenitiesIconsArray } from "src/stories/AmenitiesSection"
 import { ImagesBig, ImagesSmall } from "src/stories/GallerySection";
 import MediaListing from "src/stories/MediaListing";
 import { mediaImages } from "src/data/constants";
+import Modal from "src/stories/Modal/Modal";
+import { CuratedExpModal } from "src/stories/CuratedExpModal";
+import classNames from "classnames";
 
 const Home: NextPage = () => {
   const now = new Date();
   const M = now.getMonth();
   const Y = now.getFullYear();
   const [selectedDates, onDatesChange] = useState<Date[]>([]);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [elementNo, setElementNo] = useState<number>(0);
+
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
+  };
+
+  const setItemNo = (id) => {
+    setElementNo(id);
+  };
+
   return (
     <Layout title="LuxUnlock">
       <div className="bg-[#f8f8f9]">
@@ -84,7 +97,7 @@ const Home: NextPage = () => {
           bigImages={ImagesBig}
           smallImages={ImagesSmall}
         />
-        <ExperiencesSections />
+        <ExperiencesSections setItemNo={setItemNo} toggleModal={toggleModal} />
         <StorySection
           heading={storySection.heading}
           story={storySection.story}
@@ -109,7 +122,16 @@ const Home: NextPage = () => {
         <FaqsSection faqs={faqs} />
         <BeforeYouBook beforeYouBook={beforeYouBook} />
         <SimilarStaysSection />
-        <MediaListing mediaImages={mediaImages}/>
+        <MediaListing mediaImages={mediaImages} />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={toggleModal}
+          square={true}
+          className="max-w-[560px]"
+          segregated={false}
+        >
+          <CuratedExpModal id={elementNo} />
+        </Modal>
       </div>
     </Layout>
   );

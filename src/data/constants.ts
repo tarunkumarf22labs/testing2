@@ -178,6 +178,87 @@ export const HomeBannerimages = [
   "/images/a08.png",
 ];
 
+export const curratedCollectionsModelData = [
+  {
+    title: "sultans battery",
+    list: [
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 3,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 2,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 1,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 4,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+    ],
+  },
+  {
+    title: "Pozhuthanga Adventure Zone",
+    list: [
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 3,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 2,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 1,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+    ],
+  },
+  {
+    title: "Wayanad Wildlife Sanctuary",
+    list: [
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 2,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+      {
+        img: "/images/CurratedCollectionsModelImage1.webp",
+        title: "Pozhuthanga Adventure Zone",
+        nights: 1,
+        details:
+          "Electricity and automatic UPS / Inverter back-up for Wi-Fi, all lights and 5A electrical points \n - Water main water supply and UV drinking water \n - Internet complimentary high-speed Wi-Fi broad-band access throughout the house –two networks \n - Heating & Cooling fan-cooled rooms \n - Cooking Gas \n - Television with Amazon Firestick and complimentary subscription to major OTTs \n - Satellite Tv Tata Sky (channels on request)",
+      },
+    ],
+  },
+];
+
 // shahbaz
 
 export const SearchedresultVillaData = {
