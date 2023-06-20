@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import { DatePickerStateProvider } from "@rehookify/datepicker";
 import Layout from "@/components/Layout";
 
-
 import {
   heading,
   storySection,
@@ -86,6 +85,7 @@ const Home: NextPage = () => {
         />
         <ExperiencesSections />
         <StorySection
+          secondheading={"STORY"}
           heading={storySection.heading}
           story={storySection.story}
           image={"/images/StoryImage.png"}
@@ -99,7 +99,14 @@ const Home: NextPage = () => {
           inclusions={inclusions}
           exclusions={exclusions}
         />
-        <HomeTruthsSection homeTruths={homeTruths} />
+        {/* <HomeTruthsSection homeTruths={homeTruths} /> */}
+        {/* *************************************************** */}
+        <StorySection
+          secondheading={'HOME TRUTHS'}
+          heading={homeTruths.heading}
+          story={homeTruths.story}
+          image={"/images/StoryImage.png"}
+        />
         <DetailedDescriptionSection
           image={"/images/StoryImage.png"}
           detailedDescription={detailedDescription}
@@ -109,7 +116,7 @@ const Home: NextPage = () => {
         <FaqsSection faqs={faqs} />
         <BeforeYouBook beforeYouBook={beforeYouBook} />
         <SimilarStaysSection />
-        <MediaListing mediaImages={mediaImages}/>
+        <MediaListing mediaImages={mediaImages} />
       </div>
     </Layout>
   );

@@ -22,9 +22,9 @@ export const HomeTruthsSection = ({ homeTruths }) => {
             className="absolute -left-[15%] top-[403px]"
           />
         </div>
-        <div className="md:w-1/2 w-full">
+        <div className="w-full md:w-1/2">
           <NameTitle propertyName="Deja View's" title="HOME TRUTHS" />
-          <ul className="list-disc space-y-6">
+          <ul className="space-y-6 list-disc">
             {homeTruths.map((item, index) => {
               return (
                 <li
@@ -41,3 +41,4 @@ export const HomeTruthsSection = ({ homeTruths }) => {
     </Container>
   );
 };
+
