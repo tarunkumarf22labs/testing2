@@ -31,7 +31,7 @@ function Root({inVillaDetails}: DatePickerProps) {
   useEffect(() => {
     start ? setStartDate(start) : null;
     end ? setEndDate(end) : null;
-  }, [start, end]);
+  }, [start, end, setStartDate, setEndDate]);
 
   return (
     <div
