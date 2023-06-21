@@ -99,6 +99,7 @@ const Home: NextPage = () => {
         />
         <ExperiencesSection setItemNo={setItemNo} toggleModal={toggleModal} />
         <StorySection
+          secondheading={"STORY"}
           heading={storySection.heading}
           story={storySection.story}
           image={"/images/StoryImage.png"}
@@ -112,7 +113,14 @@ const Home: NextPage = () => {
           inclusions={inclusions}
           exclusions={exclusions}
         />
-        <HomeTruthsSection homeTruths={homeTruths} />
+        {/* <HomeTruthsSection homeTruths={homeTruths} /> */}
+        {/* *************************************************** */}
+        <StorySection
+          secondheading={"HOME TRUTHS"}
+          heading={homeTruths.heading}
+          story={homeTruths.story}
+          image={"/images/StoryImage.png"}
+        />
         <DetailedDescriptionSection
           image={"/images/StoryImage.png"}
           detailedDescription={detailedDescription}
