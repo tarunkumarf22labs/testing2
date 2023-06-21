@@ -24,15 +24,15 @@ const experiences = [
   "/images/GalleryRoom2.png",
 ];
 
-interface IExperiencesSections {
+interface IExperiencesSection {
   setItemNo?: (value: number) => void;
   toggleModal: () => void;
 }
 
-const ExperiencesSections = ({
+const ExperiencesSection = ({
   setItemNo,
   toggleModal,
-}: IExperiencesSections) => {
+}: IExperiencesSection) => {
   const swiperOneRef = useRef(null);
   const swiperTwoRef = useRef(null);
 
@@ -129,4 +129,4 @@ const ExperiencesSections = ({
   );
 };
 
-export default ExperiencesSections;
+export default ExperiencesSection;

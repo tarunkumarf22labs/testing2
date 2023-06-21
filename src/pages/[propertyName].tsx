@@ -29,7 +29,7 @@ import {
   BeforeYouBook,
   HomeTruthsSection,
   PropertyOverview,
-  ExperiencesSections,
+  ExperiencesSection,
   PropertyDetailsHeroSection,
   SimilarStaysSection,
   ReserveAndLocationDetailsSection,
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
           bigImages={ImagesBig}
           smallImages={ImagesSmall}
         />
-        <ExperiencesSections setItemNo={setItemNo} toggleModal={toggleModal} />
+        <ExperiencesSection setItemNo={setItemNo} toggleModal={toggleModal} />
         <StorySection
           heading={storySection.heading}
           story={storySection.story}

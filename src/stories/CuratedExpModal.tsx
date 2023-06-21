@@ -20,7 +20,7 @@ export const CuratedExpModal = ({ id }: ICuratedExpModal) => {
         onSwiper={(swiper) => {
           swiperOneRef.current = swiper;
         }}
-        slidesPerView={"auto"}
+        slidesPerView="auto"
         className="relative"
         centeredSlides={isMobile}
         centeredSlidesBounds={isMobile}
