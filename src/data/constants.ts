@@ -285,17 +285,22 @@ export const beforeYouBook = [
   },
 ];
 
-export const homeTruths = [
-  "Gramercy House is serviced with daytime housekeepers, a groundskeeper and gardener, and 24 x 7 staffed security. There is also a full-time resident chef who can do South Indian, North Indian, Chinese, and Indian street-food snacks. In addition, your dedicated LuxUnlock Location Manager is available on-call or WA for any assistance.",
-  "Electricity supply by the government is both erratic and of poor quality throughout the year in Kodaikanal. Do expect frequent power cuts through-out the day. The house comes with an incoming servo-stabiliser and 100% automatic power back up with diesel genset.",
-  "Water is highly scarce in Kodaikanal and the house does not have a municipal water connection. It depends upon rainwater storage, and open well and borewell. Water is pumped to the overhead tanks automatically and nothing needs to be done. Please use water prudently.",
-  "Heating is available in all rooms with portable heaters in all three rooms and all shared spaces. There are two working fireplaces in the living and dining area and an electric fireplace in the TV room. All bedrooms have individual hot water geysers.",
-  "Access to the washing machine & dryer is restricted to the housekeeper. Please handover your laundry and she will have it done. Charges apply for washing and folding only. Ironing facility is for self-use. Clothes are sun-dried in the back yard.",
-  "There are two kitchens - a main kitchen for vegetarian food at the back of the house on the ground floor, and one separate non-vegetarian kitchen at the bottom of the rear building. Please do comply with the rules of cooking, if you are using your own accompanying cook or cooking for yourself.",
-  "Accompanying staff accommodation is available on the premises with beds, room heating, and clean bathrooms with hot water.",
-  "Kodaikanal has a major human animal conflict problem with Indian bison. Due to habitat destruction and lack of predators, bison numbers have increased and they often are found in residential and public areas, and occasionally in our estate. Please be careful when walking. Increasingly, monkeys have also become a menace and be careful as they do raid indoor spaces looking for food.",
-  "As this is a house using antique and salvaged furniture and woodwork, doors and cupboards may be a bit quirky. Due to its age, some electrical switches may behave inconsistently. Floorboards creak.",
-];
+export const homeTruths = {
+  heading: "Deja View's",
+  story:
+  [
+    "Gramercy House is serviced with daytime housekeepers, a groundskeeper and gardener, and 24 x 7 staffed security. There is also a full-time resident chef who can do South Indian, North Indian, Chinese, and Indian street-food snacks. In addition, your dedicated LuxUnlock Location Manager is available on-call or WA for any assistance.",
+    "Electricity supply by the government is both erratic and of poor quality throughout the year in Kodaikanal. Do expect frequent power cuts through-out the day. The house comes with an incoming servo-stabiliser and 100% automatic power back up with diesel genset.",
+    "Water is highly scarce in Kodaikanal and the house does not have a municipal water connection. It depends upon rainwater storage, and open well and borewell. Water is pumped to the overhead tanks automatically and nothing needs to be done. Please use water prudently.",
+    "Heating is available in all rooms with portable heaters in all three rooms and all shared spaces. There are two working fireplaces in the living and dining area and an electric fireplace in the TV room. All bedrooms have individual hot water geysers.",
+    "Access to the washing machine & dryer is restricted to the housekeeper. Please handover your laundry and she will have it done. Charges apply for washing and folding only. Ironing facility is for self-use. Clothes are sun-dried in the back yard.",
+    "There are two kitchens - a main kitchen for vegetarian food at the back of the house on the ground floor, and one separate non-vegetarian kitchen at the bottom of the rear building. Please do comply with the rules of cooking, if you are using your own accompanying cook or cooking for yourself.",
+    "Accompanying staff accommodation is available on the premises with beds, room heating, and clean bathrooms with hot water.",
+    "Kodaikanal has a major human animal conflict problem with Indian bison. Due to habitat destruction and lack of predators, bison numbers have increased and they often are found in residential and public areas, and occasionally in our estate. Please be careful when walking. Increasingly, monkeys have also become a menace and be careful as they do raid indoor spaces looking for food.",
+    "As this is a house using antique and salvaged furniture and woodwork, doors and cupboards may be a bit quirky. Due to its age, some electrical switches may behave inconsistently. Floorboards creak.",
+  ]
+};
+
 
 export const viewAllPhotos = "View all photos";
 export const propertyOverviewActions = [
