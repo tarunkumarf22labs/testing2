@@ -42,12 +42,9 @@ import { mediaImages } from "src/data/constants";
 import Modal from "src/stories/Modal/Modal";
 import { CuratedExpModal } from "src/stories/CuratedExpModal";
 import classNames from "classnames";
+import Datepicker from "src/stories/DatePicker";
 
 const Home: NextPage = () => {
-  const now = new Date();
-  const M = now.getMonth();
-  const Y = now.getFullYear();
-  const [selectedDates, onDatesChange] = useState<Date[]>([]);
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [elementNo, setElementNo] = useState<number>(0);
 
@@ -65,22 +62,7 @@ const Home: NextPage = () => {
         <PropertyDetailsHeroSection />
         <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
           <div className="flex flex-col flex-1 lg:flex-[2]">
-            <DatePickerStateProvider
-              config={{
-                selectedDates,
-                onDatesChange,
-                dates: {
-                  mode: "range",
-                  minDate: new Date(Y, M - 2, 1),
-                  maxDate: new Date(Y, M + 2, 0),
-                },
-                calendar: {
-                  offsets: [-1, 1],
-                },
-              }}
-            >
-              <PropertyOverview />
-            </DatePickerStateProvider>
+            <PropertyOverview />
             {/* Mobile */}
             <div className="flex flex-col flex-1 h-fit md:hidden">
               <ReserveAndLocationDetailsSection />
@@ -92,18 +74,6 @@ const Home: NextPage = () => {
             <ReserveAndLocationDetailsSection />
           </div>
         </div>
-        <GallerySection
-          heading={{ heading: "Gallery", subHeading: "Deja View's" }}
-          bigImages={ImagesBig}
-          smallImages={ImagesSmall}
-        />
-        <ExperiencesSection setItemNo={setItemNo} toggleModal={toggleModal} />
-        <StorySection
-          secondheading={"STORY"}
-          heading={storySection.heading}
-          story={storySection.story}
-          image={"/images/StoryImage.png"}
-        />
         <AmenitiesSection
           heading="DEJA VIEW’S"
           iconsArray={amenitiesIconsArray}
@@ -113,22 +83,28 @@ const Home: NextPage = () => {
           inclusions={inclusions}
           exclusions={exclusions}
         />
-        {/* <HomeTruthsSection homeTruths={homeTruths} /> */}
-        {/* *************************************************** */}
+        <div className="mb-20"></div>
+        {/* HOME TRUTHS */}
         <StorySection
           secondheading={"HOME TRUTHS"}
           heading={homeTruths.heading}
           story={homeTruths.story}
           image={"/images/StoryImage.png"}
         />
+        <BeforeYouBook beforeYouBook={beforeYouBook} />
+        <ExperiencesSection setItemNo={setItemNo} toggleModal={toggleModal} />
+        <StorySection
+          secondheading={"STORY"}
+          heading={storySection.heading}
+          story={storySection.story}
+          image={"/images/StoryImage.png"}
+        />
         <DetailedDescriptionSection
           image={"/images/StoryImage.png"}
           detailedDescription={detailedDescription}
         />
-        <FloorSection floorPlanImages={floorPlanImages} />
         <PropertyReviewSection reviewCardsCollection={ReviewCardsCollection} />
         <FaqsSection faqs={faqs} />
-        <BeforeYouBook beforeYouBook={beforeYouBook} />
         <SimilarStaysSection />
         <MediaListing mediaImages={mediaImages} />
         <Modal

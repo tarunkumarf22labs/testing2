@@ -17,7 +17,6 @@ export const StorySection = ({
   image,
   secondheading,
 }: IStorySection) => {
-  console.log(story);
   const [readMore, setReadMore] = useState(false);
   let List;
   typeof story !== "string" && readMore === false
@@ -26,7 +25,7 @@ export const StorySection = ({
     ? (List = story)
     : null;
   return (
-    <div>
+    <div className="mb-20"id={`${secondheading}-for-scroll`}>
       <div className="-z-10 sm:min-w-screen">
         <Image
           src={image}
@@ -47,14 +46,15 @@ export const StorySection = ({
           {secondheading}
         </p>
         {typeof story === "string" ? (
-          <ReadMore
-            text={story}
-            textClassName={
-              "text-base text-[#545456] font-centaur leading-[22px] md:leading-[34px] md:text-[22px]"
-            }
-            readMoreTextClassName={"text-[#8A1E61]"}
-            maxChars={500}
-          />
+          <div className="mb-8">
+            <p className="text-base text-[#545456] font-centaur leading-[22px] md:leading-[34px] md:text-[22px]">
+              {readMore
+                ? story
+                : story?.length > 500
+                ? story?.slice(0, 500 - 3) + "... "
+                : story}
+            </p>
+          </div>
         ) : (
           <div>
             <ul className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc">
@@ -69,16 +69,16 @@ export const StorySection = ({
                 );
               })}
             </ul>
-            <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
-              <div
-                className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
-                onClick={() => setReadMore(!readMore)}
-              >
-                <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
-              </div>
-            </div>
           </div>
         )}
+        <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
+          <div
+            className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
+            onClick={() => setReadMore(!readMore)}
+          >
+            <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
+          </div>
+        </div>
       </div>
     </div>
   );
