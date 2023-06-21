@@ -6,6 +6,8 @@ type ExperienceCardTypes = {
   subHeading?: string;
   heading: string;
   paragraph: string;
+  onClick?: () => void;
+  toggleModal?: () => void;
 };
 
 const ExperienceCard = ({
@@ -13,9 +15,22 @@ const ExperienceCard = ({
   heading,
   paragraph,
   subHeading,
+  onClick,
+  toggleModal,
 }: ExperienceCardTypes) => {
+  const handleOnClick = () => {
+    if (!onClick) {
+      return;
+    }
+    onClick();
+    toggleModal();
+  };
+
   return (
-    <div className="w-full max-w-[290px] md:max-w-[373px]">
+    <div
+      className="w-full max-w-[290px] md:max-w-[373px]"
+      onClick={handleOnClick}
+    >
       <Image
         src={imageUrl}
         width={0}

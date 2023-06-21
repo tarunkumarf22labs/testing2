@@ -24,7 +24,15 @@ const experiences = [
   "/images/GalleryRoom2.png",
 ];
 
-const ExperiencesSections = () => {
+interface IExperiencesSection {
+  setItemNo?: (value: number) => void;
+  toggleModal: () => void;
+}
+
+const ExperiencesSection = ({
+  setItemNo,
+  toggleModal,
+}: IExperiencesSection) => {
   const swiperOneRef = useRef(null);
   const swiperTwoRef = useRef(null);
 
@@ -63,6 +71,8 @@ const ExperiencesSections = () => {
                     subHeading=" "
                     paragraph=""
                     imageUrl={el}
+                    onClick={() => setItemNo(idx)}
+                    toggleModal={toggleModal}
                   />
                 </SwiperSlide>
               );
@@ -119,4 +129,4 @@ const ExperiencesSections = () => {
   );
 };
 
-export default ExperiencesSections;
+export default ExperiencesSection;

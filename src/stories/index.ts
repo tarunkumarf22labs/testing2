@@ -1,5 +1,5 @@
 export { default as PropertyOverview } from "./PropertyOverview";
-export { default as ExperiencesSections } from "./ExperiencesSections";
+export { default as ExperiencesSection } from "./ExperiencesSections";
 export { default as PropertyDetailsHeroSection } from "./PropertyDetailsHeroSection";
 export { default as SimilarStaysSection } from "./SimilarStaysSection";
 export { default as ReserveAndLocationDetailsSection } from "./ReserveAndLocationDetailsSection";
