@@ -1,6 +1,6 @@
-import ReadMore from "@/components/ReadMore/ReadMore";
 import Image from "next/image";
 import React, { useState } from "react";
+import ReadMoreOrLess from "./ReadMoreOrLess";
 
 interface IStorySection {
   isStory?: boolean;
@@ -8,6 +8,7 @@ interface IStorySection {
   secondheading?: string;
   story?: string | string[];
   image?: string;
+  stringLength: number;
 }
 
 export const StorySection = ({
@@ -16,17 +17,10 @@ export const StorySection = ({
   story,
   image,
   secondheading,
+  stringLength,
 }: IStorySection) => {
-  console.log(story);
-  const [readMore, setReadMore] = useState(false);
-  let List;
-  typeof story !== "string" && readMore === false
-    ? (List = story.filter((ele, id) => id < 3))
-    : typeof story !== "string"
-    ? (List = story)
-    : null;
   return (
-    <div>
+    <div className="mb-20" id={`${secondheading}-for-scroll`}>
       <div className="-z-10 sm:min-w-screen">
         <Image
           src={image}
@@ -46,39 +40,7 @@ export const StorySection = ({
           {/* {isStory ? "STORY" : "Getting there"} */}
           {secondheading}
         </p>
-        {typeof story === "string" ? (
-          <ReadMore
-            text={story}
-            textClassName={
-              "text-base text-[#545456] font-centaur leading-[22px] md:leading-[34px] md:text-[22px]"
-            }
-            readMoreTextClassName={"text-[#8A1E61]"}
-            maxChars={500}
-          />
-        ) : (
-          <div>
-            <ul className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc">
-              {List.map((ele, id) => {
-                return (
-                  <li
-                    key={id}
-                    className="text-xl text-[#545456] ml-2 md:ml-0 font-centaur leading-8 "
-                  >
-                    {ele}
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
-              <div
-                className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
-                onClick={() => setReadMore(!readMore)}
-              >
-                <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
-              </div>
-            </div>
-          </div>
-        )}
+        <ReadMoreOrLess story={story} stringLength={stringLength} />
       </div>
     </div>
   );

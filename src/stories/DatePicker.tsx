@@ -32,25 +32,26 @@ function Root({inVillaDetails}: DatePickerProps) {
     start ? setStartDate(start) : null;
     end ? setEndDate(end) : null;
   }, [start, end, setStartDate, setEndDate]);
-
+  // console.log(start,end)
   return (
     <div
       className={`z-[49] block ${
-        inVillaDetails ? "" : "absolute "
-      }w-[100%]  bg-white  top-50 p-4  rounded shadow-xs shadow shadow-slate-300  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-4/12 2xl:left-[17vw]`}
+        inVillaDetails ? "" : "absolute  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-5/12 2xl:left-[16vw] rounded shadow-xs shadow shadow-slate-300   top-50 p-4  "
+      }w-full  bg-white`}
     >
-      <div>
+      <div >
         <div className="flex items-center justify-between w-full bg-white z-[150]">
-          <p>
+          <p className="">
             {" "}
             <DayButton className="w-8" {...previousMonthButton()}>
-              <svg
+             <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 ml-5">
+             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-4 h-4 "
               >
                 <path
                   strokeLinecap="round"
@@ -58,6 +59,7 @@ function Root({inVillaDetails}: DatePickerProps) {
                   d="M15.75 19.5L8.25 12l7.5-7.5"
                 />
               </svg>
+             </div>
             </DayButton>
             {""}
           </p>
@@ -70,13 +72,14 @@ function Root({inVillaDetails}: DatePickerProps) {
           <p>
             {" "}
             <DayButton className="w-8" {...nextMonthButton()}>
+            <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 mr-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-4 h-4"
               >
                 <path
                   strokeLinecap="round"
@@ -84,11 +87,12 @@ function Root({inVillaDetails}: DatePickerProps) {
                   d="M8.25 4.5l7.5 7.5-7.5 7.5"
                 />
               </svg>
+              </div>
             </DayButton>
           </p>
         </div>
       </div>
-      <main className="grid grid-cols-1 gap-x-6 sm:grid-cols-2 border-green z-[150]">
+      <main className="grid grid-cols-1 gap-x-6 sm:grid-cols-2 border-green z-[150] w-full">
         <Calendar
           prevButton={
             <DayButton className="w-8" {...previousMonthButton()}>
@@ -175,7 +179,7 @@ const Datepicker = (props: DatePickerProps) => {
       }}
     >
       <Root
-        inVillaDetails={false}
+        inVillaDetails={inVillaDetails}
       />
     </DatePickerStateProvider>
   );

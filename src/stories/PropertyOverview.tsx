@@ -1,7 +1,5 @@
 import React from "react";
 import { Export, DownloadSimple, Heart } from "@phosphor-icons/react";
-import { Calendar } from "./Calendar";
-import { useContextCalendars } from "@rehookify/datepicker";
 import { Button } from "./Button";
 import useIsMobile from "@/hooks/useIsMobile";
 import {
@@ -11,6 +9,7 @@ import {
   clearDates,
   propertyOverviewActions,
 } from "src/data/constants";
+import Datepicker from "./DatePicker";
 
 const actions = [
   {
@@ -33,17 +32,32 @@ const amenities = [
   "2 Bathrooms",
   "English-Style Cottage",
 ];
+const showStory = () => {
+  const item = document.getElementById("STORY-for-scroll");
+  item.scrollIntoView({
+    behavior: "smooth",
+  });
+};
+const showDetailDescription = () => {
+  const item = document.getElementById("detail-description-to-view");
+  item.scrollIntoView({
+    behavior: "smooth",
+  });
+};
 
 const PropertyOverview = () => {
-  const { calendars } = useContextCalendars();
   const isMobile = useIsMobile();
+  
   return (
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
       <div>
         <div className="flex items-center text-[#8A1E61] mt-4 justify-between md:pl-3 md:justify-start">
-          {actions?.map(({ name, Icon },id) => {
+          {actions?.map(({ name, Icon }, id) => {
             return (
-              <button className="flex items-center justify-center p-3 md:p-5" key={id}>
+              <button
+                className="flex items-center justify-center p-3 md:p-5"
+                key={id}
+              >
                 <Icon className="text-md md:text-2xl" />
                 <p className="pl-2 text-sm md:text-base md:pl-3">{name}</p>
               </button>
@@ -84,17 +98,35 @@ const PropertyOverview = () => {
             enjoyable holiday. Make time for nature walks & cycling, discovering
             ancient history, and savouring the delicious cuisine of Wayanad.
           </p>
+          <div className="flex m-auto sm:m-0 " >
+            <div className="mt-8" onClick={showStory}>
+              <div
+                className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-44 cursor-pointer border border-[#8A1E61]"
+                // onClick={() => setReadMore(!readMore)}
+              >
+                <h3 className="" >
+                  DEJA VIEW’S STORY
+                </h3>
+              </div>
+            </div>
+            <div className="mt-8 ml-11 " onClick={showDetailDescription}>
+              <div
+                className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-40 sm:w-60 cursor-pointer border border-[#8A1E61]"
+                // onClick={() => setReadMore(!readMore)}
+              >
+                <h3 className="" >
+                  <span className="hidden sm:block">
+                    DEJA VIEW’S DETAILED DESCRIPTION
+                  </span>
+                  <span className="sm:hidden">DETAILED DESCRIPTION</span>
+                </h3>
+              </div>
+            </div>
+          </div>
           <hr className="my-6" />
           <p className="text-[#545456] font-medium text-xl">{availableDays}</p>
-          <div className="flex mt-5">
-            <Calendar MonthOrder="first" calendar={calendars[1]} year="2023" />
-            {!isMobile && (
-              <Calendar
-                MonthOrder="second"
-                calendar={calendars[0]}
-                year="2023"
-              />
-            )}
+          <div className="mt-5 w-full md:w-[110%] md:-ml-[5%]">
+            <Datepicker inVillaDetails={true} />
           </div>
           <div className="flex items-center justify-between mb-8">
             <p className="bg-[#8A1E611A] text-[#8A1E61] text-xs md:text-base px-[10px] py-2">
