@@ -1,6 +1,6 @@
-import ReadMore from "@/components/ReadMore/ReadMore";
 import Image from "next/image";
 import React, { useState } from "react";
+import ReadMoreOrLess from "./ReadMoreOrLess";
 
 interface IStorySection {
   isStory?: boolean;
@@ -8,6 +8,7 @@ interface IStorySection {
   secondheading?: string;
   story?: string | string[];
   image?: string;
+  stringLength: number;
 }
 
 export const StorySection = ({
@@ -16,8 +17,9 @@ export const StorySection = ({
   story,
   image,
   secondheading,
+  stringLength
 }: IStorySection) => {
-  const [readMore, setReadMore] = useState(false);
+  const [readMore, setReadMore] = useState<Boolean>(false);
   let List;
   typeof story !== "string" && readMore === false
     ? (List = story.filter((ele, id) => id < 3))
@@ -50,8 +52,8 @@ export const StorySection = ({
             <p className="text-base text-[#545456] font-centaur leading-[22px] md:leading-[34px] md:text-[22px]">
               {readMore
                 ? story
-                : story?.length > 500
-                ? story?.slice(0, 500 - 3) + "... "
+                : story?.length > stringLength
+                ? story?.slice(0, stringLength - 3) + "... "
                 : story}
             </p>
           </div>
@@ -71,14 +73,7 @@ export const StorySection = ({
             </ul>
           </div>
         )}
-        <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
-          <div
-            className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
-            onClick={() => setReadMore(!readMore)}
-          >
-            <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
-          </div>
-        </div>
+        <ReadMoreOrLess setReadMore={setReadMore} readMore={readMore} />
       </div>
     </div>
   );

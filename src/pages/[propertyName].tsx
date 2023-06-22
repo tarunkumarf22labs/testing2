@@ -90,6 +90,7 @@ const Home: NextPage = () => {
           heading={homeTruths.heading}
           story={homeTruths.story}
           image={"/images/StoryImage.png"}
+          stringLength={500}
         />
         <BeforeYouBook beforeYouBook={beforeYouBook} />
         <ExperiencesSection setItemNo={setItemNo} toggleModal={toggleModal} />
@@ -98,6 +99,7 @@ const Home: NextPage = () => {
           heading={storySection.heading}
           story={storySection.story}
           image={"/images/StoryImage.png"}
+          stringLength= {500}
         />
         <DetailedDescriptionSection
           image={"/images/StoryImage.png"}

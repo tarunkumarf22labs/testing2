@@ -5,6 +5,7 @@ import {
   viewAllInclusions,
   villaServiceDisclaimer,
 } from "src/data/constants";
+import ReadMoreOrLess from "./ReadMoreOrLess";
 
 interface IInclusionsExclusionsSection {
   heading: string;
@@ -36,14 +37,7 @@ export const InclusionsExclusionsSection = ({
           readMore={readMore}
         />
       </div>
-      <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
-        <div
-          className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
-          onClick={() => setReadMore(!readMore)}
-        >
-          <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
-        </div>
-      </div>
+      <ReadMoreOrLess readMore={readMore} setReadMore={setReadMore}/>
     </div>
   );
 };
