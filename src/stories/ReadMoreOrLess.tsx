@@ -1,22 +1,33 @@
 import React, { useState } from "react";
 
 interface IReadMore {
-  story: string | string[];
+  story: string ;
   stringLength: number;
+  initialListToShow:number;
 }
 
-const ReadMoreOrLess = ({ story, stringLength }: IReadMore) => {
+const ReadMoreOrLess = ({ story, stringLength,initialListToShow }: IReadMore) => {
   const [readMore, setReadMore] = useState<Boolean>(false);
-  let List;
-  typeof story !== "string" && readMore === false
-    ? (List = story?.filter((ele, id) => id < 3))
-    : typeof story !== "string"
-    ? (List = story)
-    : null;
+  const containsPattern = story.includes("\n-") || story.includes("\n -");
 
+  let storyList;
+  let List;
+  if(containsPattern){
+    storyList = story.split(/\n-|\n -/);
+  }
+
+  
+  if(containsPattern && readMore === false) {
+    List = storyList?.filter((ele,id) => id < initialListToShow)
+    List[0] = List[0].substring(1)
+  }else{
+    List = storyList
+    List[0] = List[0].substring(1)
+  }
+  
   return (
     <>
-      {typeof story === "string" ? (
+      { !containsPattern ? (
         <div className="mb-8">
           <p className="text-base text-[#545456] font-centaur leading-[22px] md:leading-[34px] md:text-[22px]">
             {readMore

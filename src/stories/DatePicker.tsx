@@ -23,16 +23,18 @@ function Root({inVillaDetails}: DatePickerProps) {
   const { previousMonthButton, nextMonthButton } =
     useContextMonthsPropGetters();
   const { selectedDates } = useDatePickerState();
-  const { setStartDate, setEndDate } =
+  const { setStartDate, setEndDate, startDate } =
     useContext(AppContext);
 
   const [start, end] = formattedDates;
   
   useEffect(() => {
-    start ? setStartDate(start) : null;
-    end ? setEndDate(end) : null;
-  }, [start, end, setStartDate, setEndDate]);
-  // console.log(start,end)
+    start ? setStartDate(start) : setStartDate('');
+    end ? setEndDate(end) : setStartDate('');
+    !startDate && setEndDate('') 
+  }, [start, end, setStartDate, setEndDate, startDate]);
+
+  console.log(start,end,'start date')
   return (
     <div
       className={`z-[49] block ${

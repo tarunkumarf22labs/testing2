@@ -1,9 +1,21 @@
 import React, { Dispatch, SetStateAction, useContext, useState } from "react";
 import { AppContext } from "src/Context";
 
-const Guests = () => {
-  const { setNumberOfGuests,numberOfGuests } = useContext(AppContext)
-  const capacity = 15;
+interface IGuests {
+  infant: number;
+  maxAdultAndChildren: number;
+  minAdultAndChildren: number;
+  pet: number;
+}
+
+const Guests = ({
+  infant,
+  maxAdultAndChildren,
+  minAdultAndChildren,
+  pet,
+}: IGuests) => {
+  const { setNumberOfGuests, numberOfGuests } = useContext(AppContext);
+  const capacity = infant + maxAdultAndChildren;
 
   function IncreaseNumberOfGuest(type: string): void {
     const CountOfGuests =
@@ -15,10 +27,49 @@ const Guests = () => {
     if (CountOfGuests == capacity) {
       return;
     }
-    setNumberOfGuests((prev) => ({
-      ...prev,
-      [type]: prev[type] + 1,
-    }));
+    if (type === "adults" || type === "children") {
+      if (
+        numberOfGuests.children + numberOfGuests.adults ===
+        minAdultAndChildren
+      ) {
+        return;
+      } else {
+        setNumberOfGuests((prev) => ({
+          ...prev,
+          [type]: prev[type] + 1,
+        }));
+      }
+    } else if (type === "infants") {
+      if (numberOfGuests.infants === infant) {
+        return;
+      } else {
+        setNumberOfGuests((prev) => ({
+          ...prev,
+          [type]: prev[type] + 1,
+        }));
+      }
+    } else if (type === "additional_guests") {
+      if (
+        numberOfGuests.additional_guests ===
+        maxAdultAndChildren - minAdultAndChildren
+      ) {
+        return;
+      } else {
+        setNumberOfGuests((prev) => ({
+          ...prev,
+          [type]: prev[type] + 1,
+        }));
+      }
+    } else {
+      if (numberOfGuests.pets === pet) {
+        return;
+      } else {
+        setNumberOfGuests((prev) => ({
+          ...prev,
+          [type]: prev[type] + 1,
+        }));
+      }
+    }
   }
 
   function DecreaseNumberOfGuest(type: string): void {

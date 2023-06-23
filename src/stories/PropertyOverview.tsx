@@ -11,6 +11,15 @@ import {
 } from "src/data/constants";
 import Datepicker from "./DatePicker";
 
+interface IPropertyOverview {
+  name: string;
+  city: string;
+  state: string;
+  byliner: string;
+  about: string;
+  amenities: string[];
+}
+
 const actions = [
   {
     name: propertyOverviewActions[0],
@@ -26,12 +35,6 @@ const actions = [
   },
 ];
 
-const amenities = [
-  "6 Guest",
-  "3 Bedrooms",
-  "2 Bathrooms",
-  "English-Style Cottage",
-];
 const showStory = () => {
   const item = document.getElementById("STORY-for-scroll");
   item.scrollIntoView({
@@ -45,7 +48,8 @@ const showDetailDescription = () => {
   });
 };
 
-const PropertyOverview = () => {
+
+const PropertyOverview = ({name, city, state, byliner, about,amenities}:IPropertyOverview) => {
   const isMobile = useIsMobile();
   
   return (
@@ -66,10 +70,10 @@ const PropertyOverview = () => {
         </div>
         <div className="px-5 md:px-8">
           <h1 className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px]">
-            Deja View
+          {name}
           </h1>
           <p className="text-[#8A1E61] text-base leading-5 font-medium tracking-widest mt-3 md:text-base md:leading-[18px]">
-            Wayanad, Kerala
+            {city}, {state}
           </p>
           <div className="flex items-center mt-2">
             {amenities?.map((el, index) => (
@@ -84,19 +88,10 @@ const PropertyOverview = () => {
             ))}
           </div>
           <p className="hidden md:block my-8 text-[#18181B] text-[22px] leading-8">
-            Experience luxury in the lap of nature!
+            {byliner}
           </p>
           <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
-            Deja View is a beautiful 2-bedroom plantation-style luxury villa
-            with locally-inspired design and contemporary interiors that makes
-            it one of the most romantic vacation homes in South India. The villa
-            is part of a private community of six homes set on top of a hill in
-            a 14-acre coffee & cardamom plantation in Eastern Wayanad, Kerala.
-            From your verandah enjoy sweeping and unhindered views of rainforest
-            clad hills. Indoors, an open plan design comprising two tastefully
-            furnished bedrooms and a gorgeous loft make for an intimate &
-            enjoyable holiday. Make time for nature walks & cycling, discovering
-            ancient history, and savouring the delicious cuisine of Wayanad.
+          {about}
           </p>
           <div className="flex m-auto sm:m-0 " >
             <div className="mt-8" onClick={showStory}>

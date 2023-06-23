@@ -5,12 +5,17 @@ import {
   viewAllInclusions,
   villaServiceDisclaimer,
 } from "src/data/constants";
-import ReadMoreOrLess from "./ReadMoreOrLess";
 
 interface IInclusionsExclusionsSection {
   heading: string;
-  inclusions: string[];
-  exclusions: string[];
+  inclusions: {
+    id:number;
+    service:string;
+  }[];
+  exclusions: {
+    id:number;
+    service:string;
+  }[];
 }
 
 export const InclusionsExclusionsSection = ({
@@ -37,7 +42,9 @@ export const InclusionsExclusionsSection = ({
           readMore={readMore}
         />
       </div>
-      <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
+     {
+      inclusions.length > 5 || exclusions.length > 5 && (
+        <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
         <div
           className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
           onClick={() => setReadMore(!readMore)}
@@ -45,6 +52,8 @@ export const InclusionsExclusionsSection = ({
           <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
         </div>
       </div>
+      )
+     }
     </div>
   );
 };
@@ -67,7 +76,7 @@ const InclusionsExlusions = ({
       </p>
       <ul className=" list-disc font-centaur text-base text-[#545456] space-y-4">
         {array.map((item, index) => (
-          <List item={item} key={index} />
+          <List item={item.service} key={index} />
         ))}
       </ul>
       {!inclusion ? (

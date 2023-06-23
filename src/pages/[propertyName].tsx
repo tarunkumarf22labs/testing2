@@ -1,19 +1,12 @@
 import { useState } from "react";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import { DatePickerStateProvider } from "@rehookify/datepicker";
 import Layout from "@/components/Layout";
 
 import {
   heading,
-  storySection,
-  inclusions,
-  exclusions,
-  detailedDescription,
-  floorPlanImages,
   ReviewCardsCollection,
   faqs,
-  beforeYouBook,
-  homeTruths,
 } from "../data/constants";
 
 import {
@@ -41,12 +34,22 @@ import MediaListing from "src/stories/MediaListing";
 import { mediaImages } from "src/data/constants";
 import Modal from "src/stories/Modal/Modal";
 import { CuratedExpModal } from "src/stories/CuratedExpModal";
-import classNames from "classnames";
-import Datepicker from "src/stories/DatePicker";
+import NetWrapper from "src/Network/netWrapper";
+import { villaInterface, IHomeInterface } from "src/Interface";
+import {
+  VillaOverviewProps,
+  ReserveAndLocationDetailsSectionProps,
+  InclusionsExclusionsSectionProps,
+  HomeTruthProps,
+  BeforeYouBookProps,
+  HomeStoryProps,
+  DetailedDescriptionSectionProps,
+} from "src/Props";
 
-const Home: NextPage = () => {
+const Home: NextPage = (data: IHomeInterface) => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [elementNo, setElementNo] = useState<number>(0);
+  const villaData = data?.data?.data;
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -62,16 +65,20 @@ const Home: NextPage = () => {
         <PropertyDetailsHeroSection />
         <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
           <div className="flex flex-col flex-1 lg:flex-[2]">
-            <PropertyOverview />
+            <PropertyOverview {...VillaOverviewProps(villaData)} />
             {/* Mobile */}
             <div className="flex flex-col flex-1 h-fit md:hidden">
-              <ReserveAndLocationDetailsSection />
+              <ReserveAndLocationDetailsSection
+                {...ReserveAndLocationDetailsSectionProps(villaData)}
+              />
             </div>
             <RoomSection heading={heading} />
           </div>
           {/* Desktop */}
           <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
-            <ReserveAndLocationDetailsSection />
+            <ReserveAndLocationDetailsSection
+              {...ReserveAndLocationDetailsSectionProps(villaData)}
+            />
           </div>
         </div>
         <AmenitiesSection
@@ -79,31 +86,21 @@ const Home: NextPage = () => {
           iconsArray={amenitiesIconsArray}
         />
         <InclusionsExclusionsSection
-          heading="Deja View's"
-          inclusions={inclusions}
-          exclusions={exclusions}
+          {...InclusionsExclusionsSectionProps(villaData)}
         />
         <div className="mb-20"></div>
         {/* HOME TRUTHS */}
-        <StorySection
-          secondheading={"HOME TRUTHS"}
-          heading={homeTruths.heading}
-          story={homeTruths.story}
-          image={"/images/StoryImage.png"}
-          stringLength={500}
+        <StorySection {...HomeTruthProps(villaData)} />
+        <BeforeYouBook
+          beforeYouBook={BeforeYouBookProps(villaData)}
+          title={villaData.attributes.name}
         />
-        <BeforeYouBook beforeYouBook={beforeYouBook} />
         <ExperiencesSection setItemNo={setItemNo} toggleModal={toggleModal} />
-        <StorySection
-          secondheading={"STORY"}
-          heading={storySection.heading}
-          story={storySection.story}
-          image={"/images/StoryImage.png"}
-          stringLength= {500}
-        />
+        <StorySection {...HomeStoryProps(villaData)} />
         <DetailedDescriptionSection
-          image={"/images/StoryImage.png"}
-          detailedDescription={detailedDescription}
+          // image={"/images/StoryImage.png"}
+          // detailedDescription={detailedDescription}
+          {...DetailedDescriptionSectionProps(villaData)}
         />
         <PropertyReviewSection reviewCardsCollection={ReviewCardsCollection} />
         <FaqsSection faqs={faqs} />
@@ -124,3 +121,14 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps<{
+  data: IHomeInterface | null;
+  error: string | null;
+}> = async (): Promise<any> => {
+  const { data, error, status } = await NetWrapper(
+    "api/properties/2?populate=deep"
+  );
+
+  return { props: { data, error } };
+};
