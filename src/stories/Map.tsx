@@ -62,7 +62,7 @@ const Map = ({ markers, highlight, handleClick }: Imarkers) => {
                   position={{ lat, lng }}
                   onClick={() => {
                     handleMarkerClick(ind, lat, lng, address);
-                    handleClick(ind);
+                    handleClick && handleClick(ind);
                   }}
                   options={{
                     icon: !Number.isInteger(highlight)
@@ -78,7 +78,7 @@ const Map = ({ markers, highlight, handleClick }: Imarkers) => {
                     <InfoWindowF
                       onCloseClick={() => {
                         setIsOpen(false);
-                        handleClick(ind);
+                        handleClick && handleClick(ind);
                       }}
                       position={{ lat, lng }}
                     >

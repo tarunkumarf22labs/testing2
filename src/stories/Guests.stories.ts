@@ -12,13 +12,9 @@ type Story = StoryObj<typeof Guests>;
 
 export const Default: Story = {
   args: {
-    numberOfGuests: {
-      adults: 1,
-      children: 0,
-      infants: 0,
-      pets: 0,
-      additional_guests: 0,
-    },
-    setNumberOfGuests: () => {},
+    infant: 0,
+    maxAdultAndChildren: 6,
+    minAdultAndChildren: 8,
+    pet: 1,
   },
 };

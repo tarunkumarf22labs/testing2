@@ -14,15 +14,17 @@ export interface ICondition {
 }
 
 interface IBeforeYouBook {
+  title: string;
   beforeYouBook: ICondition[];
 }
 
-export const BeforeYouBook = ({ beforeYouBook }: IBeforeYouBook) => {
+export const BeforeYouBook = ({ title,beforeYouBook }: IBeforeYouBook) => {
+  
   return (
     <Container bgWhite={false}>
       <div>
-        <NameTitle propertyName="Deja View's" title="BEFORE YOU BOOK" />
-        <div className="divide-y space-y-8">
+        <NameTitle propertyName={`${title}'s`} title="BEFORE YOU BOOK" />
+        <div className="space-y-8 divide-y">
           {beforeYouBook.map((item, index) => {
             return <Conditions data={item} key={index} index={index} />;
           })}

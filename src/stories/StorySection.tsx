@@ -6,10 +6,12 @@ interface IStorySection {
   isStory?: boolean;
   heading?: string;
   secondheading?: string;
-  story?: string | string[];
+  story?: string;
   image?: string;
   stringLength: number;
+  initialListToShow: number;
 }
+
 
 export const StorySection = ({
   isStory = true,
@@ -18,6 +20,7 @@ export const StorySection = ({
   image,
   secondheading,
   stringLength,
+  initialListToShow
 }: IStorySection) => {
   return (
     <div className="mb-20" id={`${secondheading}-for-scroll`}>
@@ -40,7 +43,7 @@ export const StorySection = ({
           {/* {isStory ? "STORY" : "Getting there"} */}
           {secondheading}
         </p>
-        <ReadMoreOrLess story={story} stringLength={stringLength} />
+        <ReadMoreOrLess story={story} stringLength={stringLength} initialListToShow={initialListToShow}/>
       </div>
     </div>
   );

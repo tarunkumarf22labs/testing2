@@ -10,8 +10,11 @@ interface IDetailedDescriptionSection {
   detailedDescription: {
     propertyName: string;
     title: string;
-    plainPara: { heading: string; detail: string }[];
-    listPara: { heading: string; detail: string }[];
+    list: {
+      id: number;
+      description: string;
+      title: string;
+    }[];
   };
 }
 
@@ -21,7 +24,15 @@ export const DetailedDescriptionSection = ({
 }: IDetailedDescriptionSection) => {
   const [readMore, setReadmore] = useState(false);
 
-  const { propertyName, title, plainPara, listPara } = detailedDescription;
+  const { propertyName, title, list } = detailedDescription;
+  let filteredList;
+
+  if (readMore) {
+    filteredList = list;
+  } else {
+    filteredList = list.filter((ele, id) => id < 1);
+  }
+
   return (
     <div id="detail-description-to-view">
       <div className="-z-10 sm:min-w-screen">
@@ -37,32 +48,46 @@ export const DetailedDescriptionSection = ({
         <NameTitle propertyName={propertyName} title={title} />
         <div className="mb-8 space-y-10">
           <div className="space-y-10">
-            {plainPara.map((item, index) => {
-              return (
-                <div key={index}>
-                  <p className="mb-4 text-base uppercase">{item.heading}</p>
-                  <p className="text-base md:text-xl text-[#545456] font-centaur leading-[22px] md:leading-[34px]">
-                    {item.detail}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-          {readMore ? (
-            <div className="space-y-10">
-              {listPara.map((item, index) => {
+            {filteredList.map((item, index) => {
+              const isList =
+                item.description.includes("\n-") ||
+                item.description.includes("\n -");
+              if (isList) {
+                let list = item.description.split(/\n-|\n -/);
+                list[0] = list[0].substring(1);
+                return (
+                  <>
+                    <p className="mb-4 text-base uppercase">{item.title}</p>
+                    <ul
+                      key={index}
+                      className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc"
+                    >
+                      {list.map((item, id) => {
+                        return (
+                          <li
+                            key={id}
+                            className="text-xl text-[#545456] ml-2 md:ml-0 font-centaur leading-8 "
+                          >
+                            {item}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                );
+              } else {
                 return (
                   <div key={index}>
-                    <p className="mb-4 text-base uppercase">{item.heading}</p>
+                    <p className="mb-4 text-base uppercase">{item.title}</p>
                     <p className="text-base md:text-xl text-[#545456] font-centaur leading-[22px] md:leading-[34px]">
-                      {item.detail}
+                      {item.description}
                     </p>
                   </div>
                 );
-              })}
-              {readMore && <FloorSection floorPlanImages={floorPlanImages} />}
-            </div>
-          ) : null}
+              }
+            })}
+            {readMore && <FloorSection floorPlanImages={floorPlanImages} />}
+          </div>
         </div>
         <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
           <div
