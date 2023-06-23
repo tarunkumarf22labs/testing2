@@ -1,4 +1,3 @@
-import { type } from "alinea/alinea";
 import React, { useState } from "react";
 
 interface IReadMore {
