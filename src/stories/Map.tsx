@@ -4,7 +4,7 @@ import {
   MarkerF,
   useLoadScript,
 } from "@react-google-maps/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface setInfoWindowDataInterface {
   address: string;
@@ -24,6 +24,7 @@ interface Imarkers {
 }
 
 const Map = ({ markers, highlight, handleClick }: Imarkers) => {
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAP_API_KEY,
   });
@@ -37,6 +38,7 @@ const Map = ({ markers, highlight, handleClick }: Imarkers) => {
     const bounds = new google.maps.LatLngBounds();
     markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
     map.fitBounds(bounds);
+    map.setZoom(15)
   };
 
   const handleMarkerClick = (id, lat, lng, address) => {

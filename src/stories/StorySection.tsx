@@ -1,13 +1,14 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import ReadMoreOrLess from "./ReadMoreOrLess";
+import { IImageTag } from "src/Interface";
 
 interface IStorySection {
   isStory?: boolean;
   heading?: string;
   secondheading?: string;
   story?: string;
-  image?: string;
+  image?: IImageTag;
   stringLength: number;
   initialListToShow: number;
 }
@@ -21,16 +22,16 @@ export const StorySection = ({
   secondheading,
   stringLength,
   initialListToShow
-}: IStorySection) => {
+}: IStorySection ) => {
   return (
     <div className="mb-20" id={`${secondheading}-for-scroll`}>
       <div className="-z-10 sm:min-w-screen">
         <Image
-          src={image}
-          alt="StoryImage"
-          width={390}
-          height={127}
-          className="w-full"
+          src={image.image}
+          alt={image.alt}
+          width={image.width}
+          height={image.width}
+          className="h-[450px]"
         />
       </div>
       <div className="relative z-10 px-4 py-8 mx-5 -mt-16 bg-white sm:-mt-24 xl:-mt-60 xl:w-full xl:max-w-7xl xl:mx-auto md:px-8 md:py-11">

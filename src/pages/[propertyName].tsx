@@ -1,13 +1,8 @@
 import { useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
-import { DatePickerStateProvider } from "@rehookify/datepicker";
 import Layout from "@/components/Layout";
 
-import {
-  heading,
-  ReviewCardsCollection,
-  faqs,
-} from "../data/constants";
+import { heading, ReviewCardsCollection, faqs } from "../data/constants";
 
 import {
   AmenitiesSection,
@@ -28,7 +23,6 @@ import {
   ReserveAndLocationDetailsSection,
 } from "src/stories";
 
-import { iconsArray as amenitiesIconsArray } from "src/stories/AmenitiesSection";
 import { ImagesBig, ImagesSmall } from "src/stories/GallerySection";
 import MediaListing from "src/stories/MediaListing";
 import { mediaImages } from "src/data/constants";
@@ -44,6 +38,10 @@ import {
   BeforeYouBookProps,
   HomeStoryProps,
   DetailedDescriptionSectionProps,
+  PropertyDetailsHeroSectionProps,
+  SimilarStaysSectionProps,
+  AmenitiesSectionProps,
+  ExperiencesSectionProps,
 } from "src/Props";
 
 const Home: NextPage = (data: IHomeInterface) => {
@@ -58,64 +56,83 @@ const Home: NextPage = (data: IHomeInterface) => {
   const setItemNo = (id) => {
     setElementNo(id);
   };
-
   return (
     <Layout title="LuxUnlock">
-      <div className="bg-[#f8f8f9]">
-        <PropertyDetailsHeroSection />
-        <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
-          <div className="flex flex-col flex-1 lg:flex-[2]">
-            <PropertyOverview {...VillaOverviewProps(villaData)} />
-            {/* Mobile */}
-            <div className="flex flex-col flex-1 h-fit md:hidden">
+      {data.error === null ? (
+        <div className="bg-[#f8f8f9]">
+          <PropertyDetailsHeroSection
+            {...PropertyDetailsHeroSectionProps(villaData)}
+          />
+          <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
+            <div className="flex flex-col flex-1 lg:flex-[2]">
+              <PropertyOverview {...VillaOverviewProps(villaData)} />
+              {/* Mobile */}
+              <div className="flex flex-col flex-1 h-fit md:hidden">
+                <ReserveAndLocationDetailsSection
+                  {...ReserveAndLocationDetailsSectionProps(villaData)}
+                />
+              </div>
+              <RoomSection heading={heading} />
+            </div>
+            {/* Desktop */}
+            <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
               <ReserveAndLocationDetailsSection
                 {...ReserveAndLocationDetailsSectionProps(villaData)}
               />
             </div>
-            <RoomSection heading={heading} />
           </div>
-          {/* Desktop */}
-          <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
-            <ReserveAndLocationDetailsSection
-              {...ReserveAndLocationDetailsSectionProps(villaData)}
+          <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
+          <InclusionsExclusionsSection
+            {...InclusionsExclusionsSectionProps(villaData)}
+          />
+          <div className="mb-20"></div>
+          {/* HOME TRUTHS */}
+          {HomeTruthProps(villaData).story && (
+            <StorySection {...HomeTruthProps(villaData)} />
+          )}
+          <BeforeYouBook
+            beforeYouBook={BeforeYouBookProps(villaData)}
+            title={villaData.attributes.name}
+          />
+          <ExperiencesSection
+            setItemNo={setItemNo}
+            toggleModal={toggleModal}
+            {...ExperiencesSectionProps(villaData)}
+          />
+          {HomeStoryProps(villaData).story && (
+            <StorySection {...HomeStoryProps(villaData)} />
+          )}
+          {DetailedDescriptionSectionProps(villaData).detailedDescription
+            .list && (
+            <DetailedDescriptionSection
+              {...DetailedDescriptionSectionProps(villaData)}
             />
-          </div>
+          )}
+          <PropertyReviewSection
+            reviewCardsCollection={ReviewCardsCollection}
+          />
+          <FaqsSection faqs={faqs} />
+          <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
+          <MediaListing mediaImages={mediaImages} />
+          <Modal
+            isOpen={isModalOpen}
+            onClose={toggleModal}
+            square={true}
+            className="max-w-[560px]"
+            segregated={false}
+            parentDivStyle="fixed top-0 left-0 z-50 flex items-start justify-center w-full h-screen px-6 overflow-y-scroll bg-gray-900 bg-opacity-50 md:px-0"
+          >
+            <CuratedExpModal
+              id={elementNo}
+              {...ExperiencesSectionProps(villaData)}
+            />
+          </Modal>
         </div>
-        <AmenitiesSection
-          heading="DEJA VIEW’S"
-          iconsArray={amenitiesIconsArray}
-        />
-        <InclusionsExclusionsSection
-          {...InclusionsExclusionsSectionProps(villaData)}
-        />
-        <div className="mb-20"></div>
-        {/* HOME TRUTHS */}
-        <StorySection {...HomeTruthProps(villaData)} />
-        <BeforeYouBook
-          beforeYouBook={BeforeYouBookProps(villaData)}
-          title={villaData.attributes.name}
-        />
-        <ExperiencesSection setItemNo={setItemNo} toggleModal={toggleModal} />
-        <StorySection {...HomeStoryProps(villaData)} />
-        <DetailedDescriptionSection
-          // image={"/images/StoryImage.png"}
-          // detailedDescription={detailedDescription}
-          {...DetailedDescriptionSectionProps(villaData)}
-        />
-        <PropertyReviewSection reviewCardsCollection={ReviewCardsCollection} />
-        <FaqsSection faqs={faqs} />
-        <SimilarStaysSection />
-        <MediaListing mediaImages={mediaImages} />
-        <Modal
-          isOpen={isModalOpen}
-          onClose={toggleModal}
-          square={true}
-          className="max-w-[560px]"
-          segregated={false}
-        >
-          <CuratedExpModal id={elementNo} />
-        </Modal>
-      </div>
+      ) : (
+        <div className="w-full h-[500px] flex justify-center items-center">
+          <h1 className="text-2xl">{data.error}</h1>
+        </div>
+      )}
     </Layout>
   );
 };

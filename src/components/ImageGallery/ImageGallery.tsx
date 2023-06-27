@@ -1,95 +1,125 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Filter from "src/stories/Filter/Filter";
 import GalleryView from "src/stories/GalleryView/GalleryView";
 import logo from "@/images/gallery01.jpg";
 import logo2 from "@/images/Minto2.jpg";
 import { HomeBannerimages } from "src/data/constants";
 import Layout from "@/components/Layout";
-import Carousel from "src/stories/Carousel";
 import Image from "next/image";
 import Sponsor from "@/components/Sponsor/Sponsor";
 import Modal from "src/stories/Modal/Modal";
 
-export default function ImageGallery() {
+interface ImageGalleryProps {
+  images: IImageGallery[];
+}
+interface IImageGallery {
+  title: string;
+  url: string;
+  type: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+// title: ele.image.data.attributes.formats.xl_webp.name,
+// url: ele.image.data.attributes.formats.xl_webp.url,
+// type: ele.type,
+// alt:ele.image.data.attributes.name
+export default function ImageGallery(props: ImageGalleryProps) {
   const [isModalOpen, setModalOpen] = useState(false);
-
-  const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
-  const bannerTextStyle =
-    "text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]";
-  const bannerText = "UNLOCK THE LUXURY WITH LUXUNLOCK";
+  const [currentFilter, setCurrentFilter] = useState<string>("all");
+  const [galleryViewProps, setGalleryViewProps] =
+    useState<
+      {
+        title: string;
+        url: string;
+        type: string;
+        alt: string;
+        width: number;
+        height: number;
+        onClick: () => void;
+        selectVilla: (title: any, image: any, width: any, height: any) => void;
+      }[]
+    >();
+  const [villaSelected, setVillaSelected] = useState({
+    title: "",
+    image: "",
+    width: 0,
+    height: 0,
+  });
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
+  const selectVilla = (title, image, width, height) => {
+    setVillaSelected({
+      title,
+      image,
+      width,
+      height,
+    });
+  };
 
+  const getGalleryViewInitialState = (images) => {
+   let filteredData = images.map((ele) => {
+    return {
+      title: ele.title,
+      url: ele.url,
+      type: ele.type,
+      alt: ele.alt,
+      width: ele.width,
+      height: ele.height,
+      onClick: toggleModal,
+      selectVilla: selectVilla,
+    };
+  });
+  return filteredData
+  }
+  useEffect(( ) => {
+    if(currentFilter === 'all'){
+      setGalleryViewProps( getGalleryViewInitialState(props.images))
+    }else{
+      let filteredData = props.images.filter((ele) => {
+        return ele.type === currentFilter
+      })
+      setGalleryViewProps( getGalleryViewInitialState(filteredData))
+    }
+  },[currentFilter])
   return (
     <div>
-      <Layout title="LuxUnlock">
-        <div>
-          <Carousel
-            images={HomeBannerimages}
-            bannerImageStyle={bannerImageStyle}
-            bannerTextStyle={bannerTextStyle}
-            bannerText={bannerText}
+      <div>
+        <div className="bg-[#F8F8F9] py-16">
+          <Filter
+            options={[
+              "all",
+              "Interior",
+              "Indoor Kitchen",
+              "Exterior",
+              "Living Room",
+              "Master Bedroom",
+              "Bathroom",
+            ]}
+            setCurrentFilter={setCurrentFilter}
+            currentFilter={currentFilter}
           />
-          <div className="bg-[#F8F8F9] py-16">
-            <Filter
-              options={[
-                "all",
-                "exterior",
-                "living",
-                "bedrooms",
-                "bathrooms",
-                "common areas",
-              ]}
-            />
-            <GalleryView
-              data={[
-                {
-                  title: "Verandah with master bedroom",
-                  url: logo,
-                  type: "exterior",
-                  onClick: toggleModal,
-                },
-                {
-                  title: "Sitout with swing",
-                  url: logo,
-                  type: "living",
-                  onClick: toggleModal,
-                },
-                {
-                  title: "Entrance to the villa from the side",
-                  url: logo2,
-                  type: "bathrooms",
-                  onClick: toggleModal,
-                },
-                {
-                  title: "Entrance to the villa from the side",
-                  url: logo2,
-                  type: "bathrooms",
-                  onClick: toggleModal,
-                },
-                {
-                  title: "Entrance to the villa from the side",
-                  url: logo2,
-                  type: "bathrooms",
-                  onClick: toggleModal,
-                },
-              ]}
-            />
-          </div>
-         <Sponsor/>
-        </div>         
-      </Layout>
+          <GalleryView data={galleryViewProps} />
+        </div>
+        <Sponsor />
+      </div>
 
       <Modal
         isOpen={isModalOpen}
         onClose={toggleModal}
-        title={"Verandah with master bedroom"}
+        title={villaSelected.title}
+        parentDivStyle="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen px-6 overflow-y-scroll bg-gray-900 bg-opacity-50 md:px-0"
       >
-        <Image src={logo2} alt="" />
+        <Image
+          src={villaSelected.image}
+          alt=""
+          width={villaSelected.width}
+          height={villaSelected.height}
+          className="w-full h-[400px]"
+        />
       </Modal>
-
     </div>
   );
 }

@@ -16,79 +16,78 @@ interface DatePickerProps {
   inVillaDetails?: boolean;
 }
 
-
-function Root({inVillaDetails}: DatePickerProps) {
+function Root({ inVillaDetails }: DatePickerProps) {
   const { calendars } = useContextCalendars();
   const { formattedDates } = useContextDays();
   const { previousMonthButton, nextMonthButton } =
     useContextMonthsPropGetters();
   const { selectedDates } = useDatePickerState();
-  const { setStartDate, setEndDate, startDate } =
+  const { setStartDate, setEndDate, startDate, ClearSelectedDate } =
     useContext(AppContext);
 
   const [start, end] = formattedDates;
-  
+
   useEffect(() => {
-    start ? setStartDate(start) : setStartDate('');
-    end ? setEndDate(end) : setStartDate('');
-    !startDate && setEndDate('') 
+    start ? setStartDate(start) : setStartDate("");
+    end ? setEndDate(end) : setEndDate("");
   }, [start, end, setStartDate, setEndDate, startDate]);
 
-  console.log(start,end,'start date')
   return (
     <div
       className={`z-[49] block ${
-        inVillaDetails ? "" : "absolute  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-5/12 2xl:left-[16vw] rounded shadow-xs shadow shadow-slate-300   top-50 p-4  "
+        inVillaDetails
+          ? ""
+          : "absolute  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-5/12 2xl:left-[16vw] rounded shadow-xs shadow shadow-slate-300   top-50 p-4  "
       }w-full  bg-white`}
     >
-      <div >
+      <div>
         <div className="flex items-center justify-between w-full bg-white z-[150]">
           <p className="">
             {" "}
             <DayButton className="w-8" {...previousMonthButton()}>
-             <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 ml-5">
-             <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4 "
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
-             </div>
+              <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 ml-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4 "
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </div>
             </DayButton>
             {""}
           </p>
           <p className="text-center ">
-            {calendars[0].year} {calendars[0].month}
+            {calendars[1].year} {calendars[1].month}
           </p>
           <p className="hidden text-center sm:block">
-            {calendars[1].year} {calendars[1].month}
+            {calendars[0].year} {calendars[0].month}
           </p>
           <p>
             {" "}
             <DayButton className="w-8" {...nextMonthButton()}>
-            <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 mr-5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                />
-              </svg>
+              <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 mr-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
               </div>
             </DayButton>
           </p>
@@ -154,7 +153,8 @@ const Datepicker = (props: DatePickerProps) => {
   const M = now.getMonth();
   const Y = now.getFullYear();
   const D = now.getDate();
-  const [selectedDates, onDatesChange] = useState<Date[]>([]);
+  const { selectedDates, onDatesChange, ClearSelectedDate } =
+    useContext(AppContext);
 
   return (
     <DatePickerStateProvider
@@ -180,9 +180,7 @@ const Datepicker = (props: DatePickerProps) => {
         },
       }}
     >
-      <Root
-        inVillaDetails={inVillaDetails}
-      />
+      <Root inVillaDetails={inVillaDetails} />
     </DatePickerStateProvider>
   );
 };

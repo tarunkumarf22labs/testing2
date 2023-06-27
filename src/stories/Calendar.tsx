@@ -32,7 +32,7 @@ export const Calendar: FC<CalendarProps> = ({
   const { days, month } = calendar;
 
   return (
-    <Section className="border-red w-full md:w-[90%] m-auto">
+    <Section className="w-full m-auto border-red">
       <div
         className={`
         ${MonthOrder === "second" ? "hidden sm:grid" : ""} 

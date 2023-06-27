@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Export, DownloadSimple, Heart } from "@phosphor-icons/react";
 import { Button } from "./Button";
 import useIsMobile from "@/hooks/useIsMobile";
@@ -10,6 +10,7 @@ import {
   propertyOverviewActions,
 } from "src/data/constants";
 import Datepicker from "./DatePicker";
+import { AppContext } from "src/Context";
 
 interface IPropertyOverview {
   name: string;
@@ -48,10 +49,45 @@ const showDetailDescription = () => {
   });
 };
 
-
-const PropertyOverview = ({name, city, state, byliner, about,amenities}:IPropertyOverview) => {
+const PropertyOverview = ({
+  name,
+  city,
+  state,
+  byliner,
+  about,
+  amenities,
+}: IPropertyOverview) => {
   const isMobile = useIsMobile();
+
+  const {
+    startDate,
+    endDate,
+    selectedDates,
+    ClearSelectedDate,
+  } = useContext(AppContext);
   
+  const firstDateString = startDate;
+  const firstDateParts = firstDateString?.split("/");
+  const firstMonth = parseInt(firstDateParts[1]);
+  const firstDay = parseInt(firstDateParts[0]);
+  const firstYear = parseInt(firstDateParts[2]);
+  const firstDate = new Date(firstYear + "-" + firstMonth + "-" + firstDay);
+
+  // Get the month name
+  const firstMonthName = firstDate.toLocaleString("default", { month: "long" });
+
+  const secondDateString = endDate;
+  const secondDateParts = secondDateString?.split("/");
+  const secondMonth = parseInt(secondDateParts[1]);
+  const secondDay = parseInt(secondDateParts[0]);
+  const secondYear = parseInt(secondDateParts[2]);
+  const secondDate = new Date(secondYear + "-" + secondMonth + "-" + secondDay);
+
+  // Get the month name
+  const secondMonthName = secondDate.toLocaleString("default", {
+    month: "long",
+  });
+
   return (
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
       <div>
@@ -70,7 +106,7 @@ const PropertyOverview = ({name, city, state, byliner, about,amenities}:IPropert
         </div>
         <div className="px-5 md:px-8">
           <h1 className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px]">
-          {name}
+            {name}
           </h1>
           <p className="text-[#8A1E61] text-base leading-5 font-medium tracking-widest mt-3 md:text-base md:leading-[18px]">
             {city}, {state}
@@ -91,17 +127,15 @@ const PropertyOverview = ({name, city, state, byliner, about,amenities}:IPropert
             {byliner}
           </p>
           <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
-          {about}
+            {about}
           </p>
-          <div className="flex m-auto sm:m-0 " >
+          <div className="flex m-auto sm:m-0 ">
             <div className="mt-8" onClick={showStory}>
               <div
                 className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-44 cursor-pointer border border-[#8A1E61]"
                 // onClick={() => setReadMore(!readMore)}
               >
-                <h3 className="" >
-                  DEJA VIEW’S STORY
-                </h3>
+                <h3 className="">DEJA VIEW’S STORY</h3>
               </div>
             </div>
             <div className="mt-8 ml-11 " onClick={showDetailDescription}>
@@ -109,7 +143,7 @@ const PropertyOverview = ({name, city, state, byliner, about,amenities}:IPropert
                 className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-40 sm:w-60 cursor-pointer border border-[#8A1E61]"
                 // onClick={() => setReadMore(!readMore)}
               >
-                <h3 className="" >
+                <h3 className="">
                   <span className="hidden sm:block">
                     DEJA VIEW’S DETAILED DESCRIPTION
                   </span>
@@ -123,12 +157,26 @@ const PropertyOverview = ({name, city, state, byliner, about,amenities}:IPropert
           <div className="mt-5 w-full md:w-[110%] md:-ml-[5%]">
             <Datepicker inVillaDetails={true} />
           </div>
-          <div className="flex items-center justify-between mb-8">
-            <p className="bg-[#8A1E611A] text-[#8A1E61] text-xs md:text-base px-[10px] py-2">
-              {checkIn}: Mar 8, {checkOut}: Mar 21
-            </p>
-            <Button text={clearDates} />
-          </div>
+          {firstMonthName !== "Invalid Date" && (
+            <div className="flex items-center justify-between mb-8">
+              <p className="bg-[#8A1E611A] text-[#8A1E61] text-xs md:text-base px-[10px] py-2">
+                {firstMonthName !== "Invalid Date" &&
+                  firstDay &&
+                  `${checkIn}: ${firstMonthName} ${firstDay}`}{" "}
+                {firstMonthName !== "Invalid Date" &&
+                  firstDay &&
+                  secondMonthName !== "Invalid Date" &&
+                  secondDay &&
+                  ` , ${checkOut}: ${secondMonthName} ${secondDay}`}
+              </p>
+              <button
+                className="uppercase py-2 px-4 text-xs text-[#8A1E61] sm:py-3 sm:px-6 whitespace-nowrap font-medium tracking-wide"
+                onClick={ClearSelectedDate}
+              >
+                CLEAR DATES
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

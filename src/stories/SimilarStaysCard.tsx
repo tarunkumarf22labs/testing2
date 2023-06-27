@@ -2,43 +2,41 @@ import Image from "next/image";
 import React from "react";
 
 type SimilarStaysCardTypes = {
-  imageUrl: string;
-  subHeading?: string;
-  heading: string;
-  paragraph: string;
+    name: string;
+    city: string;
+    state: string;
+    image: {
+        image: string;
+        width: number;
+        height: number;
+        alt: string;
+    };
+    amenities: string[];
+    basicPrice: number;
 };
 
-const amenities = [
-  "6 Guest",
-  "3 Bedrooms",
-  "2 Bathrooms",
-  "English-Style Cottage",
-];
-
 const SimilarStays = ({
-  imageUrl,
-  heading,
-  paragraph,
-  subHeading,
+  name, city, state, image, amenities, basicPrice
 }: SimilarStaysCardTypes) => {
+  
   return (
     <div className="w-full max-w-[290px] md:max-w-[373px]">
       <Image
-        src={imageUrl}
+        src={image.image}
         width={0}
         height={0}
         sizes="100vw"
         className="w-[290px] h-[182px] md:w-[373px] md:h-[234px] bg-red-500 object-cover aspect-video"
         alt="experience_image"
       />
-      <div className="mt-4 flex items-center justify-between">
-        <p className="text-[#8A1E61] font-medium text-xs leading-4">2 Nights</p>
+      <div className="flex items-center justify-between mt-4">
+        <p className="text-[#8A1E61] font-medium text-xs leading-4">{city}{', '}{state}</p>
         <p className="text-[#8A1E61] font-medium text-xs leading-4">
-          ₹12,589 night
+          ₹{basicPrice} night
         </p>
       </div>
       <h1 className="text-[#18181B] font-medium text-xl leading-7 mt-[10px] md:text-base md:leading-[18px]">
-        Sultan’s Battery
+        {name}
       </h1>
       <div className="flex items-center flex-wrap mt-[6px]">
         {amenities?.map((el, index) => (

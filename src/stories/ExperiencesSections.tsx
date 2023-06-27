@@ -8,46 +8,46 @@ import {
   curatedExperiences,
   experiencesAndAttraction,
 } from "src/data/constants";
-
-const experiences = [
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
-];
-
 interface IExperiencesSection {
   setItemNo?: (value: number) => void;
   toggleModal: () => void;
+  villa: string;
+  header: string;
+  props: {
+    id:number;
+    image: {
+      image: string;
+      width: number;
+      height: number;
+      alt: string;
+    };
+    shortDescription: string;
+    longDecription: string;
+    title: string;
+  }[];
 }
 
 const ExperiencesSection = ({
   setItemNo,
   toggleModal,
+  villa,
+  header,
+  props,
 }: IExperiencesSection) => {
   const swiperOneRef = useRef(null);
   const swiperTwoRef = useRef(null);
 
   const isMobile = useIsMobile();
-
   return (
     <div className="mt-10 lg:mt-20">
-      <div className="bg-white relative py-10 lg:py-20">
+      <div className="relative py-10 bg-white lg:py-20">
         <div className="relative pl-5 md:ml-[max(0px,(100%_-_80rem)/2)] xl:pl-0">
-          <div className="uppercase pb-6 sm:pb-10">
+          <div className="pb-6 uppercase sm:pb-10">
             <p className="text-sm text-[#8A1E61] mb-5 tracking-widest">
-              {"DEJA VIEW'S"}
+              {villa}
             </p>
             <p className="text-3xl sm:text-5xl sm:text-[#1C1917] font-light">
-              {curatedExperiences}
+              {header}
             </p>
           </div>
           <Swiper
@@ -60,18 +60,19 @@ const ExperiencesSection = ({
             centeredSlides={isMobile}
             centeredSlidesBounds={isMobile}
           >
-            {experiences?.map((el, idx) => {
+            {props?.map((el, idx) => {
               return (
                 <SwiperSlide
                   key={`${idx + 1}`}
                   className="w-full max-w-[290px] md:max-w-[373px] pr-5"
                 >
                   <ExperienceCard
-                    heading=""
+                    heading={el.title}
                     subHeading=" "
-                    paragraph=""
-                    imageUrl={el}
-                    onClick={() => setItemNo(idx)}
+                    shortDescription={el.shortDescription}
+                    longDescription=""
+                    imageUrl={el.image.image}
+                    onClick={() => setItemNo(el.id)}
                     toggleModal={toggleModal}
                   />
                 </SwiperSlide>
@@ -88,7 +89,7 @@ const ExperiencesSection = ({
       </div>
       <div className="relative py-10 lg:py-20">
         <div className="relative pl-5 md:ml-[max(0px,(100%_-_80rem)/2)] xl:pl-0">
-          <div className="uppercase pb-6 sm:pb-10">
+          <div className="pb-6 uppercase sm:pb-10">
             <p className="text-sm text-[#8A1E61] mb-5 tracking-widest">
               {"DEJA VIEW'S"}
             </p>
@@ -106,13 +107,17 @@ const ExperiencesSection = ({
             centeredSlides={isMobile}
             centeredSlidesBounds={isMobile}
           >
-            {experiences?.map((el, idx) => {
+            {props?.map((el, idx) => {
               return (
                 <SwiperSlide
                   key={`${idx + 1}`}
                   className="w-full max-w-[290px] md:max-w-[373px] pr-5"
                 >
-                  <ExperienceCard heading="" paragraph="" imageUrl={el} />
+                  <ExperienceCard  heading={el.title}
+                    subHeading=" "
+                    shortDescription=""
+                    longDescription=""
+                    imageUrl={el.image.image}/>
                 </SwiperSlide>
               );
             })}

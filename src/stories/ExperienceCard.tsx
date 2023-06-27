@@ -5,7 +5,8 @@ type ExperienceCardTypes = {
   imageUrl: string;
   subHeading?: string;
   heading: string;
-  paragraph: string;
+  shortDescription: string;
+  longDescription: string;
   onClick?: () => void;
   toggleModal?: () => void;
 };
@@ -13,7 +14,8 @@ type ExperienceCardTypes = {
 const ExperienceCard = ({
   imageUrl,
   heading,
-  paragraph,
+  shortDescription,
+  longDescription,
   subHeading,
   onClick,
   toggleModal,
@@ -25,7 +27,7 @@ const ExperienceCard = ({
     onClick();
     toggleModal();
   };
-
+ 
   return (
     <div
       className="w-full max-w-[290px] md:max-w-[373px]"
@@ -45,7 +47,8 @@ const ExperienceCard = ({
         </p>
       )}
       <h1 className="text-[#18181B] font-medium text-xl leading-7 mt-[10px] md:text-base md:leading-[18px]">
-        Sultan’s Battery
+        {/* Sultan’s Battery */}
+        {heading}
       </h1>
       <p className="text-[#545456] text-xs leading-4 font-centaur mt-[6px] flex flex-1">
         Deja View is set on top of a hill in a 14-acre plantation called Elamala

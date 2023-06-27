@@ -7,10 +7,23 @@ import Image from "next/image";
 
 interface ICuratedExpModal {
   id: number;
+  villa: string;
+  header: string;
+  props: {
+    image: {
+      image: string;
+      width: number;
+      height: number;
+      alt: string;
+    };
+    shortDescription: string;
+    longDecription: string;
+    title: string;
+  }[];
 }
 
-export const CuratedExpModal = ({ id }: ICuratedExpModal) => {
-  const propertyCuratedExperience = curratedCollectionsModelData[id].list;
+export const CuratedExpModal = ({ props }: ICuratedExpModal) => {
+  const propertyCuratedExperience = props;
   const swiperOneRef = useRef(null);
   const isMobile = useIsMobile();
   return (
@@ -26,25 +39,26 @@ export const CuratedExpModal = ({ id }: ICuratedExpModal) => {
         centeredSlidesBounds={isMobile}
       >
         {propertyCuratedExperience?.map((el, idx) => {
-          const bulletPoints = el.details.split("\n -");
+          const bulletPoints = el.longDecription.split(/\n-|\n -/);
           return (
             <SwiperSlide
               key={`${idx + 1}`}
               className="w-full max-w-[350px] md:max-w-[512px] md:w-[512px]"
             >
-              <div className="">
+              <div className="z-[160]">
                 <Image
-                  src={el.img}
+                  src={el.image.image}
                   alt={el.title}
                   width={512}
                   height={320}
                   className="mb-6"
                 />
                 <p className="text-xs text-[#8A1E61] mb-2">
-                  {el.nights} Nights
+                  {/* {el.nights} Nights */}
+                  2 Nights
                 </p>
-                <h3 className="text-xl capitalize mb-4">{el.title}</h3>
-                <ul className="list-disc space-y-3">
+                <h3 className="mb-4 text-xl capitalize">{el.title}</h3>
+                <ul className="space-y-3 list-disc">
                   {bulletPoints?.map((elem, index) => {
                     return (
                       <li
