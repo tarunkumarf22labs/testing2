@@ -3,6 +3,6 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-      domains: ['luxunlockdev.s3.ap-south-1.amazonaws.com'],
+      domains: [process.env.NEXT_IMAGE_HOST_URL],
     },
 };
