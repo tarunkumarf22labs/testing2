@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-
-export default function Filter({ options }) {
-  const [currentFilter, setCurrentFilter] = useState<string>("all");
+interface IFilter {
+  options: string[];
+  setCurrentFilter: React.Dispatch<React.SetStateAction<string>>;
+  currentFilter: string;
+}
+export default function Filter({ options,setCurrentFilter,currentFilter }:IFilter) {
 
   return (
       <div className="flex justify-evenly items-center pb-7 px-64 sm:px-8 md:px-16 lg:px-32 text-[#8A1E61]">

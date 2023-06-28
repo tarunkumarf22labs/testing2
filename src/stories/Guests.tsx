@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useContext, useState } from "react";
 import { AppContext } from "src/Context";
-
+import ToastAlert from "src/Toast";
 interface IGuests {
   infant: number;
   maxAdultAndChildren: number;
@@ -16,7 +16,7 @@ const Guests = ({
 }: IGuests) => {
   const { setNumberOfGuests, numberOfGuests } = useContext(AppContext);
   const capacity = infant + maxAdultAndChildren;
-
+  
   function IncreaseNumberOfGuest(type: string): void {
     const CountOfGuests =
       numberOfGuests.additional_guests +
@@ -25,6 +25,7 @@ const Guests = ({
       numberOfGuests.infants;
 
     if (CountOfGuests == capacity) {
+      ToastAlert("Villa's maximum capacity reached",'warn')
       return;
     }
     if (type === "adults" || type === "children") {
@@ -32,6 +33,7 @@ const Guests = ({
         numberOfGuests.children + numberOfGuests.adults ===
         minAdultAndChildren
       ) {
+        ToastAlert("Maximum capacity reached, please select additional guests",'warn')
         return;
       } else {
         setNumberOfGuests((prev) => ({
@@ -41,6 +43,7 @@ const Guests = ({
       }
     } else if (type === "infants") {
       if (numberOfGuests.infants === infant) {
+        ToastAlert("Maximum capacity reached, for infants",'warn')
         return;
       } else {
         setNumberOfGuests((prev) => ({
@@ -53,6 +56,7 @@ const Guests = ({
         numberOfGuests.additional_guests ===
         maxAdultAndChildren - minAdultAndChildren
       ) {
+        ToastAlert("Maximum capacity reached, for additional guests",'warn')
         return;
       } else {
         setNumberOfGuests((prev) => ({
@@ -62,6 +66,7 @@ const Guests = ({
       }
     } else {
       if (numberOfGuests.pets === pet) {
+        ToastAlert("Maximum capacity reached, for pets",'warn')
         return;
       } else {
         setNumberOfGuests((prev) => ({
@@ -74,8 +79,10 @@ const Guests = ({
 
   function DecreaseNumberOfGuest(type: string): void {
     if (type === "adults" && numberOfGuests.adults === 1) {
+      ToastAlert("adult can not be zero",'warn')
       return;
     } else if (numberOfGuests[type] <= 0) {
+      ToastAlert(`${type} can not be lesser than 0`,'warn')
       return;
     }
     setNumberOfGuests((prev) => ({

@@ -6,6 +6,13 @@ export interface GuestsInterface {
   additional_guests: number;
 }
 
+export interface IImageTag {
+  image: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
 export interface villaInterface {
   id: number;
   attributes: {
@@ -38,7 +45,7 @@ export interface villaInterface {
       description: string;
       title: string;
     }[];
-    images: [];
+    images: IImage[];
     address: {
       id: number;
       street1: string;
@@ -124,15 +131,15 @@ export interface villaInterface {
       name: string;
       pId: null;
     }[];
-    curatedExperiences: [];
+    stayLonger: [];
     paymentTerm: {
       id: number;
       modesOfPayment: string;
       paymentDeadline: string;
     };
-    localExperiences: [];
+    localExperiences: IlocalExperiences[];
     similarStays: {
-      data: [];
+      data: villaInterface[];
     };
     uploadBrochure: {
       data: null;
@@ -144,6 +151,9 @@ export interface villaInterface {
       paymentCollectionDate: string;
       paymentReturnDate: string;
     };
+    amenities: {
+      data: Iamenities[]
+    }
   };
 }
 export interface IHomeInterface {
@@ -152,4 +162,106 @@ export interface IHomeInterface {
     meta: {};
   };
   error: string | null;
+}
+
+export interface IImage {
+  id:     number;
+  type:   string;
+  image?: IImageAmenity;
+}
+
+interface IImageAmenity {
+  data: {
+    id: number;
+    attributes: FluffyAttributes
+  }
+}
+
+export interface FluffyAttributes {
+  name:               string;
+  createdAt:          Date;
+  updatedAt:          Date;
+  publishedAt?:       Date;
+  // banner?:            Amenities;
+  alternativeText?:   null;
+  caption?:           null;
+  width?:             number | null;
+  height?:            number | null;
+  formats?:           Formats | null;
+  hash?:              string;
+  ext?:               AttributesEXT;
+  mime?:              AttributesMIME;
+  size?:              number;
+  url?:               string;
+  previewUrl?:        null;
+  provider?:          Provider;
+  provider_metadata?: null;
+}
+
+export interface Formats {
+  l_webp:    LWebp;
+  m_webp:    LWebp;
+  s_webp:    LWebp;
+  xl_webp:   LWebp;
+  thumbnail: LWebp;
+}
+
+export interface LWebp {
+  ext:    LWebpEXT;
+  url:    string;
+  hash:   string;
+  mime:   LWebpMIME;
+  name:   string;
+  size:   number;
+  width:  number;
+  height: number;
+  path?:  null;
+}
+export enum Provider {
+  AwsS3 = "aws-s3",
+}
+export enum LWebpEXT {
+  Jpg = ".jpg",
+  Webp = ".webp",
+}
+export enum LWebpMIME {
+  ImageJPEG = "image/jpeg",
+  ImageWebp = "image/webp",
+}
+
+ export enum AttributesEXT {
+    Jpg = ".jpg",
+    PDF = ".pdf",
+    SVG = ".svg",
+  }
+  
+  export enum AttributesMIME {
+    ApplicationPDF = "application/pdf",
+    ImageJPEG = "image/jpeg",
+    ImageSVGXML = "image/svg+xml",
+  }
+
+export  interface Iamenities {
+  // data: {
+    id: number;
+    attributes: {
+      title: string;
+      createdAt: string;
+      updatedAt: Date | null;
+      publishedAt: Date | null;
+      icon: {
+        data: {
+          id: number;
+          attributes: FluffyAttributes
+        }
+      }
+    }
+}
+
+export interface IlocalExperiences {
+  id: number;
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  image: IImageAmenity;
 }

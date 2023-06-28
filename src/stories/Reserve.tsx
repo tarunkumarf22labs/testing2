@@ -27,18 +27,13 @@ const Reserve = ({
   const [showRoomOption, setshowRoomOption] = useState(false);
   const { startDate, endDate, numberOfGuests } = useContext(AppContext);
 
-  console.log(startDate, endDate, 'endDate')
   let Number_In_Days;
 
-  if(startDate && !endDate){
-    Number_In_Days = 1
-  }
-
-  useEffect(() => {
-    if(startDate && !endDate){
-      Number_In_Days = 1
-    }
-  },[startDate])
+  // useEffect(() => {
+  //   if(startDate && !endDate){
+  //     Number_In_Days = 1
+  //   }
+  // },[startDate])
   const Date1Part = startDate.split('/');
   const Date2Part = endDate.split('/');
 
@@ -52,6 +47,10 @@ const Reserve = ({
   Number_In_Days = Difference_In_Time / (1000 * 3600 * 24)+1;
   if(Number.isNaN(Number_In_Days)){
     Number_In_Days = 0;
+  }
+
+  if(startDate && !endDate){
+    Number_In_Days = 1
   }
 
   let GuestProps = {

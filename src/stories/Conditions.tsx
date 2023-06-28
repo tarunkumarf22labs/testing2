@@ -12,6 +12,7 @@ export const Conditions = (props: IConditionsProps) => {
     data: { title, conditions },
     index: parentIndex,
   } = props;
+
   return (
     <div className={classNames(parentIndex === 0 ? "" : "pt-8")}>
       <div className="text-xl text-[#18181B] mb-5">{title}</div>
@@ -20,6 +21,9 @@ export const Conditions = (props: IConditionsProps) => {
           <p>{conditions}</p>
         ) : (
           conditions.map((item, index) => {
+            if (item.label === "Check-In" || item.label === "Check-Out") {
+              item.text = item.text.substring(0, 5);
+            }
             return (
               <div key={index} className="">
                 <p className="text-xs text-[#7B8084] mb-1">{item.label}</p>
