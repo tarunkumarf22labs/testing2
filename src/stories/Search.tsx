@@ -32,7 +32,7 @@ const testVariants = {
 
 const Search = () => {
   const [showDate, setShowDate] = useState(false);
-  const { startDate, endDate } = useContext(AppContext);
+  const { startDate, endDate, ClearSelectedDate } = useContext(AppContext);
   const [guestsValue, setGuestsValue] = useState("");
 
   useEffect(() => {
@@ -48,7 +48,27 @@ const Search = () => {
       setGuestsValue(value);
     }
   };
+  const firstDateString = startDate;
+  const firstDateParts = firstDateString?.split("/");
+  const firstMonth = parseInt(firstDateParts[1]);
+  const firstDay = parseInt(firstDateParts[0]);
+  const firstYear = parseInt(firstDateParts[2]);
+  const firstDate = new Date(firstYear + "-" + firstMonth + "-" + firstDay);
 
+  // Get the month name
+  const firstMonthName = firstDate.toLocaleString("default", { month: "long" });
+
+  const secondDateString = endDate;
+  const secondDateParts = secondDateString?.split("/");
+  const secondMonth = parseInt(secondDateParts[1]);
+  const secondDay = parseInt(secondDateParts[0]);
+  const secondYear = parseInt(secondDateParts[2]);
+  const secondDate = new Date(secondYear + "-" + secondMonth + "-" + secondDay);
+
+  // Get the month name
+  const secondMonthName = secondDate.toLocaleString("default", {
+    month: "long",
+  });
   return (
     <>
       <motion.div
@@ -148,6 +168,7 @@ const Search = () => {
       </motion.div>
       <div className={`${showDate === false ? "hidden" : "block"}`}>
         <Datepicker inVillaDetails={false} />
+       
       </div>
     </>
   );

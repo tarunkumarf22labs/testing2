@@ -157,26 +157,6 @@ const PropertyOverview = ({
           <div className="mt-5 w-full md:w-[110%] md:-ml-[5%]">
             <Datepicker inVillaDetails={true} />
           </div>
-          {firstMonthName !== "Invalid Date" && (
-            <div className="flex items-center justify-between mb-8">
-              <p className="bg-[#8A1E611A] text-[#8A1E61] text-xs md:text-base px-[10px] py-2">
-                {firstMonthName !== "Invalid Date" &&
-                  firstDay &&
-                  `${checkIn}: ${firstMonthName} ${firstDay}`}{" "}
-                {firstMonthName !== "Invalid Date" &&
-                  firstDay &&
-                  secondMonthName !== "Invalid Date" &&
-                  secondDay &&
-                  ` , ${checkOut}: ${secondMonthName} ${secondDay}`}
-              </p>
-              <button
-                className="uppercase py-2 px-4 text-xs text-[#8A1E61] sm:py-3 sm:px-6 whitespace-nowrap font-medium tracking-wide"
-                onClick={ClearSelectedDate}
-              >
-                CLEAR DATES
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>

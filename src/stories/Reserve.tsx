@@ -1,7 +1,14 @@
-import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import Guests from "./Guests";
 import SelectRooms from "./SelectRooms";
 import { AppContext } from "src/Context";
+import Datepicker from "./DatePicker";
 
 interface IReserve {
   infant: number;
@@ -25,27 +32,43 @@ const Reserve = ({
   const [guestsSelectorOpen, setGuestsSelectorOpen] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
   const [showRoomOption, setshowRoomOption] = useState(false);
-  const { startDate, endDate, numberOfGuests } = useContext(AppContext);
+  const [showDate, setShowDate] = useState(false);
+  const {
+    startDate,
+    endDate,
+    numberOfGuests,
+    selectedDates,
+    ClearSelectedDate,
+  } = useContext(AppContext);
 
+  console.log(startDate, endDate, "endDate");
   let Number_In_Days;
 
-  // useEffect(() => {
-  //   if(startDate && !endDate){
-  //     Number_In_Days = 1
-  //   }
-  // },[startDate])
-  const Date1Part = startDate.split('/');
-  const Date2Part = endDate.split('/');
+  if (startDate && !endDate) {
+    Number_In_Days = 1;
+  }
 
-  const date1 = new Date (Date1Part[1] + '/' + Date1Part[0] + '/' + Date1Part[2]);
-  const date2 = new Date (Date2Part[1] + '/' + Date2Part[0] + '/' + Date2Part[2]);
+  useEffect(() => {
+    if (startDate && !endDate) {
+      Number_In_Days = 1;
+    }
+  }, [startDate]);
+  const Date1Part = startDate.split("/");
+  const Date2Part = endDate.split("/");
+
+  const date1 = new Date(
+    Date1Part[1] + "/" + Date1Part[0] + "/" + Date1Part[2]
+  );
+  const date2 = new Date(
+    Date2Part[1] + "/" + Date2Part[0] + "/" + Date2Part[2]
+  );
 
   // To calculate the time difference of two dates
   const Difference_In_Time = date2.getTime() - date1.getTime();
 
   // To calculate the no. of days between two dates
-  Number_In_Days = Difference_In_Time / (1000 * 3600 * 24)+1;
-  if(Number.isNaN(Number_In_Days)){
+  Number_In_Days = Difference_In_Time / (1000 * 3600 * 24) + 1;
+  if (Number.isNaN(Number_In_Days)) {
     Number_In_Days = 0;
   }
 
@@ -71,6 +94,7 @@ const Reserve = ({
     numberOfGuests.children * basicPrice +
     numberOfGuests.additional_guests * extraGuestPrice +
     numberOfGuests.pets * petPrice;
+
   return (
     <div className="m-auto">
       <p className="text-center">
@@ -102,7 +126,10 @@ const Reserve = ({
           ROOM
         </div>
       </div>
-      <div className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs">
+      <div
+        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs"
+        onClick={() => setShowDate(!showDate)}
+      >
         <p className="flex items-center justify-start w-6/12 h-full">
           {startDate}
         </p>
@@ -121,7 +148,10 @@ const Reserve = ({
           />
         </svg>
       </div>
-      <div className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs">
+      <div
+        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs"
+        onClick={() => setShowDate(!showDate)}
+      >
         <p className="flex items-center justify-start w-6/12 h-full">
           {endDate}
         </p>
@@ -140,6 +170,11 @@ const Reserve = ({
           />
         </svg>
       </div>
+      {showDate && (
+        <div className="w-10/12 m-auto mt-5">
+          <Datepicker inReserve={true} inVillaDetails={true} />
+        </div>
+      )}
       {roomSelected && (
         <div
           className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs"
@@ -234,7 +269,8 @@ const Reserve = ({
 
       <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 text-center">
         <p className="flex items-center justify-start h-full ml-1">
-          ₹{totalPrice} {'X ' }{Number_In_Days} {'Nights'}
+          ₹{totalPrice} {"X "}
+          {Number_In_Days} {"Nights"}
         </p>
         <p className="flex items-center justify-end h-full">
           ₹{totalPrice * Number_In_Days}
@@ -249,7 +285,9 @@ const Reserve = ({
       <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 font-bold text-center">
         <p className="flex items-center justify-start h-full">Total Price</p>
         <p className="flex items-center justify-end h-full">
-          ₹{totalPrice * Number_In_Days + (totalPrice * Number_In_Days * 18) / 100}
+          ₹
+          {totalPrice * Number_In_Days +
+            (totalPrice * Number_In_Days * 18) / 100}
         </p>
       </div>
       <div className="flex justify-center items-center w-10/12 h-12 m-auto mt-5 font-bold bg-[#8A1E61] text-white p-auto hover:text-[#8A1E61] hover:bg-[#F8F8F9] rounded-sm">
