@@ -14,23 +14,47 @@ import { AppContext } from "src/Context";
 
 interface DatePickerProps {
   inVillaDetails?: boolean;
+  inReserve?: boolean;
 }
 
-function Root({ inVillaDetails }: DatePickerProps) {
+
+function Root({inVillaDetails,inReserve}: DatePickerProps) {
   const { calendars } = useContextCalendars();
   const { formattedDates } = useContextDays();
   const { previousMonthButton, nextMonthButton } =
     useContextMonthsPropGetters();
   const { selectedDates } = useDatePickerState();
-  const { setStartDate, setEndDate, startDate, ClearSelectedDate } =
+  const { setStartDate, setEndDate, startDate, endDate, ClearSelectedDate } =
     useContext(AppContext);
 
   const [start, end] = formattedDates;
 
   useEffect(() => {
-    start ? setStartDate(start) : setStartDate("");
-    end ? setEndDate(end) : setEndDate("");
+    start ? setStartDate(start) : setStartDate('');
+    end ? setEndDate(end) : setEndDate('');
   }, [start, end, setStartDate, setEndDate, startDate]);
+  console.log(inReserve,'inReserve')
+  const firstDateString = startDate;
+  const firstDateParts = firstDateString?.split("/");
+  const firstMonth = parseInt(firstDateParts[1]);
+  const firstDay = parseInt(firstDateParts[0]);
+  const firstYear = parseInt(firstDateParts[2]);
+  const firstDate = new Date(firstYear + "-" + firstMonth + "-" + firstDay);
+
+  // Get the month name
+  const firstMonthName = firstDate.toLocaleString("default", { month: "long" });
+
+  const secondDateString = endDate;
+  const secondDateParts = secondDateString?.split("/");
+  const secondMonth = parseInt(secondDateParts[1]);
+  const secondDay = parseInt(secondDateParts[0]);
+  const secondYear = parseInt(secondDateParts[2]);
+  const secondDate = new Date(secondYear + "-" + secondMonth + "-" + secondDay);
+
+  // Get the month name
+  const secondMonthName = secondDate.toLocaleString("default", {
+    month: "long",
+  });
 
   return (
     <div
@@ -67,7 +91,10 @@ function Root({ inVillaDetails }: DatePickerProps) {
           <p className="text-center ">
             {calendars[1].year} {calendars[1].month}
           </p>
-          <p className="hidden text-center sm:block">
+          {/* <p className="hidden text-center sm:block">
+            {calendars[0].year} {calendars[0].month}
+            </p> */}
+          <p className={inReserve ? `hidden` : 'hidden text-center sm:block'}>
             {calendars[0].year} {calendars[0].month}
           </p>
           <p>
@@ -93,7 +120,7 @@ function Root({ inVillaDetails }: DatePickerProps) {
           </p>
         </div>
       </div>
-      <main className="grid grid-cols-1 gap-x-6 sm:grid-cols-2 border-green z-[150] w-full">
+      <main className={`grid grid-cols-1 gap-x-6 ${inReserve ? 'sm:grid-cols-1' : 'sm:grid-cols-2'} border-green z-[150] w-full`}>
         <Calendar
           prevButton={
             <DayButton className="w-8" {...previousMonthButton()}>
@@ -117,6 +144,7 @@ function Root({ inVillaDetails }: DatePickerProps) {
           MonthOrder="first"
           year={calendars[1].year}
           inVillaDetails={inVillaDetails}
+          inReserve={inReserve}
         />
         <Calendar
           nextButton={
@@ -141,20 +169,41 @@ function Root({ inVillaDetails }: DatePickerProps) {
           MonthOrder="second"
           year={calendars[0].year}
           inVillaDetails={inVillaDetails}
+          inReserve={inReserve}
         />
       </main>
+      {firstMonthName !== "Invalid Date" && (
+            <div className="flex items-center justify-between mb-4 text-xs md:text-xs">
+              <p className="bg-[#8A1E611A] text-[#8A1E61] px-[10px] py-2">
+                {firstMonthName !== "Invalid Date" &&
+                  firstDay &&
+                  `Check-in: ${firstMonthName} ${firstDay}`}{" "}
+                {firstMonthName !== "Invalid Date" &&
+                  firstDay &&
+                  secondMonthName !== "Invalid Date" &&
+                  secondDay &&
+                  ` , Check-out: ${secondMonthName} ${secondDay}`}
+              </p>
+              <button
+                className="uppercase py-2 px-4 text-xs text-[#8A1E61] sm:py-3 sm:px-6 whitespace-nowrap font-medium tracking-wide"
+                onClick={ClearSelectedDate}
+              >
+                CLEAR DATES
+              </button>
+            </div>
+          )}
     </div>
   );
 }
 
 const Datepicker = (props: DatePickerProps) => {
-  const { inVillaDetails } = props;
+  const { inVillaDetails,inReserve } = props;
   const now = new Date();
   const M = now.getMonth();
   const Y = now.getFullYear();
   const D = now.getDate();
   const { selectedDates, onDatesChange, ClearSelectedDate } =
-    useContext(AppContext);
+  useContext(AppContext);
 
   return (
     <DatePickerStateProvider
@@ -180,7 +229,7 @@ const Datepicker = (props: DatePickerProps) => {
         },
       }}
     >
-      <Root inVillaDetails={inVillaDetails} />
+      <Root inVillaDetails={inVillaDetails} inReserve={inReserve}/>
     </DatePickerStateProvider>
   );
 };
