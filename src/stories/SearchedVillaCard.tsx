@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { IImageTag } from "src/Interface";
 
 interface IVillaCard {
-  bannerImage: string;
-  image: string;
+  bannerImage: IImageTag;
+  image: IImageTag;
   amenities: string[];
   city: string;
   state: string;
@@ -11,8 +12,8 @@ interface IVillaCard {
   description: string;
   available: Boolean;
   availableDates: string;
-  villaPrice: string;
-  roomPrice: string;
+  villaPrice: number;
+  roomPrice: number;
 }
 
 const SearchedVillaCard = ({
@@ -32,21 +33,21 @@ const SearchedVillaCard = ({
   return (
     <div className="font-[Brandon Grotesque] w-full bg-[#FFFFFF] flex justify-center mb-10">
       <div className="w-full rounded-t-sm rounded-b-none shadow-md ">
-        <div className="relative w-full rounded-t-sm rounded-b-none">
+        <div className="relative w-full rounded-t-sm rounded-b-none h-[400px]">
           <Image
-            src={bannerImage}
-            alt="villa"
-            width={350}
-            height={230}
-            className="relative w-full h-full rounded-t-sm rounded-b-none"
+            src={bannerImage.image}
+            alt={bannerImage.alt}
+            width={bannerImage.width}
+            height={bannerImage.height}
+            className="relative w-full h-full rounded-t-sm rounded-b-none "
           />
           <div className="rounded-t-sm">
             <Image
-              src={image}
-              alt="small-image"
-              width={229}
-              height={152}
-              className="absolute hidden rounded-t-sm top-[22rem] left-[25rem] sm:block"
+              src={image.image}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              className="absolute hidden rounded-t-sm top-[21rem] left-[25rem] sm:block"
             />
           </div>
         </div>
@@ -57,7 +58,7 @@ const SearchedVillaCard = ({
                 {city}, {state}
               </p>
               <p className="mt-8 text-xl font-bold">{title}</p>
-              <div className="mt-1 flex items-center justify-between w-3/4 text-xs mr-[25%] flex-wrap">
+              <div className="mt-1 flex items-center justify-between sm:w-2/5  text-xs mr-[25%] flex-wrap">
                 {amenities.map((ele, idx) => {
                   return (
                     <>
@@ -95,29 +96,32 @@ const SearchedVillaCard = ({
                   roomSelected
                     ? ""
                     : "bg-[#8A1E61] text-white ease-in-out duration-500 rounded-sm"
-                } flex items-center justify-center w-6/12 h-full `}
+                } flex items-center justify-center w-6/12 h-full cursor-pointer`}
                 onClick={() => {
                   setRoomSelected(!roomSelected);
                 }}
               >
                 VILLA
               </div>
-              <div
-                className={`${
-                  roomSelected
-                    ? "bg-[#8A1E61]  text-white ease-in-out duration-500"
-                    : ""
-                } flex items-center justify-center w-6/12 h-full`}
-                onClick={() => {
-                  setRoomSelected(!roomSelected);
-                }}
-              >
-                ROOM
-              </div>
+              {available && (
+                <div
+                  className={`${
+                    roomSelected
+                      ? "bg-[#8A1E61]  text-white ease-in-out duration-500 rounded-sm"
+                      : ""
+                  } flex items-center justify-center w-6/12 h-full cursor-pointer`}
+                  onClick={() => {
+                    setRoomSelected(!roomSelected);
+                  }}
+                >
+                  ROOM
+                </div>
+              )}
             </div>
             <div className="w-1/2 h-8">
-              <p className="text-sm text-right">
-                {roomSelected ? roomPrice : villaPrice} / night
+              <p className="text-sm text-right font-[Centaur]">
+                {roomSelected ? `starting form ${roomPrice}` : villaPrice} /
+                night
               </p>
             </div>
           </div>

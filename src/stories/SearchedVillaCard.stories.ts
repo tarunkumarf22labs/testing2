@@ -12,8 +12,18 @@ type Story = StoryObj<typeof SearchedVillaCard>;
 
 export const Default: Story = {
   args: {
-    bannerImage: "/images/a030.png",
-    image: "/images/a019.png",
+    bannerImage: {
+        image: 'https://luxunlockdev.s3.ap-south-1.amazonaws.com/xl_Front_facade_773d894fd0.webp',
+        width: 400,
+        height: 400,
+        alt: 'image'
+      },
+    image: {
+      image: 'https://luxunlockdev.s3.ap-south-1.amazonaws.com/xl_Front_facade_773d894fd0.webp',
+      width: 400,
+      height: 400,
+      alt: 'image'
+    },
     amenities: [
       "6 Guest",
       "3 Bedrooms",
@@ -27,7 +37,7 @@ export const Default: Story = {
       " In a village overlooking the backwaters of the Vembanad Lake near Cochin, experience an unimaginably perfect abode under the stars and reflected in water. Here is a beautiful and soulful luxury home in Kerala that invites you to live in the moment. Built by one of India's best-known ad-film makers as a passion project, with incredible attention to detail.",
     available: true,
     availableDates: "28 Jun - 31 MAY",
-    villaPrice: "₹12,589",
-    roomPrice: "₹5,589",
+    villaPrice: 1000,
+    roomPrice: 1000
   },
 };
