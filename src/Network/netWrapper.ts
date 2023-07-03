@@ -10,7 +10,7 @@ const NetWrapper = async <T>(
     retries: 3,
   },
   // injectAuth = true,
-  base = process.env.NEXT_API_BASE_URL
+  base = process.env.NEXT_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL
 ) => {
   options.headers = options.headers || {
     "Content-Type": "application/json",
@@ -20,7 +20,6 @@ const NetWrapper = async <T>(
   }
 
   const { data, error, status } = await Net<T>(url, options, base);
-
   let errorMessage
   if (error) {
     errorMessage = getErrorMessage(error);

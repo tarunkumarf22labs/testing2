@@ -10,11 +10,16 @@ interface CarouselProps {
   bannerImageStyle: string;
   bannerTextStyle: string;
   bannerText: string | (JSX.Element | string)[];
+  locations?: {
+    id: number ;
+    type: string;
+    title: string;
+  }[];
 }
 import { Autoplay } from "swiper";
 import Search from "./Search";
 
-export default function Carousel({ images,bannerImageStyle,bannerTextStyle,bannerText }: CarouselProps) {
+export default function Carousel({ images,bannerImageStyle,bannerTextStyle,bannerText,locations }: CarouselProps) {
     
   return (
     <>
@@ -50,7 +55,7 @@ export default function Carousel({ images,bannerImageStyle,bannerTextStyle,banne
       </div>
     </div>
     <div className="relative m-auto bg-[#FFFFFF] lg:absolute top-[60%] lg:left-14 lg:right-14 xl:left-28 xl:right-24 w-[90%]">
-        <Search/>
+        <Search locations={locations}/>
       </div>
     </>
   );

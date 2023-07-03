@@ -33,13 +33,7 @@ export interface villaInterface {
     homeTruths: string;
     story: string;
     gettingThere: string;
-    guestCapacity: {
-      id: number;
-      minAdultAndChildren: number;
-      maxAdultAndChildren: number;
-      infant: number;
-      pet: number | null;
-    };
+    guestCapacity: IguestCapacity;
     detailedDescription: {
       id: number;
       description: string;
@@ -120,12 +114,7 @@ export interface villaInterface {
       villaStaff: string | null;
       accompanyingGuestStaff: string | null;
     };
-    pricing: {
-      id: number;
-      basic: number;
-      pet: number;
-      extraGuest: number;
-    };
+    pricing: IPrice;
     channels: {
       id: number;
       name: string;
@@ -153,6 +142,9 @@ export interface villaInterface {
     };
     amenities: {
       data: Iamenities[]
+    };
+    rooms: {
+      data: Iroom[];
     }
   };
 }
@@ -264,4 +256,62 @@ export interface IlocalExperiences {
   shortDescription: string;
   longDescription: string;
   image: IImageAmenity;
+}
+
+interface IguestCapacity {
+    id: number;
+    minAdultAndChildren: number;
+    maxAdultAndChildren: number;
+    infant: number;
+    pet: number | null;
+}
+
+interface Iroom {
+  id: number;
+  attributes: {
+    name: string;
+    description: string;
+    bathRoomType: string;
+    roomCount: number;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    areaInSqFt: number;
+    guestCapacity: IguestCapacity;
+    amenities: {
+      data: IRoomAmenity[];
+    };
+    pricing: {
+      id: number;
+      basic: number;
+      pet: number;
+      extraGuest: number;
+    };
+    property: any;
+    channels :{
+      id:number;
+      name: string;
+    }[];
+    images: {
+      id: number;
+      type: string;
+    }[];
+  }
+}
+
+interface IRoomAmenity {
+  id: number;
+  attributes: {
+    title: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+  };
+}
+
+interface IPrice {
+    id: number;
+    basic: number;
+    pet: number;
+    extraGuest: number;
 }
