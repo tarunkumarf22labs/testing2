@@ -30,6 +30,7 @@ import Modal from "src/stories/Modal/Modal";
 import { CuratedExpModal } from "src/stories/CuratedExpModal";
 import NetWrapper from "src/Network/netWrapper";
 import { villaInterface, IHomeInterface } from "src/Interface";
+import useIsMobile from "@/hooks/useIsMobile";
 import {
   VillaOverviewProps,
   ReserveAndLocationDetailsSectionProps,
@@ -42,12 +43,16 @@ import {
   SimilarStaysSectionProps,
   AmenitiesSectionProps,
   ExperiencesSectionProps,
+  AccordionProps1,
+  AccordionProps2,
 } from "src/Props";
+import { Accordion } from "src/stories/Accordion";
 
 const Home: NextPage = (data: IHomeInterface) => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [elementNo, setElementNo] = useState<number>(0);
   const villaData = data?.data?.data;
+  const isMobile = useIsMobile();
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -82,14 +87,21 @@ const Home: NextPage = (data: IHomeInterface) => {
             </div>
           </div>
           <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
-          <InclusionsExclusionsSection
-            {...InclusionsExclusionsSectionProps(villaData)}
-          />
-          <div className="mb-20"></div>
-          {/* HOME TRUTHS */}
-          {HomeTruthProps(villaData).story && (
-            <StorySection {...HomeTruthProps(villaData)} />
+          {!isMobile ? (
+            <>
+              <InclusionsExclusionsSection
+                {...InclusionsExclusionsSectionProps(villaData)}
+              />
+              <div className="mb-20"></div>
+              {/* HOME TRUTHS */}
+              {HomeTruthProps(villaData).story && (
+                <StorySection {...HomeTruthProps(villaData)} />
+              )}
+            </>
+          ) : (
+            <Accordion {...AccordionProps1(villaData)} />
           )}
+
           <BeforeYouBook
             beforeYouBook={BeforeYouBookProps(villaData)}
             title={villaData.attributes.name}
@@ -99,14 +111,20 @@ const Home: NextPage = (data: IHomeInterface) => {
             toggleModal={toggleModal}
             {...ExperiencesSectionProps(villaData)}
           />
-          {HomeStoryProps(villaData).story && (
-            <StorySection {...HomeStoryProps(villaData)} />
-          )}
-          {DetailedDescriptionSectionProps(villaData).detailedDescription
-            .list && (
-            <DetailedDescriptionSection
-              {...DetailedDescriptionSectionProps(villaData)}
-            />
+          {!isMobile ? (
+            <>
+              {HomeStoryProps(villaData).story && (
+                <StorySection {...HomeStoryProps(villaData)} />
+              )}
+              {DetailedDescriptionSectionProps(villaData).detailedDescription
+                .list && (
+                <DetailedDescriptionSection
+                  {...DetailedDescriptionSectionProps(villaData)}
+                />
+              )}
+            </>
+          ) : (
+            <Accordion {...AccordionProps2(villaData)} />
           )}
           <PropertyReviewSection
             reviewCardsCollection={ReviewCardsCollection}

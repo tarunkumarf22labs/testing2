@@ -39,7 +39,7 @@ const ExperiencesSection = ({
 
   const isMobile = useIsMobile();
   return (
-    <div className="mt-10 lg:mt-20">
+    <div className="md:mt-10 lg:mt-20">
       <div className="relative py-10 bg-white lg:py-20">
         <div className="relative pl-5 md:ml-[max(0px,(100%_-_80rem)/2)] xl:pl-0">
           <div className="pb-6 uppercase sm:pb-10">
