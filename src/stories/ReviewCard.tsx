@@ -23,7 +23,7 @@ export const ReviewCard = ({
     <div
       className={classNames(
         "text-[#545456] mt-4 mb-3  md:max-w-lg md:h-auto flex",
-        top ? "flex-col-reverse md:px-0 py-2" : "flex-col sm:bg-white md:p-6 ",
+        top ? "flex-col-reverse md:px-0 py-2" : "flex-col bg-[#f8f8f9] md:p-6 ",
         customClasses
       )}
     >
