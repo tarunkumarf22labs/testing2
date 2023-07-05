@@ -83,6 +83,7 @@ export default function ImageGallery(props: ImageGalleryProps) {
       })
       setGalleryViewProps( getGalleryViewInitialState(filteredData))
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[currentFilter])
   return (
     <div>
@@ -100,6 +101,7 @@ export default function ImageGallery(props: ImageGalleryProps) {
             ]}
             setCurrentFilter={setCurrentFilter}
             currentFilter={currentFilter}
+            inGallery={true}
           />
           <GalleryView data={galleryViewProps} />
         </div>
