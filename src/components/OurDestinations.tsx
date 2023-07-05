@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { villaInterface } from "src/Interface";
 import { ourDestinationsProps } from "src/Props/home";
 import { SimilarStaysSection } from "src/stories";
 import Filter from "src/stories/Filter/Filter";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 
 interface IOurDestinations {
     OurDestinations: villaInterface[]
