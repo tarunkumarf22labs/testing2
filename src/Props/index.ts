@@ -205,10 +205,52 @@ export const DetailedDescriptionSectionProps = (villaData: villaInterface) => {
   };
 };
 
+export const stringToArray = (str) => {
+  return str
+    .split("\n")
+    .map((item) => item.replace("-", "").trim())
+    .map((item, id) => ({ id: id + 1, service: item }));
+};
+
+export const AccordionProps1 = (villaData: villaInterface) => {
+  const { heading, inclusions, exclusions } =
+    InclusionsExclusionsSectionProps(villaData);
+
+  const story = villaData.attributes.homeTruths;
+
+  const storyList = stringToArray(story);
+
+  const data = [
+    { title: "Included services", data: inclusions },
+    { title: "Available services", data: exclusions },
+    { title: "Home Truths", data: storyList },
+  ];
+
+  return { heading, data };
+};
+
+export const AccordionProps2 = (villaData: villaInterface) => {
+  const { heading } = InclusionsExclusionsSectionProps(villaData);
+
+  const { story } = HomeStoryProps(villaData);
+
+  const storyList = stringToArray(story);
+
+  const {
+    detailedDescription: { list },
+  } = DetailedDescriptionSectionProps(villaData);
+
+  const data = [
+    { title: "Story", data: storyList },
+    { title: "Detailed Description", data: list },
+  ];
+
+  return { heading, data };
+};
+
 export const SimilarStaysSectionProps = (villaData: villaInterface) => {
   let villas = villaData.attributes.similarStays.data;
   let mappedVillaData = villas.map((villaData) => {
-    
     let filteredthumbnail = villaData.attributes.images.filter(
       (villaData) => villaData.type === "Main Image"
     );
@@ -296,7 +338,7 @@ export const ImageGalleryProps = (villaData: villaInterface) => {
       title: ele.image.data.attributes.formats.xl_webp.name,
       url: ele.image.data.attributes.formats.xl_webp.url,
       type: ele.type,
-      alt:ele.image.data.attributes.name,
+      alt: ele.image.data.attributes.name,
       width: ele.image.data.attributes.formats.xl_webp.width,
       height: ele.image.data.attributes.formats.xl_webp.height,
     };

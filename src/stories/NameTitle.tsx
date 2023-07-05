@@ -1,13 +1,24 @@
+import classNames from "classnames";
 import React from "react";
 
 interface INameTitle {
   propertyName: string;
   title: string;
+  removeBottomPadding?: boolean;
 }
 
-export const NameTitle = ({ propertyName, title }: INameTitle) => {
+export const NameTitle = ({
+  propertyName,
+  title,
+  removeBottomPadding = false,
+}: INameTitle) => {
   return (
-    <div className="uppercase pb-6 md:pb-10">
+    <div
+      className={classNames(
+        "uppercase md:pb-10",
+        removeBottomPadding ? "" : "pb-6"
+      )}
+    >
       <p className="text-sm text-[#8A1E61] mb-2 tracking-widest md:mb-5">
         {propertyName}
       </p>
