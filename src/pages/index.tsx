@@ -10,6 +10,7 @@ import { mediaImages } from "src/data/constants";
 import { ISearchInterface } from "src/Interface/Search";
 import NetWrapper from "src/Network/netWrapper";
 import { SearchLocationProps } from "src/Props/Search";
+import { ListYourPropertySection } from "src/stories/ListYourPropertySection";
 
 const Home: NextPage = (data: ISearchInterface) => {
   const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
@@ -31,6 +32,7 @@ const Home: NextPage = (data: ISearchInterface) => {
               data.cities
             )}
           />
+          <ListYourPropertySection />
           <MediaListing mediaImages={mediaImages} />
         </>
       </Layout>
