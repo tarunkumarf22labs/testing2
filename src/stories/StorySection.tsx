@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ReadMoreOrLess from "./ReadMoreOrLess";
 import { IImageTag } from "src/Interface";
 
-interface IStorySection {
+export interface IStorySection {
   isStory?: boolean;
   heading?: string;
   secondheading?: string;

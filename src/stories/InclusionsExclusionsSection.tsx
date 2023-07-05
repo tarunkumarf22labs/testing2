@@ -6,7 +6,7 @@ import {
   villaServiceDisclaimer,
 } from "src/data/constants";
 
-interface IInclusionsExclusionsSection {
+export interface IInclusionsExclusionsSection {
   heading: string;
   inclusions: {
     id:number;
