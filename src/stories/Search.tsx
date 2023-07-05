@@ -39,7 +39,6 @@ const Search = ({ locations }: ISearch) => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    console.log(typeof value);
     const parsedValue = Number(value);
     if (!isNaN(parsedValue) && parsedValue >= 0) {
       setGuestsValue(value);

@@ -10,6 +10,7 @@ import { mediaImages } from "src/data/constants";
 import { ISearchInterface } from "src/Interface/Search";
 import NetWrapper from "src/Network/netWrapper";
 import { SearchLocationProps } from "src/Props/Search";
+import AutoScrollingVillaCard from "src/stories/AutoScrollingVillaCard";
 
 const Home: NextPage = (data: ISearchInterface) => {
   const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
@@ -32,6 +33,7 @@ const Home: NextPage = (data: ISearchInterface) => {
             )}
           />
           <MediaListing mediaImages={mediaImages} />
+          <AutoScrollingVillaCard />
         </>
       </Layout>
     </>
@@ -51,7 +53,6 @@ export const getServerSideProps: GetServerSideProps<{
   const cities = await NetWrapper("api/cities");
   const countries = await NetWrapper("api/countries");
   let error = null;
-  console.log(states, cities, countries);
   if (states.error) error = states.error;
   if (cities.error) error = cities.error;
   if (countries.error) error = countries.error;

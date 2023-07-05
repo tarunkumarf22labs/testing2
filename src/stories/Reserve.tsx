@@ -41,7 +41,6 @@ const Reserve = ({
     ClearSelectedDate,
   } = useContext(AppContext);
 
-  console.log(startDate, endDate, "endDate");
   let Number_In_Days;
 
   if (startDate && !endDate) {
