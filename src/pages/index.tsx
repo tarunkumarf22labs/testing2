@@ -11,6 +11,7 @@ import { ISearchInterface } from "src/Interface/Search";
 import NetWrapper from "src/Network/netWrapper";
 import { SearchLocationProps } from "src/Props/Search";
 import AutoScrollingVillaCard from "src/stories/AutoScrollingVillaCard";
+import { ListYourPropertySection } from "src/stories/ListYourPropertySection";
 import { ReviewSection } from "src/stories/ReviewSection";
 
 const Home: NextPage = (data: ISearchInterface) => {
@@ -33,6 +34,7 @@ const Home: NextPage = (data: ISearchInterface) => {
               data.cities
             )}
           />
+          <ListYourPropertySection />
           <ReviewSection />
           <MediaListing mediaImages={mediaImages} />
           <AutoScrollingVillaCard />
