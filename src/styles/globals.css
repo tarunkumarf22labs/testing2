@@ -167,3 +167,27 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Upload Images';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  /* border: 1px solid #999; */
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  /* -webkit-user-select: none; */
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  /* font-weight: 700; */
+  font-size: 12px;
+}
+
+.flag-dropdown {
+border: none !important;
+margin-bottom: 1px;
+}
