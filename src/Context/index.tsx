@@ -12,6 +12,18 @@ function AppProvider({ children }) {
   });
   const [startDate, setStartDate] = useState<string | undefined>("");
   const [endDate, setEndDate] = useState<string | undefined>("");
+  const [selectedDates, onDatesChange] = useState<Date[]>([]);
+  const [currentlocation, setCurrentlocation] = useState({
+    id: 0,
+    title: "",
+    type: "",
+  });
+  const [guestsValue, setGuestsValue] = useState("");
+
+  function ClearSelectedDate () {
+    onDatesChange([])
+    return
+  }
 
   return (
     <AppContext.Provider value={{
@@ -21,6 +33,13 @@ function AppProvider({ children }) {
       setStartDate,
       endDate,
       setEndDate,
+      selectedDates,
+      onDatesChange,
+      ClearSelectedDate,
+      currentlocation,
+      setCurrentlocation,
+      setGuestsValue,
+      guestsValue
     }}>{children}</AppContext.Provider>
   );
 }

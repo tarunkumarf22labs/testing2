@@ -1,5 +1,16 @@
 import { villaInterface } from "src/Interface";
 
+export const PropertyDetailsHeroSectionProps = (villaData: villaInterface) => {
+  let images = villaData.attributes.images;
+  let filterdImage = images.filter((ele) => ele.type === "Main Image");
+  return {
+    image: filterdImage[0].image.data.attributes.formats.xl_webp.url,
+    width: filterdImage[0].image.data.attributes.formats.xl_webp.width,
+    height: filterdImage[0].image.data.attributes.formats.xl_webp.height,
+    alt: filterdImage[0].image.data.attributes.formats.xl_webp.name,
+  };
+};
+
 export const VillaOverviewProps = (villaData: villaInterface) => {
   return {
     name: villaData.attributes.name,
@@ -147,24 +158,39 @@ export const BeforeYouBookProps = (villaData: villaInterface) => {
 };
 
 export const HomeTruthProps = (villaData: villaInterface) => {
+  let images = villaData.attributes.images;
+  let filterdImage = images.filter((ele) => ele.type === "Master Bedroom");
   return {
     secondheading: "HOME TRUTHS",
     heading: villaData.attributes.name,
     story: villaData.attributes.homeTruths,
-    image: "/images/StoryImage.png",
+    image: {
+      image: filterdImage[0].image.data.attributes.formats.xl_webp.url,
+      width: filterdImage[0].image.data.attributes.formats.xl_webp.width,
+      height: filterdImage[0].image.data.attributes.formats.xl_webp.height,
+      alt: filterdImage[0].image.data.attributes.formats.xl_webp.name,
+    },
     stringLength: 500,
-    initialListToShow: 2
+    initialListToShow: 2,
   };
 };
 
 export const HomeStoryProps = (villaData: villaInterface) => {
+  let images = villaData.attributes.images;
+  let filterdImage = images.filter((ele) => ele.type === "Indoor Kitchen");
+
   return {
     secondheading: "STORY",
     heading: villaData.attributes.name,
     story: villaData.attributes.story,
-    image: "/images/StoryImage.png",
+    image: {
+      image: filterdImage[0].image.data.attributes.formats.xl_webp.url,
+      width: filterdImage[0].image.data.attributes.formats.xl_webp.width,
+      height: filterdImage[0].image.data.attributes.formats.xl_webp.height,
+      alt: filterdImage[0].image.data.attributes.formats.xl_webp.name,
+    },
     stringLength: 500,
-    initialListToShow: 2
+    initialListToShow: 2,
   };
 };
 
@@ -177,4 +203,145 @@ export const DetailedDescriptionSectionProps = (villaData: villaInterface) => {
       list: villaData.attributes.detailedDescription,
     },
   };
+};
+
+export const stringToArray = (str) => {
+  return str
+    .split("\n")
+    .map((item) => item.replace("-", "").trim())
+    .map((item, id) => ({ id: id + 1, service: item }));
+};
+
+export const AccordionProps1 = (villaData: villaInterface) => {
+  const { heading, inclusions, exclusions } =
+    InclusionsExclusionsSectionProps(villaData);
+
+  const story = villaData.attributes.homeTruths;
+
+  const storyList = stringToArray(story);
+
+  const data = [
+    { title: "Included services", data: inclusions },
+    { title: "Available services", data: exclusions },
+    { title: "Home Truths", data: storyList },
+  ];
+
+  return { heading, data };
+};
+
+export const AccordionProps2 = (villaData: villaInterface) => {
+  const { heading } = InclusionsExclusionsSectionProps(villaData);
+
+  const { story } = HomeStoryProps(villaData);
+
+  const storyList = stringToArray(story);
+
+  const {
+    detailedDescription: { list },
+  } = DetailedDescriptionSectionProps(villaData);
+
+  const data = [
+    { title: "Story", data: storyList },
+    { title: "Detailed Description", data: list },
+  ];
+
+  return { heading, data };
+};
+
+export const SimilarStaysSectionProps = (villaData: villaInterface) => {
+  let villas = villaData.attributes.similarStays.data;
+  let mappedVillaData = villas.map((villaData) => {
+    let filteredthumbnail = villaData.attributes.images.filter(
+      (villaData) => villaData.type === "Main Image"
+    );
+    let name = villaData.attributes.name;
+    let city = villaData.attributes.address.city.data.attributes.name;
+    let state = villaData.attributes.address.state.data.attributes.name;
+    let image = {
+      image: filteredthumbnail[0].image.data.attributes.formats.thumbnail.url,
+      width: filteredthumbnail[0].image.data.attributes.formats.thumbnail.width,
+      height:
+        filteredthumbnail[0].image.data.attributes.formats.thumbnail.height,
+      alt: filteredthumbnail[0].image.data.attributes.formats.thumbnail.name,
+    };
+    let amenities = [
+      `${villaData.attributes.guestCapacity.minAdultAndChildren}-${
+        villaData.attributes.guestCapacity.maxAdultAndChildren > 0 &&
+        villaData.attributes.guestCapacity.maxAdultAndChildren
+      } ${
+        villaData.attributes.guestCapacity.minAdultAndChildren > 1
+          ? "Guests"
+          : "Guest"
+      }`,
+      `${villaData.attributes.bedRoomCount} ${
+        villaData.attributes.bedRoomCount > 1 ? "Bedrooms" : "Bedroom"
+      } `,
+      `${villaData.attributes.bathRoomCount} ${
+        villaData.attributes.bathRoomCount > 1 ? "Bathrooms" : "Bathroom"
+      } `,
+    ];
+    let basicPrice = villaData.attributes.pricing.basic;
+    return {
+      name,
+      city,
+      state,
+      image,
+      amenities,
+      basicPrice,
+    };
+  });
+  return { heading: "SMILAR STAYS FOR YOU", villaData: mappedVillaData };
+};
+
+export const AmenitiesSectionProps = (villaData: villaInterface) => {
+  let amenitiesData = villaData.attributes.amenities.data;
+  let data = amenitiesData.map((villaData) => {
+    let image = {
+      image: villaData.attributes.icon.data.attributes.url,
+      width: villaData.attributes.icon.data.attributes.width,
+      height: villaData.attributes.icon.data.attributes.height,
+      alt: villaData.attributes.icon.data.attributes.name,
+    };
+    let text = villaData.attributes.title;
+    return {
+      image,
+      text,
+    };
+  });
+  return {
+    heading: `${villaData.attributes.name}’S`,
+    iconsArray: data,
+  };
+};
+
+// title header image price short description, long description
+export const ExperiencesSectionProps = (villaData: villaInterface) => {
+  let props = villaData.attributes.localExperiences.map((ele, id) => {
+    return {
+      id: ele.id,
+      image: {
+        image: ele.image.data.attributes.formats.thumbnail.url,
+        width: ele.image.data.attributes.formats.thumbnail.width,
+        height: ele.image.data.attributes.formats.thumbnail.height,
+        alt: ele.image.data.attributes.formats.thumbnail.name,
+      },
+      shortDescription: ele.shortDescription,
+      longDecription: ele.longDescription,
+      title: ele.title,
+    };
+  });
+  return { villa: villaData.attributes.name, header: "STAY LONGER", props };
+};
+export const ImageGalleryProps = (villaData: villaInterface) => {
+  let images = villaData.attributes.images.map((ele) => {
+    return {
+      title: ele.image.data.attributes.formats.xl_webp.name,
+      url: ele.image.data.attributes.formats.xl_webp.url,
+      type: ele.type,
+      alt: ele.image.data.attributes.name,
+      width: ele.image.data.attributes.formats.xl_webp.width,
+      height: ele.image.data.attributes.formats.xl_webp.height,
+    };
+  });
+  return { images };
 };

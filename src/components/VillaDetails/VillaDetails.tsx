@@ -41,6 +41,7 @@ export default function VillaDetails() {
                 <p>₹1200 per/night</p>
             </div>
         </div>}
+        parentDivStyle="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen px-6 overflow-y-scroll bg-gray-900 bg-opacity-50 md:px-0"
       >
         <div>
             <h2>Master Bedroom Details</h2>
@@ -49,7 +50,7 @@ export default function VillaDetails() {
             
             <div className='flex flex-wrap'>
                 {amenities.map((el, idx)=> (
-                    <div key={idx} className='flex gap-2 justify-start items-center w-1/2 leading-8'>
+                    <div key={idx} className='flex items-center justify-start w-1/2 gap-2 leading-8'>
                         {/* <UserCircleIcon className="w-5" /> */}
                         <p>{el.text}</p>
                     </div>

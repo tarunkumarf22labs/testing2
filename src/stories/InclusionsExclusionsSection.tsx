@@ -6,7 +6,7 @@ import {
   villaServiceDisclaimer,
 } from "src/data/constants";
 
-interface IInclusionsExclusionsSection {
+export interface IInclusionsExclusionsSection {
   heading: string;
   inclusions: {
     id:number;
@@ -79,9 +79,6 @@ const InclusionsExlusions = ({
           <List item={item.service} key={index} />
         ))}
       </ul>
-      {!inclusion ? (
-        <p className="text-[#8A1E61] mt-4 text-xs">{villaServiceDisclaimer}</p>
-      ) : null}
       <p className="text-[#8A1E61] uppercase mt-5 text-xs md:hidden">
         {viewAllInclusions}
       </p>

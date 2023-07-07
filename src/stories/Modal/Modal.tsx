@@ -12,6 +12,7 @@ export interface IModal {
   className?: string;
   square?: boolean;
   segregated?: boolean;
+  parentDivStyle: string;
 }
 
 const Modal = ({
@@ -22,12 +23,13 @@ const Modal = ({
   className,
   square = false,
   segregated = true,
+  parentDivStyle
 }: IModal) => {
   return (
     <>
       {isOpen && (
         <motion.div
-          className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 overflow-y-scroll px-6 md:px-0"
+          className={parentDivStyle}
           onClick={onClose}
         >
           <motion.div
@@ -39,7 +41,7 @@ const Modal = ({
             onClick={(e) => e.stopPropagation()}
           >
             {segregated ? (
-              <div className="flex justify-between items-center font-bold pb-5 capitalize">
+              <div className="flex items-center justify-between pb-5 font-bold capitalize">
                 <h2>{title && title}</h2>
 
                 <button onClick={onClose}>
@@ -47,7 +49,7 @@ const Modal = ({
                 </button>
               </div>
             ) : (
-              <button onClick={onClose} className="absolute right-9 top-9 z-20">
+              <button onClick={onClose} className="absolute z-20 right-9 top-9">
                 <XCircle size={28} weight="fill" />
               </button>
             )}

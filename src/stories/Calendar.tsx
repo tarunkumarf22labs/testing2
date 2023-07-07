@@ -17,6 +17,7 @@ interface CalendarProps {
   MonthOrder: string;
   year: string;
   inVillaDetails?: Boolean;
+  inReserve?: Boolean;
 }
 
 export const Calendar: FC<CalendarProps> = ({
@@ -26,16 +27,18 @@ export const Calendar: FC<CalendarProps> = ({
   MonthOrder,
   year,
   inVillaDetails,
+  inReserve
 }) => {
   const { weekDays } = useContextCalendars();
   const { dayButton } = useContextDaysPropGetters();
   const { days, month } = calendar;
 
   return (
-    <Section className="border-red w-full md:w-[90%] m-auto">
+    <Section className="w-full m-auto border-red">
       <div
         className={`
         ${MonthOrder === "second" ? "hidden sm:grid" : ""} 
+        ${inReserve && 'hidden'}
         grid items-center h-8 grid-cols-7 mb-2 gsm:rid gap-y-2`}
       >
         {weekDays.map((d) => (
@@ -47,6 +50,7 @@ export const Calendar: FC<CalendarProps> = ({
       <main
         className={`
         ${MonthOrder === "second" ? "hidden sm:grid " : ""} 
+        ${inReserve && 'hidden'}
           grid grid-cols-7 gap-x-0 text-red `}
       >
         {days.map((d) => {

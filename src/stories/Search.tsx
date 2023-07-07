@@ -1,40 +1,36 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Datepicker from "./DatePicker";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { AppContext } from "src/Context";
-const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
-const variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-    },
-  },
-};
 
-const testVariants = {
-  animate: {
-    y: "10vh",
-    opacity: 2,
-  },
-  initial: {
-    opacity: 0.5,
-  },
-  transition: {
-    type: "spring",
-    // duration: 2
-    stiffness: 60,
-    damping: 100,
-  },
-};
+interface ISearch {
+  locations: {
+    id: number;
+    type: string;
+    title: string;
+  }[];
+}
 
-const Search = () => {
+const Search = ({ locations }: ISearch) => {
+  const router = useRouter();
   const [showDate, setShowDate] = useState(false);
   const { startDate, endDate } = useContext(AppContext);
-  const [guestsValue, setGuestsValue] = useState("");
+  const {
+    locationtype,
+    location,
+    locationid,
+    checkin,
+    checkout,
+    numberofguests,
+  } = router.query;
 
+  const [currentlocation, setCurrentlocation] = useState({
+    id: 0,
+    title: "",
+    type: "",
+  });
+  const { setGuestsValue, guestsValue } = useContext(AppContext);
   useEffect(() => {
     let datesFlag = (!startDate && !endDate) || (startDate && endDate);
 
@@ -43,60 +39,127 @@ const Search = () => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
+    console.log(typeof value);
     const parsedValue = Number(value);
-    if (!isNaN(parsedValue) && parsedValue >= 1) {
+    if (!isNaN(parsedValue) && parsedValue >= 0) {
       setGuestsValue(value);
+      if (router.pathname === "/result") {
+        router.push({
+          pathname: "/result",
+          query: {
+            ...router.query,
+            numberofguests: value,
+          },
+        });
+      }
     }
   };
+
+  const handleSelect = (e) => {
+    const inputEvent = e.target as HTMLSelectElement;
+    const selectedOptionData =
+      inputEvent.options[inputEvent.selectedIndex].dataset;
+    let data = JSON.parse(selectedOptionData.container);
+
+    setCurrentlocation({
+      id: data.id,
+      title: data.title,
+      type: data.type,
+    });
+    if (router.pathname === "/result") {
+      router.push({
+        pathname: "/result",
+        query: {
+          ...router.query,
+          locationtype: data.type,
+          location: data.title,
+        },
+      });
+    }
+  };
+
+  const firstDateString = startDate;
+  const firstDateParts = firstDateString?.split("/");
+  const firstMonth = parseInt(firstDateParts[1]);
+  const firstDay = parseInt(firstDateParts[0]);
+  const firstYear = parseInt(firstDateParts[2]);
+  const firstDate = new Date(firstYear + "-" + firstMonth + "-" + firstDay);
+
+  // Get the month name
+  const firstMonthName = firstDate.toLocaleString("default", { month: "long" });
+
+  const secondDateString = endDate;
+  const secondDateParts = secondDateString?.split("/");
+  const secondMonth = parseInt(secondDateParts[1]);
+  const secondDay = parseInt(secondDateParts[0]);
+  const secondYear = parseInt(secondDateParts[2]);
+  const secondDate = new Date(secondYear + "-" + secondMonth + "-" + secondDay);
+
+  // Get the month name
+  const secondMonthName = secondDate.toLocaleString("default", {
+    month: "long",
+  });
 
   return (
     <>
       <motion.div
         style={{ opacity: 0.2 }}
-        // variants={testVariants}
         animate={{
-          // y: "10vh",
           opacity: 1,
-          // backgroundColor:"blue",
-          // scale: 2,
-          // rotate: isAnimating ? 360 : 0
         }}
         initial={{
           opacity: 0,
         }}
         transition={{
-          // type: "spring",
           duration: 3,
-          // stiffness: 60,
-          // damping: 100
         }}
-        className="bg-[#FFFFFF] -mt-[50px] relative m-auto z-[49]  border md:w-11/12 lg:flex md:justify-between md:items-center  lg:w-full xl:w-9/12 font-[Brandon Grotesque] text-[#7B8084]"
+        className="bg-[#FFFFFF] -mt-[50px] relative m-auto z-[49]  border md:w-11/12 lg:flex md:justify-between md:items-center  lg:w-full xl:w-9/12 font-[Brandon Grotesque] text-zinc-900 text-xs font-[Brandon Grotesque] font-bold"
       >
         <div className="sm:flex justify-evenly items-center lg:w-[52%]">
-          <div className="mb-8 ml-3 mr-3 border-b-2 sm:w-5/12 md:mb-11">
+          <div className="mb-8 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:mb-9">
             <select
               name=""
               id=""
+              value={location}
               placeholder="Select Destination"
-              className="w-full border border-b-2 border-none outline-none mt-7 focus:ring-0 custom-select"
+              className="w-full text-xs uppercase border border-b-2 border-none outline-none mt-7 focus:ring-0 custom-select"
+              onChange={handleSelect}
             >
-              <option value="Chennai">Chennai</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Mumbai">Mumbai</option>
+              {locations.map((ele, id) => {
+                let value = {
+                  id: ele.id,
+                  title: ele.title,
+                  type: ele.type,
+                };
+                return (
+                  <option
+                    value={value.title}
+                    data-container={JSON.stringify(value)}
+                    key={id}
+                  >
+                    {ele.title}
+                  </option>
+                );
+              })}
             </select>
           </div>
+
           <div
-            className="flex items-center justify-between mt-4 ml-3 mr-3 border-b-2 sm:w-5/12 md:m-0"
+            className="relative flex items-center justify-between h-10 mt-4 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:m-0 sm:-top-[14px] md:-top-[7px]"
             onClick={() => setShowDate(!showDate)}
           >
-            {startDate ? <p>{startDate}</p> : <p>CHECK IN </p>}
+            {startDate ? (
+              <p className="ml-3 uppercase">{`${firstDay} ${firstMonthName} ${firstYear}`}</p>
+            ) : (
+              <p className="ml-3 uppercase">CHECK IN </p>
+            )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 mr-3"
             >
               <path
                 strokeLinecap="round"
@@ -108,17 +171,24 @@ const Search = () => {
         </div>
         <div className="sm:flex justify-evenly items-center lg:w-[52%]">
           <div
-            className="flex items-center justify-between mt-8 ml-3 mr-3 border-b-2 sm:w-5/12 md:m-0"
+            className="relative flex items-center justify-between h-10 mt-4 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:m-0 sm:-top-[2px] md:-top-[7px]"
             onClick={() => setShowDate(!showDate)}
           >
-            {endDate ? <p>{endDate}</p> : <p>CHECK OUT</p>}
+            {endDate ? (
+              <p className="ml-3 uppercase">
+                {" "}
+                {`${secondDay} ${secondMonthName} ${secondYear}`}
+              </p>
+            ) : (
+              <p className="ml-3 uppercase">CHECK OUT</p>
+            )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 mr-3"
             >
               <path
                 strokeLinecap="round"
@@ -127,10 +197,10 @@ const Search = () => {
               />
             </svg>
           </div>
-          <div className="flex items-center justify-between mb-4 ml-3 mr-3 border-b-2 sm:w-5/12 md:mb-11">
+          <div className="flex items-center justify-between mb-4 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:mb-11">
             <input
               type="number"
-              className="w-full border-none mt-7 focus:ring-0"
+              className="w-full border-none placeholder-zinc-900 mt-7 focus:ring-0"
               placeholder="Guest"
               min={1}
               max={20}
@@ -140,9 +210,24 @@ const Search = () => {
           </div>
         </div>
 
-        <div className="bg-[#8A1E61] flex justify-between items-center ml-3 mr-3 mb-4 h-12 sm:mt-5 md:w-11/12 md:-mt-4 md:m-auto md:mb-2 lg:w-[10%] lg:mr-[3%] rounded-sm">
+        <div
+          className="bg-[#8A1E61] flex justify-between items-center ml-3 mr-3 mb-4 h-12 sm:mt-5 md:w-11/12 md:-mt-4 md:m-auto md:mb-2 lg:w-[10%] lg:mr-[3%] rounded-sm"
+          onClick={() => {
+            router.push({
+              pathname: "/result",
+              query: {
+                locationtype: currentlocation.type,
+                location: currentlocation.title,
+                locationid: currentlocation.id,
+                checkin: startDate,
+                checkout: endDate,
+                numberofguests: guestsValue,
+              },
+            });
+          }}
+        >
           <button className="bg-[#8A1E61] text-white text-center m-auto h-full font-[Brandon Grotesque]rounded-sm">
-            <Link href={"/chloe"}>SEARCH</Link>
+            SEARCH
           </button>
         </div>
       </motion.div>
