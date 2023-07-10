@@ -33,7 +33,6 @@ function Root({inVillaDetails,inReserve}: DatePickerProps) {
     start ? setStartDate(start) : setStartDate('');
     end ? setEndDate(end) : setEndDate('');
   }, [start, end, setStartDate, setEndDate, startDate]);
-  console.log(inReserve,'inReserve')
   const firstDateString = startDate;
   const firstDateParts = firstDateString?.split("/");
   const firstMonth = parseInt(firstDateParts[1]);
