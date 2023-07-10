@@ -290,7 +290,7 @@ export const SimilarStaysSectionProps = (villaData: villaInterface) => {
       basicPrice,
     };
   });
-  return { heading: "SMILAR STAYS FOR YOU", villaData: mappedVillaData };
+  return { heading: "SMILAR STAYS FOR YOU", villaData: mappedVillaData, inVillaDetails: true };
 };
 
 export const AmenitiesSectionProps = (villaData: villaInterface) => {
