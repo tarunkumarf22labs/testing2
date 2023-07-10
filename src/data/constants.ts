@@ -424,3 +424,34 @@ export const locations = [
   { id: 5, address: "Bihar", lat: 25.0961, lng: 85.3131 },
   { id: 6, address: "Jharkhand", lat: 23.6102, lng: 85.2799 },
 ];
+
+export const HomeOwnersDataList = [
+  {
+    id:1,
+    text: "Do you have a beautiful vacation home that was once used by you extensively and exclusively for yourself, but now lies idle for long periods of time?",
+  },
+  {
+    id:2,
+    text:"Do you have a beautiful second or third home that is increasingly becoming difficult or expensive to maintain?"
+  },
+  {
+    id:3,
+    text:"Do you want to find a way of recovering the costs of maintenance and staff, and yet generating a generous rental yield?"
+  },
+  {
+    id:4,
+    text:"Are you worried about the possible misuse of a little-used home?"
+  },
+  {
+    id:5,
+    text:"Do you want the flexibility of having unrestricted access to using your home for personal use as long as its available?"
+  },
+  {
+    id:6,
+    text:"Are you proud of your beautiful home, but concerned about the kind of guests who will rent, use and respect the spaces?"
+  },
+  {
+    id:7,
+    text:"Do you want to work with a trusted partner who understands luxury and can market your home effectively keeping in mind your personal needs and financial goals?"
+  }
+]
