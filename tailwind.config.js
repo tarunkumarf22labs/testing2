@@ -32,6 +32,7 @@ module.exports = {
     fontFamily: {
       Brandon: ["Brandon"],
       centaur: ["Centaur"],
+      creattion: ["Creattion"],
     },
   },
 };
