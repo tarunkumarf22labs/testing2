@@ -18,7 +18,7 @@ const Home: NextPage = (data: ISearchInterface) => {
     "text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]";
   const bannerText = "UNLOCK THE LUXURY WITH LUXUNLOCK";
 
-  console.log(data.villa,22)
+  
   return (
     <>
       <Layout title="LuxUnlock">
@@ -34,7 +34,10 @@ const Home: NextPage = (data: ISearchInterface) => {
               data.cities
             )}
           />
-          <OurDestinations OurDestinations={data.villa.data.data}/>
+          {
+            data.villa.data?.data.length > 0 &&
+          <OurDestinations OurDestinations={data.villa.data?.data}/>
+          }
           <ListYourPropertySection />
           <ReviewSection />
           <MediaListing mediaImages={mediaImages} />
@@ -69,9 +72,9 @@ export const getServerSideProps: GetServerSideProps<{
 
   return {
     props: {
-      states: states.data,
-      countries: countries.data,
-      cities: cities.data,
+      states: states?.data,
+      countries: countries?.data,
+      cities: cities?.data,
       villa: villa,
       error,
     },

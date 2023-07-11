@@ -7,7 +7,7 @@ export const SearchLocationProps = (
   cities: ILocations
 ) => {
   let locationData = [];
-  states.data.map((ele) => {
+  states?.data?.map((ele) => {
     locationData.push({
       id: ele.id,
       type: "state",
@@ -15,7 +15,7 @@ export const SearchLocationProps = (
     });
     return;
   });
-  countries.data.map((ele) => {
+  countries?.data?.map((ele) => {
     locationData.push({
       id: ele.id,
       type: "country",
@@ -23,7 +23,7 @@ export const SearchLocationProps = (
     });
     return;
   });
-  cities.data.map((ele) => {
+  cities?.data?.map((ele) => {
     locationData.push({
       id: ele.id,
       type: "city",

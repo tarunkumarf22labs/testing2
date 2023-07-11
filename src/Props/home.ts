@@ -1,7 +1,7 @@
 import { villaInterface } from "src/Interface";
 
 export const ourDestinationsProps = ( villa: villaInterface[] ) => {
-    let mappedVillaData = villa.map((villaData) => {
+    let mappedVillaData = villa?.map((villaData) => {
     
         let filteredthumbnail = villaData.attributes.images.filter(
           (villaData) => villaData.type === "Main Image"
