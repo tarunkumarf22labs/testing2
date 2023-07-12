@@ -3,7 +3,7 @@ import { Container } from "./Container";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { ArrowUp } from "@phosphor-icons/react";
+import { ChevronUpIcon } from "@heroicons/react/24/solid";
 
 const data = [
   {
@@ -14,7 +14,7 @@ const data = [
   {
     big: "/images/a01.png",
     small: "/images/Amenities1.png",
-    para: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel molestiae, suscipit voluptatum esse vero voluptatibus impedit ex! Voluptatem ipsum minus quos porro, vel maiores quod error, voluptatum, aperiam saepe hic. Adipisci, ullam? Sed maxime distinctio, quae obcaecati possimus quidem ipsa vel minus inventore alias saepe aliquam veritatis nobis consequuntur similique asperiores magnam cumque quis perferendis nostrum facilis ut nihil. Aliquid. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel molestiae, suscipit voluptatum esse vero voluptatibus impedit ex! Voluptatem ipsum minus quos porro, vel maiores quod error, voluptatum, aperiam saepe hic. Adipisci, ullam? Sed maxime distinctio, quae obcaecati possimus quidem ipsa vel minus inventore alias saepe aliquam veritatis nobis consequuntur similique asperiores magnam cumque quis perferendis nostrum facilis ut nihil. Aliquid.",
+    para: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
   },
   {
     big: "/images/ListYourPropertyImage33.webp",
@@ -33,18 +33,6 @@ const Spotlight = () => {
     gsap.set(".small-preview-image-container", {
       zIndex: data.length + 1,
     });
-    data?.forEach((_, idx) => {
-      if (idx !== 0) {
-        gsap.set(`.text-content-${idx}`, {
-          zIndex: idx,
-          translateY: "100%",
-        });
-        gsap.set([`.preview-image-${idx}`, `.small-preview-image-${idx}`], {
-          zIndex: idx,
-          translateY: "100%",
-        });
-      }
-    });
     let ctx = gsap.context(() => {
       let tl = gsap.timeline({
         scrollTrigger: {
@@ -60,19 +48,27 @@ const Spotlight = () => {
       data?.forEach((_, idx) => {
         if (idx === 0) {
           setSlideIndex(0);
-          return;
-        }
-        tl.to([`.preview-image-${idx}`, `.small-preview-image-${idx}`], {
-          translateY: 0,
-          onComplete: () => setSlideIndex(idx),
-          onReverseComplete: () => setSlideIndex(idx - 1),
-        }).to(
-          `.text-content-${idx}`,
-          {
+        } else {
+          gsap.set(`.text-content-${idx}`, {
+            zIndex: idx,
+            translateY: "100%",
+          });
+          gsap.set([`.preview-image-${idx}`, `.small-preview-image-${idx}`], {
+            zIndex: idx,
+            translateY: "100%",
+          });
+          tl.to([`.preview-image-${idx}`, `.small-preview-image-${idx}`], {
             translateY: 0,
-          },
-          "<"
-        );
+            onComplete: () => setSlideIndex(idx),
+            onReverseComplete: () => setSlideIndex(idx - 1),
+          }).to(
+            `.text-content-${idx}`,
+            {
+              translateY: 0,
+            },
+            "<"
+          );
+        }
       });
 
       ScrollTrigger.create({
@@ -113,8 +109,8 @@ const Spotlight = () => {
               );
             })}
           </div>
-          <div className="flex items-center gap-8">
-            <div className="w-[559px] h-[369px] relative">
+          <div className="flex flex-1 items-center gap-8">
+            <div className="w-full max-w-[559px] h-[369px] relative">
               <div className="relative w-full h-full overflow-hidden">
                 {data?.map((el, idx) => {
                   return (
@@ -150,12 +146,22 @@ const Spotlight = () => {
                 })}
               </div>
             </div>
-            <div className="flex flex-col items-center">
-              <ArrowUp />
-              <p>
-                {slideIndex + 1}/{data?.length}
+            <div className="flex flex-col items-center w-8">
+              <ChevronUpIcon
+                color="#7B8084"
+                width={20}
+                className="relative top-[12px]"
+              />
+              <div className="h-9 w-[1.5px] bg-[#7B8084]" />
+              <p className="text-xs text-[#8A1E61] py-3">
+                {slideIndex + 1} / {data?.length}
               </p>
-              <ArrowUp className="rotate-180" />
+              <div className="h-9 w-[1.5px] bg-[#7B8084]" />
+              <ChevronUpIcon
+                className="rotate-180 relative bottom-[12px]"
+                color="#7B8084"
+                width={20}
+              />
             </div>
           </div>
         </div>
