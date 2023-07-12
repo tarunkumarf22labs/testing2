@@ -455,3 +455,7 @@ export const HomeOwnersDataList = [
     text:"Do you want to work with a trusted partner who understands luxury and can market your home effectively keeping in mind your personal needs and financial goals?"
   }
 ]
+
+export const spotLightSection = {
+  heading: "Spotlight"
+}
