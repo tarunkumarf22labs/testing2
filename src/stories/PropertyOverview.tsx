@@ -154,7 +154,7 @@ const PropertyOverview = ({
           </div>
           <hr className="my-6" />
           <p className="text-[#545456] font-medium text-xl">{availableDays}</p>
-          <div className="mt-5 w-full md:w-[110%] md:-ml-[5%]">
+          <div className="w-full mt-5">
             <Datepicker inVillaDetails={true} />
           </div>
         </div>
