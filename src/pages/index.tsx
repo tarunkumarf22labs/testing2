@@ -2,9 +2,6 @@ import Layout from "@/components/Layout";
 import type { GetServerSideProps, NextPage } from "next";
 import Carousel from "src/stories/Carousel";
 import { HomeBannerimages } from "src/data/constants";
-import Search from "src/stories/Search";
-import { AppContext } from "src/Context";
-import { useContext } from "react";
 import MediaListing from "src/stories/MediaListing";
 import { mediaImages } from "src/data/constants";
 import { ISearchInterface } from "src/Interface/Search";
@@ -13,6 +10,7 @@ import { SearchLocationProps } from "src/Props/Search";
 import AutoScrollingVillaCard from "src/stories/AutoScrollingVillaCard";
 import { ListYourPropertySection } from "src/stories/ListYourPropertySection";
 import { ReviewSection } from "src/stories/ReviewSection";
+import Spotlight from "src/stories/Spotlight";
 
 const Home: NextPage = (data: ISearchInterface) => {
   const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
@@ -34,6 +32,7 @@ const Home: NextPage = (data: ISearchInterface) => {
               data.cities
             )}
           />
+          <Spotlight />
           <ListYourPropertySection />
           <ReviewSection />
           <MediaListing mediaImages={mediaImages} />

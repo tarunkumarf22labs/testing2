@@ -1,0 +1,146 @@
+import React, { useLayoutEffect, useRef } from "react";
+import { Container } from "./Container";
+import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+const images = [
+  {
+    big: "/images/CurratedCollectionsModelImage1.webp",
+    small: "/images/GallerySmallRoom1.png",
+    para: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus vel illo, ad ex iure minus explicabo voluptatibus provident animi cupiditate deserunt earum repudiandae nam sunt! Magnam ea vero excepturi voluptates.",
+  },
+  {
+    big: "/images/a01.png",
+    small: "/images/Amenities1.png",
+    para: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel molestiae, suscipit voluptatum esse vero voluptatibus impedit ex! Voluptatem ipsum minus quos porro, vel maiores quod error, voluptatum, aperiam saepe hic. Adipisci, ullam? Sed maxime distinctio, quae obcaecati possimus quidem ipsa vel minus inventore alias saepe aliquam veritatis nobis consequuntur similique asperiores magnam cumque quis perferendis nostrum facilis ut nihil. Aliquid. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel molestiae, suscipit voluptatum esse vero voluptatibus impedit ex! Voluptatem ipsum minus quos porro, vel maiores quod error, voluptatum, aperiam saepe hic. Adipisci, ullam? Sed maxime distinctio, quae obcaecati possimus quidem ipsa vel minus inventore alias saepe aliquam veritatis nobis consequuntur similique asperiores magnam cumque quis perferendis nostrum facilis ut nihil. Aliquid.",
+  },
+  {
+    big: "/images/ListYourPropertyImage33.webp",
+    small: "/images/ListYourPropertyImage11.webp",
+    para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ad nobis nemo quibusdam expedita commodi perferendis pariatur perspiciatis, laboriosam qui ipsa mollitia accusamus rerum fugit sapiente repudiandae, possimus facilis necessitatibus?",
+  },
+];
+
+const Spotlight = () => {
+  const ref = useRef(null);
+  useLayoutEffect(() => {
+    gsap.set(".item-masirum-container", {
+      zIndex: images.length + 1,
+    });
+    images?.forEach((_, idx) => {
+      if (idx !== 0) {
+        gsap.set(`.text-maberum-${idx}`, {
+          zIndex: idx,
+          translateY: "100%",
+        });
+        gsap.set([`.item-maberum-${idx}`, `.item-masirum-${idx}`], {
+          zIndex: idx,
+          translateY: "100%",
+        });
+      }
+    });
+    let ctx = gsap.context(() => {
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ref?.current,
+          scrub: true,
+          start: "top 20%",
+          end: "bottom 20%",
+          toggleActions: "play none reverse none",
+          invalidateOnRefresh: true,
+        },
+      });
+
+      images?.forEach((el, idx) => {
+        if (idx === 0) {
+          return;
+        }
+        tl.to([`.item-maberum-${idx}`, `.item-masirum-${idx}`], {
+          translateY: 0,
+        }).to(`.text-maberum-${idx}`, { translateY: 0 }, "<");
+      });
+
+      ScrollTrigger.create({
+        trigger: ref?.current,
+        scrub: true,
+        markers: true,
+        pin: true,
+        start: "top 20%",
+        invalidateOnRefresh: true,
+      });
+    }, ref);
+    return () => ctx.revert();
+  });
+  return (
+    <Container bgWhite={true}>
+      <div ref={ref} className="flex flex-col gap-y-5">
+        <p className="text-sm text-[#8A1E61] tracking-widest">
+          {"LuxUNLOCK’s"}
+        </p>
+        <h1 className="uppercase text-4xl text-[#18181B] font-light md:text-5xl">
+          Spotlight
+        </h1>
+        <div className="flex gap-x-[60px] justify-between">
+          <div className="relative flex-1 flex flex-col max-w-xl overflow-hidden">
+            {images?.map((_, idx) => {
+              return (
+                <div
+                  key={`${idx}`}
+                  className={`flex flex-col gap-y-4 flex-1 py-10 absolute text-maberum h-full w-full bg-white text-maberum-${idx}`}
+                >
+                  <h2 className="text-[#1C1917] text-[42px] font-light">
+                    New Villa In Sri Lanka
+                  </h2>
+                  <p className="text-[22px] leading-[34px] text-[#545456]">
+                    {_.para}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex flex-col bg-red-500">
+            <div className="w-[559px] h-[369px] relative">
+              <div className="relative w-full h-full overflow-hidden">
+                {images?.map((el, idx) => {
+                  return (
+                    <Image
+                      key={`${idx}`}
+                      src={el?.big}
+                      alt="List your Property 1"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      className={`absolute w-full h-full object-cover item-maberum-${idx}`}
+                    />
+                  );
+                })}
+              </div>
+              <div
+                className={
+                  "item-masirum-container w-[229px] h-[152px] absolute -bottom-10 right-10 overflow-hidden"
+                }
+              >
+                {images?.map((el, idx) => {
+                  return (
+                    <Image
+                      key={`${idx}`}
+                      src={el?.small}
+                      alt="List your Property 1"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      className={`absolute h-full w-full object-cover item-masirum-${idx}`}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+export default Spotlight;
