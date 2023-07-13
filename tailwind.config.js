@@ -28,6 +28,9 @@ module.exports = {
       animation: {
         "fade-in-down": "fade-in-down 0.5s ease-in-out",
       },
+      colors : {
+        pantone : "#7B8084"
+      }
     },
     fontFamily: {
       Brandon: ["Brandon"],
