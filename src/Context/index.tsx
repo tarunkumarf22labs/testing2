@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { GuestsInterface } from "src/Interface";
 
+interface InumberOfRooms {
+  id: number;
+  numberOfRooms: number;
+}
+
 export const AppContext = React.createContext(undefined);
 function AppProvider({ children }) {
   const [numberOfGuests, setNumberOfGuests] = useState<GuestsInterface>({
@@ -19,6 +24,7 @@ function AppProvider({ children }) {
     type: "",
   });
   const [guestsValue, setGuestsValue] = useState("");
+  const [selectedNumberOfRooms, setSelectedNumberOfRooms] = useState<InumberOfRooms[]>([])
 
   function ClearSelectedDate () {
     onDatesChange([])
@@ -39,7 +45,9 @@ function AppProvider({ children }) {
       currentlocation,
       setCurrentlocation,
       setGuestsValue,
-      guestsValue
+      guestsValue,
+      selectedNumberOfRooms,
+      setSelectedNumberOfRooms
     }}>{children}</AppContext.Provider>
   );
 }

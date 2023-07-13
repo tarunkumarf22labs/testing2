@@ -1,6 +1,4 @@
 import React, {
-  Dispatch,
-  SetStateAction,
   useContext,
   useEffect,
   useState,
@@ -18,6 +16,20 @@ interface IReserve {
   basicPrice: number;
   petPrice: number;
   extraGuestPrice: number;
+  roomDetails: {
+    id: number;
+    title: string;
+    guestCapacity: {
+      minAdultAndChildren: number;
+      maxAdultAndChildren: number;
+      infant: number;
+      pet: number;
+    };
+    basicPrice: number;
+    petPrice: number;
+    extraGuestsPrice: number;
+    selectedNumberOfRooms?: number;
+  }[];
 }
 
 const Reserve = ({
@@ -28,6 +40,7 @@ const Reserve = ({
   basicPrice,
   petPrice,
   extraGuestPrice,
+  roomDetails,
 }: IReserve) => {
   const [guestsSelectorOpen, setGuestsSelectorOpen] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
@@ -39,6 +52,9 @@ const Reserve = ({
     numberOfGuests,
     selectedDates,
     ClearSelectedDate,
+    selectedNumberOfRooms,
+    setSelectedNumberOfRooms,
+    setNumberOfGuests,
   } = useContext(AppContext);
 
   let Number_In_Days;
@@ -71,16 +87,9 @@ const Reserve = ({
     Number_In_Days = 0;
   }
 
-  if(startDate && !endDate){
-    Number_In_Days = 1
+  if (startDate && !endDate) {
+    Number_In_Days = 1;
   }
-
-  let GuestProps = {
-    infant,
-    maxAdultAndChildren,
-    minAdultAndChildren,
-    pet,
-  };
 
   let TotalGuests =
     numberOfGuests.additional_guests +
@@ -88,11 +97,85 @@ const Reserve = ({
     numberOfGuests.children +
     numberOfGuests.infants;
 
-  const totalPrice =
-    numberOfGuests.adults * basicPrice +
-    numberOfGuests.children * basicPrice +
-    numberOfGuests.additional_guests * extraGuestPrice +
-    numberOfGuests.pets * petPrice;
+  const totalCapacityInSelectedRooms = () => {
+    if (roomSelected === false) {
+      let totalPrice =
+        numberOfGuests.adults * basicPrice +
+        numberOfGuests.children * basicPrice +
+        numberOfGuests.additional_guests * extraGuestPrice +
+        numberOfGuests.pets * petPrice;
+      return totalPrice;
+    } else {
+      let roomsInContext = [];
+      selectedNumberOfRooms.forEach((ele) => {
+        roomDetails.forEach((room) => {
+          if (ele.id === room.id) {
+            room.selectedNumberOfRooms = ele.numberOfRooms;
+            roomsInContext.push(room);
+          }
+        });
+      });
+      let totalPriceForTheseRooms = 0;
+
+      roomsInContext.forEach((ele) => {
+        totalPriceForTheseRooms += ele.basicPrice * ele.selectedNumberOfRooms;
+      });
+      let priceForextraGuest =
+        numberOfGuests.additional_guests * extraGuestPrice;
+      let priceForPet = numberOfGuests.pets * petPrice;
+      let totalPrice =
+        totalPriceForTheseRooms + priceForextraGuest + priceForPet;
+      return totalPrice;
+    }
+  };
+
+  const GuestProps = () => {
+    if (roomSelected === false) {
+      let GuestProps = {
+        infant,
+        maxAdultAndChildren,
+        minAdultAndChildren,
+        pet,
+      };
+      return GuestProps;
+    } else {
+      let roomsInContext = [];
+      selectedNumberOfRooms.forEach((ele) => {
+        roomDetails.forEach((room) => {
+          if (ele.id === room.id) {
+            room.selectedNumberOfRooms = ele.numberOfRooms;
+            roomsInContext.push(room);
+          }
+        });
+      });
+      let numberOfInfants = 0;
+      let numberOfMaxAdultAndChildren = 0;
+      let numberOfMinAdultAndChildren = 0;
+      let numberOfPet = 0;
+
+      roomsInContext.forEach((ele) => {
+        numberOfInfants += ele.guestCapacity.infant * ele.selectedNumberOfRooms;
+        numberOfMaxAdultAndChildren +=
+          ele.guestCapacity.maxAdultAndChildren * ele.selectedNumberOfRooms;
+        numberOfMinAdultAndChildren +=
+          ele.guestCapacity.minAdultAndChildren * ele.selectedNumberOfRooms;
+        numberOfPet += ele.guestCapacity.pet * ele.selectedNumberOfRooms;
+      });
+
+      return {
+        infant: numberOfInfants,
+        maxAdultAndChildren: numberOfMaxAdultAndChildren,
+        minAdultAndChildren: numberOfMinAdultAndChildren,
+        pet: numberOfPet,
+      };
+    }
+  };
+
+  useEffect(() => {
+    GuestProps();
+    totalCapacityInSelectedRooms();
+    // eslint-disable-next-line no-use-before-define, react-hooks/exhaustive-deps
+  }, [roomSelected]);
 
   return (
     <div className="m-auto">
@@ -105,9 +188,18 @@ const Reserve = ({
             roomSelected
               ? ""
               : "bg-[#8A1E61] text-white ease-in-out duration-500 rounded-sm"
-          } flex items-center justify-center w-6/12 h-full `}
+          } flex items-center justify-center w-6/12 h-full cursor-pointer`}
           onClick={() => {
+            setNumberOfGuests({
+              adults: 1,
+              children: 0,
+              infants: 0,
+              pets: 0,
+              additional_guests: 0,
+            });
             setRoomSelected(!roomSelected);
+            setGuestsSelectorOpen(!guestsSelectorOpen);
+            totalCapacityInSelectedRooms();
           }}
         >
           VILLA
@@ -117,8 +209,16 @@ const Reserve = ({
             roomSelected
               ? "bg-[#8A1E61]  text-white ease-in-out duration-500"
               : ""
-          } flex items-center justify-center w-6/12 h-full`}
+          } flex items-center justify-center w-6/12 h-full cursor-pointer`}
           onClick={() => {
+            // setGuestsSelectorOpen(!guestsSelectorOpen);
+            setNumberOfGuests({
+              adults: 1,
+              children: 0,
+              infants: 0,
+              pets: 0,
+              additional_guests: 0,
+            });
             setRoomSelected(!roomSelected);
           }}
         >
@@ -126,7 +226,7 @@ const Reserve = ({
         </div>
       </div>
       <div
-        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs"
+        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
         onClick={() => setShowDate(!showDate)}
       >
         <p className="flex items-center justify-start w-6/12 h-full">
@@ -148,7 +248,7 @@ const Reserve = ({
         </svg>
       </div>
       <div
-        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs"
+        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
         onClick={() => setShowDate(!showDate)}
       >
         <p className="flex items-center justify-start w-6/12 h-full">
@@ -170,13 +270,13 @@ const Reserve = ({
         </svg>
       </div>
       {showDate && (
-        <div className="w-10/12 m-auto mt-5">
+        <div className="w-10/12 m-auto mt-5 cursor-pointer">
           <Datepicker inReserve={true} inVillaDetails={true} />
         </div>
       )}
       {roomSelected && (
         <div
-          className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs"
+          className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
           onClick={() => setshowRoomOption(!showRoomOption)}
         >
           <p className="flex items-center justify-start w-6/12 h-full">
@@ -204,7 +304,7 @@ const Reserve = ({
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-5 h-5"
+              className="w-5 h-5 cursor-pointer"
             >
               <path
                 strokeLinecap="round"
@@ -216,8 +316,12 @@ const Reserve = ({
         </div>
       )}
       {showRoomOption && (
-        <div className="flex items-center justify-between w-10/12 m-auto  text-center h-68 bg-[#F8F8F9] mt-2 text-xs">
-          <SelectRooms />
+        <div
+          className={`flex items-center justify-between w-10/12 m-auto  text-center h-68 bg-[#F8F8F9] mt-2 text-xs ${
+            !roomSelected && "hidden"
+          }`}
+        >
+          <SelectRooms roomDetails={roomDetails} />
         </div>
       )}
       <div
@@ -235,7 +339,7 @@ const Reserve = ({
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="flex items-center justify-end w-5 h-5"
+            className="flex items-center justify-end w-5 h-5 cursor-pointer"
           >
             <path
               strokeLinecap="round"
@@ -250,7 +354,7 @@ const Reserve = ({
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-5 h-5"
+            className="w-5 h-5 cursor-pointer"
           >
             <path
               strokeLinecap="round"
@@ -262,31 +366,31 @@ const Reserve = ({
       </div>
       {guestsSelectorOpen && (
         <div className="flex items-center justify-between w-10/12 m-auto  text-center h-68 bg-[#F8F8F9] mt-2 text-xs">
-          <Guests {...GuestProps} />
+          <Guests {...GuestProps()} />
         </div>
       )}
 
       <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 text-center">
         <p className="flex items-center justify-start h-full ml-1">
-          ₹{totalPrice} {"X "}
+          ₹{totalCapacityInSelectedRooms()} {"X "}
           {Number_In_Days} {"Nights"}
         </p>
         <p className="flex items-center justify-end h-full">
-          ₹{totalPrice * Number_In_Days}
+          ₹{totalCapacityInSelectedRooms() * Number_In_Days}
         </p>
       </div>
       <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 text-center">
         <p className="flex items-center justify-start h-full ml-1">VAT / GST</p>
         <p className="flex items-center justify-end h-full">
-          ₹{(totalPrice * Number_In_Days * 18) / 100}
+          ₹{(totalCapacityInSelectedRooms() * Number_In_Days * 18) / 100}
         </p>
       </div>
       <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 font-bold text-center">
         <p className="flex items-center justify-start h-full">Total Price</p>
         <p className="flex items-center justify-end h-full">
           ₹
-          {totalPrice * Number_In_Days +
-            (totalPrice * Number_In_Days * 18) / 100}
+          {totalCapacityInSelectedRooms() * Number_In_Days +
+            (totalCapacityInSelectedRooms() * Number_In_Days * 18) / 100}
         </p>
       </div>
       <div className="flex justify-center items-center w-10/12 h-12 m-auto mt-5 font-bold bg-[#8A1E61] text-white p-auto hover:text-[#8A1E61] hover:bg-[#F8F8F9] rounded-sm">

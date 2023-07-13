@@ -40,6 +40,22 @@ export const VillaOverviewProps = (villaData: villaInterface) => {
 export const ReserveAndLocationDetailsSectionProps = (
   villaData: villaInterface
 ) => {
+  let roomData = villaData.attributes.rooms.data.map((ele) => {
+    return {
+          id:ele.id,
+          title: ele.attributes.name,
+          guestCapacity: {
+            minAdultAndChildren: ele.attributes.guestCapacity.minAdultAndChildren,
+            maxAdultAndChildren: ele.attributes.guestCapacity.maxAdultAndChildren,
+            infant: ele.attributes.guestCapacity.infant,
+            pet: ele.attributes.guestCapacity.pet,
+          },
+          basicPrice: ele.attributes.pricing.basic,
+          petPrice: ele.attributes.pricing.pet,
+          extraGuestsPrice: ele.attributes.pricing.extraGuest 
+    }
+  })
+
   return {
     locations: villaData.attributes.gettingThere,
     address: villaData.attributes.address.city.data.attributes.name,
@@ -52,6 +68,7 @@ export const ReserveAndLocationDetailsSectionProps = (
     basicPrice: villaData.attributes.pricing.basic,
     petPrice: villaData.attributes.pricing.pet,
     extraGuestPrice: villaData.attributes.pricing.extraGuest,
+    roomDetails: roomData
   };
 };
 
@@ -83,21 +100,21 @@ export const BeforeYouBookProps = (villaData: villaInterface) => {
       conditions: [
         {
           label: "Amount",
-          text: villaData.attributes.refundableSecurityDeposit.amount,
+          text: villaData.attributes.refundableSecurityDeposit?.amount,
         },
         {
           label: "Payment Collection Date",
           text: villaData.attributes.refundableSecurityDeposit
-            .paymentCollectionDate,
+            ?.paymentCollectionDate,
         },
         {
           label: "Payment Return Date",
           text: villaData.attributes.refundableSecurityDeposit
-            .paymentReturnDate,
+            ?.paymentReturnDate,
         },
         {
           label: "How it is used",
-          text: villaData.attributes.refundableSecurityDeposit.howItIsUsed,
+          text: villaData.attributes.refundableSecurityDeposit?.howItIsUsed,
         },
       ],
     },
@@ -160,6 +177,9 @@ export const BeforeYouBookProps = (villaData: villaInterface) => {
 export const HomeTruthProps = (villaData: villaInterface) => {
   let images = villaData.attributes.images;
   let filterdImage = images.filter((ele) => ele.type === "Master Bedroom");
+  if (filterdImage.length === 0) {
+    filterdImage = images.filter((ele) => ele.type === "Main Image");
+  }
   return {
     secondheading: "HOME TRUTHS",
     heading: villaData.attributes.name,
@@ -178,7 +198,9 @@ export const HomeTruthProps = (villaData: villaInterface) => {
 export const HomeStoryProps = (villaData: villaInterface) => {
   let images = villaData.attributes.images;
   let filterdImage = images.filter((ele) => ele.type === "Indoor Kitchen");
-
+  if (filterdImage.length === 0) {
+    filterdImage = images.filter((ele) => ele.type === "Main Image");
+  }
   return {
     secondheading: "STORY",
     heading: villaData.attributes.name,
@@ -314,7 +336,6 @@ export const AmenitiesSectionProps = (villaData: villaInterface) => {
   };
 };
 
-// title header image price short description, long description
 export const ExperiencesSectionProps = (villaData: villaInterface) => {
   let props = villaData.attributes.localExperiences.map((ele, id) => {
     return {
@@ -344,4 +365,48 @@ export const ImageGalleryProps = (villaData: villaInterface) => {
     };
   });
   return { images };
+};
+
+export const RoomSectionProps = (villaData: villaInterface) => {
+  let data = villaData.attributes.rooms.data.map((ele) => {
+    let amenities = ele.attributes.amenities.data.map((ele) =>{
+      return {
+        icon: ele.attributes.icon.data.attributes.url,
+        text: ele.attributes.title
+      }
+    })
+    let images = villaData.attributes.images.map((ele) => {
+      return {
+        thumbnail:ele.image.data.attributes.formats.thumbnail.url,
+        image: ele.image.data.attributes.url,
+        type: ele.type
+      }
+    })
+    return {
+      id:ele.id,
+      title: ele.attributes.name,
+      description: ele.attributes.description,
+      guestCapacity: {
+        minAdultAndChildren: ele.attributes.guestCapacity.minAdultAndChildren,
+        maxAdultAndChildren: ele.attributes.guestCapacity.maxAdultAndChildren,
+        infant: ele.attributes.guestCapacity.infant,
+        pet: ele.attributes.guestCapacity.pet,
+      },
+      bathRoomType: ele.attributes.bathRoomType,
+      roomCount: ele.attributes.roomCount,
+      pricing: {
+        basic: ele.attributes.pricing.basic,
+        pet: ele.attributes.pricing.pet,
+        extraGuest: ele.attributes.pricing.extraGuest,
+      },
+      amenities:amenities,
+      images: images
+      
+    };
+  });
+  return {
+    heading: 'Rooms',
+    villaTitle: villaData.attributes.name,
+    roomData: data,
+  };
 };

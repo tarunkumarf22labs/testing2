@@ -45,6 +45,7 @@ import {
   ExperiencesSectionProps,
   AccordionProps1,
   AccordionProps2,
+  RoomSectionProps,
 } from "src/Props";
 import { Accordion } from "src/stories/Accordion";
 
@@ -53,7 +54,7 @@ const Home: NextPage = (data: IHomeInterface) => {
   const [elementNo, setElementNo] = useState<number>(0);
   const villaData = data?.data?.data;
   const isMobile = useIsMobile();
-
+  console.log(villaData);
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
@@ -61,6 +62,7 @@ const Home: NextPage = (data: IHomeInterface) => {
   const setItemNo = (id) => {
     setElementNo(id);
   };
+
   return (
     <Layout title="LuxUnlock">
       {data.error === null ? (
@@ -77,7 +79,7 @@ const Home: NextPage = (data: IHomeInterface) => {
                   {...ReserveAndLocationDetailsSectionProps(villaData)}
                 />
               </div>
-              <RoomSection heading={heading} />
+              <RoomSection {...RoomSectionProps(villaData)} />
             </div>
             {/* Desktop */}
             <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
@@ -89,9 +91,12 @@ const Home: NextPage = (data: IHomeInterface) => {
           <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
           {!isMobile ? (
             <>
+            {
+              InclusionsExclusionsSectionProps(villaData).inclusions.length > 0 && InclusionsExclusionsSectionProps(villaData).exclusions.length>0 &&
               <InclusionsExclusionsSection
                 {...InclusionsExclusionsSectionProps(villaData)}
               />
+            }
               <div className="mb-20"></div>
               {/* HOME TRUTHS */}
               {HomeTruthProps(villaData).story && (
@@ -106,18 +111,21 @@ const Home: NextPage = (data: IHomeInterface) => {
             beforeYouBook={BeforeYouBookProps(villaData)}
             title={villaData.attributes.name}
           />
+          {
+            ExperiencesSectionProps(villaData).props.length > 0 &&
           <ExperiencesSection
             setItemNo={setItemNo}
             toggleModal={toggleModal}
             {...ExperiencesSectionProps(villaData)}
           />
+          }
           {!isMobile ? (
             <>
               {HomeStoryProps(villaData).story && (
                 <StorySection {...HomeStoryProps(villaData)} />
               )}
               {DetailedDescriptionSectionProps(villaData).detailedDescription
-                .list && (
+                .list.length > 0 && (
                 <DetailedDescriptionSection
                   {...DetailedDescriptionSectionProps(villaData)}
                 />
@@ -162,7 +170,7 @@ export const getServerSideProps: GetServerSideProps<{
   error: string | null;
 }> = async (): Promise<any> => {
   const { data, error, status } = await NetWrapper(
-    "api/properties/2?populate=deep"
+    "api/properties/3?populate=deep"
   );
 
   return { props: { data, error } };
