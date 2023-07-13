@@ -15,6 +15,19 @@ interface IReserveAndLocationDetailsSection {
   basicPrice: number;
   petPrice: number;
   extraGuestPrice: number;
+  roomDetails: {
+    id: number;
+    title: string;
+    guestCapacity: {
+      minAdultAndChildren: number;
+      maxAdultAndChildren: number;
+      infant: number;
+      pet: number;
+    },
+    basicPrice: number;
+    petPrice: number;
+    extraGuestsPrice: number;
+  }[];
 }
 const ReserveAndLocationDetailsSection = ({
   locations,
@@ -28,6 +41,7 @@ const ReserveAndLocationDetailsSection = ({
   basicPrice,
   petPrice,
   extraGuestPrice,
+  roomDetails
 }: IReserveAndLocationDetailsSection) => {
   const LocationProps = {
     locations,
@@ -43,8 +57,8 @@ const ReserveAndLocationDetailsSection = ({
     basicPrice,
     petPrice,
     extraGuestPrice,
+    roomDetails
   };
-
   return (
     <>
       <div className="bg-white">

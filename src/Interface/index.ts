@@ -279,7 +279,38 @@ interface Iroom {
     areaInSqFt: number;
     guestCapacity: IguestCapacity;
     amenities: {
-      data: IRoomAmenity[];
+      data: {
+        id: number;
+        attributes: {
+          title: string;
+          createdAt: string;
+          updatedAt: string;
+          publishedAt: string;
+          icon: {
+            data : {
+              id: number;
+              attributes: {
+                name: string;
+                alternativeText: string;
+                caption: string;
+                width: number;
+                height: number;
+                formats: any; 
+                hash: string;
+                ext: string;
+                mime: string;
+                size: string;
+                url: string;
+                previewUrl: string;
+                provider: string;
+                provider_metadata: null | string;
+                createdAt: string;
+                updatedAt: string;
+              }
+            }
+          }
+        }
+      }[];
     };
     pricing: {
       id: number;
@@ -292,10 +323,11 @@ interface Iroom {
       id:number;
       name: string;
     }[];
-    images: {
-      id: number;
-      type: string;
-    }[];
+    images: IImage[];
+    // {
+    //   id: number;
+    //   type: string;
+    // }[];
   }
 }
 

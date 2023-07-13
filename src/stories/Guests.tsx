@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "src/Context";
 import ToastAlert from "src/Toast";
 interface IGuests {
@@ -16,8 +16,39 @@ const Guests = ({
 }: IGuests) => {
   const { setNumberOfGuests, numberOfGuests } = useContext(AppContext);
   const capacity = infant + maxAdultAndChildren;
+
+  useEffect(() =>{
+    if((numberOfGuests.children + numberOfGuests.adults) > minAdultAndChildren){
+      setNumberOfGuests((prev) => ({
+        ...prev,
+        adults: minAdultAndChildren,
+      }));
+    }
+    if(numberOfGuests.infants > infant){
+      setNumberOfGuests((prev) => ({
+        ...prev,
+        infants: infant,
+      }));
+    }
+    if(numberOfGuests.pets > pet){
+      setNumberOfGuests((prev) => ({
+        ...prev,
+        pets: pet,
+      }));
+    }
+    if((numberOfGuests.children + numberOfGuests.adults + numberOfGuests.additional_guests) > maxAdultAndChildren){
+      setNumberOfGuests((prev) => ({
+        ...prev,
+        additional_guests: maxAdultAndChildren-minAdultAndChildren,
+      }));
+    }
+  },[infant, maxAdultAndChildren, minAdultAndChildren, numberOfGuests, pet, setNumberOfGuests])
   
   function IncreaseNumberOfGuest(type: string): void {
+    if(!minAdultAndChildren || !maxAdultAndChildren){
+      ToastAlert("Please select a room first",'warn');
+      return;
+    }
     const CountOfGuests =
       numberOfGuests.additional_guests +
       numberOfGuests.adults +
@@ -78,6 +109,10 @@ const Guests = ({
   }
 
   function DecreaseNumberOfGuest(type: string): void {
+    if(!minAdultAndChildren || !maxAdultAndChildren){
+      ToastAlert("Please select a room first",'warn')
+      return;
+    }
     if (type === "adults" && numberOfGuests.adults === 1) {
       ToastAlert("adult can not be zero",'warn')
       return;
@@ -99,7 +134,7 @@ const Guests = ({
           <p className="text-left">Age 13+</p>
         </div>
         <div className="flex items-center justify-between w-2/5 pl-5 pr-5">
-          <div onClick={() => IncreaseNumberOfGuest("adults")}>
+          <div onClick={() => IncreaseNumberOfGuest("adults")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -132,7 +167,7 @@ const Guests = ({
               <p>{numberOfGuests.adults}</p>
             )}
           </div>
-          <div onClick={() => DecreaseNumberOfGuest("adults")}>
+          <div onClick={() => DecreaseNumberOfGuest("adults")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -158,7 +193,7 @@ const Guests = ({
           <p className="text-left">Ages 5-12 yrs</p>
         </div>
         <div className="flex items-center justify-between w-2/5 pl-5 pr-5">
-          <div onClick={() => IncreaseNumberOfGuest("children")}>
+          <div onClick={() => IncreaseNumberOfGuest("children")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -191,7 +226,7 @@ const Guests = ({
               <p>{numberOfGuests.children}</p>
             )}
           </div>
-          <div onClick={() => DecreaseNumberOfGuest("children")}>
+          <div onClick={() => DecreaseNumberOfGuest("children")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -217,7 +252,7 @@ const Guests = ({
           <p className="text-left">Under 5 yrs</p>
         </div>
         <div className="flex items-center justify-between w-2/5 pl-5 pr-5">
-          <div onClick={() => IncreaseNumberOfGuest("infants")}>
+          <div onClick={() => IncreaseNumberOfGuest("infants")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -250,7 +285,7 @@ const Guests = ({
               <p>{numberOfGuests.infants}</p>
             )}
           </div>
-          <div onClick={() => DecreaseNumberOfGuest("infants")}>
+          <div onClick={() => DecreaseNumberOfGuest("infants")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -276,7 +311,7 @@ const Guests = ({
           <p className="text-left">No. of Pets</p>
         </div>
         <div className="flex items-center justify-between w-2/5 pl-5 pr-5">
-          <div onClick={() => IncreaseNumberOfGuest("pets")}>
+          <div onClick={() => IncreaseNumberOfGuest("pets")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -309,7 +344,7 @@ const Guests = ({
               <p>{numberOfGuests.pets}</p>
             )}
           </div>
-          <div onClick={() => DecreaseNumberOfGuest("pets")}>
+          <div onClick={() => DecreaseNumberOfGuest("pets")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -335,7 +370,7 @@ const Guests = ({
           <p className="text-left">No. of Additional Guests</p>
         </div>
         <div className="flex items-center justify-between w-2/5 pl-5 pr-5 mb-5">
-          <div onClick={() => IncreaseNumberOfGuest("additional_guests")}>
+          <div onClick={() => IncreaseNumberOfGuest("additional_guests")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -368,7 +403,7 @@ const Guests = ({
               <p>{numberOfGuests.additional_guests}</p>
             )}
           </div>
-          <div onClick={() => DecreaseNumberOfGuest("additional_guests")}>
+          <div onClick={() => DecreaseNumberOfGuest("additional_guests")} className="cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

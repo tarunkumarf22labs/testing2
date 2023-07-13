@@ -77,7 +77,6 @@ const Result: NextPage = (data: ISearchInterface) => {
   };
 
   async function fetchVillaData() {
-    console.log("function has been called");
     let query = [];
     if (locationtype && locationid) {
       query.push(`&filters[address][${locationtype}][id][$eq]=${locationid}`);
@@ -87,7 +86,6 @@ const Result: NextPage = (data: ISearchInterface) => {
         `&filters[guestCapacity][maxAdultAndChildren][$gte]=${numberofguests}`
       );
     }
-    console.log(query);
     try {
       let url =
         query.length > 0

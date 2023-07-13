@@ -35,7 +35,7 @@ export const DetailedDescriptionSection = ({
 
   return (
     <div id="detail-description-to-view">
-      <div className="-z-10 sm:min-w-screen">
+      <div className=" sm:min-w-screen">
         <Image
           src={image}
           alt="StoryImage"
@@ -44,7 +44,7 @@ export const DetailedDescriptionSection = ({
           className="w-full"
         />
       </div>
-      <div className="relative z-10 px-4 py-8 mx-5 -mt-16 bg-white sm:-mt-24 xl:-mt-60 xl:w-full xl:max-w-7xl xl:mx-auto md:px-8 md:py-11">
+      <div className="relative px-4 py-8 mx-5 -mt-16 bg-white sm:-mt-24 xl:-mt-60 xl:w-full xl:max-w-7xl xl:mx-auto md:px-8 md:py-11">
         <NameTitle propertyName={propertyName} title={title} />
         <div className="mb-8 space-y-10">
           <div className="space-y-10">

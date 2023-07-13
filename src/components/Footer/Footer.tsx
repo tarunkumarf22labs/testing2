@@ -30,7 +30,7 @@ const Footer = () => {
           {/* Quick Links section */}
           <div className="relative flex flex-col items-center mb-7 sm:mb-12">
             <hr className="w-full border-t border-[#737373]" />
-            <h4 className="text-white font-[Brandon Grotesque] uppercase text-[10px] absolute top-[-10px] z-10 px-5 bg-black tracking-[0.3em] md:text-sm">
+            <h4 className="text-white font-[Brandon Grotesque] uppercase text-[10px] absolute top-[-10px] px-5 bg-black tracking-[0.3em] md:text-sm">
               <b>Quick links</b>
             </h4>
             <div className="grid justify-between w-full grid-cols-2 mt-5 sm:mt-8 md:w-auto gap-x-1 sm:gap-x-8 md:grid-cols-4 md:gap-0">
@@ -49,7 +49,7 @@ const Footer = () => {
           <div>
             <div className="relative flex flex-col items-center mb-12 text-center">
               <hr className="w-full border-t border-[#737373]" />
-              <h4 className="text-white font-[Brandon Grotesque] uppercase text-[10px] absolute top-[-10px] z-10 px-5 bg-black tracking-[0.3em] md:text-sm">
+              <h4 className="text-white font-[Brandon Grotesque] uppercase text-[10px] absolute top-[-10px] px-5 bg-black tracking-[0.3em] md:text-sm">
                 <b>Get in touch</b>
               </h4>
               <div className="font-[Brandon Grotesque] mt-5 lg:flex lg:justify-between lg:items-center w-10/12">
