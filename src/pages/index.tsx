@@ -10,15 +10,16 @@ import { SearchLocationProps } from "src/Props/Search";
 import AutoScrollingVillaCard from "src/stories/AutoScrollingVillaCard";
 import { ListYourPropertySection } from "src/stories/ListYourPropertySection";
 import { ReviewSection } from "src/stories/ReviewSection";
+import Spotlight from "src/stories/Spotlight";
 import OurDestinations from "@/components/OurDestinations";
 
 const Home: NextPage = (data: ISearchInterface) => {
-  const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
+  const bannerImageStyle =
+    "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px] object-cover w-full";
   const bannerTextStyle =
     "text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]";
   const bannerText = "UNLOCK THE LUXURY WITH LUXUNLOCK";
 
-  
   return (
     <>
       <Layout title="LuxUnlock">
@@ -34,10 +35,10 @@ const Home: NextPage = (data: ISearchInterface) => {
               data.cities
             )}
           />
-          {
-            data.villa.data?.data.length > 0 &&
-          <OurDestinations OurDestinations={data.villa.data?.data}/>
-          }
+          <Spotlight />
+          {data.villa.data?.data.length > 0 && (
+            <OurDestinations OurDestinations={data.villa.data?.data} />
+          )}
           <ListYourPropertySection />
           <ReviewSection />
           <MediaListing mediaImages={mediaImages} />
@@ -54,21 +55,17 @@ export const getServerSideProps: GetServerSideProps<{
   data: ISearchInterface | null;
   error: string | null;
 }> = async (): Promise<any> => {
-
   const states = await NetWrapper("api/states");
   const cities = await NetWrapper("api/cities");
   const countries = await NetWrapper("api/countries");
 
-  const villa = await NetWrapper(
-    "api/properties?populate=deep"
-  );
+  const villa = await NetWrapper("api/properties?populate=deep");
 
   let error = null;
   if (states.error) error = states.error;
   if (cities.error) error = cities.error;
   if (countries.error) error = countries.error;
   if (villa.error) error = villa.error;
-
 
   return {
     props: {

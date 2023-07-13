@@ -35,4 +35,10 @@ module.exports = {
       creattion: ["Creattion"],
     },
   },
+  safelist: [
+    {
+      pattern: /^z-./,
+      variants: ['md'],
+    },
+  ],
 };
