@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Filter from "src/stories/Filter/Filter";
 import GalleryView from "src/stories/GalleryView/GalleryView";
-import logo from "@/images/gallery01.jpg";
-import logo2 from "@/images/Minto2.jpg";
-import { HomeBannerimages } from "src/data/constants";
-import Layout from "@/components/Layout";
-import Image from "next/image";
 import Sponsor from "@/components/Sponsor/Sponsor";
 import Modal from "src/stories/Modal/Modal";
 
@@ -20,10 +16,7 @@ interface IImageGallery {
   width: number;
   height: number;
 }
-// title: ele.image.data.attributes.formats.xl_webp.name,
-// url: ele.image.data.attributes.formats.xl_webp.url,
-// type: ele.type,
-// alt:ele.image.data.attributes.name
+
 export default function ImageGallery(props: ImageGalleryProps) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [currentFilter, setCurrentFilter] = useState<string>("all");
@@ -83,6 +76,7 @@ export default function ImageGallery(props: ImageGalleryProps) {
       })
       setGalleryViewProps( getGalleryViewInitialState(filteredData))
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[currentFilter])
   return (
     <div>
@@ -100,6 +94,7 @@ export default function ImageGallery(props: ImageGalleryProps) {
             ]}
             setCurrentFilter={setCurrentFilter}
             currentFilter={currentFilter}
+            inGallery={true}
           />
           <GalleryView data={galleryViewProps} />
         </div>

@@ -11,6 +11,7 @@ import AutoScrollingVillaCard from "src/stories/AutoScrollingVillaCard";
 import { ListYourPropertySection } from "src/stories/ListYourPropertySection";
 import { ReviewSection } from "src/stories/ReviewSection";
 import Spotlight from "src/stories/Spotlight";
+import OurDestinations from "@/components/OurDestinations";
 
 const Home: NextPage = (data: ISearchInterface) => {
   const bannerImageStyle =
@@ -18,6 +19,7 @@ const Home: NextPage = (data: ISearchInterface) => {
   const bannerTextStyle =
     "text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]";
   const bannerText = "UNLOCK THE LUXURY WITH LUXUNLOCK";
+
   return (
     <>
       <Layout title="LuxUnlock">
@@ -34,6 +36,9 @@ const Home: NextPage = (data: ISearchInterface) => {
             )}
           />
           <Spotlight />
+          {data.villa.data?.data.length > 0 && (
+            <OurDestinations OurDestinations={data.villa.data?.data} />
+          )}
           <ListYourPropertySection />
           <ReviewSection />
           <MediaListing mediaImages={mediaImages} />
@@ -50,22 +55,24 @@ export const getServerSideProps: GetServerSideProps<{
   data: ISearchInterface | null;
   error: string | null;
 }> = async (): Promise<any> => {
-  // const { data, error, status } = await NetWrapper(
-  //   "api/countries"
-  // );
   const states = await NetWrapper("api/states");
   const cities = await NetWrapper("api/cities");
   const countries = await NetWrapper("api/countries");
+
+  const villa = await NetWrapper("api/properties?populate=deep");
+
   let error = null;
   if (states.error) error = states.error;
   if (cities.error) error = cities.error;
   if (countries.error) error = countries.error;
+  if (villa.error) error = villa.error;
 
   return {
     props: {
-      states: states.data,
-      countries: countries.data,
-      cities: cities.data,
+      states: states?.data,
+      countries: countries?.data,
+      cities: cities?.data,
+      villa: villa,
       error,
     },
   };

@@ -259,6 +259,54 @@ export const curratedCollectionsModelData = [
   },
 ];
 
+export const reviewsPageData = {
+  property: "Deja View's",
+  reviews: [
+    {
+      name: "Atul Malhotra",
+      date: "December 2022",
+      img: "/images/Avatar_image.webp",
+      review:
+        "In a village overlooking the backwaters of the Vembanad Lake near Cochin, experience an unimaginably perfect abode under the stars and reflected in water. Here is a beautiful and soulful luxury home in Kerala that invites you to live in the moment. ",
+    },
+    {
+      name: "Siddhika Jain",
+      date: "October 2022",
+      img: "/images/Avatar_image2.webp",
+      review:
+        "It was an amazing stay at this place and a really good experience to stay back in the coffee estate.",
+    },
+    {
+      name: "Ruchika Dave",
+      date: "December 2022",
+      img: "/images/Avatar_image4.webp",
+      review:
+        "Beautiful property to spend a weekend at! The staff were organised and carefully took care of all our needs.Thumbs up, for the kind and respectful behaviour they had",
+    },
+    {
+      name: "Avani Jain",
+      date: "October 2022",
+      img: "/images/Avatar_image5.webp",
+      review:
+        "Mouth watering food, beautiful place and friendly staff with clean pool.",
+    },
+    {
+      name: "Rahul Subramaniam",
+      date: "December 2022",
+      img: "/images/Avatar_image6.webp",
+      review:
+        "The place is very good. Amazing home cooked food and very friendly staff.. perfect stay in Chikmagalur.",
+    },
+    {
+      name: "Avinash jain",
+      date: "October 2022",
+      img: "/images/Avatar_image3.webp",
+      review:
+        "Great place with privacy. Completely secluded from the main Chikmagalur crowded areas.",
+    },
+  ],
+};
+
 // shahbaz
 
 export const SearchedresultVillaData = {
@@ -368,8 +416,7 @@ export const beforeYouBook = [
 
 export const homeTruths = {
   heading: "Deja View's",
-  story:
-  [
+  story: [
     "Gramercy House is serviced with daytime housekeepers, a groundskeeper and gardener, and 24 x 7 staffed security. There is also a full-time resident chef who can do South Indian, North Indian, Chinese, and Indian street-food snacks. In addition, your dedicated LuxUnlock Location Manager is available on-call or WA for any assistance.",
     "Electricity supply by the government is both erratic and of poor quality throughout the year in Kodaikanal. Do expect frequent power cuts through-out the day. The house comes with an incoming servo-stabiliser and 100% automatic power back up with diesel genset.",
     "Water is highly scarce in Kodaikanal and the house does not have a municipal water connection. It depends upon rainwater storage, and open well and borewell. Water is pumped to the overhead tanks automatically and nothing needs to be done. Please use water prudently.",
@@ -379,9 +426,8 @@ export const homeTruths = {
     "Accompanying staff accommodation is available on the premises with beds, room heating, and clean bathrooms with hot water.",
     "Kodaikanal has a major human animal conflict problem with Indian bison. Due to habitat destruction and lack of predators, bison numbers have increased and they often are found in residential and public areas, and occasionally in our estate. Please be careful when walking. Increasingly, monkeys have also become a menace and be careful as they do raid indoor spaces looking for food.",
     "As this is a house using antique and salvaged furniture and woodwork, doors and cupboards may be a bit quirky. Due to its age, some electrical switches may behave inconsistently. Floorboards creak.",
-  ]
+  ],
 };
-
 
 export const viewAllPhotos = "View all photos";
 export const propertyOverviewActions = [
@@ -427,34 +473,34 @@ export const locations = [
 
 export const HomeOwnersDataList = [
   {
-    id:1,
+    id: 1,
     text: "Do you have a beautiful vacation home that was once used by you extensively and exclusively for yourself, but now lies idle for long periods of time?",
   },
   {
-    id:2,
-    text:"Do you have a beautiful second or third home that is increasingly becoming difficult or expensive to maintain?"
+    id: 2,
+    text: "Do you have a beautiful second or third home that is increasingly becoming difficult or expensive to maintain?",
   },
   {
-    id:3,
-    text:"Do you want to find a way of recovering the costs of maintenance and staff, and yet generating a generous rental yield?"
+    id: 3,
+    text: "Do you want to find a way of recovering the costs of maintenance and staff, and yet generating a generous rental yield?",
   },
   {
-    id:4,
-    text:"Are you worried about the possible misuse of a little-used home?"
+    id: 4,
+    text: "Are you worried about the possible misuse of a little-used home?",
   },
   {
-    id:5,
-    text:"Do you want the flexibility of having unrestricted access to using your home for personal use as long as its available?"
+    id: 5,
+    text: "Do you want the flexibility of having unrestricted access to using your home for personal use as long as its available?",
   },
   {
-    id:6,
-    text:"Are you proud of your beautiful home, but concerned about the kind of guests who will rent, use and respect the spaces?"
+    id: 6,
+    text: "Are you proud of your beautiful home, but concerned about the kind of guests who will rent, use and respect the spaces?",
   },
   {
-    id:7,
-    text:"Do you want to work with a trusted partner who understands luxury and can market your home effectively keeping in mind your personal needs and financial goals?"
-  }
-]
+    id: 7,
+    text: "Do you want to work with a trusted partner who understands luxury and can market your home effectively keeping in mind your personal needs and financial goals?",
+  },
+];
 
 export const spotLightSection = {
   heading: "Spotlight"

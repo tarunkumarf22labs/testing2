@@ -94,7 +94,6 @@ const Result: NextPage = (data: ISearchInterface) => {
           ? `api/properties?populate=deep${query.join("")}`
           : `api/properties?populate=deep`;
       const { data, error } = await NetWrapper(url);
-
       if (error) {
         setError(error);
       } else {
@@ -110,12 +109,11 @@ const Result: NextPage = (data: ISearchInterface) => {
     fetchVillaData();
     // eslint-disable-next-line no-use-before-define, react-hooks/exhaustive-deps
   }, [locationtype, location, locationid, checkin, checkout, numberofguests]);
-
   return (
     <Layout title="luxunlock">
       {error ? (
         <div className="w-full h-[500px] flex justify-center items-center">
-          <h1 className="text-2xl">{error}</h1>
+          <h1 className="text-2xl">{"Some Error Occured"}</h1>
         </div>
       ) : (
         <div>
@@ -204,9 +202,9 @@ export const getServerSideProps: GetServerSideProps<{
 
   return {
     props: {
-      states: states.data,
-      countries: countries.data,
-      cities: cities.data,
+      states: states?.data,
+      countries: countries?.data,
+      cities: cities?.data,
       error,
     },
   };

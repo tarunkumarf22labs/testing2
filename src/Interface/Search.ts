@@ -1,4 +1,5 @@
 import { villaInterface } from ".";
+import { IVillas } from "./home";
 
 
 export interface Istate {
@@ -28,7 +29,7 @@ export interface Istate {
     states: ILocations ;
     countries: ILocations;
     cities: ILocations;
-  
+    villa?: IVillas;
     // };
     error: string | null;
   }

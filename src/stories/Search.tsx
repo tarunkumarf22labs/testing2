@@ -58,20 +58,21 @@ const Search = ({ locations }: ISearch) => {
     const inputEvent = e.target as HTMLSelectElement;
     const selectedOptionData =
       inputEvent.options[inputEvent.selectedIndex].dataset;
-    let data = JSON.parse(selectedOptionData.container);
-
+    let data = selectedOptionData.container ? JSON.parse(selectedOptionData.container) : null;
+    console.log(data.id)
     setCurrentlocation({
-      id: data.id,
-      title: data.title,
-      type: data.type,
+      id: data?.id,
+      title: data?.title,
+      type: data?.type,
     });
-    if (router.pathname === "/result") {
+    if (router.pathname === "/result" && data?.id && data?.title && data?.type) {
       router.push({
         pathname: "/result",
         query: {
           ...router.query,
           locationtype: data.type,
           location: data.title,
+          locationid: data.id
         },
       });
     }
@@ -124,6 +125,7 @@ const Search = ({ locations }: ISearch) => {
               className="w-full text-xs uppercase border border-b-2 border-none outline-none mt-7 focus:ring-0 custom-select"
               onChange={handleSelect}
             >
+              <option value="">Select your option</option>
               {locations.map((ele, id) => {
                 let value = {
                   id: ele.id,
@@ -168,9 +170,9 @@ const Search = ({ locations }: ISearch) => {
             </svg>
           </div>
         </div>
-        <div className="sm:flex justify-evenly items-center lg:w-[52%]">
+        <div className="sm:flex justify-evenly items-center  lg:w-[52%]  ">
           <div
-            className="relative flex items-center justify-between h-10 mt-4 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:m-0 sm:-top-[2px] md:-top-[7px]"
+            className="relative flex items-center justify-between h-10 mt-4 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:m-0 sm:-top-[2px] md:-top-[7px] md:ml-[1.7em] lg:ml-0"
             onClick={() => setShowDate(!showDate)}
           >
             {endDate ? (
