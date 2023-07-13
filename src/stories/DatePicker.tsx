@@ -17,8 +17,7 @@ interface DatePickerProps {
   inReserve?: boolean;
 }
 
-
-function Root({inVillaDetails,inReserve}: DatePickerProps) {
+function Root({ inVillaDetails, inReserve }: DatePickerProps) {
   const { calendars } = useContextCalendars();
   const { formattedDates } = useContextDays();
   const { previousMonthButton, nextMonthButton } =
@@ -30,8 +29,8 @@ function Root({inVillaDetails,inReserve}: DatePickerProps) {
   const [start, end] = formattedDates;
 
   useEffect(() => {
-    start ? setStartDate(start) : setStartDate('');
-    end ? setEndDate(end) : setEndDate('');
+    start ? setStartDate(start) : setStartDate("");
+    end ? setEndDate(end) : setEndDate("");
   }, [start, end, setStartDate, setEndDate, startDate]);
   const firstDateString = startDate;
   const firstDateParts = firstDateString?.split("/");
@@ -65,61 +64,72 @@ function Root({inVillaDetails,inReserve}: DatePickerProps) {
     >
       <div>
         <div className="flex items-center justify-between w-full bg-white z-[150]">
-          <p className="">
-            {" "}
-            <DayButton className="w-8" {...previousMonthButton()}>
-              <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 ml-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4 "
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-              </div>
-            </DayButton>
-            {""}
-          </p>
-          <p className="text-center ">
-            {calendars[1].year} {calendars[1].month}
-          </p>
+          <div className={`flex items-start justify-between w-[33%] ${inReserve ? "sm:w-[20%]" : "sm:w-[46%]"}`}>
+            <p className="">
+              {" "}
+              <DayButton className="w-8" {...previousMonthButton()}>
+                <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 ml-5">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4 "
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 19.5L8.25 12l7.5-7.5"
+                    />
+                  </svg>
+                </div>
+              </DayButton>
+              {""}
+            </p>
+            <p  className={inReserve ? `hidden` : "hidden text-center sm:block"}>
+              {calendars[1].year} {calendars[1].month}
+            </p>
+          </div>
           {/* <p className="hidden text-center sm:block">
             {calendars[0].year} {calendars[0].month}
             </p> */}
-          <p className={inReserve ? `hidden` : 'hidden text-center sm:block'}>
-            {calendars[0].year} {calendars[0].month}
-          </p>
-          <p>
-            {" "}
-            <DayButton className="w-8" {...nextMonthButton()}>
-              <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 mr-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </div>
-            </DayButton>
-          </p>
+          <div className={`flex items-start justify-between w-[55%]  ${inReserve ? " sm:w-[60%]" : "sm:w-[46%]"}`}>
+            <p className="text-center ">
+              {calendars[0].year} {calendars[0].month}
+            </p>
+            <p>
+              {" "}
+              <DayButton className="w-8" {...nextMonthButton()}>
+                <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 mr-5">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                </div>
+              </DayButton>
+            </p>
+          </div>
         </div>
+
+
+        
       </div>
-      <main className={`grid grid-cols-1 gap-x-6 ${inReserve ? 'sm:grid-cols-1' : 'sm:grid-cols-2'} border-green z-[150] w-full`}>
+      <main
+        className={`grid grid-cols-1 gap-x-6 ${
+          inReserve ? "sm:grid-cols-1" : "sm:grid-cols-2"
+        } border-green z-[150] w-full`}
+      >
         <Calendar
           prevButton={
             <DayButton className="w-8" {...previousMonthButton()}>
@@ -172,37 +182,37 @@ function Root({inVillaDetails,inReserve}: DatePickerProps) {
         />
       </main>
       {firstMonthName !== "Invalid Date" && (
-            <div className="flex items-center justify-between mb-4 text-xs md:text-xs">
-              <p className="bg-[#8A1E611A] text-[#8A1E61] px-[10px] py-2">
-                {firstMonthName !== "Invalid Date" &&
-                  firstDay &&
-                  `Check-in: ${firstMonthName} ${firstDay}`}{" "}
-                {firstMonthName !== "Invalid Date" &&
-                  firstDay &&
-                  secondMonthName !== "Invalid Date" &&
-                  secondDay &&
-                  ` , Check-out: ${secondMonthName} ${secondDay}`}
-              </p>
-              <button
-                className="uppercase py-2 px-4 text-xs text-[#8A1E61] sm:py-3 sm:px-6 whitespace-nowrap font-medium tracking-wide"
-                onClick={ClearSelectedDate}
-              >
-                CLEAR DATES
-              </button>
-            </div>
-          )}
+        <div className="flex items-center justify-between mb-4 text-xs md:text-xs">
+          <p className="bg-[#8A1E611A] text-[#8A1E61] px-[10px] py-2">
+            {firstMonthName !== "Invalid Date" &&
+              firstDay &&
+              `Check-in: ${firstMonthName} ${firstDay}`}{" "}
+            {firstMonthName !== "Invalid Date" &&
+              firstDay &&
+              secondMonthName !== "Invalid Date" &&
+              secondDay &&
+              ` , Check-out: ${secondMonthName} ${secondDay}`}
+          </p>
+          <button
+            className="uppercase py-2 px-4 text-xs text-[#8A1E61] sm:py-3 sm:px-6 whitespace-nowrap font-medium tracking-wide"
+            onClick={ClearSelectedDate}
+          >
+            CLEAR DATES
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
 const Datepicker = (props: DatePickerProps) => {
-  const { inVillaDetails,inReserve } = props;
+  const { inVillaDetails, inReserve } = props;
   const now = new Date();
   const M = now.getMonth();
   const Y = now.getFullYear();
   const D = now.getDate();
   const { selectedDates, onDatesChange, ClearSelectedDate } =
-  useContext(AppContext);
+    useContext(AppContext);
 
   return (
     <DatePickerStateProvider
@@ -228,7 +238,7 @@ const Datepicker = (props: DatePickerProps) => {
         },
       }}
     >
-      <Root inVillaDetails={inVillaDetails} inReserve={inReserve}/>
+      <Root inVillaDetails={inVillaDetails} inReserve={inReserve} />
     </DatePickerStateProvider>
   );
 };
