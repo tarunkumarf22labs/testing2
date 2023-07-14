@@ -98,8 +98,7 @@ const Reserve = ({
   const totalCapacityInSelectedRooms = () => {
     if (roomSelected === false) {
       let totalPrice =
-        numberOfGuests.adults * basicPrice +
-        numberOfGuests.children * basicPrice +
+        basicPrice +
         numberOfGuests.additional_guests * extraGuestPrice +
         numberOfGuests.pets * petPrice;
       return totalPrice;
