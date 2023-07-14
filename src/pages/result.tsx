@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { ReactNode, Suspense, lazy, useEffect, useRef, useState} from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import NetWrapper from "src/Network/netWrapper";
@@ -8,8 +8,9 @@ import Carousel from "src/stories/Carousel";
 import Map from "src/stories/Map";
 import SearchedVillaCard from "src/stories/SearchedVillaCard";
 import SortVilla from "src/stories/SortVilla";
-import { mediaImages } from "src/data/constants";
+import { locations, mediaImages } from "src/data/constants";
 import MediaListing from "src/stories/MediaListing";
+import Sheet, { SheetRef } from 'react-modal-sheet';
 import { IHomeInterface } from "src/Interface";
 import {
   ILocations,
@@ -23,8 +24,12 @@ import {
 } from "src/Props/Search";
 import { StatusSvg } from "src/assets";
 import { HomeBannerimages } from "src/data/constants";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import FallbackUI from "@/components/Fallback";
+const MobileMap = lazy( ()  =>  import("@/components/mobilemap"))
 
 const Result: NextPage = (data: ISearchInterface) => {
+  const [showSearch, setshowSearch] = useState<boolean>(false)
   const router = useRouter();
   const {
     locationtype,
@@ -107,82 +112,120 @@ const Result: NextPage = (data: ISearchInterface) => {
     fetchVillaData();
     // eslint-disable-next-line no-use-before-define, react-hooks/exhaustive-deps
   }, [locationtype, location, locationid, checkin, checkout, numberofguests]);
+
+  function handleshowSearch() {
+    setshowSearch((prev => !prev))
+  }
+
+ // props getter pattern 
+  const mobileMapProps = () => ({
+    cardTopPosition,
+    data,
+    handleClick,
+    location,
+    villasResult,
+    key: 1,
+  });
   return (
-    <Layout title="luxunlock">
-      {error ? (
-        <div className="w-full h-[500px] flex justify-center items-center">
-          <h1 className="text-2xl">{"Some Error Occured"}</h1>
-        </div>
-      ) : (
-        <div>
-          <Carousel
-            images={HomeBannerimages}
-            bannerImageStyle={bannerImageStyle}
-            bannerTextStyle={bannerTextStyle}
-            bannerText={bannerText}
-            locations={SearchLocationProps(
-              data.states,
-              data.countries,
-              data.cities
-            )}
-          />
-          {loading ? (
-            <div className="text-center w-full h-[500px] flex justify-center items-center">
-              <div role="status">
-                <StatusSvg />
-              </div>
+    <>
+      <div className="hidden sm:block" >
+        <Layout title="luxunlock">
+          {error ? (
+            <div className="w-full h-[500px] flex justify-center items-center">
+              <h1 className="text-2xl">{"Some Error Occured"}</h1>
             </div>
           ) : (
-            <div className="w-11/12 m-auto xl:max-w-[1440px] xl:m-auto">
-              <SortVilla />
-              <div className="w-11/12 m-auto">
-                <h1 className="text-5xl font-[Brandon Grotesque] mb-10">
-                  {villasResult.data.length}{" "}
-                  {villasResult.data.length > 1 ? "STAYS" : "STAY"}
-                </h1>
-              </div>
+            <div>
+              <Carousel
+                images={HomeBannerimages}
+                bannerImageStyle={bannerImageStyle}
+                bannerTextStyle={bannerTextStyle}
+                bannerText={bannerText}
+                locations={SearchLocationProps(
+                  data.states,
+                  data.countries,
+                  data.cities
+                )}
+              />
+              {loading ? (
+                <div className="text-center w-full h-[500px] flex justify-center items-center">
+                  <div role="status">
+                    <StatusSvg />
+                  </div>
+                </div>
+              ) : (
+                <div className="w-11/12 m-auto xl:max-w-[1440px] xl:m-auto">
+                  <SortVilla />
+                  <div className="w-11/12 m-auto">
+                    <h1 className="text-5xl font-[Brandon Grotesque] mb-10">
+                      {villasResult?.data.length}{" "}
+                      {villasResult?.data.length > 1 ? "STAYS" : "STAY"}
+                    </h1>
+                  </div>
 
-              <div className="flex flex-col-reverse justify-between xl:flex-row ">
-                <div className="w-full xl:w-[60%] " ref={cardRef}>
-                  {villasResult.data.length === 0 ? (
-                    <div className="w-full h-[500px] flex justify-center items-center">
-                      <h1>No record Found</h1>
-                    </div>
-                  ) : (
-                    villasResult.data &&
-                    villasResult.data.map((ele, idx) => {
-                      return (
-                        <div
-                          className="w-full m-auto sm:max-w-2xl"
-                          key={idx}
-                          id={`searched-villa-card-${idx}`}
-                        >
-                          <SearchedVillaCard
-                            {...SearchedVillaCardProps(ele as any)}
-                          />
+                  <div className="flex flex-col-reverse justify-between xl:flex-row ">
+                    <div className="w-full xl:w-[60%] " ref={cardRef}>
+                      {villasResult?.data.length === 0 ? (
+                        <div className="w-full h-[500px] flex justify-center items-center">
+                          <h1>No record Found</h1>
                         </div>
-                      );
-                    })
-                  )}
+                      ) : (
+                        villasResult?.data &&
+                        villasResult?.data.map((ele, idx) => {
+                          return (
+                            <div
+                              className="w-full m-auto sm:max-w-2xl"
+                              key={idx}
+                              id={`searched-villa-card-${idx}`}
+                            >
+                              <SearchedVillaCard
+                                {...SearchedVillaCardProps(ele as any)}
+                              />
+                            </div>
+                          );
+                        })
+                      )}
+                    </div>
+                    <div className=" w-full h-[400px] xl:block xl:w-[48%] xl:h-[700px] xl:sticky top-20">
+                      <Map
+                        markers={SearchedLocationsProps(villasResult)}
+                        highlight={cardTopPosition}
+                        handleClick={handleClick}
+                        zoomdata={4.8}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="hidden w-full h-[400px] xl:block xl:w-[48%] xl:h-[700px] xl:sticky top-20">
-                  <Map
-                    markers={SearchedLocationsProps(villasResult)}
-                    highlight={cardTopPosition}
-                    handleClick={handleClick}
-                    zoomdata={4.8}
-                  />
-                </div>
-              </div>
+              )}
+
+              <MediaListing mediaImages={mediaImages} />
             </div>
           )}
-
-          <MediaListing mediaImages={mediaImages} />
-        </div>
-      )}
-    </Layout>
+        </Layout>
+      </div>
+      {/* code for mobile view of result page   */}
+      <div className="block sm:hidden ">
+        <ErrorBoundary  fallback={<FallbackUI onClick={() => {}} />} >
+         {/* @ts-expect-error Server Component */}
+         <Suspense fallback={<Loading/>} >
+         <MobileMap {...mobileMapProps()}/>
+         </Suspense>
+     
+         </ErrorBoundary>
+      </div>
+    </>
   );
 };
+
+function Loading() : ReactNode {
+  return(
+    <div className="text-center w-full h-[500px] flex justify-center items-center">
+    <div role="status">
+      <StatusSvg />
+    </div>
+  </div>
+  )
+}
 
 export default Result;
 
@@ -207,3 +250,5 @@ export const getServerSideProps: GetServerSideProps<{
     },
   };
 };
+
+
