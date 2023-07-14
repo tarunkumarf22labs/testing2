@@ -16,7 +16,7 @@ const OurDestinations = ({OurDestinations}:IOurDestinations) => {
   const [ref, inView] = useInView();
 
   const squareVariants = {
-    visible: { y: [250, 0], opacity: 1, scale: 1 , transition: {  duration: 1,delay: 0.3 } },
+    visible: { y: [100, 0], opacity: 1, scale: 1 , transition: {  duration: 1,delay: 0.3 } },
     hidden: { opacity: 0, scale: 0 }
   };
   
@@ -34,7 +34,7 @@ const OurDestinations = ({OurDestinations}:IOurDestinations) => {
       EXPLORE OUR DESTINATIONS
       </h1>
       <motion.div className="mt-10"
-      animate={{ y: [250, 0], opacity: 1, scale: 1 , transition: {  duration: 1,delay: 0.3 }}}>
+      animate={{ y: [150, 0], opacity: 1, scale: 1 , transition: {  duration: 1,delay: 0.3 }}}>
         <Filter
           options={[
             "all",
