@@ -25,6 +25,7 @@ import {
 import { StatusSvg } from "src/assets";
 import { HomeBannerimages } from "src/data/constants";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import FallbackUI from "@/components/Fallback";
 const MobileMap = lazy( ()  =>  import("@/components/mobilemap"))
 
 const Result: NextPage = (data: ISearchInterface) => {
@@ -113,7 +114,6 @@ const Result: NextPage = (data: ISearchInterface) => {
     fetchVillaData();
     // eslint-disable-next-line no-use-before-define, react-hooks/exhaustive-deps
   }, [locationtype, location, locationid, checkin, checkout, numberofguests]);
-  console.log(showSearch);
 
   function handleshowSearch() {
     setshowSearch((prev => !prev))
@@ -160,20 +160,20 @@ const Result: NextPage = (data: ISearchInterface) => {
                   <SortVilla />
                   <div className="w-11/12 m-auto">
                     <h1 className="text-5xl font-[Brandon Grotesque] mb-10">
-                      {villasResult.data.length}{" "}
-                      {villasResult.data.length > 1 ? "STAYS" : "STAY"}
+                      {villasResult?.data.length}{" "}
+                      {villasResult?.data.length > 1 ? "STAYS" : "STAY"}
                     </h1>
                   </div>
 
                   <div className="flex flex-col-reverse justify-between xl:flex-row ">
                     <div className="w-full xl:w-[60%] " ref={cardRef}>
-                      {villasResult.data.length === 0 ? (
+                      {villasResult?.data.length === 0 ? (
                         <div className="w-full h-[500px] flex justify-center items-center">
                           <h1>No record Found</h1>
                         </div>
                       ) : (
-                        villasResult.data &&
-                        villasResult.data.map((ele, idx) => {
+                        villasResult?.data &&
+                        villasResult?.data.map((ele, idx) => {
                           return (
                             <div
                               className="w-full m-auto sm:max-w-2xl"
@@ -207,8 +207,7 @@ const Result: NextPage = (data: ISearchInterface) => {
       </div>
       {/* code for mobile view of result page   */}
       <div className="block sm:hidden ">
-        {/* we need to decide the fallback component   */}
-        <ErrorBoundary  fallback={<div>Something went wrong</div>} >
+        <ErrorBoundary  fallback={<FallbackUI onClick={() => {}} />} >
          {/* @ts-expect-error Server Component */}
          <Suspense fallback={<Loading/>} >
          <MobileMap {...mobileMapProps()}/>

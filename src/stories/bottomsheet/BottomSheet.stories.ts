@@ -3,7 +3,7 @@ import BottomSheet from ".";
 
 
 const meta: Meta<typeof BottomSheet> = {
-    title: "Component/MobileSearch",
+    title: "Component/BottomSheet",
     component: BottomSheet,
   };
   
