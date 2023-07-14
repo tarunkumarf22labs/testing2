@@ -12,6 +12,7 @@ import { ListYourPropertySection } from "src/stories/ListYourPropertySection";
 import { ReviewSection } from "src/stories/ReviewSection";
 import Spotlight from "src/stories/Spotlight";
 import OurDestinations from "@/components/OurDestinations";
+import CuratedCollection from "src/stories/CuratedCollection";
 
 const Home: NextPage = (data: ISearchInterface) => {
   const bannerImageStyle =
@@ -35,6 +36,7 @@ const Home: NextPage = (data: ISearchInterface) => {
               data.cities
             )}
           />
+          <CuratedCollection />
           <Spotlight />
           {data.villa.data?.data.length > 0 && (
             <OurDestinations OurDestinations={data.villa.data?.data} />

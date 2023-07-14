@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Container } from "./Container";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -67,90 +66,86 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
   }, [data]);
 
   return (
-    <Container bgWhite={true}>
-      <div ref={scrollerRef} className="flex flex-col gap-y-5 pb-20">
-        <p className="text-sm text-[#8A1E61] tracking-widest">
-          {"LuxUNLOCK’s"}
-        </p>
-        <h1 className="uppercase text-4xl text-[#18181B] font-light md:text-5xl">
-          {spotLightSection.heading}
-        </h1>
-        <div className="flex gap-x-[60px] justify-between">
-          <div className="relative flex-1 flex flex-col max-w-xl overflow-hidden">
-            {data?.map((el, idx) => {
-              return (
-                <div
-                  key={`${idx}`}
-                  className={`flex flex-col gap-y-4 flex-1 py-10 absolute text-content h-full w-full bg-white text-content-${idx}`}
-                >
-                  <h2 className="text-[#1C1917] text-[42px] font-light">
-                    New Villa In Sri Lanka
-                  </h2>
-                  <p className="text-base md:text-[22px] leading-[34px] text-[#545456]">
-                    {el.para}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex flex-1 items-center gap-8">
-            <div className="w-full max-w-[559px] h-[369px] relative">
-              <div className="relative w-full h-full overflow-hidden">
-                {data?.map((el, idx) => {
-                  return (
-                    <Image
-                      key={`${idx}`}
-                      src={el?.big}
-                      alt="List your Property 1"
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      className={`absolute w-full h-full object-cover preview-image-${idx}`}
-                    />
-                  );
-                })}
-              </div>
+    <div ref={scrollerRef} className="flex flex-col gap-y-5">
+      <p className="text-sm text-[#8A1E61] tracking-widest">{"LuxUNLOCK’s"}</p>
+      <h1 className="uppercase text-4xl text-[#18181B] font-light md:text-5xl">
+        {spotLightSection.heading}
+      </h1>
+      <div className="flex gap-x-[60px] justify-between">
+        <div className="relative flex-1 flex flex-col max-w-xl overflow-hidden">
+          {data?.map((el, idx) => {
+            return (
               <div
-                className={
-                  "small-preview-image-container w-[229px] h-[152px] absolute -bottom-10 right-10 overflow-hidden"
-                }
+                key={`${idx}`}
+                className={`flex flex-col gap-y-4 flex-1 py-10 absolute text-content h-full w-full bg-white text-content-${idx}`}
               >
-                {data?.map((el, idx) => {
-                  return (
-                    <Image
-                      key={`${idx}`}
-                      src={el?.small}
-                      alt="List your Property 1"
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      className={`absolute h-full w-full object-cover small-preview-image-${idx}`}
-                    />
-                  );
-                })}
+                <h2 className="text-[#1C1917] text-[42px] font-light">
+                  New Villa In Sri Lanka
+                </h2>
+                <p className="text-base md:text-[22px] leading-[34px] text-[#545456]">
+                  {el.para}
+                </p>
               </div>
+            );
+          })}
+        </div>
+        <div className="flex flex-1 items-center gap-8">
+          <div className="w-full max-w-[559px] h-[369px] relative">
+            <div className="relative w-full h-full overflow-hidden">
+              {data?.map((el, idx) => {
+                return (
+                  <Image
+                    key={`${idx}`}
+                    src={el?.big}
+                    alt="List your Property 1"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className={`absolute w-full h-full object-cover preview-image-${idx}`}
+                  />
+                );
+              })}
             </div>
-            <div className="flex flex-col items-center w-8">
-              <ChevronUpIcon
-                color="#7B8084"
-                width={20}
-                className="relative top-[12px]"
-              />
-              <div className="h-9 w-[1.5px] bg-[#7B8084]" />
-              <p className="text-xs text-[#8A1E61] py-3">
-                {slideIndex + 1} / {data?.length}
-              </p>
-              <div className="h-9 w-[1.5px] bg-[#7B8084]" />
-              <ChevronUpIcon
-                className="rotate-180 relative bottom-[12px]"
-                color="#7B8084"
-                width={20}
-              />
+            <div
+              className={
+                "small-preview-image-container w-[229px] h-[152px] absolute -bottom-10 right-10 overflow-hidden"
+              }
+            >
+              {data?.map((el, idx) => {
+                return (
+                  <Image
+                    key={`${idx}`}
+                    src={el?.small}
+                    alt="List your Property 1"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className={`absolute h-full w-full object-cover small-preview-image-${idx}`}
+                  />
+                );
+              })}
             </div>
+          </div>
+          <div className="flex flex-col items-center w-8">
+            <ChevronUpIcon
+              color="#7B8084"
+              width={20}
+              className="relative top-[12px]"
+            />
+            <div className="h-9 w-[1.5px] bg-[#7B8084]" />
+            <p className="text-xs text-[#8A1E61] py-3">
+              {slideIndex + 1} / {data?.length}
+            </p>
+            <div className="h-9 w-[1.5px] bg-[#7B8084]" />
+            <ChevronUpIcon
+              className="rotate-180 relative bottom-[12px]"
+              color="#7B8084"
+              width={20}
+            />
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
