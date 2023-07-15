@@ -8,7 +8,7 @@ export const ScrollButton = ({
   onNextPress: () => void;
 }) => {
   return (
-    <div className="sm:w-24 mt-3 flex gap-0 z-10">
+    <div className="sm:w-24 flex gap-0 z-10">
       <button
         onClick={onPrevPress}
         className="p-4 pr-2 rounded-l-full bg-[#8A1E61] text-[#FCFAED] active:ring-1 active:ring-[#8A1E61]"
