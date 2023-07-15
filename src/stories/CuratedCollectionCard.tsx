@@ -64,14 +64,14 @@ const CuratedCollectionCard = ({
 
       <div
         className={classNames(
-          "hidden md:block bg-white absolute w-10/12 max-h-[123px] left-1/2 -translate-x-1/2 transition-all origin-center",
+          "hidden md:block bg-white absolute w-10/12 max-h-[123px] left-1/2 -translate-x-1/2 transition-all origin-center duration-500",
           isActive ? "p-6 top-[85%]" : "p-4 top-[90%]"
         )}
       >
         <div
           className={classNames(
-            "justify-between",
-            isActive ? "flex" : "hidden"
+            "justify-between flex transition-all origin-center duration-500",
+            isActive ? "h-auto opacity-100" : "h-0 opacity-0"
           )}
         >
           <p className="text-[#8A1E61] text-xs tracking-[1.2px] font-normal truncate flex-1">
@@ -83,7 +83,7 @@ const CuratedCollectionCard = ({
         </div>
         <h1
           className={classNames(
-            "text-[#171717] font-normal truncate",
+            "text-[#171717] font-normal truncate transition-all origin-center duration-500",
             isActive ? "mt-[10px] text-xl" : "text-base text-center"
           )}
         >
@@ -91,8 +91,8 @@ const CuratedCollectionCard = ({
         </h1>
         <div
           className={classNames(
-            "items-center mt-[6px] truncate",
-            isActive ? "flex" : "hidden"
+            "items-center mt-[6px] truncate flex transition-all origin-center duration-500",
+            isActive ? "h-auto opacity-100" : "h-0 opacity-0"
           )}
         >
           {amenities?.map((el, index) => (

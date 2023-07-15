@@ -108,7 +108,7 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
             </div>
             <div
               className={
-                "small-preview-image-container w-[229px] h-[152px] absolute -bottom-10 right-10 overflow-hidden"
+                "small-preview-image-container w-[229px] h-[152px] absolute -bottom-10 right-10 overflow-hidden shadow-2xl"
               }
             >
               {data?.map((el, idx) => {

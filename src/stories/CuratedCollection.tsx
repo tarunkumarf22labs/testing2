@@ -62,7 +62,7 @@ const CuratedCollection = () => {
   const [selectedCategory, setSelectedCategory] = useState(data?.[0]);
 
   return (
-    <Container bgWhite={isMobile ? true : false}>
+    <Container bgWhite={isMobile ? true : false} slider>
       <div>
         <p className="uppercase text-[#8A1E61] text-center md:text-left tracking-[3px] md:tracking-[4.2px] text-[10px] md:text-sm font-[450]">
           LuxUNLOCK’s
@@ -145,10 +145,10 @@ const CuratedCollection = () => {
               })}
               <div
                 className={classNames(
-                  "absolute right-16 md:right-0 flex justify-end bottom-1/2 -translate-y-1/2 z-10",
+                  "absolute right-16 md:right-20 flex justify-end bottom-1/2 -translate-y-1/2 z-10",
                   selectedCategory?.properties?.length === 2
                     ? "md:bottom-0"
-                    : "md:bottom-20"
+                    : "md:bottom-10"
                 )}
               >
                 <ScrollButton
