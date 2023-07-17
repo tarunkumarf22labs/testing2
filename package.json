@@ -47,7 +47,9 @@
     "ts": "tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "commit": "cz"
+    "commit": "cz",
+    "format": "npx prettier --check --ignore-path .gitignore .",
+    "format:fix": "npx prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@heroicons/react": "2.0.13",
