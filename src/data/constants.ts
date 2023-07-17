@@ -506,4 +506,8 @@ export const spotLightSection = {
   heading: "Spotlight",
 };
 
+export const curatedCollectionSection = {
+  heading: "CURATED COLLECTION"
+}
+
 export const viewAll = "VIEW ALL";

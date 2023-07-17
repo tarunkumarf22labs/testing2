@@ -87,7 +87,7 @@ export const SearchedVillaCardProps = (villaData: villaInterface) => {
 };
 
 export const SearchedLocationsProps = (villaData: IVillaResultInterface) => {
-  let data = villaData.data.map((ele) => {
+  let data = villaData?.data?.map((ele) => {
     return {
       address: ele.attributes.name,
       lat: ele.attributes.address.latitude,

@@ -25,7 +25,7 @@ const SimilarStays = ({
   const controls = useAnimation();
   const [ref, inView] = useInView();
   const squareVariants = {
-    visible: { y: [250, 0], opacity: 1, scale: 1 , transition: {  duration: 1,delay: duration/10 } },
+    visible: { y: [50, 0], opacity: 1, scale: 1 , transition: {  duration: 1,delay: duration/10 } },
     hidden: { opacity: 0, scale: 0 }
   };
 
