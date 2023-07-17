@@ -67,7 +67,7 @@ export const getServerSideProps: GetServerSideProps<{
   error: string | null;
 }> = async (): Promise<any> => {
   const { data, error, status } = await NetWrapper(
-    "api/faqs?populate=deep&filters[property][id][$eq]=3"
+    "api/faqs?isForProperty=true&populate=deep&filters[property][id][$eq]=3"
   );
   return { props: { data, error } };
 };
