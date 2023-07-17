@@ -124,7 +124,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
               {room.guestCapacity.maxAdultAndChildren} Guests .{" "}
               {room.bathRoomType}
             </div>
-            <div className="flex items-center justify-between w-2/5 pr-20 mb-4 sm:mb-0 sm:pr-0">
+            <div className="flex items-center justify-between w-3/5 pr-20 mb-4 sm:mb-0 sm:pr-0">
               <div
               className="cursor-pointer"
                 onClick={() => {

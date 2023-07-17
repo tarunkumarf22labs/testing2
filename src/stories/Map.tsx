@@ -22,9 +22,10 @@ interface Imarkers {
   highlight?: number;
   handleClick?: (number) => void;
   zoomdata?: number;
+  handlemodalnopen ?: () => void
 }
 
-const Map = ({ markers, highlight, handleClick, zoomdata }: Imarkers) => {
+const Map = ({ markers, highlight, handleClick, zoomdata , handlemodalnopen}: Imarkers) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAP_API_KEY,
   });
@@ -73,6 +74,7 @@ const Map = ({ markers, highlight, handleClick, zoomdata }: Imarkers) => {
                 onClick={() => {
                   handleMarkerClick(ind, lat, lng, address);
                   handleClick && handleClick(ind);
+                  handlemodalnopen && handlemodalnopen()
                 }}
                 options={{
                   icon: !Number.isInteger(highlight)

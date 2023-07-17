@@ -179,7 +179,7 @@ const Reserve = ({
 
   return (
     <div className="m-auto">
-      <p className="text-center">
+      <p className="mt-5 text-center">
         <b>₹{basicPrice}</b>/ night
       </p>
       <div className="flex items-center justify-between w-10/12 h-12 m-auto mt-5 text-center">

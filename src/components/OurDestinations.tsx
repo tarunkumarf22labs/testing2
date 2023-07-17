@@ -17,13 +17,8 @@ const OurDestinations = ({ OurDestinations }: IOurDestinations) => {
   const [ref, inView] = useInView();
 
   const squareVariants = {
-    visible: {
-      y: [250, 0],
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 1, delay: 0.3 },
-    },
-    hidden: { opacity: 0, scale: 0 },
+    visible: { y: [100, 0], opacity: 1, scale: 1 , transition: {  duration: 1,delay: 0.3 } },
+    hidden: { opacity: 0, scale: 0 }
   };
 
   useEffect(() => {
@@ -39,15 +34,8 @@ const OurDestinations = ({ OurDestinations }: IOurDestinations) => {
       <h1 className="text-center md:text-left text-zinc-900 text-[52px] uppercase tracking-wider mt-5 leading-tight">
         EXPLORE OUR DESTINATIONS
       </h1>
-      <motion.div
-        className="mt-10"
-        animate={{
-          y: [250, 0],
-          opacity: 1,
-          scale: 1,
-          transition: { duration: 1, delay: 0.3 },
-        }}
-      >
+      <motion.div className="mt-10"
+      animate={{ y: [150, 0], opacity: 1, scale: 1 , transition: {  duration: 1,delay: 0.3 }}}>
         <Filter
           options={[
             "all",
