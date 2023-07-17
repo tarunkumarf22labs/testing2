@@ -507,7 +507,12 @@ export const spotLightSection = {
 };
 
 export const curatedCollectionSection = {
-  heading: 'CURATED COLLECTION'
+  heading: "CURATED COLLECTION",
+};
+
+export const villaFAQ = {
+  heading: "faqs",
+  contactUs: "Contact Us",
 };
 
 export const viewAll = 'VIEW ALL';

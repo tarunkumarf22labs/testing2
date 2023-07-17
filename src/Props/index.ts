@@ -1,4 +1,4 @@
-import { villaInterface } from 'src/Interface';
+import { IVillaFAQ, villaInterface } from "src/Interface";
 
 export const PropertyDetailsHeroSectionProps = (villaData: villaInterface) => {
   let images = villaData.attributes.images;
@@ -48,11 +48,11 @@ export const ReserveAndLocationDetailsSectionProps = (
         minAdultAndChildren: ele.attributes.guestCapacity.minAdultAndChildren,
         maxAdultAndChildren: ele.attributes.guestCapacity.maxAdultAndChildren,
         infant: ele.attributes.guestCapacity.infant,
-        pet: ele.attributes.guestCapacity.pet
+        pet: ele.attributes.guestCapacity.pet,
       },
       basicPrice: ele.attributes.pricing.basic,
       petPrice: ele.attributes.pricing.pet,
-      extraGuestsPrice: ele.attributes.pricing.extraGuest
+      extraGuestsPrice: ele.attributes.pricing.extraGuest,
     };
   });
 
@@ -68,7 +68,7 @@ export const ReserveAndLocationDetailsSectionProps = (
     basicPrice: villaData.attributes.pricing.basic,
     petPrice: villaData.attributes.pricing.pet,
     extraGuestPrice: villaData.attributes.pricing.extraGuest,
-    roomDetails: roomData
+    roomDetails: roomData,
   };
 };
 
@@ -313,9 +313,9 @@ export const SimilarStaysSectionProps = (villaData: villaInterface) => {
     };
   });
   return {
-    heading: 'SMILAR STAYS FOR YOU',
+    heading: "SMILAR STAYS FOR YOU",
     villaData: mappedVillaData,
-    inVillaDetails: true
+    inVillaDetails: true,
   };
 };
 
@@ -376,14 +376,14 @@ export const RoomSectionProps = (villaData: villaInterface) => {
     let amenities = ele.attributes.amenities.data.map((ele) => {
       return {
         icon: ele.attributes.icon.data.attributes.url,
-        text: ele.attributes.title
+        text: ele.attributes.title,
       };
     });
     let images = villaData.attributes.images.map((ele) => {
       return {
         thumbnail: ele.image.data.attributes.formats.thumbnail.url,
         image: ele.image.data.attributes.url,
-        type: ele.type
+        type: ele.type,
       };
     });
     return {
@@ -404,12 +404,28 @@ export const RoomSectionProps = (villaData: villaInterface) => {
         extraGuest: ele.attributes.pricing.extraGuest
       },
       amenities: amenities,
-      images: images
+      images: images,
     };
   });
   return {
-    heading: 'Rooms',
+    heading: "Rooms",
     villaTitle: villaData.attributes.name,
     roomData: data
+  };
+};
+
+export const VillaFullFAQProps = (faqData: IVillaFAQ) => {
+  return {
+    propertyName:
+      faqData?.data?.[0]?.attributes?.property?.data?.attributes?.name,
+    faqs: faqData?.data?.[0]?.attributes?.questionAndAnswers?.map((el) => ({
+      question: el?.question,
+      answer: el?.answer,
+    })),
+    potraitImageUrl:
+      faqData?.data?.[0]?.attributes?.portraitImages?.data?.[0]?.attributes
+        ?.url,
+    landscapeImageUrl:
+      faqData?.data?.[0]?.attributes?.landscapeImage?.data?.attributes?.url,
   };
 };

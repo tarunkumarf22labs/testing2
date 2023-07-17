@@ -60,15 +60,17 @@ const options: IMenu[] = [
   }
 ];
 
-function Topbar() {
+function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [navbarColor, setNavbarColor] = useState('text-white');
   const [animate, setAnimate] = useState(false);
 
+  const scrolledNavClass = "bg-white shadow-sm text-[#8A1E61] group isScrolled";
+
   useEffect(() => {
     function changeColor() {
       if (window?.scrollY > 100) {
-        setNavbarColor('bg-white shadow-md text-[#8A1E61] group isScrolled');
+        setNavbarColor(scrolledNavClass);
       } else {
         setNavbarColor('text-white');
       }
@@ -95,7 +97,9 @@ function Topbar() {
   return (
     <>
       <div
-        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-[100px] font-bold md:block`}
+        className={`hidden animate-fade-in-down z-50 sticky top-0 ${
+          animateHeader ? navbarColor : scrolledNavClass
+        } h-[100px] font-bold md:block`}
       >
         <div
           className={`flex flex-1 w-full h-full max-w-7xl mx-auto font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
@@ -116,17 +120,19 @@ function Topbar() {
           </div>
         </div>
       </div>
-      <div
-        className={`${
-          animate ? 'block animate-fade-in-down' : 'hidden'
-        }  duration-75 animate-fade-in-down sticky top-16  z-[150] w-full ${
-          navbarColor == 'text-white' ? '' : 'hidden'
-        }`}
-      >
-        <hr
-          className={` h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`}
-        />
-      </div>
+      {animateHeader === false ? null : (
+        <div
+          className={`${
+            animate ? "block animate-fade-in-down" : "hidden"
+          }  duration-75 animate-fade-in-down sticky top-16  z-[150] w-full ${
+            navbarColor == "text-white" ? "" : "hidden"
+          }`}
+        >
+          <hr
+            className={` h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`}
+          />
+        </div>
+      )}
       {/* ${animate ? 'animate-spin' : ''} */}
       <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden  ">
         <div className="flex items-center justify-between w-5/12 sm:w-4/12">

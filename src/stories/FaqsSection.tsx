@@ -1,7 +1,8 @@
-import React from 'react';
-import { Container } from './Container';
-import { NameTitle } from './NameTitle';
-import Image from 'next/image';
+import React from "react";
+import { Container } from "./Container";
+import { NameTitle } from "./NameTitle";
+import Image from "next/image";
+import Link from "next/link";
 
 interface IFaqs {
   faqs: { question: string; answer: string }[];
@@ -28,11 +29,13 @@ export const FaqsSection = ({ faqs }: IFaqs) => {
               );
             })}
           </div>
-          <div className="text-[#8A1E61] mt-5 text-xs md:text-sm font-medium tracking-wide">
-            VIEW ALL FAQs
-          </div>
+          <Link href={"/faq/123"}>
+            <p className="text-[#8A1E61] mt-5 text-xs md:text-sm font-medium tracking-wide">
+              VIEW ALL FAQs
+            </p>
+          </Link>
         </div>
-        <div className="hidden lg:block w-1/2 relative">
+        <div className="relative hidden w-1/2 lg:block">
           <Image
             src="/images/FaqImage2.png"
             alt="faq2"

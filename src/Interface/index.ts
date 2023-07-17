@@ -222,15 +222,15 @@ export enum LWebpMIME {
 }
 
 export enum AttributesEXT {
-  Jpg = '.jpg',
-  PDF = '.pdf',
-  SVG = '.svg'
+  Jpg = ".jpg",
+  PDF = ".pdf",
+  SVG = ".svg",
 }
 
 export enum AttributesMIME {
-  ApplicationPDF = 'application/pdf',
-  ImageJPEG = 'image/jpeg',
-  ImageSVGXML = 'image/svg+xml'
+  ApplicationPDF = "application/pdf",
+  ImageJPEG = "image/jpeg",
+  ImageSVGXML = "image/svg+xml",
 }
 
 export interface Iamenities {
@@ -346,4 +346,38 @@ interface IPrice {
   basic: number;
   pet: number;
   extraGuest: number;
+}
+
+interface QuestionAndAnswer {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+interface IFAQAttributes {
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  questionAndAnswers: QuestionAndAnswer[];
+  property: { data: villaInterface };
+  portraitImages: {
+    data: {
+      id: number;
+      attributes: FluffyAttributes;
+    }[];
+  };
+  landscapeImage: {
+    data: {
+      id: number;
+      attributes: FluffyAttributes;
+    };
+  };
+}
+
+export interface IVillaFAQ {
+  data: {
+    id: number;
+    attributes: IFAQAttributes;
+  }[];
+  error: string | null;
 }

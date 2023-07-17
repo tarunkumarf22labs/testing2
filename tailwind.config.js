@@ -29,9 +29,13 @@ module.exports = {
         'fade-in-down': 'fade-in-down 0.5s ease-in-out'
       },
       colors: {
-        pantone: '#7B8084',
-        pantonepink: '#8A1E61'
-      }
+        pantone: "#7B8084",
+        pantonepink: "#8A1E61",
+      },
+      boxShadow: {
+        "3xl":
+          "0px 10px 10px -5px rgba(0, 0, 0, 0.04), 0px 20px 25px -5px rgba(0, 0, 0, 0.10)",
+      },
     },
     fontFamily: {
       Brandon: ['Brandon'],
@@ -42,7 +46,7 @@ module.exports = {
   safelist: [
     {
       pattern: /^z-./,
-      variants: ['md']
-    }
-  ]
+      variants: ["md"],
+    },
+  ],
 };
