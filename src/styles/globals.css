@@ -3,57 +3,57 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Brandon-Grotesque";
-  src: url("../../fonts/Brandon_thin.otf");
+  font-family: 'Brandon-Grotesque';
+  src: url('../../fonts/Brandon_thin.otf');
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Brandon-Grotesque";
-  src: url("../../fonts/Brandon_med.otf");
+  font-family: 'Brandon-Grotesque';
+  src: url('../../fonts/Brandon_med.otf');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Brandon-Grotesque";
-  src: url("../../fonts/Brandon_reg.otf");
+  font-family: 'Brandon-Grotesque';
+  src: url('../../fonts/Brandon_reg.otf');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Brandon-Grotesque";
-  src: url("../../fonts/Brandon_bld.otf");
+  font-family: 'Brandon-Grotesque';
+  src: url('../../fonts/Brandon_bld.otf');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Brandon-Grotesque";
-  src: url("../../fonts/Brandon_blk.otf");
+  font-family: 'Brandon-Grotesque';
+  src: url('../../fonts/Brandon_blk.otf');
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Brandon-Grotesque";
-  src: url("../../fonts/Brandon_light.otf");
+  font-family: 'Brandon-Grotesque';
+  src: url('../../fonts/Brandon_light.otf');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Centaur";
-  src: url("../../fonts/CENTAUR.TTF");
+  font-family: 'Centaur';
+  src: url('../../fonts/CENTAUR.TTF');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "creattion";
-  src: url("../../fonts/creattion-demo_regular.otf");
+  font-family: 'creattion';
+  src: url('../../fonts/creattion-demo_regular.otf');
   font-weight: 400;
   font-style: normal;
 }
@@ -74,7 +74,7 @@
 }
 
 body {
-  font-family: "Brandon-Grotesque";
+  font-family: 'Brandon-Grotesque';
 }
 
 .day {
@@ -195,11 +195,24 @@ body {
 }
 
 .flag-dropdown {
-border: none !important;
-margin-bottom: 1px;
+  border: none !important;
+  margin-bottom: 1px;
 }
 
-
-[type='text']:focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{
-  box-shadow :none
+[type='text']:focus,
+[type='email']:focus,
+[type='url']:focus,
+[type='password']:focus,
+[type='number']:focus,
+[type='date']:focus,
+[type='datetime-local']:focus,
+[type='month']:focus,
+[type='search']:focus,
+[type='tel']:focus,
+[type='time']:focus,
+[type='week']:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: none;
 }
