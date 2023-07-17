@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import classNames from "classnames";
 
 interface IFAQAccordion {
   data: {
     question: string;
     answer: string;
   }[];
+  initialIndex?: number;
 }
 
-const FAQAccordion = ({ data }: IFAQAccordion) => {
-  const [active, setActive] = useState<number | false>(false);
+const FAQAccordion = ({ data, initialIndex }: IFAQAccordion) => {
+  const [active, setActive] = useState<number | false>(initialIndex ?? false);
 
   const onClick = (index: number) => {
     setActive(active === index ? false : index);
@@ -23,7 +25,10 @@ const FAQAccordion = ({ data }: IFAQAccordion) => {
         return (
           <div
             key={`${idx}`}
-            className="cursor-pointer border-b border-b-[#7B8084]/20 pt-10 pb-8 overflow-hidden"
+            className={classNames(
+              "cursor-pointer border-b-[#7B8084]/20 pt-10 pb-8 overflow-hidden",
+              idx === data?.length - 1 ? "border-none" : "border-b"
+            )}
             onClick={() => onClick(idx)}
           >
             <div className={"flex justify-between pb-2"}>
