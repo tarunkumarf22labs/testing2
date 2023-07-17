@@ -10,6 +10,7 @@ import { IVillaFAQ } from "src/Interface";
 import { VillaFullFAQProps } from "src/Props";
 import PrimaryButton from "src/stories/PrimaryButton";
 import { Phone } from "@phosphor-icons/react";
+import { villaFAQ } from "src/data/constants";
 
 const PropertyFAQ: NextPage = ({ data }: { data: IVillaFAQ }) => {
   const { faqs, potraitImageUrl, landscapeImageUrl, propertyName } =
@@ -22,7 +23,7 @@ const PropertyFAQ: NextPage = ({ data }: { data: IVillaFAQ }) => {
           <div className="flex-1">
             <NameTitle
               propertyName={`${propertyName}'s`}
-              title={"faqs"}
+              title={villaFAQ.heading}
               removeBottomPadding
             />
             <FAQAccordion initialIndex={0} data={faqs} />
@@ -31,7 +32,7 @@ const PropertyFAQ: NextPage = ({ data }: { data: IVillaFAQ }) => {
             <div className="relative md:w-[462px] md:h-[673px]">
               <Image
                 src={potraitImageUrl}
-                alt="faq1"
+                alt="potrait"
                 width={0}
                 height={0}
                 sizes="100vw"
@@ -39,7 +40,7 @@ const PropertyFAQ: NextPage = ({ data }: { data: IVillaFAQ }) => {
               />
               <Image
                 src={landscapeImageUrl}
-                alt="faq2"
+                alt="landscape"
                 width={0}
                 height={0}
                 sizes="100vw"
@@ -49,7 +50,7 @@ const PropertyFAQ: NextPage = ({ data }: { data: IVillaFAQ }) => {
           </div>
           <PrimaryButton
             className="absolute bottom-0 md:right-0 mx-auto rounded-[500px] px-10 py-3 shadow-3xl"
-            title="Contact Us"
+            title={villaFAQ.contactUs}
             onClick={() => {}}
             leftComponent={<Phone weight="fill" size={20} />}
           />
