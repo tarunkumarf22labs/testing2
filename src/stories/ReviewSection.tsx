@@ -23,7 +23,9 @@ export const ReviewSection = () => {
             img="/images/Avatar_image.png"
             top={false}
           />
-          <ScrollButton onPrevPress={() => {}} onNextPress={() => {}} />
+          <div className="mt-3">
+            <ScrollButton onPrevPress={() => {}} onNextPress={() => {}} />
+          </div>
         </div>
         <div className="hidden lg:block lg:h-full">
           <ImageDiv />

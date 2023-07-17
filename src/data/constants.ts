@@ -503,5 +503,11 @@ export const HomeOwnersDataList = [
 ];
 
 export const spotLightSection = {
-  heading: "Spotlight"
+  heading: "Spotlight",
+};
+
+export const curatedCollectionSection = {
+  heading: "CURATED COLLECTION"
 }
+
+export const viewAll = "VIEW ALL";
