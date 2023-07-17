@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 export const ScrollButton = ({
   onPrevPress,
-  onNextPress,
+  onNextPress
 }: {
   onPrevPress: () => void;
   onNextPress: () => void;

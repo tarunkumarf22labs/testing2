@@ -1,7 +1,7 @@
-import React from "react";
-import { Container } from "./Container";
-import { NameTitle } from "./NameTitle";
-import Image from "next/image";
+import React from 'react';
+import { Container } from './Container';
+import { NameTitle } from './NameTitle';
+import Image from 'next/image';
 
 export const HomeTruthsSection = ({ homeTruths }) => {
   return (
@@ -41,4 +41,3 @@ export const HomeTruthsSection = ({ homeTruths }) => {
     </Container>
   );
 };
-

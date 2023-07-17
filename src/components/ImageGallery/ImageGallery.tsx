@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Filter from "src/stories/Filter/Filter";
-import GalleryView from "src/stories/GalleryView/GalleryView";
-import Sponsor from "@/components/Sponsor/Sponsor";
-import Modal from "src/stories/Modal/Modal";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Filter from 'src/stories/Filter/Filter';
+import GalleryView from 'src/stories/GalleryView/GalleryView';
+import Sponsor from '@/components/Sponsor/Sponsor';
+import Modal from 'src/stories/Modal/Modal';
 
 interface ImageGalleryProps {
   images: IImageGallery[];
@@ -19,25 +19,24 @@ interface IImageGallery {
 
 export default function ImageGallery(props: ImageGalleryProps) {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [currentFilter, setCurrentFilter] = useState<string>("all");
-  const [galleryViewProps, setGalleryViewProps] =
-    useState<
-      {
-        title: string;
-        url: string;
-        type: string;
-        alt: string;
-        width: number;
-        height: number;
-        onClick: () => void;
-        selectVilla: (title: any, image: any, width: any, height: any) => void;
-      }[]
-    >();
+  const [currentFilter, setCurrentFilter] = useState<string>('all');
+  const [galleryViewProps, setGalleryViewProps] = useState<
+    {
+      title: string;
+      url: string;
+      type: string;
+      alt: string;
+      width: number;
+      height: number;
+      onClick: () => void;
+      selectVilla: (title: any, image: any, width: any, height: any) => void;
+    }[]
+  >();
   const [villaSelected, setVillaSelected] = useState({
-    title: "",
-    image: "",
+    title: '',
+    image: '',
     width: 0,
-    height: 0,
+    height: 0
   });
 
   const toggleModal = () => {
@@ -48,49 +47,49 @@ export default function ImageGallery(props: ImageGalleryProps) {
       title,
       image,
       width,
-      height,
+      height
     });
   };
 
   const getGalleryViewInitialState = (images) => {
-   let filteredData = images.map((ele) => {
-    return {
-      title: ele.title,
-      url: ele.url,
-      type: ele.type,
-      alt: ele.alt,
-      width: ele.width,
-      height: ele.height,
-      onClick: toggleModal,
-      selectVilla: selectVilla,
-    };
-  });
-  return filteredData
-  }
-  useEffect(( ) => {
-    if(currentFilter === 'all'){
-      setGalleryViewProps( getGalleryViewInitialState(props.images))
-    }else{
+    let filteredData = images.map((ele) => {
+      return {
+        title: ele.title,
+        url: ele.url,
+        type: ele.type,
+        alt: ele.alt,
+        width: ele.width,
+        height: ele.height,
+        onClick: toggleModal,
+        selectVilla: selectVilla
+      };
+    });
+    return filteredData;
+  };
+  useEffect(() => {
+    if (currentFilter === 'all') {
+      setGalleryViewProps(getGalleryViewInitialState(props.images));
+    } else {
       let filteredData = props.images.filter((ele) => {
-        return ele.type === currentFilter
-      })
-      setGalleryViewProps( getGalleryViewInitialState(filteredData))
+        return ele.type === currentFilter;
+      });
+      setGalleryViewProps(getGalleryViewInitialState(filteredData));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[currentFilter])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentFilter]);
   return (
     <div>
       <div>
         <div className="bg-[#F8F8F9] py-16">
           <Filter
             options={[
-              "all",
-              "Interior",
-              "Indoor Kitchen",
-              "Exterior",
-              "Living Room",
-              "Master Bedroom",
-              "Bathroom",
+              'all',
+              'Interior',
+              'Indoor Kitchen',
+              'Exterior',
+              'Living Room',
+              'Master Bedroom',
+              'Bathroom'
             ]}
             setCurrentFilter={setCurrentFilter}
             currentFilter={currentFilter}

@@ -1,6 +1,6 @@
-import React from "react";
-import { ICondition } from "./BeforeYouBook";
-import classNames from "classnames";
+import React from 'react';
+import { ICondition } from './BeforeYouBook';
+import classNames from 'classnames';
 
 interface IConditionsProps {
   data: ICondition;
@@ -10,18 +10,18 @@ interface IConditionsProps {
 export const Conditions = (props: IConditionsProps) => {
   const {
     data: { title, conditions },
-    index: parentIndex,
+    index: parentIndex
   } = props;
 
   return (
-    <div className={classNames(parentIndex === 0 ? "" : "pt-8")}>
+    <div className={classNames(parentIndex === 0 ? '' : 'pt-8')}>
       <div className="text-xl text-[#18181B] mb-5">{title}</div>
       <div className="grid grid-cols-2 gap-y-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {typeof conditions === "string" ? (
+        {typeof conditions === 'string' ? (
           <p>{conditions}</p>
         ) : (
           conditions.map((item, index) => {
-            if (item.label === "Check-In" || item.label === "Check-Out") {
+            if (item.label === 'Check-In' || item.label === 'Check-Out') {
               item.text = item.text.substring(0, 5);
             }
             return (

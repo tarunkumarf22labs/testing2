@@ -1,7 +1,7 @@
-import React from "react";
-import { Container } from "./Container";
-import { NameTitle } from "./NameTitle";
-import Image from "next/image";
+import React from 'react';
+import { Container } from './Container';
+import { NameTitle } from './NameTitle';
+import Image from 'next/image';
 
 interface IFaqs {
   faqs: { question: string; answer: string }[];
@@ -12,7 +12,7 @@ export const FaqsSection = ({ faqs }: IFaqs) => {
     <Container>
       <div className="flex space-x-16">
         <div className="w-full lg:w-1/2">
-          <NameTitle propertyName={"Deja View's"} title={"faqs"} />
+          <NameTitle propertyName={"Deja View's"} title={'faqs'} />
           <div className="space-y-6">
             {faqs.map((faq, index) => {
               const { question, answer } = faq;

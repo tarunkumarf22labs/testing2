@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import { Export, DownloadSimple, Heart } from "@phosphor-icons/react";
-import { Button } from "./Button";
-import useIsMobile from "@/hooks/useIsMobile";
+import React, { useContext } from 'react';
+import { Export, DownloadSimple, Heart } from '@phosphor-icons/react';
+import { Button } from './Button';
+import useIsMobile from '@/hooks/useIsMobile';
 import {
   availableDays,
   checkIn,
   checkOut,
   clearDates,
-  propertyOverviewActions,
-} from "src/data/constants";
-import Datepicker from "./DatePicker";
-import { AppContext } from "src/Context";
+  propertyOverviewActions
+} from 'src/data/constants';
+import Datepicker from './DatePicker';
+import { AppContext } from 'src/Context';
 
 interface IPropertyOverview {
   name: string;
@@ -24,28 +24,28 @@ interface IPropertyOverview {
 const actions = [
   {
     name: propertyOverviewActions[0],
-    Icon: Export,
+    Icon: Export
   },
   {
     name: propertyOverviewActions[1],
-    Icon: DownloadSimple,
+    Icon: DownloadSimple
   },
   {
     name: propertyOverviewActions[2],
-    Icon: Heart,
-  },
+    Icon: Heart
+  }
 ];
 
 const showStory = () => {
-  const item = document.getElementById("STORY-for-scroll");
+  const item = document.getElementById('STORY-for-scroll');
   item.scrollIntoView({
-    behavior: "smooth",
+    behavior: 'smooth'
   });
 };
 const showDetailDescription = () => {
-  const item = document.getElementById("detail-description-to-view");
+  const item = document.getElementById('detail-description-to-view');
   item.scrollIntoView({
-    behavior: "smooth",
+    behavior: 'smooth'
   });
 };
 
@@ -55,37 +55,33 @@ const PropertyOverview = ({
   state,
   byliner,
   about,
-  amenities,
+  amenities
 }: IPropertyOverview) => {
   const isMobile = useIsMobile();
 
-  const {
-    startDate,
-    endDate,
-    selectedDates,
-    ClearSelectedDate,
-  } = useContext(AppContext);
-  
+  const { startDate, endDate, selectedDates, ClearSelectedDate } =
+    useContext(AppContext);
+
   const firstDateString = startDate;
-  const firstDateParts = firstDateString?.split("/");
+  const firstDateParts = firstDateString?.split('/');
   const firstMonth = parseInt(firstDateParts[1]);
   const firstDay = parseInt(firstDateParts[0]);
   const firstYear = parseInt(firstDateParts[2]);
-  const firstDate = new Date(firstYear + "-" + firstMonth + "-" + firstDay);
+  const firstDate = new Date(firstYear + '-' + firstMonth + '-' + firstDay);
 
   // Get the month name
-  const firstMonthName = firstDate.toLocaleString("default", { month: "long" });
+  const firstMonthName = firstDate.toLocaleString('default', { month: 'long' });
 
   const secondDateString = endDate;
-  const secondDateParts = secondDateString?.split("/");
+  const secondDateParts = secondDateString?.split('/');
   const secondMonth = parseInt(secondDateParts[1]);
   const secondDay = parseInt(secondDateParts[0]);
   const secondYear = parseInt(secondDateParts[2]);
-  const secondDate = new Date(secondYear + "-" + secondMonth + "-" + secondDay);
+  const secondDate = new Date(secondYear + '-' + secondMonth + '-' + secondDay);
 
   // Get the month name
-  const secondMonthName = secondDate.toLocaleString("default", {
-    month: "long",
+  const secondMonthName = secondDate.toLocaleString('default', {
+    month: 'long'
   });
 
   return (

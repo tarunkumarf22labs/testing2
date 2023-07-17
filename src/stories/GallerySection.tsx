@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import classNames from "classnames";
-import Image from "next/image";
-import { ScrollButton } from "./ScrollButton";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import useIsMobile from "@/hooks/useIsMobile";
+import React, { useRef } from 'react';
+import classNames from 'classnames';
+import Image from 'next/image';
+import { ScrollButton } from './ScrollButton';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import useIsMobile from '@/hooks/useIsMobile';
 
 interface IGallery {
   heading: {
@@ -16,34 +16,34 @@ interface IGallery {
 }
 
 export const ImagesBig = [
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
-  "/images/GalleryRoom1.png",
-  "/images/GalleryRoom2.png",
+  '/images/GalleryRoom1.png',
+  '/images/GalleryRoom2.png',
+  '/images/GalleryRoom1.png',
+  '/images/GalleryRoom2.png',
+  '/images/GalleryRoom1.png',
+  '/images/GalleryRoom2.png'
 ];
 
 export const ImagesSmall = [
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
-  "/images/GallerySmallRoom1.png",
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png',
+  '/images/GallerySmallRoom1.png'
 ];
 
 export const GallerySection = ({
   heading,
   bigImages = ImagesBig,
-  smallImages = ImagesSmall,
+  smallImages = ImagesSmall
 }: IGallery) => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
@@ -64,7 +64,7 @@ export const GallerySection = ({
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
-          slidesPerView={"auto"}
+          slidesPerView={'auto'}
           className="relative mb-6"
           centeredSlides={isMobile}
           centeredSlidesBounds={isMobile}
@@ -91,8 +91,8 @@ export const GallerySection = ({
               <div
                 key={index}
                 className={classNames(
-                  index > 0 && "opacity-40",
-                  "h-full min-w-[160px] "
+                  index > 0 && 'opacity-40',
+                  'h-full min-w-[160px] '
                 )}
               >
                 <Image
@@ -107,7 +107,7 @@ export const GallerySection = ({
           </div>
           <div
             className={
-              "h-full w-[91px] bg-white flex items-center justify-center ml-4 cursor-pointer"
+              'h-full w-[91px] bg-white flex items-center justify-center ml-4 cursor-pointer'
             }
           >
             <p className="uppercase text-[#8A1E61] text-xs font-medium">

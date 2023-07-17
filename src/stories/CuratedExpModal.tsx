@@ -1,9 +1,9 @@
-import useIsMobile from "@/hooks/useIsMobile";
-import React, { useRef } from "react";
-import { curratedCollectionsModelData } from "src/data/constants";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { ScrollButton } from "./ScrollButton";
-import Image from "next/image";
+import useIsMobile from '@/hooks/useIsMobile';
+import React, { useRef } from 'react';
+import { curratedCollectionsModelData } from 'src/data/constants';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { ScrollButton } from './ScrollButton';
+import Image from 'next/image';
 
 interface ICuratedExpModal {
   id: number;
@@ -54,8 +54,7 @@ export const CuratedExpModal = ({ props }: ICuratedExpModal) => {
                   className="mb-6"
                 />
                 <p className="text-xs text-[#8A1E61] mb-2">
-                  {/* {el.nights} Nights */}
-                  2 Nights
+                  {/* {el.nights} Nights */}2 Nights
                 </p>
                 <h3 className="mb-4 text-xl capitalize">{el.title}</h3>
                 <ul className="space-y-3 list-disc">

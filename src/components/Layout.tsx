@@ -1,7 +1,7 @@
-import Head from "next/head";
-import React from "react";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
+import Head from 'next/head';
+import React from 'react';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
 
 interface LayoutProps {
   title: string;

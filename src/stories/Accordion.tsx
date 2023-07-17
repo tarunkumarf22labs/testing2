@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Container } from "./Container";
-import { NameTitle } from "./NameTitle";
-import { IInclusionsExclusionsSection } from "./InclusionsExclusionsSection";
-import classNames from "classnames";
-import { stringToArray } from "src/Props";
-import { DownArrow, UpArrow } from "src/data/Icons";
+import React, { useState } from 'react';
+import { Container } from './Container';
+import { NameTitle } from './NameTitle';
+import { IInclusionsExclusionsSection } from './InclusionsExclusionsSection';
+import classNames from 'classnames';
+import { stringToArray } from 'src/Props';
+import { DownArrow, UpArrow } from 'src/data/Icons';
 
 interface IAccordion {
   heading: string;

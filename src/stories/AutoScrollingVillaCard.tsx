@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Marquee from "react-fast-marquee";
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Marquee from 'react-fast-marquee';
 
 function App() {
   const [content, setContent] = useState([1, 2, 3, 4, 5, 6]);

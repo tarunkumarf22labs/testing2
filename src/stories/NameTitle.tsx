@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import React from "react";
+import classNames from 'classnames';
+import React from 'react';
 
 interface INameTitle {
   propertyName: string;
@@ -10,13 +10,13 @@ interface INameTitle {
 export const NameTitle = ({
   propertyName,
   title,
-  removeBottomPadding = false,
+  removeBottomPadding = false
 }: INameTitle) => {
   return (
     <div
       className={classNames(
-        "uppercase md:pb-10",
-        removeBottomPadding ? "" : "pb-6"
+        'uppercase md:pb-10',
+        removeBottomPadding ? '' : 'pb-6'
       )}
     >
       <p className="text-sm text-[#8A1E61] mb-2 tracking-widest md:mb-5">

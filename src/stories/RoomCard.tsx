@@ -1,8 +1,8 @@
-import Image from "next/image";
-import React, { useContext, useState } from "react";
-import { AppContext } from "src/Context";
-import RoomModal from "./RoomModal";
-import ToastAlert from "src/Toast";
+import Image from 'next/image';
+import React, { useContext, useState } from 'react';
+import { AppContext } from 'src/Context';
+import RoomModal from './RoomModal';
+import ToastAlert from 'src/Toast';
 
 interface IRoomCard {
   selectRoom: (value: React.SetStateAction<number>) => void;
@@ -43,7 +43,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
   const iconsArr = room.amenities.map((ele) => ele.icon);
   const maxEightIcons = iconsArr.length > 8 ? iconsArr.slice(0, 8) : iconsArr;
   const maxFourIcons = iconsArr.length > 4 ? iconsArr.slice(0, 4) : iconsArr;
-  const mainImage = room.images.filter((ele) => ele.type === "Main Image");
+  const mainImage = room.images.filter((ele) => ele.type === 'Main Image');
 
   function showOrHideRoomModal() {
     setShowRoomModal(!showRoomModal);
@@ -54,14 +54,14 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
       (ele) => ele.id === room.id
     );
     currentRoom = currentRoom?.length > 0 ? currentRoom[0] : null;
-    if (type === "increase") {
+    if (type === 'increase') {
       if (currentRoom === null) {
         setSelectedNumberOfRooms([
           ...selectedNumberOfRooms,
           {
             id: id,
-            numberOfRooms: 1,
-          },
+            numberOfRooms: 1
+          }
         ]);
       } else {
         if (
@@ -73,12 +73,12 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
           });
           setSelectedNumberOfRooms(updatedRooms);
         } else {
-          ToastAlert("Maximum room count reached", "warn");
+          ToastAlert('Maximum room count reached', 'warn');
         }
       }
     } else {
       if (currentRoom === null || currentRoom.numberOfRooms === 0) {
-        ToastAlert("Number of rooms can not be less than 0", "warn");
+        ToastAlert('Number of rooms can not be less than 0', 'warn');
       } else {
         if (currentRoom.numberOfRooms > 0) {
           const updatedRooms = selectedNumberOfRooms.map((ele) => {
@@ -90,8 +90,6 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
       }
     }
   };
-
-  
 
   return (
     <>
@@ -121,14 +119,14 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
               onClick={showOrHideRoomModal}
             >
               {room.guestCapacity.minAdultAndChildren}-
-              {room.guestCapacity.maxAdultAndChildren} Guests .{" "}
+              {room.guestCapacity.maxAdultAndChildren} Guests .{' '}
               {room.bathRoomType}
             </div>
             <div className="flex items-center justify-between w-3/5 pr-20 mb-4 sm:mb-0 sm:pr-0">
               <div
-              className="cursor-pointer"
+                className="cursor-pointer"
                 onClick={() => {
-                  handleSelectRoom(room.id, room.title, "increase");
+                  handleSelectRoom(room.id, room.title, 'increase');
                 }}
               >
                 <svg
@@ -157,16 +155,16 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
                 </svg>
               </div>
               <div>
-                {
-                
-                  selectedNumberOfRooms.find((object) => object.id === room.id)
-                    ?.numberOfRooms  ? selectedNumberOfRooms.find((object) => object.id === room.id)
-                    ?.numberOfRooms : 0
-                }
+                {selectedNumberOfRooms.find((object) => object.id === room.id)
+                  ?.numberOfRooms
+                  ? selectedNumberOfRooms.find(
+                      (object) => object.id === room.id
+                    )?.numberOfRooms
+                  : 0}
               </div>
               <div
                 onClick={() => {
-                  handleSelectRoom(room.id, room.title, "decrease");
+                  handleSelectRoom(room.id, room.title, 'decrease');
                 }}
                 className="cursor-pointer"
               >
@@ -198,7 +196,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
                     src={icon}
                     width={20}
                     height={20}
-                    alt={"icon"}
+                    alt={'icon'}
                     key={index}
                   />
                 ))}
@@ -209,7 +207,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
                     src={icon}
                     width={20}
                     height={20}
-                    alt={"icon"}
+                    alt={'icon'}
                     key={index}
                   />
                 ))}

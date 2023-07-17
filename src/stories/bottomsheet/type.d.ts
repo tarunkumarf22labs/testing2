@@ -1,7 +1,7 @@
-import { type ReactNode } from "react"
+import { type ReactNode } from 'react';
 
 interface IBottomSheet {
-    children  : ReactNode
-    isOpen     : boolean
-    handleclose : () => void;
+  children: ReactNode;
+  isOpen: boolean;
+  handleclose: () => void;
 }

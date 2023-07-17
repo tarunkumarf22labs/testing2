@@ -1,70 +1,67 @@
-import { villaInterface } from ".";
-import { IVillas } from "./home";
-
+import { villaInterface } from '.';
+import { IVillas } from './home';
 
 export interface Istate {
-    // data: {
-    id: string;
-    attributes: {
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-      publishedAt: string;
-      // }
-    };
-  }
-  export interface ILocations {
-          data: Istate[];
-          meta: {
-            pagination: {
-              page: number;
-              pageSize: number;
-              pageCount: number;
-              total: number;
-            };
-          };
-  }
-  export interface ISearchInterface {
-    // data: {
-    states: ILocations ;
-    countries: ILocations;
-    cities: ILocations;
-    villa?: IVillas;
-    // };
-    error: string | null;
-  }
-  
-  export interface ISearchResultInterface {
-    // data: {
-      data?: {
-        data: villaInterface[];
-        meta: {
-            pagination : {
-                page: number;
-                pageSize: number;
-                pageCount: number;
-                total: number;
-                }
-        };
-      };
-      error?: string;
-    // };
-    // error: string | null;
-  }
-
-  export interface IVillaResultInterface {
-        data: villaInterface[];
-        meta: {
-            pagination : {
-                page: number;
-                pageSize: number;
-                pageCount: number;
-                total: number;
-                }
-        };
+  // data: {
+  id: string;
+  attributes: {
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    // }
   };
+}
+export interface ILocations {
+  data: Istate[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
+export interface ISearchInterface {
+  // data: {
+  states: ILocations;
+  countries: ILocations;
+  cities: ILocations;
+  villa?: IVillas;
+  // };
+  error: string | null;
+}
 
+export interface ISearchResultInterface {
+  // data: {
+  data?: {
+    data: villaInterface[];
+    meta: {
+      pagination: {
+        page: number;
+        pageSize: number;
+        pageCount: number;
+        total: number;
+      };
+    };
+  };
+  error?: string;
+  // };
+  // error: string | null;
+}
 
+export interface IVillaResultInterface {
+  data: villaInterface[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}
 
 // export interface Welcome {
 //     data: WelcomeDatum[];

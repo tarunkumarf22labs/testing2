@@ -1,57 +1,57 @@
-import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useRef, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import "swiper/css";
+import 'swiper/css';
 
-import { Container } from "./Container";
-import TabButton from "./TabButton";
-import { curatedCollectionSection, viewAll } from "src/data/constants";
-import CuratedCollectionCard from "./CuratedCollectionCard";
-import classNames from "classnames";
-import { ScrollButton } from "./ScrollButton";
-import useIsMobile from "@/hooks/useIsMobile";
+import { Container } from './Container';
+import TabButton from './TabButton';
+import { curatedCollectionSection, viewAll } from 'src/data/constants';
+import CuratedCollectionCard from './CuratedCollectionCard';
+import classNames from 'classnames';
+import { ScrollButton } from './ScrollButton';
+import useIsMobile from '@/hooks/useIsMobile';
 
 const data = [
   {
-    category: "LUXURY INDULGENCE",
+    category: 'LUXURY INDULGENCE',
     properties: [
       {
-        place: "Wayanad, Kerala",
-        name: "Deja View",
+        place: 'Wayanad, Kerala',
+        name: 'Deja View'
       },
       {
-        place: "Palakkad, Kerala",
-        name: "Gramercy House",
+        place: 'Palakkad, Kerala',
+        name: 'Gramercy House'
       },
       {
-        place: "Chennai, Tamil Nadu",
-        name: "John's Villa",
+        place: 'Chennai, Tamil Nadu',
+        name: "John's Villa"
       },
       {
-        place: "Salem, Tamil Nadu",
-        name: "Elon's House",
+        place: 'Salem, Tamil Nadu',
+        name: "Elon's House"
       },
       {
-        place: "Pollachi, Tamil Nadu",
-        name: "Dream View",
-      },
-    ],
+        place: 'Pollachi, Tamil Nadu',
+        name: 'Dream View'
+      }
+    ]
   },
   {
-    category: "PET FRIENDLY",
+    category: 'PET FRIENDLY'
   },
   {
-    category: "THE PEAKS",
+    category: 'THE PEAKS'
   },
   {
-    category: "CULTURAL HERITAGE",
+    category: 'CULTURAL HERITAGE'
   },
   {
-    category: "FOOD TRAIL",
+    category: 'FOOD TRAIL'
   },
   {
-    category: "RANDOM",
-  },
+    category: 'RANDOM'
+  }
 ];
 
 const CuratedCollection = () => {
@@ -93,13 +93,13 @@ const CuratedCollection = () => {
                 swiperRef.current = swiper;
               }}
               spaceBetween={isMobile ? 24 : 80}
-              slidesPerView={"auto"}
+              slidesPerView={'auto'}
               centeredSlides={true}
               onActiveIndexChange={(swiper) => {
                 setActiveIndex(swiper?.activeIndex);
               }}
               slideToClickedSlide
-              wrapperClass={activeIndex === 0 && "!translate-x-0"}
+              wrapperClass={activeIndex === 0 && '!translate-x-0'}
               className="relative "
             >
               {selectedCategory?.properties?.map((property, idx) => {
@@ -107,30 +107,30 @@ const CuratedCollection = () => {
                   <SwiperSlide
                     key={`${idx}`}
                     className={classNames(
-                      "max-w-[280px]",
+                      'max-w-[280px]',
                       activeIndex === idx ||
                         selectedCategory?.properties?.length === 2
-                        ? "md:max-w-[620px]"
-                        : "md:max-w-[426px]"
+                        ? 'md:max-w-[620px]'
+                        : 'md:max-w-[426px]'
                     )}
                   >
                     <div
                       className={classNames(
-                        "box-content flex md:min-h-[474px] items-center",
+                        'box-content flex md:min-h-[474px] items-center',
                         activeIndex === idx - 1
-                          ? "justify-start"
+                          ? 'justify-start'
                           : activeIndex === idx + 1
-                          ? "justify-end"
-                          : "justify-center md:pb-24"
+                          ? 'justify-end'
+                          : 'justify-center md:pb-24'
                       )}
                     >
                       <CuratedCollectionCard
                         className={classNames(
-                          "h-auto",
+                          'h-auto',
                           activeIndex === idx ||
                             selectedCategory?.properties?.length === 2
-                            ? "w-full md:h-[410px]"
-                            : "w-full md:h-[282px]"
+                            ? 'w-full md:h-[410px]'
+                            : 'w-full md:h-[282px]'
                         )}
                         isActive={Boolean(
                           activeIndex === idx ||
@@ -145,10 +145,10 @@ const CuratedCollection = () => {
               })}
               <div
                 className={classNames(
-                  "absolute right-16 md:right-20 flex justify-end bottom-1/2 -translate-y-1/2 z-10",
+                  'absolute right-16 md:right-20 flex justify-end bottom-1/2 -translate-y-1/2 z-10',
                   selectedCategory?.properties?.length === 2
-                    ? "md:bottom-0"
-                    : "md:bottom-10"
+                    ? 'md:bottom-0'
+                    : 'md:bottom-10'
                 )}
               >
                 <ScrollButton

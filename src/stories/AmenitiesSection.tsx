@@ -15,11 +15,11 @@ import {
   Thermometer,
   UserCircle,
   UsersThree,
-  WifiHigh,
-} from "@phosphor-icons/react";
-import Image from "next/image";
-import React from "react";
-import { IImageTag } from "src/Interface";
+  WifiHigh
+} from '@phosphor-icons/react';
+import Image from 'next/image';
+import React from 'react';
+import { IImageTag } from 'src/Interface';
 
 interface IAmenitiesSection {
   heading: string;
@@ -29,10 +29,9 @@ interface IAmenitiesSection {
   }[];
 }
 
-
 export const AmenitiesSection = ({
   heading,
-  iconsArray,
+  iconsArray
 }: IAmenitiesSection) => {
   const maxEightIcons =
     iconsArray.length > 9 ? iconsArray.slice(0, 9) : iconsArray;
@@ -50,7 +49,12 @@ export const AmenitiesSection = ({
           {maxEightIcons.map((icon, index) => (
             <p key={index} className="flex">
               {/* {icons[icon.icon]}{" "} */}
-              <Image src={icon.image.image} width={20} height={20} alt={icon.image.alt}/>
+              <Image
+                src={icon.image.image}
+                width={20}
+                height={20}
+                alt={icon.image.alt}
+              />
               <span className="pl-3 text-base font-centaur">{icon.text}</span>
             </p>
           ))}
@@ -59,9 +63,14 @@ export const AmenitiesSection = ({
           {iconsArray.map((icon, index) => (
             <p key={index} className="flex items-center ">
               {/* {icons[icon.icon]}{" "} */}
-              <Image src={icon.image.image} width={20} height={20} alt={icon.image.alt}/>
+              <Image
+                src={icon.image.image}
+                width={20}
+                height={20}
+                alt={icon.image.alt}
+              />
               <span className="pl-3 text-base font-centaur max-w-[288px]">
-                {icon.text} 
+                {icon.text}
               </span>
             </p>
           ))}

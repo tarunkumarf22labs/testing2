@@ -1,6 +1,6 @@
-import classNames from "classnames";
-import React, { useState } from "react";
-import { readMoreText } from "src/data/constants";
+import classNames from 'classnames';
+import React, { useState } from 'react';
+import { readMoreText } from 'src/data/constants';
 
 type ReadMoreTypes = {
   text: string;
@@ -13,7 +13,7 @@ const ReadMore = ({
   text,
   textClassName,
   readMoreTextClassName,
-  maxChars,
+  maxChars
 }: ReadMoreTypes) => {
   const [readMore, setReadmore] = useState(false);
 
@@ -23,13 +23,13 @@ const ReadMore = ({
         {readMore
           ? text
           : text?.length > maxChars
-          ? text?.slice(0, maxChars - 3) + "... "
+          ? text?.slice(0, maxChars - 3) + '... '
           : text}
         {!readMore && text?.length > maxChars && (
           <span
             onClick={() => setReadmore(true)}
             className={classNames(
-              "cursor-pointer hover:underline",
+              'cursor-pointer hover:underline',
               readMoreTextClassName
             )}
           >

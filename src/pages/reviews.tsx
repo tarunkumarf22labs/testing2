@@ -1,10 +1,10 @@
-import React from "react";
-import { reviewsPageData } from "../data/constants";
-import { Container } from "src/stories/Container";
-import Layout from "@/components/Layout";
-import { NameTitle } from "src/stories/NameTitle";
-import { ReviewCard } from "src/stories/ReviewCard";
-import Image from "next/image";
+import React from 'react';
+import { reviewsPageData } from '../data/constants';
+import { Container } from 'src/stories/Container';
+import Layout from '@/components/Layout';
+import { NameTitle } from 'src/stories/NameTitle';
+import { ReviewCard } from 'src/stories/ReviewCard';
+import Image from 'next/image';
 
 const Reviews = () => {
   const { property, reviews } = reviewsPageData;

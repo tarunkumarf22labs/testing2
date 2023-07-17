@@ -1,5 +1,5 @@
-import React from "react";
-import Option from "./Option";
+import React from 'react';
+import Option from './Option';
 
 interface optionsInterface {
   id: number;
