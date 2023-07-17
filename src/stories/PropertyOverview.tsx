@@ -129,7 +129,7 @@ const PropertyOverview = ({
           <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
             {about}
           </p>
-          <div className="flex m-auto sm:m-0 ">
+          <div className="flex flex-col items-center justify-center m-auto sm:justify-start sm:m-0 sm:flex-row sm:gap-11">
             <div className="mt-8" onClick={showStory}>
               <div
                 className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-44 cursor-pointer border border-[#8A1E61]"
@@ -138,7 +138,7 @@ const PropertyOverview = ({
                 <h3 className="">DEJA VIEW’S STORY</h3>
               </div>
             </div>
-            <div className="mt-8 ml-11 " onClick={showDetailDescription}>
+            <div className="mt-8" onClick={showDetailDescription}>
               <div
                 className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-40 sm:w-60 cursor-pointer border border-[#8A1E61]"
                 // onClick={() => setReadMore(!readMore)}
