@@ -5,7 +5,7 @@ import "swiper/css";
 
 import { Container } from "./Container";
 import TabButton from "./TabButton";
-import { viewAll } from "src/data/constants";
+import { curatedCollectionSection, viewAll } from "src/data/constants";
 import CuratedCollectionCard from "./CuratedCollectionCard";
 import classNames from "classnames";
 import { ScrollButton } from "./ScrollButton";
@@ -68,7 +68,7 @@ const CuratedCollection = () => {
           LuxUNLOCK’s
         </p>
         <h1 className="text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
-          CURATED COLLECTION
+          {curatedCollectionSection.heading}
         </h1>
         <div>
           <div className="flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
