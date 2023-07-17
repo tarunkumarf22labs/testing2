@@ -1,19 +1,22 @@
 import React from 'react';
-import { HomeOwnersDataList } from 'src/data/constants';
 import Image from 'next/image';
 
-const HomeOwnersList = () => {
+interface IHomeOwnersList {
+  homeOwnersListProps: string[];
+}
+
+const HomeOwnersList = ({homeOwnersListProps}:IHomeOwnersList) => {
   return (
     <>
     {
-        HomeOwnersDataList.map((ele, id) => {
+        homeOwnersListProps.map((ele, id) => {
             return (
                 <div key={id} className={`flex items-start justify-start ${id !== 0 && 'mt-16'}`}>
                     <div className='relative w-1/12 top-1'>
                      <Image src='images/homeOwnersList.svg' alt='logo' width={20} height={20}/>
                     </div>
                     <div className='w-11/12 '>
-                    <p className='text-[#18181B] text-xl '>{ele.text}</p>
+                    <p className='text-[#18181B] text-xl '>{ele}</p>
                     </div>
                 </div>
             )

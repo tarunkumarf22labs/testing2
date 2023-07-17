@@ -179,7 +179,7 @@ body {
   visibility: hidden;
 }
 .custom-file-input::before {
-  content: 'Upload Images';
+  content: "Upload Images";
   display: inline-block;
   background: linear-gradient(top, #f9f9f9, #e3e3e3);
   /* border: 1px solid #999; */
@@ -195,11 +195,24 @@ body {
 }
 
 .flag-dropdown {
-border: none !important;
-margin-bottom: 1px;
+  border: none !important;
+  margin-bottom: 1px;
 }
 
-
-[type='text']:focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{
-  box-shadow :none
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: none;
 }
