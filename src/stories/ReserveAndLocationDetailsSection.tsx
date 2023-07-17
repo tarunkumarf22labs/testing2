@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import Reserve from "./Reserve";
-import LocationAndDetails from "./LocationAndDetails";
-import { AppContext } from "src/Context";
+import React, { useContext } from 'react';
+import Reserve from './Reserve';
+import LocationAndDetails from './LocationAndDetails';
+import { AppContext } from 'src/Context';
 
 interface IReserveAndLocationDetailsSection {
   locations: string;
@@ -23,7 +23,7 @@ interface IReserveAndLocationDetailsSection {
       maxAdultAndChildren: number;
       infant: number;
       pet: number;
-    },
+    };
     basicPrice: number;
     petPrice: number;
     extraGuestsPrice: number;
@@ -47,7 +47,7 @@ const ReserveAndLocationDetailsSection = ({
     locations,
     address,
     lat,
-    lng,
+    lng
   };
   const ReserveProps = {
     infant,

@@ -3,16 +3,14 @@ import Datepicker from './DatePicker';
 
 const meta: Meta<typeof Datepicker> = {
   title: 'Component/Datepicker',
-  component: Datepicker,
-
+  component: Datepicker
 };
 
 export default meta;
 type Story = StoryObj<typeof Datepicker>;
 
-
 export const Primary: Story = {
-   args: {
+  args: {
     inVillaDetails: false
-   }
-  };
+  }
+};

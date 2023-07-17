@@ -1,5 +1,5 @@
-import React from "react";
-import SelectRoomOption from "./SelectRoomOption";
+import React from 'react';
+import SelectRoomOption from './SelectRoomOption';
 
 interface ISelectRooms {
   roomDetails: {

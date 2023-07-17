@@ -1,6 +1,6 @@
 interface Ibooking {
-    id :  string,
-    imagesrc  : string  ,
-    placename :  string,
-    villatype : string ,
+  id: string;
+  imagesrc: string;
+  placename: string;
+  villatype: string;
 }

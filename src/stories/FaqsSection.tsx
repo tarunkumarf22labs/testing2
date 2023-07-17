@@ -13,7 +13,7 @@ export const FaqsSection = ({ faqs }: IFaqs) => {
     <Container>
       <div className="flex space-x-16">
         <div className="w-full lg:w-1/2">
-          <NameTitle propertyName={"Deja View's"} title={"faqs"} />
+          <NameTitle propertyName={"Deja View's"} title={'faqs'} />
           <div className="space-y-6">
             {faqs.map((faq, index) => {
               const { question, answer } = faq;
@@ -35,7 +35,7 @@ export const FaqsSection = ({ faqs }: IFaqs) => {
             </p>
           </Link>
         </div>
-        <div className="hidden lg:block w-1/2 relative">
+        <div className="relative hidden w-1/2 lg:block">
           <Image
             src="/images/FaqImage2.png"
             alt="faq2"

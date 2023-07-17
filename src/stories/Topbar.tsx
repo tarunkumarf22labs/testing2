@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import HeaderLogo from "./HeaderLogo";
-import MobileNavbar from "./MobileNavbar";
-import Navbar from "./Navbar";
-import googleIcon from "../../public/images/googleIcon.svg";
-import Image from "next/image";
+import HeaderLogo from './HeaderLogo';
+import MobileNavbar from './MobileNavbar';
+import Navbar from './Navbar';
+import googleIcon from '../../public/images/googleIcon.svg';
+import Image from 'next/image';
 
 interface optionsInterface {
   id: number;
@@ -19,50 +19,50 @@ interface IMenu {
 
 const options: IMenu[] = [
   {
-    title: "DESTINATIONS",
+    title: 'DESTINATIONS',
     options: [
-      { id: 2, value: "Villas in Conoor", path: "coonoor" },
-      { id: 3, value: "Villas in Chettinad", path: "chettinad" },
-      { id: 4, value: "Villas in Gulf Of Mannar", path: "gulf-of-mannar" },
-      { id: 5, value: "Villas in Goa", path: "goa" },
-      { id: 6, value: "Villas in Kerala", path: "kerala" },
-      { id: 7, value: "Villas in Kodaikanal", path: "kodaikanal" },
-      { id: 8, value: "Villas in Mamallapuram", path: "mamallapuram" },
-      { id: 9, value: "Villas in Ooty", path: "ooty" },
-      { id: 10, value: "Villas in Pondicherry", path: "pondicherry" },
-      { id: 11, value: "Villas in Sri Lanka", path: "sri-lanka" },
-      { id: 12, value: "Villas in Alampara Coast", path: "alampara-coast" },
-      { id: 13, value: "Villas in The Nilgiris", path: "the-nilgiris" },
-      { id: 14, value: "Villas in Thirupugalpur", path: "thirupugalpur" },
-      { id: 15, value: "Wayanand", path: "wayanand" },
+      { id: 2, value: 'Villas in Conoor', path: 'coonoor' },
+      { id: 3, value: 'Villas in Chettinad', path: 'chettinad' },
+      { id: 4, value: 'Villas in Gulf Of Mannar', path: 'gulf-of-mannar' },
+      { id: 5, value: 'Villas in Goa', path: 'goa' },
+      { id: 6, value: 'Villas in Kerala', path: 'kerala' },
+      { id: 7, value: 'Villas in Kodaikanal', path: 'kodaikanal' },
+      { id: 8, value: 'Villas in Mamallapuram', path: 'mamallapuram' },
+      { id: 9, value: 'Villas in Ooty', path: 'ooty' },
+      { id: 10, value: 'Villas in Pondicherry', path: 'pondicherry' },
+      { id: 11, value: 'Villas in Sri Lanka', path: 'sri-lanka' },
+      { id: 12, value: 'Villas in Alampara Coast', path: 'alampara-coast' },
+      { id: 13, value: 'Villas in The Nilgiris', path: 'the-nilgiris' },
+      { id: 14, value: 'Villas in Thirupugalpur', path: 'thirupugalpur' },
+      { id: 15, value: 'Wayanand', path: 'wayanand' }
     ],
-    path: "destinations",
+    path: 'destinations'
   },
   {
-    title: "LUX LOYALITY",
+    title: 'LUX LOYALITY',
     options: [],
-    path: "lux-loyality",
+    path: 'lux-loyality'
   },
   {
-    title: "JOURNAL",
+    title: 'JOURNAL',
     options: [],
-    path: "journal",
+    path: 'journal'
   },
   {
-    title: "HOME OWNER",
+    title: 'HOME OWNER',
     options: [],
-    path: "home-owner",
+    path: 'home-owner'
   },
   {
-    title: "CONTACT US",
+    title: 'CONTACT US',
     options: [],
-    path: "contact-us",
-  },
+    path: 'contact-us'
+  }
 ];
 
 function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [navbarColor, setNavbarColor] = useState("text-white");
+  const [navbarColor, setNavbarColor] = useState('text-white');
   const [animate, setAnimate] = useState(false);
 
   const scrolledNavClass = "bg-white shadow-sm text-[#8A1E61] group isScrolled";
@@ -72,14 +72,14 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
       if (window?.scrollY > 100) {
         setNavbarColor(scrolledNavClass);
       } else {
-        setNavbarColor("text-white");
+        setNavbarColor('text-white');
       }
     }
     // adding the event when scroll change Logo
-    window.addEventListener("scroll", changeColor);
+    window.addEventListener('scroll', changeColor);
     // Clean up the event listener on component unmount
     return () => {
-      window.removeEventListener("scroll", changeColor);
+      window.removeEventListener('scroll', changeColor);
     };
   }, []);
 

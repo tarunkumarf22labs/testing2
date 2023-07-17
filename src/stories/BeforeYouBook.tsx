@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Container } from "./Container";
-import { NameTitle } from "./NameTitle";
-import { Conditions } from "./Conditions";
-import useIsMobile from "@/hooks/useIsMobile";
-import { DownArrow, UpArrow } from "src/data/Icons";
+import React, { useState } from 'react';
+import { Container } from './Container';
+import { NameTitle } from './NameTitle';
+import { Conditions } from './Conditions';
+import useIsMobile from '@/hooks/useIsMobile';
+import { DownArrow, UpArrow } from 'src/data/Icons';
 
 interface IConditionProps {
   label: string;

@@ -1,35 +1,42 @@
-import React, { ReactNode, Suspense, lazy, useEffect, useRef, useState} from "react";
-import type { GetServerSideProps, NextPage } from "next";
-import { useRouter } from "next/router";
-import NetWrapper from "src/Network/netWrapper";
-import { AppContext } from "src/Context";
-import Layout from "@/components/Layout";
-import Carousel from "src/stories/Carousel";
-import Map from "src/stories/Map";
-import SearchedVillaCard from "src/stories/SearchedVillaCard";
-import SortVilla from "src/stories/SortVilla";
-import { locations, mediaImages } from "src/data/constants";
-import MediaListing from "src/stories/MediaListing";
+import React, {
+  ReactNode,
+  Suspense,
+  lazy,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import type { GetServerSideProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
+import NetWrapper from 'src/Network/netWrapper';
+import { AppContext } from 'src/Context';
+import Layout from '@/components/Layout';
+import Carousel from 'src/stories/Carousel';
+import Map from 'src/stories/Map';
+import SearchedVillaCard from 'src/stories/SearchedVillaCard';
+import SortVilla from 'src/stories/SortVilla';
+import { locations, mediaImages } from 'src/data/constants';
+import MediaListing from 'src/stories/MediaListing';
 import Sheet, { SheetRef } from 'react-modal-sheet';
-import { IHomeInterface } from "src/Interface";
+import { IHomeInterface } from 'src/Interface';
 import {
   ILocations,
   ISearchInterface,
-  IVillaResultInterface,
-} from "src/Interface/Search";
+  IVillaResultInterface
+} from 'src/Interface/Search';
 import {
   SearchLocationProps,
   SearchedLocationsProps,
-  SearchedVillaCardProps,
-} from "src/Props/Search";
-import { StatusSvg } from "src/assets";
-import { HomeBannerimages } from "src/data/constants";
-import ErrorBoundary from "@/components/ErrorBoundary";
-import FallbackUI from "@/components/Fallback";
-const MobileMap = lazy( ()  =>  import("@/components/mobilemap"))
+  SearchedVillaCardProps
+} from 'src/Props/Search';
+import { StatusSvg } from 'src/assets';
+import { HomeBannerimages } from 'src/data/constants';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import FallbackUI from '@/components/Fallback';
+const MobileMap = lazy(() => import('@/components/mobilemap'));
 
 const Result: NextPage = (data: ISearchInterface) => {
-  const [showSearch, setshowSearch] = useState<boolean>(false)
+  const [showSearch, setshowSearch] = useState<boolean>(false);
   const router = useRouter();
   const {
     locationtype,
@@ -37,11 +44,11 @@ const Result: NextPage = (data: ISearchInterface) => {
     locationid,
     checkin,
     checkout,
-    numberofguests,
+    numberofguests
   } = router.query;
 
   const [villasResult, setVillasResult] = useState<IVillaResultInterface>();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const cardRef = useRef(null);
 
@@ -58,16 +65,16 @@ const Result: NextPage = (data: ISearchInterface) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  const bannerImageStyle = "h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]";
+  const bannerImageStyle = 'h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]';
   const bannerTextStyle =
-    "hidden sm:block text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[35%] z-[48] w-1/2 text-left text-5xl ";
-  const bannerText = ["UNLOCK", <br key={10} />, "OUR DESTINATIONS"];
+    'hidden sm:block text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[35%] z-[48] w-1/2 text-left text-5xl ';
+  const bannerText = ['UNLOCK', <br key={10} />, 'OUR DESTINATIONS'];
   const [cardTopPosition, setCardTopPosition] = useState(0);
 
   const handleClick = (id: number) => {
@@ -77,7 +84,7 @@ const Result: NextPage = (data: ISearchInterface) => {
 
     window.scrollTo({
       top: scrollToElement.offsetTop - 84,
-      behavior: "smooth",
+      behavior: 'smooth'
     });
   };
 
@@ -94,7 +101,7 @@ const Result: NextPage = (data: ISearchInterface) => {
     try {
       let url =
         query.length > 0
-          ? `api/properties?populate=deep${query.join("")}`
+          ? `api/properties?populate=deep${query.join('')}`
           : `api/properties?populate=deep`;
       const { data, error } = await NetWrapper(url);
       if (error) {
@@ -114,25 +121,25 @@ const Result: NextPage = (data: ISearchInterface) => {
   }, [locationtype, location, locationid, checkin, checkout, numberofguests]);
 
   function handleshowSearch() {
-    setshowSearch((prev => !prev))
+    setshowSearch((prev) => !prev);
   }
 
- // props getter pattern 
+  // props getter pattern
   const mobileMapProps = () => ({
     cardTopPosition,
     data,
     handleClick,
     location,
     villasResult,
-    key: 1,
+    key: 1
   });
   return (
     <>
-      <div className="hidden sm:block" >
+      <div className="hidden sm:block">
         <Layout title="luxunlock">
           {error ? (
             <div className="w-full h-[500px] flex justify-center items-center">
-              <h1 className="text-2xl">{"Some Error Occured"}</h1>
+              <h1 className="text-2xl">{'Some Error Occured'}</h1>
             </div>
           ) : (
             <div>
@@ -158,8 +165,8 @@ const Result: NextPage = (data: ISearchInterface) => {
                   <SortVilla />
                   <div className="w-11/12 m-auto">
                     <h1 className="text-5xl font-[Brandon Grotesque] mb-10">
-                      {villasResult?.data.length}{" "}
-                      {villasResult?.data.length > 1 ? "STAYS" : "STAY"}
+                      {villasResult?.data.length}{' '}
+                      {villasResult?.data.length > 1 ? 'STAYS' : 'STAY'}
                     </h1>
                   </div>
 
@@ -205,26 +212,25 @@ const Result: NextPage = (data: ISearchInterface) => {
       </div>
       {/* code for mobile view of result page   */}
       <div className="block sm:hidden ">
-        <ErrorBoundary  fallback={<FallbackUI onClick={() => {}} />} >
-         {/* @ts-expect-error Server Component */}
-         <Suspense fallback={<Loading/>} >
-         <MobileMap {...mobileMapProps()}/>
-         </Suspense>
-     
-         </ErrorBoundary>
+        <ErrorBoundary fallback={<FallbackUI onClick={() => {}} />}>
+          {/* @ts-expect-error Server Component */}
+          <Suspense fallback={<Loading />}>
+            <MobileMap {...mobileMapProps()} />
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </>
   );
 };
 
-function Loading() : ReactNode {
-  return(
+function Loading(): ReactNode {
+  return (
     <div className="text-center w-full h-[500px] flex justify-center items-center">
-    <div role="status">
-      <StatusSvg />
+      <div role="status">
+        <StatusSvg />
+      </div>
     </div>
-  </div>
-  )
+  );
 }
 
 export default Result;
@@ -233,9 +239,9 @@ export const getServerSideProps: GetServerSideProps<{
   data: ISearchInterface | null;
   error: string | null;
 }> = async (): Promise<any> => {
-  const states = await NetWrapper("api/states");
-  const cities = await NetWrapper("api/cities");
-  const countries = await NetWrapper("api/countries");
+  const states = await NetWrapper('api/states');
+  const cities = await NetWrapper('api/cities');
+  const countries = await NetWrapper('api/countries');
   let error = null;
   if (states.error) error = states.error;
   if (cities.error) error = cities.error;
@@ -246,9 +252,7 @@ export const getServerSideProps: GetServerSideProps<{
       states: states?.data,
       countries: countries?.data,
       cities: cities?.data,
-      error,
-    },
+      error
+    }
   };
 };
-
-

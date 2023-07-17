@@ -210,15 +210,15 @@ export interface LWebp {
   path?: null;
 }
 export enum Provider {
-  AwsS3 = "aws-s3",
+  AwsS3 = 'aws-s3'
 }
 export enum LWebpEXT {
-  Jpg = ".jpg",
-  Webp = ".webp",
+  Jpg = '.jpg',
+  Webp = '.webp'
 }
 export enum LWebpMIME {
-  ImageJPEG = "image/jpeg",
-  ImageWebp = "image/webp",
+  ImageJPEG = 'image/jpeg',
+  ImageWebp = 'image/webp'
 }
 
 export enum AttributesEXT {

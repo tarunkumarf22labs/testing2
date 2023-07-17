@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import Sheet from 'react-modal-sheet';
 import { IBottomSheet } from './type';
-function BottomSheet({ children, isOpen, handleclose } : IBottomSheet ) {
+function BottomSheet({ children, isOpen, handleclose }: IBottomSheet) {
   return (
     <Sheet
       isOpen={isOpen}
@@ -13,14 +13,12 @@ function BottomSheet({ children, isOpen, handleclose } : IBottomSheet ) {
       <Sheet.Container>
         <Sheet.Content>
           <Sheet.Header />
-          <Sheet.Scroller>
-            {children}
-          </Sheet.Scroller>
+          <Sheet.Scroller>{children}</Sheet.Scroller>
         </Sheet.Content>
       </Sheet.Container>
       <Sheet.Backdrop onTap={handleclose} />
     </Sheet>
-  )
+  );
 }
 
-export default BottomSheet
+export default BottomSheet;

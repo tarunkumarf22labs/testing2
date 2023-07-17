@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface optionsInterface {
   id: number;
@@ -17,7 +17,7 @@ const Option = (props: OptionProps) => {
   const { title, options, id, onMenuSelectedHandler } = props;
   const [showOptions, setShowOptions] = useState(false);
 
-  const shouldShow = showOptions ? "absolute" : "hidden";
+  const shouldShow = showOptions ? 'absolute' : 'hidden';
   return (
     <li
       key={id}
@@ -28,7 +28,7 @@ const Option = (props: OptionProps) => {
     >
       {title}
       {options && options.length === 0 ? (
-        ""
+        ''
       ) : showOptions ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

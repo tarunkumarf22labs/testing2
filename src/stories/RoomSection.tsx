@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { RoomCard } from "./RoomCard";
-import { AppContext } from "src/Context";
+import React, { useContext, useEffect, useState } from 'react';
+import { RoomCard } from './RoomCard';
+import { AppContext } from 'src/Context';
 
 interface IRoomSection {
   villaTitle: string;
@@ -37,10 +37,9 @@ interface IRoomSection {
 export const RoomSection = ({
   villaTitle,
   heading,
-  roomData,
+  roomData
 }: IRoomSection) => {
   const [selectedRoom, setSelectedRoom] = useState<number>();
- 
 
   return (
     <div className="px-5 pt-10 uppercase flex-1 sm:p-8 lg:mt-20 bg-white md:max-w-[810px]">

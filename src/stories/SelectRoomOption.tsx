@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AppContext } from "src/Context";
-import ToastAlert from "src/Toast";
+import React, { useContext, useEffect, useState } from 'react';
+import { AppContext } from 'src/Context';
+import ToastAlert from 'src/Toast';
 
 interface ISelectRoomOption {
   id: number;
@@ -24,14 +24,14 @@ const SelectRoomOption = (room: ISelectRoomOption) => {
       (ele) => ele.id === room.id
     );
     currentRoom = currentRoom?.length > 0 ? currentRoom[0] : null;
-    if (type === "increase") {
+    if (type === 'increase') {
       if (currentRoom === null) {
         setSelectedNumberOfRooms([
           ...selectedNumberOfRooms,
           {
             id: id,
-            numberOfRooms: 1,
-          },
+            numberOfRooms: 1
+          }
         ]);
       } else {
         if (
@@ -43,12 +43,12 @@ const SelectRoomOption = (room: ISelectRoomOption) => {
           });
           setSelectedNumberOfRooms(updatedRooms);
         } else {
-          ToastAlert("Maximum room count reached", "warn");
+          ToastAlert('Maximum room count reached', 'warn');
         }
       }
     } else {
       if (currentRoom === null || currentRoom.numberOfRooms === 0) {
-        ToastAlert("Number of rooms can not be less than 0", "warn");
+        ToastAlert('Number of rooms can not be less than 0', 'warn');
       } else {
         if (currentRoom.numberOfRooms > 0) {
           const updatedRooms = selectedNumberOfRooms.map((ele) => {
@@ -72,7 +72,7 @@ const SelectRoomOption = (room: ISelectRoomOption) => {
       <div className="flex items-center justify-between w-2/5 pl-5 pr-5">
         <div
           onClick={() => {
-            handleSelectRoom(room.id, room.title, "increase");
+            handleSelectRoom(room.id, room.title, 'increase');
           }}
         >
           <svg
@@ -109,7 +109,7 @@ const SelectRoomOption = (room: ISelectRoomOption) => {
         </div>
         <div
           onClick={() => {
-            handleSelectRoom(room.id, room.title, "decrease");
+            handleSelectRoom(room.id, room.title, 'decrease');
           }}
         >
           <svg

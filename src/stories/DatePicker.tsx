@@ -5,12 +5,12 @@ import {
   useContextMonthsPropGetters,
   useDatePickerContext,
   useDatePicker,
-  useDatePickerState,
-} from "@rehookify/datepicker";
-import React, { useContext, useEffect, useState } from "react";
-import { DayButton } from "./DayButton";
-import { Calendar } from "./Calendar";
-import { AppContext } from "src/Context";
+  useDatePickerState
+} from '@rehookify/datepicker';
+import React, { useContext, useEffect, useState } from 'react';
+import { DayButton } from './DayButton';
+import { Calendar } from './Calendar';
+import { AppContext } from 'src/Context';
 
 interface DatePickerProps {
   inVillaDetails?: boolean;
@@ -29,44 +29,48 @@ function Root({ inVillaDetails, inReserve }: DatePickerProps) {
   const [start, end] = formattedDates;
 
   useEffect(() => {
-    start ? setStartDate(start) : setStartDate("");
-    end ? setEndDate(end) : setEndDate("");
+    start ? setStartDate(start) : setStartDate('');
+    end ? setEndDate(end) : setEndDate('');
   }, [start, end, setStartDate, setEndDate, startDate]);
   const firstDateString = startDate;
-  const firstDateParts = firstDateString?.split("/");
+  const firstDateParts = firstDateString?.split('/');
   const firstMonth = parseInt(firstDateParts[1]);
   const firstDay = parseInt(firstDateParts[0]);
   const firstYear = parseInt(firstDateParts[2]);
-  const firstDate = new Date(firstYear + "-" + firstMonth + "-" + firstDay);
+  const firstDate = new Date(firstYear + '-' + firstMonth + '-' + firstDay);
 
   // Get the month name
-  const firstMonthName = firstDate.toLocaleString("default", { month: "long" });
+  const firstMonthName = firstDate.toLocaleString('default', { month: 'long' });
 
   const secondDateString = endDate;
-  const secondDateParts = secondDateString?.split("/");
+  const secondDateParts = secondDateString?.split('/');
   const secondMonth = parseInt(secondDateParts[1]);
   const secondDay = parseInt(secondDateParts[0]);
   const secondYear = parseInt(secondDateParts[2]);
-  const secondDate = new Date(secondYear + "-" + secondMonth + "-" + secondDay);
+  const secondDate = new Date(secondYear + '-' + secondMonth + '-' + secondDay);
 
   // Get the month name
-  const secondMonthName = secondDate.toLocaleString("default", {
-    month: "long",
+  const secondMonthName = secondDate.toLocaleString('default', {
+    month: 'long'
   });
 
   return (
     <div
       className={`z-[49] block ${
         inVillaDetails
-          ? ""
-          : "absolute  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-5/12 2xl:left-[16vw] rounded shadow-xs shadow shadow-slate-300   top-50 p-4  "
+          ? ''
+          : 'absolute  m-auto  ml-0 left-0 lg:w-7/12 lg:ml-40 xl:w-5/12 xl:left-44 2xl:w-5/12 2xl:left-[16vw] rounded shadow-xs shadow shadow-slate-300   top-50 p-4  '
       }w-full  bg-white`}
     >
       <div>
         <div className="flex items-center justify-between w-full bg-white z-[150]">
-          <div className={`flex items-start justify-between w-[33%] ${inReserve ? "sm:w-[20%]" : "sm:w-[46%]"}`}>
+          <div
+            className={`flex items-start justify-between w-[33%] ${
+              inReserve ? 'sm:w-[20%]' : 'sm:w-[46%]'
+            }`}
+          >
             <p className="">
-              {" "}
+              {' '}
               <DayButton className="w-8" {...previousMonthButton()}>
                 <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 ml-5">
                   <svg
@@ -85,21 +89,25 @@ function Root({ inVillaDetails, inReserve }: DatePickerProps) {
                   </svg>
                 </div>
               </DayButton>
-              {""}
+              {''}
             </p>
-            <p  className={inReserve ? `hidden` : "hidden text-center sm:block"}>
+            <p className={inReserve ? `hidden` : 'hidden text-center sm:block'}>
               {calendars[1].year} {calendars[1].month}
             </p>
           </div>
           {/* <p className="hidden text-center sm:block">
             {calendars[0].year} {calendars[0].month}
             </p> */}
-          <div className={`flex items-start justify-between w-[55%]  ${inReserve ? " sm:w-[60%]" : "sm:w-[46%]"}`}>
+          <div
+            className={`flex items-start justify-between w-[55%]  ${
+              inReserve ? ' sm:w-[60%]' : 'sm:w-[46%]'
+            }`}
+          >
             <p className="text-center ">
               {calendars[0].year} {calendars[0].month}
             </p>
             <p>
-              {" "}
+              {' '}
               <DayButton className="w-8" {...nextMonthButton()}>
                 <div className="flex items-center justify-center rounded-full bg-[#545456] text-white w-6 h-6 mr-5">
                   <svg
@@ -121,13 +129,10 @@ function Root({ inVillaDetails, inReserve }: DatePickerProps) {
             </p>
           </div>
         </div>
-
-
-        
       </div>
       <main
         className={`grid grid-cols-1 gap-x-6 ${
-          inReserve ? "sm:grid-cols-1" : "sm:grid-cols-2"
+          inReserve ? 'sm:grid-cols-1' : 'sm:grid-cols-2'
         } border-green z-[150] w-full`}
       >
         <Calendar
@@ -181,15 +186,15 @@ function Root({ inVillaDetails, inReserve }: DatePickerProps) {
           inReserve={inReserve}
         />
       </main>
-      {firstMonthName !== "Invalid Date" && (
+      {firstMonthName !== 'Invalid Date' && (
         <div className="flex items-center justify-between mb-4 text-xs md:text-xs">
           <p className="bg-[#8A1E611A] text-[#8A1E61] px-[10px] py-2">
-            {firstMonthName !== "Invalid Date" &&
+            {firstMonthName !== 'Invalid Date' &&
               firstDay &&
-              `Check-in: ${firstMonthName} ${firstDay}`}{" "}
-            {firstMonthName !== "Invalid Date" &&
+              `Check-in: ${firstMonthName} ${firstDay}`}{' '}
+            {firstMonthName !== 'Invalid Date' &&
               firstDay &&
-              secondMonthName !== "Invalid Date" &&
+              secondMonthName !== 'Invalid Date' &&
               secondDay &&
               ` , Check-out: ${secondMonthName} ${secondDay}`}
           </p>
@@ -220,22 +225,22 @@ const Datepicker = (props: DatePickerProps) => {
         selectedDates,
         onDatesChange,
         dates: {
-          mode: "range",
+          mode: 'range',
           minDate: new Date(Y, M - 2, 1),
-          selectSameDate: true,
+          selectSameDate: true
           //   toggle: true
         },
         calendar: {
-          offsets: [-1, 1],
+          offsets: [-1, 1]
         },
         exclude: {
           day: [],
           date: [
-            new Date("2023-06-10T12:39:02.476Z"),
-            new Date("2023-06-15T12:39:02.476Z"),
-            new Date("2023-06-25T12:39:02.476Z"),
-          ],
-        },
+            new Date('2023-06-10T12:39:02.476Z'),
+            new Date('2023-06-15T12:39:02.476Z'),
+            new Date('2023-06-25T12:39:02.476Z')
+          ]
+        }
       }}
     >
       <Root inVillaDetails={inVillaDetails} inReserve={inReserve} />

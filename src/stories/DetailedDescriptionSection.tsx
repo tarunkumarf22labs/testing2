@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import { NameTitle } from "./NameTitle";
-import { FloorSection } from "./FloorSection";
-import { floorPlanImages } from "src/data/constants";
-import ReadMoreOrLess from "./ReadMoreOrLess";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { NameTitle } from './NameTitle';
+import { FloorSection } from './FloorSection';
+import { floorPlanImages } from 'src/data/constants';
+import ReadMoreOrLess from './ReadMoreOrLess';
 
 interface IDetailedDescriptionSection {
   image: string;
@@ -20,7 +20,7 @@ interface IDetailedDescriptionSection {
 
 export const DetailedDescriptionSection = ({
   image,
-  detailedDescription,
+  detailedDescription
 }: IDetailedDescriptionSection) => {
   const [readMore, setReadmore] = useState(false);
 
@@ -50,8 +50,8 @@ export const DetailedDescriptionSection = ({
           <div className="space-y-10">
             {filteredList.map((item, index) => {
               const isList =
-                item.description.includes("\n-") ||
-                item.description.includes("\n -");
+                item.description.includes('\n-') ||
+                item.description.includes('\n -');
               if (isList) {
                 let list = item.description.split(/\n-|\n -/);
                 list[0] = list[0].substring(1);
@@ -94,7 +94,7 @@ export const DetailedDescriptionSection = ({
             className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
             onClick={() => setReadmore(!readMore)}
           >
-            <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
+            <h3 className="">{!readMore ? 'Read More' : 'Read Less'}</h3>
           </div>
         </div>
       </div>

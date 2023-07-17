@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Card = () => {
-  return (
-    <div className="w-full border-4 h-[700px] mb-10"  >
-                        
-    </div>
-  )
-}
+  return <div className="w-full border-4 h-[700px] mb-10"></div>;
+};
 
-export default Card
+export default Card;

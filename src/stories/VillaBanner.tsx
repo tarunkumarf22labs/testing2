@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 
 interface VillaBannerInterface {
   bannerText: string;
@@ -8,7 +8,12 @@ interface VillaBannerInterface {
   VillaImage: string;
 }
 
-export const VillaBanner = ({ bannerText,bannerTextStyle,bannerImageStyle, VillaImage }: VillaBannerInterface) => {
+export const VillaBanner = ({
+  bannerText,
+  bannerTextStyle,
+  bannerImageStyle,
+  VillaImage
+}: VillaBannerInterface) => {
   return (
     <div className="relative text-center md:-mt-16">
       <Image
@@ -18,7 +23,9 @@ export const VillaBanner = ({ bannerText,bannerTextStyle,bannerImageStyle, Villa
         height={1080}
         className={bannerImageStyle}
       />
-     <div className={`overflow-hidden ${bannerTextStyle} Home-page-text-div font-[Brandon Grotesque] tracking-wide text-4xl md:text-5xl `}>
+      <div
+        className={`overflow-hidden ${bannerTextStyle} Home-page-text-div font-[Brandon Grotesque] tracking-wide text-4xl md:text-5xl `}
+      >
         <p className="capitalize animate-slide-down">{bannerText}</p>
       </div>
     </div>

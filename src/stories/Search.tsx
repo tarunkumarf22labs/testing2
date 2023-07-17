@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import Datepicker from "./DatePicker";
-import { motion } from "framer-motion";
-import { AppContext } from "src/Context";
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Datepicker from './DatePicker';
+import { motion } from 'framer-motion';
+import { AppContext } from 'src/Context';
 
 interface ISearch {
   locations: {
@@ -10,10 +10,10 @@ interface ISearch {
     type: string;
     title: string;
   }[];
-  handleshowSearch ?: () => void  
+  handleshowSearch?: () => void;
 }
 
-const Search = ({ locations , handleshowSearch }: ISearch) => {
+const Search = ({ locations, handleshowSearch }: ISearch) => {
   const router = useRouter();
   const [showDate, setShowDate] = useState(false);
   const { startDate, endDate } = useContext(AppContext);
@@ -23,13 +23,13 @@ const Search = ({ locations , handleshowSearch }: ISearch) => {
     locationid,
     checkin,
     checkout,
-    numberofguests,
+    numberofguests
   } = router.query;
 
   const [currentlocation, setCurrentlocation] = useState({
     id: 0,
-    title: "",
-    type: "",
+    title: '',
+    type: ''
   });
   const { setGuestsValue, guestsValue } = useContext(AppContext);
   useEffect(() => {
@@ -43,13 +43,13 @@ const Search = ({ locations , handleshowSearch }: ISearch) => {
     const parsedValue = Number(value);
     if (!isNaN(parsedValue) && parsedValue >= 0) {
       setGuestsValue(value);
-      if (router.pathname === "/result") {
+      if (router.pathname === '/result') {
         router.push({
-          pathname: "/result",
+          pathname: '/result',
           query: {
             ...router.query,
-            numberofguests: value,
-          },
+            numberofguests: value
+          }
         });
       }
     }
@@ -59,46 +59,53 @@ const Search = ({ locations , handleshowSearch }: ISearch) => {
     const inputEvent = e.target as HTMLSelectElement;
     const selectedOptionData =
       inputEvent.options[inputEvent.selectedIndex].dataset;
-    let data = selectedOptionData.container ? JSON.parse(selectedOptionData.container) : null;
-    console.log(data.id)
+    let data = selectedOptionData.container
+      ? JSON.parse(selectedOptionData.container)
+      : null;
+    console.log(data.id);
     setCurrentlocation({
       id: data?.id,
       title: data?.title,
-      type: data?.type,
+      type: data?.type
     });
-    if (router.pathname === "/result" && data?.id && data?.title && data?.type) {
+    if (
+      router.pathname === '/result' &&
+      data?.id &&
+      data?.title &&
+      data?.type
+    ) {
       router.push({
-        pathname: "/result",
+        pathname: '/result',
         query: {
           ...router.query,
           locationtype: data.type,
           location: data.title,
           locationid: data.id
-        },
+        }
       });
     }
   };
 
   const firstDateString = startDate;
-  const firstDateParts = firstDateString?.split("/");
+  const firstDateParts = firstDateString?.split('/');
   const firstMonth = parseInt(firstDateParts[1]);
   const firstDay = parseInt(firstDateParts[0]);
   const firstYear = parseInt(firstDateParts[2]);
-  const firstDate = new Date(firstYear + "-" + firstMonth + "-" + firstDay);
+  const firstDate = new Date(firstYear + '-' + firstMonth + '-' + firstDay);
 
   // Get the month name
-  const firstMonthName = firstDate.toLocaleString("default", { month: "long" });
+  const firstMonthName = firstDate.toLocaleString('default', { month: 'long' });
 
   const secondDateString = endDate;
-  const secondDateParts = secondDateString?.split("/");
+  const secondDateParts = secondDateString?.split('/');
   const secondMonth = parseInt(secondDateParts[1]);
   const secondDay = parseInt(secondDateParts[0]);
   const secondYear = parseInt(secondDateParts[2]);
-  const secondDate = new Date(secondYear + "-" + secondMonth + "-" + secondDay);
+  const secondDate = new Date(secondYear + '-' + secondMonth + '-' + secondDay);
 
   // Get the month name
-  const secondMonthName = secondDate.toLocaleString("default", {
-    month: "long",
+  const secondMonthName = secondDate.toLocaleString('default', {
+    month: 'long'
   });
 
   return (
@@ -106,13 +113,13 @@ const Search = ({ locations , handleshowSearch }: ISearch) => {
       <motion.div
         style={{ opacity: 0.2 }}
         animate={{
-          opacity: 1,
+          opacity: 1
         }}
         initial={{
-          opacity: 0,
+          opacity: 0
         }}
         transition={{
-          duration: 3,
+          duration: 3
         }}
         className="bg-[#FFFFFF] -mt-[50px] relative m-auto z-[49]  border md:w-11/12 lg:flex md:justify-between md:items-center  lg:w-full xl:w-9/12 font-[Brandon Grotesque] text-zinc-900 text-xs font-[Brandon Grotesque] font-bold"
       >
@@ -131,7 +138,7 @@ const Search = ({ locations , handleshowSearch }: ISearch) => {
                 let value = {
                   id: ele.id,
                   title: ele.title,
-                  type: ele.type,
+                  type: ele.type
                 };
                 return (
                   <option
@@ -178,7 +185,7 @@ const Search = ({ locations , handleshowSearch }: ISearch) => {
           >
             {endDate ? (
               <p className="ml-3 uppercase">
-                {" "}
+                {' '}
                 {`${secondDay} ${secondMonthName} ${secondYear}`}
               </p>
             ) : (
@@ -215,17 +222,17 @@ const Search = ({ locations , handleshowSearch }: ISearch) => {
         <div
           className="bg-[#8A1E61] flex justify-between items-center ml-3 mr-3 mb-4 h-12 sm:mt-5 md:w-11/12 md:-mt-4 md:m-auto md:mb-2 lg:w-[10%] lg:mr-[3%] rounded-sm"
           onClick={() => {
-            handleshowSearch && handleshowSearch()
+            handleshowSearch && handleshowSearch();
             router.push({
-              pathname: "/result",
+              pathname: '/result',
               query: {
                 locationtype: currentlocation.type,
                 location: currentlocation.title,
                 locationid: currentlocation.id,
                 checkin: startDate,
                 checkout: endDate,
-                numberofguests: guestsValue,
-              },
+                numberofguests: guestsValue
+              }
             });
           }}
         >
@@ -234,7 +241,7 @@ const Search = ({ locations , handleshowSearch }: ISearch) => {
           </button>
         </div>
       </motion.div>
-      <div className={`${showDate === false ? "hidden" : "block"}`}>
+      <div className={`${showDate === false ? 'hidden' : 'block'}`}>
         <Datepicker inVillaDetails={false} />
       </div>
     </>

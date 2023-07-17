@@ -1,20 +1,20 @@
-import React, { useRef } from "react";
-import ExperienceCard from "./ExperienceCard";
-import { ScrollButton } from "./ScrollButton";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import useIsMobile from "@/hooks/useIsMobile";
+import React, { useRef } from 'react';
+import ExperienceCard from './ExperienceCard';
+import { ScrollButton } from './ScrollButton';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import useIsMobile from '@/hooks/useIsMobile';
 import {
   curatedExperiences,
-  experiencesAndAttraction,
-} from "src/data/constants";
+  experiencesAndAttraction
+} from 'src/data/constants';
 interface IExperiencesSection {
   setItemNo?: (value: number) => void;
   toggleModal: () => void;
   villa: string;
   header: string;
   props: {
-    id:number;
+    id: number;
     image: {
       image: string;
       width: number;
@@ -32,7 +32,7 @@ const ExperiencesSection = ({
   toggleModal,
   villa,
   header,
-  props,
+  props
 }: IExperiencesSection) => {
   const swiperOneRef = useRef(null);
   const swiperTwoRef = useRef(null);
@@ -55,7 +55,7 @@ const ExperiencesSection = ({
             onSwiper={(swiper) => {
               swiperOneRef.current = swiper;
             }}
-            slidesPerView={"auto"}
+            slidesPerView={'auto'}
             className="relative"
             centeredSlides={isMobile}
             centeredSlidesBounds={isMobile}
@@ -102,7 +102,7 @@ const ExperiencesSection = ({
             onSwiper={(swiper) => {
               swiperTwoRef.current = swiper;
             }}
-            slidesPerView={"auto"}
+            slidesPerView={'auto'}
             className="relative"
             centeredSlides={isMobile}
             centeredSlidesBounds={isMobile}
@@ -113,11 +113,13 @@ const ExperiencesSection = ({
                   key={`${idx + 1}`}
                   className="w-full max-w-[290px] md:max-w-[373px] pr-5"
                 >
-                  <ExperienceCard  heading={el.title}
+                  <ExperienceCard
+                    heading={el.title}
                     subHeading=" "
                     shortDescription=""
                     longDescription=""
-                    imageUrl={el.image.image}/>
+                    imageUrl={el.image.image}
+                  />
                 </SwiperSlide>
               );
             })}

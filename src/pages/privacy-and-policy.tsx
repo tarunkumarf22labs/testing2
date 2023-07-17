@@ -1,7 +1,7 @@
-import Layout from "@/components/Layout";
-import React from "react";
-import { mediaImages } from "src/data/constants";
-import MediaListing from "src/stories/MediaListing";
+import Layout from '@/components/Layout';
+import React from 'react';
+import { mediaImages } from 'src/data/constants';
+import MediaListing from 'src/stories/MediaListing';
 
 const PrivacyAndPolicy = () => {
   return (
@@ -84,7 +84,7 @@ const PrivacyAndPolicy = () => {
                   you;
                 </li>
                 <li>
-                  {" "}
+                  {' '}
                   Operate, evaluate, and improve our products and the services
                   we offer;
                 </li>

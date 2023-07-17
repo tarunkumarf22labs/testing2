@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   availableServices,
   includedServices,
   viewAllInclusions,
-  villaServiceDisclaimer,
-} from "src/data/constants";
+  villaServiceDisclaimer
+} from 'src/data/constants';
 
 export interface IInclusionsExclusionsSection {
   heading: string;
   inclusions: {
-    id:number;
-    service:string;
+    id: number;
+    service: string;
   }[];
   exclusions: {
-    id:number;
-    service:string;
+    id: number;
+    service: string;
   }[];
 }
 
 export const InclusionsExclusionsSection = ({
   heading,
   inclusions,
-  exclusions,
+  exclusions
 }: IInclusionsExclusionsSection) => {
   const [readMore, setReadMore] = useState(false);
   return (
@@ -42,18 +42,17 @@ export const InclusionsExclusionsSection = ({
           readMore={readMore}
         />
       </div>
-     {
-      inclusions.length > 5 || exclusions.length > 5 && (
-        <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
-        <div
-          className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
-          onClick={() => setReadMore(!readMore)}
-        >
-          <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
-        </div>
-      </div>
-      )
-     }
+      {inclusions.length > 5 ||
+        (exclusions.length > 5 && (
+          <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
+            <div
+              className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
+              onClick={() => setReadMore(!readMore)}
+            >
+              <h3 className="">{!readMore ? 'Read More' : 'Read Less'}</h3>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
@@ -63,7 +62,7 @@ const InclusionsExlusions = ({
   heading,
   inclusions,
   exclusions,
-  readMore,
+  readMore
 }) => {
   let array = inclusion ? inclusions : exclusions;
   !readMore ? (array = array.filter((ele, id) => id < 5)) : array;

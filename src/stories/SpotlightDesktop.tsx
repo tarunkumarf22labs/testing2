@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { ChevronUpIcon } from "@heroicons/react/24/solid";
-import { spotLightSection } from "src/data/constants";
+import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { ChevronUpIcon } from '@heroicons/react/24/solid';
+import { spotLightSection } from 'src/data/constants';
 
 const SpotlightDesktop = ({ data }: { data: any[] }) => {
   gsap.registerPlugin(ScrollTrigger);
@@ -12,19 +12,19 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(() => {
-    gsap.set(".small-preview-image-container", {
-      zIndex: data.length + 1,
+    gsap.set('.small-preview-image-container', {
+      zIndex: data.length + 1
     });
     let ctx = gsap.context(() => {
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: scrollerRef?.current,
           scrub: true,
-          start: "top 20%",
-          end: "bottom 20%",
-          toggleActions: "play none reverse none",
-          invalidateOnRefresh: true,
-        },
+          start: 'top 20%',
+          end: 'bottom 20%',
+          toggleActions: 'play none reverse none',
+          invalidateOnRefresh: true
+        }
       });
 
       data?.forEach((_, idx) => {
@@ -33,22 +33,22 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
         } else {
           gsap.set(`.text-content-${idx}`, {
             zIndex: idx,
-            translateY: "100%",
+            translateY: '100%'
           });
           gsap.set([`.preview-image-${idx}`, `.small-preview-image-${idx}`], {
             zIndex: idx,
-            translateY: "100%",
+            translateY: '100%'
           });
           tl.to([`.preview-image-${idx}`, `.small-preview-image-${idx}`], {
             translateY: 0,
             onComplete: () => setSlideIndex(idx),
-            onReverseComplete: () => setSlideIndex(idx - 1),
+            onReverseComplete: () => setSlideIndex(idx - 1)
           }).to(
             `.text-content-${idx}`,
             {
-              translateY: 0,
+              translateY: 0
             },
-            "<"
+            '<'
           );
         }
       });
@@ -58,8 +58,8 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
         scrub: true,
         markers: false,
         pin: true,
-        start: "top 20%",
-        invalidateOnRefresh: true,
+        start: 'top 20%',
+        invalidateOnRefresh: true
       });
     }, scrollerRef);
     return () => ctx.revert();
@@ -67,7 +67,7 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
 
   return (
     <div ref={scrollerRef} className="flex flex-col gap-y-5">
-      <p className="text-sm text-[#8A1E61] tracking-widest">{"LuxUNLOCK’s"}</p>
+      <p className="text-sm text-[#8A1E61] tracking-widest">{'LuxUNLOCK’s'}</p>
       <h1 className="uppercase text-4xl text-[#18181B] font-light md:text-5xl">
         {spotLightSection.heading}
       </h1>
@@ -108,7 +108,7 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
             </div>
             <div
               className={
-                "small-preview-image-container w-[229px] h-[152px] absolute -bottom-10 right-10 overflow-hidden shadow-2xl"
+                'small-preview-image-container w-[229px] h-[152px] absolute -bottom-10 right-10 overflow-hidden shadow-2xl'
               }
             >
               {data?.map((el, idx) => {

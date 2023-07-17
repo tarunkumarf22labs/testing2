@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import SortVilla from "./SortVilla";
+import type { Meta, StoryObj } from '@storybook/react';
+import SortVilla from './SortVilla';
 
 const meta: Meta<typeof SortVilla> = {
-  title: "Component/SortVilla",
-  component: SortVilla,
+  title: 'Component/SortVilla',
+  component: SortVilla
 };
 
 export default meta;
@@ -11,5 +11,5 @@ export default meta;
 type Story = StoryObj<typeof SortVilla>;
 
 export const Default: Story = {
-  args: {},
+  args: {}
 };

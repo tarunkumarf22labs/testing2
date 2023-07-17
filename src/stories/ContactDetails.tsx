@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import ToastAlert from "src/Toast";
-import { isValidPhoneNumber } from "libphonenumber-js";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import ToastAlert from 'src/Toast';
+import { isValidPhoneNumber } from 'libphonenumber-js';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 const ContactDetails = () => {
   const emailRegex = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/i;
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
-  const [address, setAddress] = useState("");
-  const [textAreaMessage, seTextAreaMessage] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState('');
+  const [textAreaMessage, seTextAreaMessage] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [ValidPhoneNumber, setValidPhoneNumber] = useState(true);
   const [name, setName] = useState({
-    firstName: "",
-    lastName: "",
+    firstName: '',
+    lastName: ''
   });
 
   const handleEmailChange = (event) => {
@@ -26,7 +26,7 @@ const ContactDetails = () => {
   };
 
   const handleBlur = () => {
-    if (email === "") {
+    if (email === '') {
       setIsValidEmail(true);
     }
   };
@@ -42,7 +42,7 @@ const ContactDetails = () => {
         }
       );
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      console.log('Geolocation is not supported by this browser.');
     }
   };
 
@@ -52,25 +52,25 @@ const ContactDetails = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        if (data.status === "OK") {
+        if (data.status === 'OK') {
           const result = data.results[0];
           const addressComponents = result.address_components;
-          let countryName = "";
-          let stateName = "";
-          let cityName = "";
+          let countryName = '';
+          let stateName = '';
+          let cityName = '';
 
           for (let i = 0; i < addressComponents.length; i++) {
             const types = addressComponents[i].types;
-            if (!countryName && types.includes("country")) {
+            if (!countryName && types.includes('country')) {
               countryName = addressComponents[i].long_name;
             } else if (
               !stateName &&
-              types.includes("administrative_area_level_1")
+              types.includes('administrative_area_level_1')
             ) {
               stateName = addressComponents[i].long_name;
             } else if (
               !cityName &&
-              (types.includes("locality") || types.includes("postal_town"))
+              (types.includes('locality') || types.includes('postal_town'))
             ) {
               cityName = addressComponents[i].long_name;
             }
@@ -80,11 +80,11 @@ const ContactDetails = () => {
           }
           setAddress(`${cityName}, ${stateName}, ${countryName}`);
         } else {
-          console.log("Error:", data.status);
+          console.log('Error:', data.status);
         }
       })
       .catch((error) => {
-        console.log("Error:", error);
+        console.log('Error:', error);
       });
   }
 
@@ -92,9 +92,9 @@ const ContactDetails = () => {
     const file = event.target.files[0];
     if (file) {
       if (file.size <= 5 * 1024 * 1024) {
-        console.log("File uploaded successfully:", file);
+        console.log('File uploaded successfully:', file);
       } else {
-        ToastAlert("File size exceeds the limit (5MB)", "warn");
+        ToastAlert('File size exceeds the limit (5MB)', 'warn');
         event.target.value = null;
       }
     }
@@ -113,7 +113,7 @@ const ContactDetails = () => {
       </div>
       <div className="text-center sm:text-left text-[#545456] text-lg font-[Centaur] font-normal  pt-15 pr-15 pl-5 pr-5 mb-10 sm:w-[85%] sm:m-auto sm:pl-0 sm:pr-0">
         {
-          "Accor, a global hotel company, has set an ambitious goal to become the first hotel company to enable owners to onboard a hotel in 24 hours. The company recognizes the challenges of the traditional onboarding process."
+          'Accor, a global hotel company, has set an ambitious goal to become the first hotel company to enable owners to onboard a hotel in 24 hours. The company recognizes the challenges of the traditional onboarding process.'
         }
       </div>
       <form action="" className="w-11/12 m-auto ">
@@ -121,7 +121,7 @@ const ContactDetails = () => {
           <input
             type="text"
             className="w-full placeholder-[#545456] text-xs sm:w-[45%] border-none outline-none focus:ring-0 bg-[#F8F8F9]"
-            style={{ borderBottom: "1px solid #545456" }}
+            style={{ borderBottom: '1px solid #545456' }}
             placeholder="First Name"
             value={name.firstName}
             onChange={(e) => {
@@ -131,7 +131,7 @@ const ContactDetails = () => {
           <input
             type="text"
             className="w-full placeholder-[#545456] mt-12 text-xs sm:w-[45%] sm:mt-0 border-none outline-none focus:ring-0  bg-[#F8F8F9]"
-            style={{ borderBottom: "1px solid #545456" }}
+            style={{ borderBottom: '1px solid #545456' }}
             placeholder="last Name"
             value={name.lastName}
             onChange={(e) => {
@@ -142,30 +142,30 @@ const ContactDetails = () => {
         <div className="p-6 sm:flex sm:justify-between sm:items-center">
           <div className="w-full placeholder-[#545456] sm:w-[45%] text-xs border-none outline-none focus:ring-0 bg-[#F8F8F9]">
             <PhoneInput
-              country={"in"}
+              country={'in'}
               value={phoneNumber}
               onChange={(value) => {
                 setPhoneNumber(value);
                 validateNumber(value);
               }}
               inputStyle={{
-                width: "100%",
-                border: "none",
-                backgroundColor: "#F8F8F9",
-                borderBottom: "1px solid #545456",
-                borderRadius: "0px",
+                width: '100%',
+                border: 'none',
+                backgroundColor: '#F8F8F9',
+                borderBottom: '1px solid #545456',
+                borderRadius: '0px'
               }}
             />
           </div>
           {!ValidPhoneNumber && (
             <p className="mt-0 ml-2 -mb-6 text-xs text-left text-red-500 sm:hidden ">
-              {" Please Enter a Valid Mobile Number"}
+              {' Please Enter a Valid Mobile Number'}
             </p>
           )}
           <input
             type="email"
             className="w-full placeholder-[#545456] text-xs mt-12 sm:mt-0 sm:w-[45%] border-none outline-none focus:ring-0 bg-[#F8F8F9]"
-            style={{ borderBottom: "1px solid #545456" }}
+            style={{ borderBottom: '1px solid #545456' }}
             placeholder="Email Address"
             onChange={handleEmailChange}
             onBlur={handleBlur}
@@ -175,12 +175,12 @@ const ContactDetails = () => {
           <div className="p-6 -mt-12 sm:flex sm:justify-between sm:items-center">
             <div className="hidden sm:block  w-full sm:w-[45%]">
               <p className="ml-2 text-xs text-left text-red-500">
-                {!ValidPhoneNumber && " Please Enter a Valid Mobile Number"}
+                {!ValidPhoneNumber && ' Please Enter a Valid Mobile Number'}
               </p>
             </div>
             <div className="w-full sm:w-[45%]">
               <p className="ml-1 text-xs text-left text-red-500">
-                {!isValidEmail && "Please Enter a Valid Email"}
+                {!isValidEmail && 'Please Enter a Valid Email'}
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ const ContactDetails = () => {
 
         <div
           className="flex items-center justify-center w-[90%] sm:w-[91.26%] pt-6 pb-0 m-auto"
-          style={{ borderBottom: "1px solid #545456" }}
+          style={{ borderBottom: '1px solid #545456' }}
         >
           <input
             type="text"
@@ -198,7 +198,7 @@ const ContactDetails = () => {
           />
           <div className="w-1/12 h-full cursor-pointer" onClick={getLocation}>
             <Image
-              src={"./images/location.svg"}
+              src={'./images/location.svg'}
               alt="location-logo"
               width={100}
               height={100}
@@ -208,7 +208,7 @@ const ContactDetails = () => {
         </div>
         <div
           className="flex items-center justify-center w-[90%] sm:w-[91.26%] pt-6 pb-0 m-auto mb-6 mt-6"
-          style={{ borderBottom: "1px solid #545456" }}
+          style={{ borderBottom: '1px solid #545456' }}
         >
           <input
             className="w-11/12 border-none outline-none custom-file-input focus:ring-0 bg-[#F8F8F9]"
@@ -218,7 +218,7 @@ const ContactDetails = () => {
           />
           <div className="w-1/12 h-full">
             <Image
-              src={"./images/upload.svg"}
+              src={'./images/upload.svg'}
               alt="location-logo"
               width={100}
               height={100}
@@ -230,7 +230,7 @@ const ContactDetails = () => {
           <textarea
             name="postContent"
             className="w-full placeholder-[#545456] text-xs h-52 border-none outline-none focus:ring-0 bg-[#F8F8F9]"
-            style={{ borderBottom: "1px solid #545456" }}
+            style={{ borderBottom: '1px solid #545456' }}
             placeholder="Your Message..."
             maxLength={500}
             value={textAreaMessage}

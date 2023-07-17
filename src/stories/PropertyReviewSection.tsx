@@ -1,19 +1,19 @@
-import React from "react";
-import { NameTitle } from "./NameTitle";
-import { IReviewCard, ReviewCard } from "./ReviewCard";
-import classNames from "classnames";
+import React from 'react';
+import { NameTitle } from './NameTitle';
+import { IReviewCard, ReviewCard } from './ReviewCard';
+import classNames from 'classnames';
 
 interface IPropertyReviewSection {
   reviewCardsCollection: IReviewCard[];
 }
 
 export const PropertyReviewSection = ({
-  reviewCardsCollection,
+  reviewCardsCollection
 }: IPropertyReviewSection) => {
   return (
     <div
       className={classNames(
-        "px-5 py-10 xl:px-0 lg:py-20 lg:max-w-7xl lg:mx-auto"
+        'px-5 py-10 xl:px-0 lg:py-20 lg:max-w-7xl lg:mx-auto'
       )}
     >
       <NameTitle propertyName="Deja View's" title="GUEST SPEAK" />

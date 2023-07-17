@@ -1,8 +1,8 @@
-import { useState } from "react";
-import type { GetServerSideProps, NextPage } from "next";
-import Layout from "@/components/Layout";
+import { useState } from 'react';
+import type { GetServerSideProps, NextPage } from 'next';
+import Layout from '@/components/Layout';
 
-import { heading, ReviewCardsCollection, faqs } from "../data/constants";
+import { heading, ReviewCardsCollection, faqs } from '../data/constants';
 
 import {
   AmenitiesSection,
@@ -20,17 +20,17 @@ import {
   ExperiencesSection,
   PropertyDetailsHeroSection,
   SimilarStaysSection,
-  ReserveAndLocationDetailsSection,
-} from "src/stories";
+  ReserveAndLocationDetailsSection
+} from 'src/stories';
 
-import { ImagesBig, ImagesSmall } from "src/stories/GallerySection";
-import MediaListing from "src/stories/MediaListing";
-import { mediaImages } from "src/data/constants";
-import Modal from "src/stories/Modal/Modal";
-import { CuratedExpModal } from "src/stories/CuratedExpModal";
-import NetWrapper from "src/Network/netWrapper";
-import { villaInterface, IHomeInterface } from "src/Interface";
-import useIsMobile from "@/hooks/useIsMobile";
+import { ImagesBig, ImagesSmall } from 'src/stories/GallerySection';
+import MediaListing from 'src/stories/MediaListing';
+import { mediaImages } from 'src/data/constants';
+import Modal from 'src/stories/Modal/Modal';
+import { CuratedExpModal } from 'src/stories/CuratedExpModal';
+import NetWrapper from 'src/Network/netWrapper';
+import { villaInterface, IHomeInterface } from 'src/Interface';
+import useIsMobile from '@/hooks/useIsMobile';
 import {
   VillaOverviewProps,
   ReserveAndLocationDetailsSectionProps,
@@ -45,9 +45,9 @@ import {
   ExperiencesSectionProps,
   AccordionProps1,
   AccordionProps2,
-  RoomSectionProps,
-} from "src/Props";
-import { Accordion } from "src/stories/Accordion";
+  RoomSectionProps
+} from 'src/Props';
+import { Accordion } from 'src/stories/Accordion';
 
 const Home: NextPage = (data: IHomeInterface) => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -91,12 +91,14 @@ const Home: NextPage = (data: IHomeInterface) => {
           <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
           {!isMobile ? (
             <>
-            {
-              InclusionsExclusionsSectionProps(villaData).inclusions.length > 0 && InclusionsExclusionsSectionProps(villaData).exclusions.length>0 &&
-              <InclusionsExclusionsSection
-                {...InclusionsExclusionsSectionProps(villaData)}
-              />
-            }
+              {InclusionsExclusionsSectionProps(villaData).inclusions.length >
+                0 &&
+                InclusionsExclusionsSectionProps(villaData).exclusions.length >
+                  0 && (
+                  <InclusionsExclusionsSection
+                    {...InclusionsExclusionsSectionProps(villaData)}
+                  />
+                )}
               <div className="mb-20"></div>
               {/* HOME TRUTHS */}
               {HomeTruthProps(villaData).story && (
@@ -111,14 +113,13 @@ const Home: NextPage = (data: IHomeInterface) => {
             beforeYouBook={BeforeYouBookProps(villaData)}
             title={villaData.attributes.name}
           />
-          {
-            ExperiencesSectionProps(villaData).props.length > 0 &&
-          <ExperiencesSection
-            setItemNo={setItemNo}
-            toggleModal={toggleModal}
-            {...ExperiencesSectionProps(villaData)}
-          />
-          }
+          {ExperiencesSectionProps(villaData).props.length > 0 && (
+            <ExperiencesSection
+              setItemNo={setItemNo}
+              toggleModal={toggleModal}
+              {...ExperiencesSectionProps(villaData)}
+            />
+          )}
           {!isMobile ? (
             <>
               {HomeStoryProps(villaData).story && (
@@ -170,7 +171,7 @@ export const getServerSideProps: GetServerSideProps<{
   error: string | null;
 }> = async (): Promise<any> => {
   const { data, error, status } = await NetWrapper(
-    "api/properties/3?populate=deep"
+    'api/properties/3?populate=deep'
   );
 
   return { props: { data, error } };
