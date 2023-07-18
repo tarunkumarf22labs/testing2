@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import ToastAlert from 'src/Toast';
-import { isValidPhoneNumber } from 'libphonenumber-js';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import ToastAlert from "src/Toast";
+import { isValidPhoneNumber } from "libphonenumber-js";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import NetWrapper from "src/Network/netWrapper";
 
 const ContactDetails = () => {
   const emailRegex = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/i;
@@ -90,6 +91,7 @@ const ContactDetails = () => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+    console.log(file);
     if (file) {
       if (file.size <= 5 * 1024 * 1024) {
         console.log('File uploaded successfully:', file);
@@ -104,6 +106,65 @@ const ContactDetails = () => {
     setValidPhoneNumber(isValidPhoneNumber(`+${phoneNumber}`));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(phoneNumber.length);
+    if (!name.firstName) {
+      ToastAlert("Please Enter First Name", "warn");
+      return;
+    } else if (!name.lastName) {
+      ToastAlert("Please Enter Last Name", "warn");
+      return;
+    } else if (phoneNumber.length < 3 || !ValidPhoneNumber) {
+      ToastAlert("Please Enter a Valid Mobile Number", "warn");
+      return;
+    } else if (!email) {
+      ToastAlert("Please Enter a Valid Email", "warn");
+      return;
+    } else if (!address) {
+      ToastAlert("Please Enter your address", "warn");
+      return;
+    }
+
+    let body = {
+      data: {
+        firstName: name.firstName,
+        lastName: name.lastName,
+        email: email,
+        phone: phoneNumber,
+        location: address,
+        message: textAreaMessage,
+      },
+    };
+    submitData(body);
+  };
+  console.log(ValidPhoneNumber);
+
+  const submitData = async (body) => {
+    try {
+      const { data, error, status } = await NetWrapper("api/homeownerforms", {
+        method: "POST",
+        body: JSON.stringify(body),
+      });
+      console.log(status);
+      if(error){
+        ToastAlert("something went wrong in sending Data", "warn")
+      }else{
+        ToastAlert("Form Submitted Successfully", "success");
+        setName({
+          firstName: "",
+          lastName: "",
+        });
+        setEmail('');
+        setPhoneNumber("");
+        setAddress('');
+        seTextAreaMessage("")
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+  };
   return (
     <div className=" bg-[#F8F8F9] sm:max-w-lg m-auto">
       <div className="pt-14 h-28 sm:w-[85%] sm:m-auto">
@@ -245,7 +306,10 @@ const ContactDetails = () => {
             </p>
           )}
         </div>
-        <button className="bg-[#8A1E61] uppercase text-white text-xs h-10 font-bold mb-6 w-11/12 ml-[4.5%]">
+        <button
+          onClick={handleSubmit}
+          className="bg-[#8A1E61] uppercase text-white text-xs h-10 font-bold mb-6 w-11/12 ml-[4.5%]"
+        >
           SUBMIT
         </button>
       </form>
