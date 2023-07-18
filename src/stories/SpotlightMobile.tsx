@@ -9,9 +9,6 @@ const SpotlightMobile = ({ data }: { data: any[] }) => {
   const swiperRef = useRef(null);
   return (
     <div className="flex flex-col items-center">
-      <p className="text-[#8A1E61] text-[10px] tracking-[3px] uppercase">
-        LuxUNLOCK’s
-      </p>
       <h1 className="text-[#18181B] uppercase text-[40px] font-light tracking-[0.8px] mt-3">
         {spotLightSection.heading}
       </h1>

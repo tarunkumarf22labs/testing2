@@ -12,7 +12,7 @@ const data = [
   {
     big: '/images/a01.png',
     small: '/images/Amenities1.png',
-    para: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+    para: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ad nobis nemo quibusdam expedita commodi perferendis pariatur perspiciatis, laboriosam qui ipsa mollitia accusamus rerum fugit sapiente repudiandae, possimus facilis necessitatibus?'
   },
   {
     big: '/images/ListYourPropertyImage33.webp',

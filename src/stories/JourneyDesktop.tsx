@@ -88,7 +88,7 @@ const JourneyDesktop = ({ data }: { data: any[] }) => {
               <div className="bg-white w-2 h-2 rounded-full" />
             </div>
           </div>
-          <div className="w-[559px] h-[369px] relative">
+          <div className="w-[559px] h-[369px] relative overflow-hidden">
             {data?.map((el, idx) => {
               return (
                 <Image
