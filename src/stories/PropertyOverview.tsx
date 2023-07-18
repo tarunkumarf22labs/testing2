@@ -102,10 +102,10 @@ const PropertyOverview = ({
         </div>
         <div className="px-5 md:px-8">
           <h1 className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px]">
-            {name}
+            {name && name}
           </h1>
           <p className="text-[#8A1E61] text-base leading-5 font-medium tracking-widest mt-3 md:text-base md:leading-[18px]">
-            {city}, {state}
+            {city && city}, {state && state} 
           </p>
           <div className="flex items-center mt-2">
             {amenities?.map((el, index) => (
@@ -120,10 +120,10 @@ const PropertyOverview = ({
             ))}
           </div>
           <p className="hidden md:block my-8 text-[#18181B] text-[22px] leading-8">
-            {byliner}
+            {byliner && byliner}
           </p>
           <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
-            {about}
+            {about && about}
           </p>
           <div className="flex flex-col items-center justify-center m-auto sm:justify-start sm:m-0 sm:flex-row sm:gap-11">
             <div className="mt-8" onClick={showStory}>

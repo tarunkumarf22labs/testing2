@@ -113,6 +113,7 @@ export interface villaInterface {
       music: string | null;
       villaStaff: string | null;
       accompanyingGuestStaff: string | null;
+      petPolicy: string | null;
     };
     pricing: IPrice;
     channels: {

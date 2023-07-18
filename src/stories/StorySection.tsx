@@ -36,12 +36,12 @@ export const StorySection = ({
       <div className="relative z-10 px-4 py-8 mx-5 -mt-16 bg-white sm:-mt-24 xl:-mt-60 xl:w-full xl:max-w-7xl xl:mx-auto md:px-8 md:py-11">
         {isStory && (
           <p className="uppercase text-sm text-[#8A1E61] mb-2 sm:mb-5  tracking-wider">
-            {heading}
+            {heading && heading}
           </p>
         )}
         <p className="mb-6 text-3xl font-light uppercase md:text-5xl">
           {/* {isStory ? "STORY" : "Getting there"} */}
-          {secondheading}
+          {secondheading && secondheading}
         </p>
         <ReadMoreOrLess
           story={story}

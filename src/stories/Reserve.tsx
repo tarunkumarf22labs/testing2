@@ -226,7 +226,7 @@ const Reserve = ({
         onClick={() => setShowDate(!showDate)}
       >
         <p className="flex items-center justify-start w-6/12 h-full">
-          {startDate}
+          {startDate && startDate}
         </p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +248,7 @@ const Reserve = ({
         onClick={() => setShowDate(!showDate)}
       >
         <p className="flex items-center justify-start w-6/12 h-full">
-          {endDate}
+          {endDate && endDate}
         </p>
         <svg
           xmlns="http://www.w3.org/2000/svg"

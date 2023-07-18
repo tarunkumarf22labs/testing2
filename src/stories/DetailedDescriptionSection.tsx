@@ -41,7 +41,7 @@ export const DetailedDescriptionSection = ({
           alt="StoryImage"
           width={390}
           height={127}
-          className="w-full"
+          className="w-full h-[450px] object-cover"
         />
       </div>
       <div className="relative px-4 py-8 mx-5 -mt-16 bg-white sm:-mt-24 xl:-mt-60 xl:w-full xl:max-w-7xl xl:mx-auto md:px-8 md:py-11">

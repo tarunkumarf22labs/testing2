@@ -18,7 +18,7 @@ export const Conditions = (props: IConditionsProps) => {
       <div className="text-xl text-[#18181B] mb-5">{title}</div>
       <div className="grid grid-cols-2 gap-y-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {typeof conditions === 'string' ? (
-          <p>{conditions}</p>
+          <p>{conditions && conditions}</p>
         ) : (
           conditions.map((item, index) => {
             if (item.label === 'Check-In' || item.label === 'Check-Out') {
@@ -28,7 +28,7 @@ export const Conditions = (props: IConditionsProps) => {
               <div key={index} className="">
                 <p className="text-xs text-[#7B8084] mb-1">{item.label}</p>
                 <p className="text-base text-[#545456] font-centaur">
-                  {item.text}
+                  {item.text && item.text}
                 </p>
               </div>
             );

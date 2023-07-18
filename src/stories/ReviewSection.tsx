@@ -8,9 +8,9 @@ import { useInView } from 'react-intersection-observer';
 export const ReviewSection = () => {
   return (
     <>
-      <div className="flex justify-center text-center sm:text-left bg-white">
-        <div className="flex flex-col justify-between py-16 px-5 sm:py-24 sm:pr-20 ">
-          <div className="uppercase text-center sm:text-left mb-4">
+      <div className="flex justify-center text-center bg-white sm:text-left">
+        <div className="flex flex-col justify-between px-5 py-16 sm:py-24 sm:pr-20 ">
+          <div className="mb-4 text-center uppercase sm:text-left">
             <p className="text-xs sm:text mb-3 text-[#8A1E61] sm:text-sm sm:pb-5">
               THEIR EXPERIENCE
             </p>
@@ -45,7 +45,6 @@ const ImageDiv = () => {
   const [ref, inView] = useInView();
 
   useEffect(() => {
-    console.log('inView: ', inView);
     if (inView) {
       controls.start('visible');
     }

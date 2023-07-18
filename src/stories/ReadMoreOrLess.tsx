@@ -12,7 +12,6 @@ const ReadMoreOrLess = ({
   initialListToShow
 }: IReadMore) => {
   const [readMore, setReadMore] = useState<Boolean>(false);
-  console.log('containsPattern: ', story);
   const containsPattern = story.includes('\n-') || story.includes('\n -');
 
   let storyList;
@@ -21,7 +20,6 @@ const ReadMoreOrLess = ({
     storyList = story.split(/\n-|\n -/);
   }
   let a = storyList?.filter((ele, id) => id < initialListToShow);
-  console.log('containsPattern: ', a);
   // return <></>
   if (containsPattern && readMore === false) {
     List = storyList?.filter((ele, id) => id < initialListToShow);
@@ -31,7 +29,6 @@ const ReadMoreOrLess = ({
     // List[0] = List[0].substring(1);
   }
 
-  console.log('containsPattern 2: ', containsPattern, List);
   return (
     <>
       {containsPattern === false ? (
@@ -47,7 +44,7 @@ const ReadMoreOrLess = ({
       ) : (
         <div>
           <ul className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc">
-            {List.map((ele, id) => {
+            {List?.map((ele, id) => {
               return (
                 <li
                   key={id}

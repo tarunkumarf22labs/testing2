@@ -44,10 +44,10 @@ const ExperiencesSection = ({
         <div className="relative pl-5 md:ml-[max(0px,(100%_-_80rem)/2)] xl:pl-0">
           <div className="pb-6 uppercase sm:pb-10">
             <p className="text-sm text-[#8A1E61] mb-5 tracking-widest">
-              {villa}
+              {villa && villa}
             </p>
             <p className="text-3xl sm:text-5xl sm:text-[#1C1917] font-light">
-              {header}
+              {header && header}
             </p>
           </div>
           <Swiper

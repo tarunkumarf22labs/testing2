@@ -9,7 +9,6 @@ export const ListYourPropertySection = () => {
   const animation = useAnimation();
 
   useEffect(() => {
-    console.log('inView: ', inView);
     if (inView) {
       animation.start({
         scale: 1,
@@ -22,8 +21,8 @@ export const ListYourPropertySection = () => {
 
   return (
     <Container bgWhite={false}>
-      <div className="flex flex-col md:flex-row space-y-10 md:space-y-0 md:justify-between md:space-x-16">
-        <div className="text-center md:text-left md:mt-10 md:relative md:flex-1 flex flex-col space-y-10">
+      <div className="flex flex-col space-y-10 md:flex-row md:space-y-0 md:justify-between md:space-x-16">
+        <div className="flex flex-col space-y-10 text-center md:text-left md:mt-10 md:relative md:flex-1">
           <div>
             <p className="uppercase text-xs text-[#8A1E61] mb-3 md:text-sm md:mb-5">
               Home Owners

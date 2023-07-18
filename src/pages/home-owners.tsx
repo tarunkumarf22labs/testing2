@@ -22,8 +22,8 @@ const HomeOwners = ({data, error}) => {
         width={500}
         height={500}
         className="object-cover w-full h-full brightness-50"
-        src={data.data[0].attributes.image.data.attributes.url}
-        alt={data.data[0].attributes.image.data.attributes.name}
+        src={data?.data[0]?.attributes?.image?.data?.attributes?.url}
+        alt={data?.data[0]?.attributes?.image?.data?.attributes?.name}
       />
         </div>
         <h1 className="absolute top-[20vh] md:top-[30vh] left-1/2 -translate-x-[50%] -translate-y-[50%] text-2xl sm:text-4xl md:text-5xl text-[#F8F8F9] uppercase font-light">
@@ -51,7 +51,10 @@ const HomeOwners = ({data, error}) => {
             <p className="text-center md:text-left text-4xl md:text-5xl uppercase text-[#1C1917] font-light">
               on luxunlock
             </p>
+            {
+              HomeOwnerReviewsCardProps(data)?.length > 0 &&
             <HomeOwnerReviews HomeOwnerReviewsCardProps={HomeOwnerReviewsCardProps(data)} />
+            }
           </div>
         </div>
         <div className="flex flex-col items-center justify-between w-11/12 pb-20 m-auto mt-20 pl-25 pr-25 md:max-w-7xl md:flex-row">

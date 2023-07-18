@@ -9,7 +9,7 @@ const HomeOwnersList = ({homeOwnersListProps}:IHomeOwnersList) => {
   return (
     <>
     {
-        homeOwnersListProps.map((ele, id) => {
+        homeOwnersListProps?.map((ele, id) => {
             return (
                 <div key={id} className={`flex items-start justify-start ${id !== 0 && 'mt-16'}`}>
                     <div className='relative w-1/12 top-1'>
