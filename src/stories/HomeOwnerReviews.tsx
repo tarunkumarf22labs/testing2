@@ -2,7 +2,6 @@ import useIsMobile from "@/hooks/useIsMobile";
 import React, { useRef } from "react";
 import { ScrollButton } from "./ScrollButton";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
 import "swiper/css";
 import HomeOwnerReviewsCard from "./HomeOwnerReviewsCard";
 
@@ -20,7 +19,7 @@ interface IHomeOwnerReviews {
 const HomeOwnerReviews = ({HomeOwnerReviewsCardProps}:IHomeOwnerReviews) => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
-  let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  
   return (
     <div className={`relative py-8 pl-0  lg:py-15`}>
       <div
@@ -59,6 +58,4 @@ const HomeOwnerReviews = ({HomeOwnerReviewsCardProps}:IHomeOwnerReviews) => {
 };
 
 export default HomeOwnerReviews;
-{
-  /* <div style={{width: 468}}><span style="color: '#545456', fontSize: 20, fontFamily: 'Centaur', fontWeight: '400', lineHeight: 34, wordWrap: 'break-word'">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span><span style="color: '#8A1E61', fontSize: 20, fontFamily: 'Centaur', fontWeight: '400', lineHeight: 34, wordWrap: 'break-word'">Read More</span></div> */
-}
+
