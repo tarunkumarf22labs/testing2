@@ -9,7 +9,13 @@ import {
 } from '@phosphor-icons/react';
 import Link from 'next/link';
 
-const QuickLinks = ['About Us', 'Team', 'Investors', 'Travel Partners'];
+const QuickLinks = [
+  { name: 'About Us', url: '/' },
+  { name: 'Team', url: '/' },
+  { name: 'Investors', url: '/' },
+  { name: 'Travel Partners', url: '/' },
+  { name: 'FAQs', url: '/faq' }
+];
 
 const Footer = () => {
   return (
@@ -33,14 +39,13 @@ const Footer = () => {
             <h4 className="text-white font-[Brandon Grotesque] uppercase text-[10px] absolute top-[-10px] px-5 bg-black tracking-[0.3em] md:text-sm">
               <b>Quick links</b>
             </h4>
-            <div className="grid justify-between w-full grid-cols-2 mt-5 sm:mt-8 md:w-auto gap-x-1 sm:gap-x-8 md:grid-cols-4 md:gap-0">
+            <div className="grid justify-between w-full grid-cols-2 mt-5 sm:mt-8 md:w-auto gap-x-1 sm:gap-x-8 md:grid-cols-5 md:gap-0">
               {QuickLinks.map((link, idx) => (
-                <p
-                  key={idx}
-                  className="mb-4 text-lg font-medium sm:text-center sm:mb-5 md:mb-0"
-                >
-                  {link}
-                </p>
+                <Link key={idx} href={link?.url}>
+                  <p className="mb-4 text-lg font-medium sm:text-center sm:mb-5 md:mb-0">
+                    {link?.name}
+                  </p>
+                </Link>
               ))}
             </div>
           </div>
