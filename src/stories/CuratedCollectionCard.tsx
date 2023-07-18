@@ -1,20 +1,20 @@
-import classNames from "classnames";
-import Image from "next/image";
-import React from "react";
+import classNames from 'classnames';
+import Image from 'next/image';
+import React from 'react';
 
 const amenities = [
-  "6 - 8 Guests",
-  "3 Bedrooms",
-  "4 Bathrooms",
-  "Pet Friendly",
-  "Beach Villa",
+  '6 - 8 Guests',
+  '3 Bedrooms',
+  '4 Bathrooms',
+  'Pet Friendly',
+  'Beach Villa'
 ];
 
 const CuratedCollectionCard = ({
   className,
   isActive,
   name,
-  place,
+  place
 }: {
   className: string;
   isActive?: boolean;
@@ -24,12 +24,12 @@ const CuratedCollectionCard = ({
   return (
     <div
       className={classNames(
-        "relative overflow-visible transition-all origin-center duration-700",
+        'relative overflow-visible transition-all origin-center duration-700',
         className
       )}
     >
       <Image
-        src={"/images/Amenities1.png"}
+        src={'/images/Amenities1.png'}
         width={0}
         height={0}
         sizes="100vw"
@@ -42,15 +42,15 @@ const CuratedCollectionCard = ({
           {place}
         </p>
 
-        <div className={"justify-between flex mt-[12px]"}>
-          <h1 className={"text-[#171717] font-normal truncate text-xl flex-1"}>
+        <div className={'justify-between flex mt-[12px]'}>
+          <h1 className={'text-[#171717] font-normal truncate text-xl flex-1'}>
             {name}
           </h1>
           <p className="text-sm text-[#8A1E61] font-normal truncate pl-1">
             ₹12,589 night
           </p>
         </div>
-        <div className={"items-center mt-[8px] truncate flex flex-wrap"}>
+        <div className={'items-center mt-[8px] truncate flex flex-wrap'}>
           {amenities?.map((el, index) => (
             <div key={el} className="flex items-center">
               <p className="font-centaur text-xs text-[#545456]">{el}</p>
@@ -64,14 +64,14 @@ const CuratedCollectionCard = ({
 
       <div
         className={classNames(
-          "hidden md:block bg-white absolute w-10/12 max-h-[123px] left-1/2 -translate-x-1/2 transition-all origin-center duration-500",
-          isActive ? "p-6 top-[85%]" : "p-4 top-[90%]"
+          'hidden md:block bg-white absolute w-10/12 max-h-[123px] left-1/2 -translate-x-1/2 transition-all origin-center duration-500',
+          isActive ? 'p-6 top-[85%]' : 'p-4 top-[90%]'
         )}
       >
         <div
           className={classNames(
-            "justify-between flex transition-all origin-center duration-500",
-            isActive ? "h-auto opacity-100" : "h-0 opacity-0"
+            'justify-between flex transition-all origin-center duration-500',
+            isActive ? 'h-auto opacity-100' : 'h-0 opacity-0'
           )}
         >
           <p className="text-[#8A1E61] text-xs tracking-[1.2px] font-normal truncate flex-1">
@@ -83,16 +83,16 @@ const CuratedCollectionCard = ({
         </div>
         <h1
           className={classNames(
-            "text-[#171717] font-normal truncate transition-all origin-center duration-500",
-            isActive ? "mt-[10px] text-xl" : "text-base text-center"
+            'text-[#171717] font-normal truncate transition-all origin-center duration-500',
+            isActive ? 'mt-[10px] text-xl' : 'text-base text-center'
           )}
         >
           {name}
         </h1>
         <div
           className={classNames(
-            "items-center mt-[6px] truncate flex transition-all origin-center duration-500",
-            isActive ? "h-auto opacity-100" : "h-0 opacity-0"
+            'items-center mt-[6px] truncate flex transition-all origin-center duration-500',
+            isActive ? 'h-auto opacity-100' : 'h-0 opacity-0'
           )}
         >
           {amenities?.map((el, index) => (

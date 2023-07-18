@@ -23,9 +23,8 @@ const HomeOwnersList = ({homeOwnersListProps}:IHomeOwnersList) => {
         })
     }
     </>
-  )
-}
+  );
+};
 
-export default HomeOwnersList
+export default HomeOwnersList;
 
-{/* <div style={{width: 578, color: '#18181B', fontSize: 20, fontFamily: 'Brandon Grotesque', fontWeight: '390', lineHeight: 26, letterSpacing: 0.40, wordWrap: 'break-word'}}>Do you have a beautiful vacation home that was once used by you extensively and exclusively for yourself, but now lies idle for long periods of time?</div> */}

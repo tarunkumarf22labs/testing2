@@ -1,7 +1,7 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import ReadMoreOrLess from "./ReadMoreOrLess";
-import { IImageTag } from "src/Interface";
+import Image from 'next/image';
+import React, { useState } from 'react';
+import ReadMoreOrLess from './ReadMoreOrLess';
+import { IImageTag } from 'src/Interface';
 
 export interface IStorySection {
   isStory?: boolean;
@@ -13,7 +13,6 @@ export interface IStorySection {
   initialListToShow: number;
 }
 
-
 export const StorySection = ({
   isStory = true,
   heading,
@@ -22,7 +21,7 @@ export const StorySection = ({
   secondheading,
   stringLength,
   initialListToShow
-}: IStorySection ) => {
+}: IStorySection) => {
   return (
     <div className="mb-20" id={`${secondheading}-for-scroll`}>
       <div className="-z-10 sm:min-w-screen">
@@ -44,7 +43,11 @@ export const StorySection = ({
           {/* {isStory ? "STORY" : "Getting there"} */}
           {secondheading}
         </p>
-        <ReadMoreOrLess story={story} stringLength={stringLength} initialListToShow={initialListToShow}/>
+        <ReadMoreOrLess
+          story={story}
+          stringLength={stringLength}
+          initialListToShow={initialListToShow}
+        />
       </div>
     </div>
   );

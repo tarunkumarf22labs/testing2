@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import styles from "./galleryView.module.css";
+import React from 'react';
+import Image from 'next/image';
+import styles from './galleryView.module.css';
 
 interface ImageGalleryProps {
   data: IImageGallery[];
@@ -17,7 +17,6 @@ interface IImageGallery {
 }
 
 export default function GalleryView({ data }: ImageGalleryProps) {
-
   return (
     <div className={styles.container}>
       {data?.map((el, idx) =>

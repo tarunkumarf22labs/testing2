@@ -1,7 +1,7 @@
-import Layout from "@/components/Layout";
-import React from "react";
-import { mediaImages } from "src/data/constants";
-import MediaListing from "src/stories/MediaListing";
+import Layout from '@/components/Layout';
+import React from 'react';
+import { mediaImages } from 'src/data/constants';
+import MediaListing from 'src/stories/MediaListing';
 
 const TermsAndConditions = () => {
   return (
@@ -27,17 +27,17 @@ const TermsAndConditions = () => {
             </p>
             <div className="text-[#545456] text-base sm:text-xl font-[Centaur] leading-8 mt-2">
               {
-                "A non-refundable advance equal to 50% of the property booking cost shall be paid on booking by credit card, cash or wire transfer. Cash payments cannot equal or exceed an aggregate of Indian Rs 200,000 per booking. Card payments will incur a surcharge of 3.5%. No contract with us shall exist until we have received the advance and signed Booking Contract, specifying the booking period and party traveling, and we have subsequently accepted and confirmed your booking. Should you later cancel, cancellation charges shall become payable in accordance with section 3. We reserve the right to refuse a booking without giving a reason. It is understood that this contract satisfies transitory housing needs only and that the contract automatically expires at the end of the booking period as stated on the Booking Contract. Failure to vacate the booking property by the end of the booking period shall automatically result in a fine of Rs 25,000 per day in addition to pro-rated booking charges for occupying the booked property with-out a contract. Any contract renewal shall take place at the offices of Luxunlock or its local representative. In such cases, the booking rate shall be re-negotiated and the Security Deposit shall be reassessed. All Extras shall be paid in full before any renewal of the contract."
+                'A non-refundable advance equal to 50% of the property booking cost shall be paid on booking by credit card, cash or wire transfer. Cash payments cannot equal or exceed an aggregate of Indian Rs 200,000 per booking. Card payments will incur a surcharge of 3.5%. No contract with us shall exist until we have received the advance and signed Booking Contract, specifying the booking period and party traveling, and we have subsequently accepted and confirmed your booking. Should you later cancel, cancellation charges shall become payable in accordance with section 3. We reserve the right to refuse a booking without giving a reason. It is understood that this contract satisfies transitory housing needs only and that the contract automatically expires at the end of the booking period as stated on the Booking Contract. Failure to vacate the booking property by the end of the booking period shall automatically result in a fine of Rs 25,000 per day in addition to pro-rated booking charges for occupying the booked property with-out a contract. Any contract renewal shall take place at the offices of Luxunlock or its local representative. In such cases, the booking rate shall be re-negotiated and the Security Deposit shall be reassessed. All Extras shall be paid in full before any renewal of the contract.'
               }
             </div>
           </div>
           <div className="mt-16">
             <p className="text-[#18181B] font-medium capitalize text-xl">
-              2. Payment of Balance{" "}
+              2. Payment of Balance{' '}
             </p>
             <div className="text-[#545456] text-base sm:text-xl font-[Centaur] leading-8 mt-2">
               {
-                "The balance of the property booking cost due as reflected on the Invoice shall be paid at least 60 days before departure. If the balance is not received by us by the due date, we shall be entitled to cancel the booking without prejudice to our claim for cancellation charges and to retain the advance. For bookings made within 60 days of departure date, you shall pay the full property booking cost at the time of booking. We reserve the right to adjust the balance due us should there be a greater than 2% fluctuation in the cost of currency. Please refer to section 1 for payment modalities."
+                'The balance of the property booking cost due as reflected on the Invoice shall be paid at least 60 days before departure. If the balance is not received by us by the due date, we shall be entitled to cancel the booking without prejudice to our claim for cancellation charges and to retain the advance. For bookings made within 60 days of departure date, you shall pay the full property booking cost at the time of booking. We reserve the right to adjust the balance due us should there be a greater than 2% fluctuation in the cost of currency. Please refer to section 1 for payment modalities.'
               }
             </div>
           </div>
@@ -67,7 +67,7 @@ const TermsAndConditions = () => {
             </p>
             <div className="text-[#545456] text-base sm:text-xl font-[Centaur] leading-8 mt-2">
               {
-                "100% credit voucher for days not stayed in case of government-imposed travel restrictions. Valid for six months. No refunds."
+                '100% credit voucher for days not stayed in case of government-imposed travel restrictions. Valid for six months. No refunds.'
               }
               <br />
               {
@@ -340,7 +340,7 @@ const TermsAndConditions = () => {
               <br />
               <br />
               {
-                "You and your Party explicitly agree to use the property and all facilities and amenities in and around the property entirely at your own initiative, cost, risk & responsibility. You and your Party accepts to indemnify and hereby indemnifies and shall keep indemnified as well as waives and releases any claims against LUX as well as the owner for any loss / damage of whatsoever nature and magnitude, including but not limited to financial, non financial, Injuries or death that may be sustained by you and/or your Party and/or visitors for whatsoever reasons on, near or adjacent to property, including any common facilities of property and/or using property and/or using facilities, amenities, equipment, appliances etc. provided in or around property. You or your Party or any one else shall not be entitled to any claim and shall not claim or receive any damages, compensation, or refunds of any kind whatsoever from LUX or owner, nor LUX or owner shall be liable to pay the same to anyone including you or your Party, any Visitor or anyone else on any other account."
+                'You and your Party explicitly agree to use the property and all facilities and amenities in and around the property entirely at your own initiative, cost, risk & responsibility. You and your Party accepts to indemnify and hereby indemnifies and shall keep indemnified as well as waives and releases any claims against LUX as well as the owner for any loss / damage of whatsoever nature and magnitude, including but not limited to financial, non financial, Injuries or death that may be sustained by you and/or your Party and/or visitors for whatsoever reasons on, near or adjacent to property, including any common facilities of property and/or using property and/or using facilities, amenities, equipment, appliances etc. provided in or around property. You or your Party or any one else shall not be entitled to any claim and shall not claim or receive any damages, compensation, or refunds of any kind whatsoever from LUX or owner, nor LUX or owner shall be liable to pay the same to anyone including you or your Party, any Visitor or anyone else on any other account.'
               }
               <br />
               <br />
@@ -350,7 +350,7 @@ const TermsAndConditions = () => {
               <br />
               <br />
               {
-                "It is also understood that “villa/property” stated here shall mean residential villa/property which is sought by “Renter/Client” and arranged by LUX for use by the renter from its owner. Villa/property shall also be referred to as “villas/properties, etc.” Villa/Property arranged by LUX from its owner is a residential villa/property and is NOT A HOTEL or a GUEST HOUSE, nor is being promoted as a Hotel or Client house stay. It is a standalone private residential villa."
+                'It is also understood that “villa/property” stated here shall mean residential villa/property which is sought by “Renter/Client” and arranged by LUX for use by the renter from its owner. Villa/property shall also be referred to as “villas/properties, etc.” Villa/Property arranged by LUX from its owner is a residential villa/property and is NOT A HOTEL or a GUEST HOUSE, nor is being promoted as a Hotel or Client house stay. It is a standalone private residential villa.'
               }
             </div>
           </div>

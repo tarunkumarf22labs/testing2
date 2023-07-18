@@ -1,12 +1,8 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import Guests from "./Guests";
-import SelectRooms from "./SelectRooms";
-import { AppContext } from "src/Context";
-import Datepicker from "./DatePicker";
+import React, { useContext, useEffect, useState } from 'react';
+import Guests from './Guests';
+import SelectRooms from './SelectRooms';
+import { AppContext } from 'src/Context';
+import Datepicker from './DatePicker';
 
 interface IReserve {
   infant: number;
@@ -40,7 +36,7 @@ const Reserve = ({
   basicPrice,
   petPrice,
   extraGuestPrice,
-  roomDetails,
+  roomDetails
 }: IReserve) => {
   const [guestsSelectorOpen, setGuestsSelectorOpen] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
@@ -54,7 +50,7 @@ const Reserve = ({
     ClearSelectedDate,
     selectedNumberOfRooms,
     setSelectedNumberOfRooms,
-    setNumberOfGuests,
+    setNumberOfGuests
   } = useContext(AppContext);
 
   let Number_In_Days;
@@ -68,14 +64,14 @@ const Reserve = ({
       Number_In_Days = 1;
     }
   }, [startDate]);
-  const Date1Part = startDate.split("/");
-  const Date2Part = endDate.split("/");
+  const Date1Part = startDate.split('/');
+  const Date2Part = endDate.split('/');
 
   const date1 = new Date(
-    Date1Part[1] + "/" + Date1Part[0] + "/" + Date1Part[2]
+    Date1Part[1] + '/' + Date1Part[0] + '/' + Date1Part[2]
   );
   const date2 = new Date(
-    Date2Part[1] + "/" + Date2Part[0] + "/" + Date2Part[2]
+    Date2Part[1] + '/' + Date2Part[0] + '/' + Date2Part[2]
   );
 
   // To calculate the time difference of two dates
@@ -135,7 +131,7 @@ const Reserve = ({
         infant,
         maxAdultAndChildren,
         minAdultAndChildren,
-        pet,
+        pet
       };
       return GuestProps;
     } else {
@@ -166,7 +162,7 @@ const Reserve = ({
         infant: numberOfInfants,
         maxAdultAndChildren: numberOfMaxAdultAndChildren,
         minAdultAndChildren: numberOfMinAdultAndChildren,
-        pet: numberOfPet,
+        pet: numberOfPet
       };
     }
   };
@@ -186,8 +182,8 @@ const Reserve = ({
         <div
           className={`${
             roomSelected
-              ? ""
-              : "bg-[#8A1E61] text-white ease-in-out duration-500 rounded-sm"
+              ? ''
+              : 'bg-[#8A1E61] text-white ease-in-out duration-500 rounded-sm'
           } flex items-center justify-center w-6/12 h-full cursor-pointer`}
           onClick={() => {
             setNumberOfGuests({
@@ -195,7 +191,7 @@ const Reserve = ({
               children: 0,
               infants: 0,
               pets: 0,
-              additional_guests: 0,
+              additional_guests: 0
             });
             setRoomSelected(!roomSelected);
             setGuestsSelectorOpen(!guestsSelectorOpen);
@@ -207,8 +203,8 @@ const Reserve = ({
         <div
           className={`${
             roomSelected
-              ? "bg-[#8A1E61]  text-white ease-in-out duration-500"
-              : ""
+              ? 'bg-[#8A1E61]  text-white ease-in-out duration-500'
+              : ''
           } flex items-center justify-center w-6/12 h-full cursor-pointer`}
           onClick={() => {
             // setGuestsSelectorOpen(!guestsSelectorOpen);
@@ -217,7 +213,7 @@ const Reserve = ({
               children: 0,
               infants: 0,
               pets: 0,
-              additional_guests: 0,
+              additional_guests: 0
             });
             setRoomSelected(!roomSelected);
           }}
@@ -318,7 +314,7 @@ const Reserve = ({
       {showRoomOption && (
         <div
           className={`flex items-center justify-between w-10/12 m-auto  text-center h-68 bg-[#F8F8F9] mt-2 text-xs ${
-            !roomSelected && "hidden"
+            !roomSelected && 'hidden'
           }`}
         >
           <SelectRooms roomDetails={roomDetails} />
@@ -330,7 +326,7 @@ const Reserve = ({
       >
         <p className="flex items-center justify-start w-6/12 h-full">
           {TotalGuests}
-          {TotalGuests > 1 ? " Guests" : " Guest"}
+          {TotalGuests > 1 ? ' Guests' : ' Guest'}
         </p>
         {guestsSelectorOpen ? (
           <svg
@@ -372,8 +368,8 @@ const Reserve = ({
 
       <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 text-center">
         <p className="flex items-center justify-start h-full ml-1">
-          ₹{totalCapacityInSelectedRooms()} {"X "}
-          {Number_In_Days} {"Nights"}
+          ₹{totalCapacityInSelectedRooms()} {'X '}
+          {Number_In_Days} {'Nights'}
         </p>
         <p className="flex items-center justify-end h-full">
           ₹{totalCapacityInSelectedRooms() * Number_In_Days}

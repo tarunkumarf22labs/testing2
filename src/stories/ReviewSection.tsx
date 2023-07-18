@@ -1,9 +1,9 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { ReviewCard } from "./ReviewCard";
-import { ScrollButton } from "./ScrollButton";
-import { useAnimation, motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import { ReviewCard } from './ReviewCard';
+import { ScrollButton } from './ScrollButton';
+import { useAnimation, motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 export const ReviewSection = () => {
   return (
@@ -37,7 +37,7 @@ export const ReviewSection = () => {
 
 const squareVariants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
-  hidden: { opacity: 0, scale: 0.5 },
+  hidden: { opacity: 0, scale: 0.5 }
 };
 
 const ImageDiv = () => {
@@ -45,9 +45,9 @@ const ImageDiv = () => {
   const [ref, inView] = useInView();
 
   useEffect(() => {
-    console.log("inView: ", inView);
+    console.log('inView: ', inView);
     if (inView) {
-      controls.start("visible");
+      controls.start('visible');
     }
   }, [controls, inView]);
 

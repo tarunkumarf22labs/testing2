@@ -1,15 +1,21 @@
-import React from "react";
-import FooterLogo from "./FooterLogo";
+import React from 'react';
+import FooterLogo from './FooterLogo';
 import {
   FacebookLogo,
   TwitterLogo,
   InstagramLogo,
   LinkedinLogo,
-  PinterestLogo,
-} from "@phosphor-icons/react";
-import Link from "next/link";
+  PinterestLogo
+} from '@phosphor-icons/react';
+import Link from 'next/link';
 
-const QuickLinks = ["About Us", "Team", "Investors", "Travel Partners"];
+const QuickLinks = [
+  { name: 'About Us', url: '/' },
+  { name: 'Team', url: '/' },
+  { name: 'Investors', url: '/' },
+  { name: 'Travel Partners', url: '/' },
+  { name: 'FAQs', url: '/faq' }
+];
 
 const Footer = () => {
   return (
@@ -33,14 +39,13 @@ const Footer = () => {
             <h4 className="text-white font-[Brandon Grotesque] uppercase text-[10px] absolute top-[-10px] px-5 bg-black tracking-[0.3em] md:text-sm">
               <b>Quick links</b>
             </h4>
-            <div className="grid justify-between w-full grid-cols-2 mt-5 sm:mt-8 md:w-auto gap-x-1 sm:gap-x-8 md:grid-cols-4 md:gap-0">
+            <div className="grid justify-between w-full grid-cols-2 mt-5 sm:mt-8 md:w-auto gap-x-1 sm:gap-x-8 md:grid-cols-5 md:gap-0">
               {QuickLinks.map((link, idx) => (
-                <p
-                  key={idx}
-                  className="mb-4 text-lg font-medium sm:text-center sm:mb-5 md:mb-0"
-                >
-                  {link}
-                </p>
+                <Link key={idx} href={link?.url}>
+                  <p className="mb-4 text-lg font-medium sm:text-center sm:mb-5 md:mb-0">
+                    {link?.name}
+                  </p>
+                </Link>
               ))}
             </div>
           </div>
@@ -82,7 +87,7 @@ const Footer = () => {
                     <p className="">
                       <span className="font-medium">
                         <Link href="tel:+916369555363">
-                          {"+91 63695 55363 "}
+                          {'+91 63695 55363 '}
                         </Link>
                       </span>
                       <span className="font-medium">
@@ -124,8 +129,8 @@ const Footer = () => {
       <div className="w-full bg-[#545456] pt-6 pb-6 flex justify-between items-center font-[Brandon Grotesque] flex-col-reverse xl:flex-row">
         <div className="flex items-center justify-between flex-col xl:flex-row w-4/5 xl:w-[34%] 2xl:w-[28%] text-[#FFFFFF] font-medium m-auto xl:ml-32">
           <div className="flex items-center justify-between mb-4 xl:w-1/2">
-          <p className="mr-8 xl:mr-0">Terms & Conditions</p>
-          <p className="">Privacy Policy</p>
+            <p className="mr-8 xl:mr-0">Terms & Conditions</p>
+            <p className="">Privacy Policy</p>
           </div>
           <p className="mb-3">Refund & Cancellation Policy</p>
         </div>

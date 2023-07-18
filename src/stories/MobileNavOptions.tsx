@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface optionsInterface {
   id: number;
@@ -25,7 +25,7 @@ const MobileNavOptions = (props: OptionProps) => {
       >
         <p className="cursor-pointer hover:underline">{title}</p>
         {options?.length === 0 ? (
-          ""
+          ''
         ) : showOptions ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"

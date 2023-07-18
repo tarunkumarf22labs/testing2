@@ -1,8 +1,8 @@
 const errorStatus: { [key: number]: string } = {
-  401: "Unauthorized",
-  500: "Internal Server Error",
-  400: "Bad request",
-  404: "Not Found",
+  401: 'Unauthorized',
+  500: 'Internal Server Error',
+  400: 'Bad request',
+  404: 'Not Found'
 };
 
 export enum METHODS {
@@ -10,7 +10,7 @@ export enum METHODS {
   POST,
   PUT,
   PATCH,
-  DELETE,
+  DELETE
 }
 
 type ResponseData<T = any> = {
@@ -28,8 +28,8 @@ const makeReq = async (
   return fetch(endPoint, {
     method: METHODS[method],
     headers,
-    mode: "cors",
-    ...(data && Object.keys(data).length && { body: JSON.stringify(data) }),
+    mode: 'cors',
+    ...(data && Object.keys(data).length && { body: JSON.stringify(data) })
   })
     .then(async (response: Response): Promise<ResponseData> => {
       if (!response.ok) {
@@ -38,13 +38,13 @@ const makeReq = async (
         return {
           data: null,
           error: { message: errorStatus[response.status], code: 0 },
-          status: response.status,
+          status: response.status
         };
       }
       return {
         data: await response.json(),
         error: null,
-        status: response.status,
+        status: response.status
       };
     })
     .catch((error) => {
@@ -57,8 +57,8 @@ export const Fetch = (
   baseURL: string,
   authHeader = {},
   globalHeaders = {
-    "Content-Type": "application/json",
-    Accept: "application/json, text/plain",
+    'Content-Type': 'application/json',
+    Accept: 'application/json, text/plain'
   },
   mock = false
 ) => ({
@@ -115,7 +115,7 @@ export const Fetch = (
       data,
       mergedHeaders(headers, globalHeaders, authHeader)
     );
-  },
+  }
 });
 
 const middleWare = async (
@@ -133,5 +133,3 @@ const mergedHeaders = (headers = {}, globalHeaders = {}, authHeader = {}) => {
     Object.entries({ ...headers, ...globalHeaders, ...authHeader })
   );
 };
-
-

@@ -1,5 +1,5 @@
-import React from "react";
-import Map from "./Map";
+import React from 'react';
+import Map from './Map';
 
 interface IReserveAndLocationDetailsSection {
   locations: string;
@@ -12,17 +12,17 @@ const LocationAndDetails = ({
   locations,
   address,
   lat,
-  lng,
+  lng
 }: IReserveAndLocationDetailsSection) => {
   const locationDetail = [
     {
       address: address,
       lat: lat,
-      lng: lng,
-    },
+      lng: lng
+    }
   ];
 
-  const isList = locations.includes("\n-") || locations.includes("\n -");
+  const isList = locations.includes('\n-') || locations.includes('\n -');
 
   let splittedList;
   if (isList) {
@@ -32,7 +32,7 @@ const LocationAndDetails = ({
   return (
     <div className="p-5">
       <div className="w-full h-40">
-        <Map markers={locationDetail} zoomdata={2.7}/>
+        <Map markers={locationDetail} zoomdata={2.7} />
       </div>
       <div className="mt-4">
         {splittedList?.map((el) => {

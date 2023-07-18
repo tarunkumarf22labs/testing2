@@ -1,9 +1,9 @@
-import { useRef } from "react";
-import Image from "next/image";
-import { ScrollButton } from "./ScrollButton";
-import { spotLightSection } from "src/data/constants";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import { useRef } from 'react';
+import Image from 'next/image';
+import { ScrollButton } from './ScrollButton';
+import { spotLightSection } from 'src/data/constants';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 const SpotlightMobile = ({ data }: { data: any[] }) => {
   const swiperRef = useRef(null);

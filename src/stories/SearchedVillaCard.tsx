@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import { IImageTag } from "src/Interface";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { IImageTag } from 'src/Interface';
 
 interface IVillaCard {
   bannerImage: IImageTag;
@@ -27,7 +27,7 @@ const SearchedVillaCard = ({
   available,
   availableDates,
   villaPrice,
-  roomPrice,
+  roomPrice
 }: IVillaCard) => {
   const [roomSelected, setRoomSelected] = useState(false);
   return (
@@ -66,7 +66,7 @@ const SearchedVillaCard = ({
                       {idx !== amenities.length - 1 ? (
                         <div className="w-[2px] h-[2px] rounded bg-black"></div>
                       ) : (
-                        ""
+                        ''
                       )}
                     </>
                   );
@@ -87,15 +87,15 @@ const SearchedVillaCard = ({
           )}
           <div
             className={`flex items-center justify-between w-11/12 m-auto mt-6 ${
-              !available && "opacity-50 pointer-events-none"
+              !available && 'opacity-50 pointer-events-none'
             }`}
           >
             <div className="flex items-center justify-between w-1/2 h-8 m-auto text-xs text-center">
               <div
                 className={`${
                   roomSelected
-                    ? ""
-                    : "bg-[#8A1E61] text-white ease-in-out duration-500 rounded-sm"
+                    ? ''
+                    : 'bg-[#8A1E61] text-white ease-in-out duration-500 rounded-sm'
                 } flex items-center justify-center w-6/12 h-full cursor-pointer`}
                 onClick={() => {
                   setRoomSelected(!roomSelected);
@@ -107,8 +107,8 @@ const SearchedVillaCard = ({
                 <div
                   className={`${
                     roomSelected
-                      ? "bg-[#8A1E61]  text-white ease-in-out duration-500 rounded-sm"
-                      : ""
+                      ? 'bg-[#8A1E61]  text-white ease-in-out duration-500 rounded-sm'
+                      : ''
                   } flex items-center justify-center w-6/12 h-full cursor-pointer`}
                   onClick={() => {
                     setRoomSelected(!roomSelected);
@@ -127,7 +127,7 @@ const SearchedVillaCard = ({
           </div>
           <div
             className={`pb-6 flex items-center justify-between w-11/12 m-auto mt-1 ${
-              !available && "opacity-50 pointer-events-none"
+              !available && 'opacity-50 pointer-events-none'
             }`}
           >
             <div className="w-1/2 text-center">

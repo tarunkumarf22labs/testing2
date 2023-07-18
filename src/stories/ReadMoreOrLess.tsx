@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface IReadMore {
   story: string;
@@ -9,11 +9,11 @@ interface IReadMore {
 const ReadMoreOrLess = ({
   story,
   stringLength,
-  initialListToShow,
+  initialListToShow
 }: IReadMore) => {
   const [readMore, setReadMore] = useState<Boolean>(false);
-  console.log("containsPattern: ", story);
-  const containsPattern = story.includes("\n-") || story.includes("\n -");
+  console.log('containsPattern: ', story);
+  const containsPattern = story.includes('\n-') || story.includes('\n -');
 
   let storyList;
   let List;
@@ -21,7 +21,7 @@ const ReadMoreOrLess = ({
     storyList = story.split(/\n-|\n -/);
   }
   let a = storyList?.filter((ele, id) => id < initialListToShow);
-  console.log("containsPattern: ", a);
+  console.log('containsPattern: ', a);
   // return <></>
   if (containsPattern && readMore === false) {
     List = storyList?.filter((ele, id) => id < initialListToShow);
@@ -31,7 +31,7 @@ const ReadMoreOrLess = ({
     // List[0] = List[0].substring(1);
   }
 
-  console.log("containsPattern 2: ", containsPattern, List);
+  console.log('containsPattern 2: ', containsPattern, List);
   return (
     <>
       {containsPattern === false ? (
@@ -40,7 +40,7 @@ const ReadMoreOrLess = ({
             {readMore
               ? story
               : story?.length > stringLength
-              ? story?.slice(0, stringLength - 3) + "... "
+              ? story?.slice(0, stringLength - 3) + '... '
               : story}
           </p>
         </div>
@@ -66,7 +66,7 @@ const ReadMoreOrLess = ({
           className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
           onClick={() => setReadMore(!readMore)}
         >
-          <h3 className="">{!readMore ? "Read More" : "Read Less"}</h3>
+          <h3 className="">{!readMore ? 'Read More' : 'Read Less'}</h3>
         </div>
       ) : null}
     </>

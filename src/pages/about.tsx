@@ -1,9 +1,9 @@
-import Layout from "@/components/Layout";
-import classNames from "classnames";
-import { NextPage } from "next";
-import Image from "next/image";
-import React from "react";
-import { Container } from "src/stories/Container";
+import Layout from '@/components/Layout';
+import classNames from 'classnames';
+import { NextPage } from 'next';
+import Image from 'next/image';
+import React from 'react';
+import { Container } from 'src/stories/Container';
 
 interface ICard {
   name: string;
@@ -75,21 +75,21 @@ const About: NextPage = () => {
 
 const data = [
   {
-    name: "Rucha Singh",
-    designation: "Founder",
-    email: "rucha@luxunlock.com",
+    name: 'Rucha Singh',
+    designation: 'Founder',
+    email: 'rucha@luxunlock.com',
     description:
-      "A hospitality degree from Pune and an MBA in Human Resources from XLRIJamshedpur, Rucha Gupta worked for several years in large corporations such as Procter & Gamble, Murugappa Group, and Mercer Consulting. Needing the flexibility of raising a family and working at the same time, she joined Milesworth Travel, the family-run corporate travel company, ushering in a wonderful 15-year relationship with American Express as their office in Chennai, India. In 2008, the idea of the city&apos;s first ever true Bed & Breakfast took shape, and Footprint B&B was born. It went on to win accolades from nearly every international travel guide from Lonely Planet, Frommers, Footprint, Rough Guides and Routard. And was voted the number one hospitality establishment in Chennai across all categories by TripExpert in 2019. Rucha serves as a Director for Operations at LuxUnlock&apos;s parent company, Milesworth Journeys, our luxury travel company.",
-    img: "/images/AboutImage1.png",
+      'A hospitality degree from Pune and an MBA in Human Resources from XLRIJamshedpur, Rucha Gupta worked for several years in large corporations such as Procter & Gamble, Murugappa Group, and Mercer Consulting. Needing the flexibility of raising a family and working at the same time, she joined Milesworth Travel, the family-run corporate travel company, ushering in a wonderful 15-year relationship with American Express as their office in Chennai, India. In 2008, the idea of the city&apos;s first ever true Bed & Breakfast took shape, and Footprint B&B was born. It went on to win accolades from nearly every international travel guide from Lonely Planet, Frommers, Footprint, Rough Guides and Routard. And was voted the number one hospitality establishment in Chennai across all categories by TripExpert in 2019. Rucha serves as a Director for Operations at LuxUnlock&apos;s parent company, Milesworth Journeys, our luxury travel company.',
+    img: '/images/AboutImage1.png'
   },
   {
-    name: "Ashish Gupta",
-    designation: "Founder",
-    email: "ashish@luxunlock.com",
+    name: 'Ashish Gupta',
+    designation: 'Founder',
+    email: 'ashish@luxunlock.com',
     description:
-      "Ashish Gupta has had over 20 years of entrepreneurship in the hospitality & travel industry, which is backed by an undergraduate degree in Mechanical Engineering from Mangalore University and an MBA in Marketing & Finance from XLRI Jamshedpur. He has had several years of professional service in companies such as Larsen & Toubro, Invensys plc, and ITC Limited - from designing tyre-making machinery to marketing consumer products and engineering solutions for the oil & gas industry. In the last two decades, he has co-founded The Barefoot Group in the Andaman Islands, owners of the award-winning eco-lodge Barefoot at Havelock, and Barefoot Scuba, India&apos;s leading PADI scuba diving centre. In addition to this, he has also co-founded Travel To Care, India&apos;s first sustainable tourism online platform for responsible tourism, which was funded by the Danish International Development Agency (DANIDA). He is currently Managing Director of Milesworth Journeys, Chennai&apos;s leading luxury holiday travel company.",
-    img: "/images/AboutImage2.png",
-  },
+      'Ashish Gupta has had over 20 years of entrepreneurship in the hospitality & travel industry, which is backed by an undergraduate degree in Mechanical Engineering from Mangalore University and an MBA in Marketing & Finance from XLRI Jamshedpur. He has had several years of professional service in companies such as Larsen & Toubro, Invensys plc, and ITC Limited - from designing tyre-making machinery to marketing consumer products and engineering solutions for the oil & gas industry. In the last two decades, he has co-founded The Barefoot Group in the Andaman Islands, owners of the award-winning eco-lodge Barefoot at Havelock, and Barefoot Scuba, India&apos;s leading PADI scuba diving centre. In addition to this, he has also co-founded Travel To Care, India&apos;s first sustainable tourism online platform for responsible tourism, which was funded by the Danish International Development Agency (DANIDA). He is currently Managing Director of Milesworth Journeys, Chennai&apos;s leading luxury holiday travel company.',
+    img: '/images/AboutImage2.png'
+  }
 ];
 
 const Card = (props: ICard) => {
@@ -97,8 +97,8 @@ const Card = (props: ICard) => {
   return (
     <div
       className={classNames(
-        "sm:flex sm:justify-center sm:items-center sm:space-x-16",
-        reverse ? "sm:flex-row-reverse  sm:space-x-reverse" : ""
+        'sm:flex sm:justify-center sm:items-center sm:space-x-16',
+        reverse ? 'sm:flex-row-reverse  sm:space-x-reverse' : ''
       )}
     >
       <div className="pb-4 sm:w-1/2 md:max-w-[410px] md:h-[614px]">
@@ -114,7 +114,7 @@ const Card = (props: ICard) => {
         <div className="flex flex-col mb-5">
           <p className="text-2xl  md:text-5xl capitalize">{name}</p>
           <p className="text-base">
-            {designation} |{" "}
+            {designation} |{' '}
             <span className="text-[#8A1E61] underline">{email}</span>
           </p>
         </div>

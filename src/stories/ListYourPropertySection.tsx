@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { Container } from "./Container";
-import Image from "next/image";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import React, { useEffect } from 'react';
+import { Container } from './Container';
+import Image from 'next/image';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 export const ListYourPropertySection = () => {
   const { ref, inView } = useInView({ threshold: 0.2 });
   const animation = useAnimation();
 
   useEffect(() => {
-    console.log("inView: ", inView);
+    console.log('inView: ', inView);
     if (inView) {
       animation.start({
         scale: 1,
-        transition: { duration: 1 },
+        transition: { duration: 1 }
       });
     } else {
       animation.start({ scale: 1.5, transition: { duration: 1 } });

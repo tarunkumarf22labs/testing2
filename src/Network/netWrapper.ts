@@ -1,33 +1,33 @@
-import { IRequest, Net } from "./net";
-import { getErrorMessage } from "./helper";
+import { IRequest, Net } from './net';
+import { getErrorMessage } from './helper';
 
 const NetWrapper = async <T>(
   url: string,
   options: IRequest = {
-    method: "GET",
+    method: 'GET',
     cacheTime: 3600000,
     enableCache: true,
-    retries: 3,
+    retries: 3
   },
   // injectAuth = true,
   base = process.env.NEXT_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL
 ) => {
   options.headers = options.headers || {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json'
   };
-  if (options.method !== "GET") {
-    options.body = options.body || "";
+  if (options.method !== 'GET') {
+    options.body = options.body || '';
   }
 
   const { data, error, status } = await Net<T>(url, options, base);
-  let errorMessage
+  let errorMessage;
   if (error) {
     errorMessage = getErrorMessage(error);
-  } 
+  }
   return {
     data,
-    error:errorMessage || null,
-    status,
+    error: errorMessage || null,
+    status
   };
 };
 

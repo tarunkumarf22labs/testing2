@@ -1,26 +1,31 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 interface CarouselProps {
   images: string[];
   bannerImageStyle: string;
   bannerTextStyle: string;
   bannerText: string | (JSX.Element | string)[];
   locations?: {
-    id: number ;
+    id: number;
     type: string;
     title: string;
   }[];
 }
-import { Autoplay } from "swiper";
-import Search from "./Search";
+import { Autoplay } from 'swiper';
+import Search from './Search';
 
-export default function Carousel({ images,bannerImageStyle,bannerTextStyle,bannerText,locations }: CarouselProps) {
-    
+export default function Carousel({
+  images,
+  bannerImageStyle,
+  bannerTextStyle,
+  bannerText,
+  locations
+}: CarouselProps) {
   return (
     <div className="relative text-center md:-mt-28">
       <Swiper
@@ -28,7 +33,7 @@ export default function Carousel({ images,bannerImageStyle,bannerTextStyle,banne
         centeredSlides={true}
         autoplay={{
           delay: 2500,
-          disableOnInteraction: false,
+          disableOnInteraction: false
         }}
         modules={[Autoplay]}
         className="mySwiper"
@@ -49,11 +54,13 @@ export default function Carousel({ images,bannerImageStyle,bannerTextStyle,banne
           );
         })}
       </Swiper>
-      <div className={`overflow-hidden ${bannerTextStyle} Home-page-text-div font-[Brandon Grotesque] tracking-wide text-4xl md:text-5xl`}>
+      <div
+        className={`overflow-hidden ${bannerTextStyle} Home-page-text-div font-[Brandon Grotesque] tracking-wide text-4xl md:text-5xl`}
+      >
         <p className="capitalize animate-slide-down">{bannerText}</p>
       </div>
       <div className="relative m-auto bg-[#FFFFFF] lg:absolute top-[60%] lg:left-14 lg:right-14 xl:left-28 xl:right-24 w-[90%]">
-        <Search locations={locations}/>
+        <Search locations={locations} />
       </div>
     </div>
   );

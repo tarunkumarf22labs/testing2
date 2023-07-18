@@ -1,8 +1,8 @@
-import React, { MouseEventHandler } from "react";
-import { motion } from "framer-motion";
-import { XMarkIcon } from "@heroicons/react/24/solid";
-import classNames from "classnames";
-import { XCircle } from "@phosphor-icons/react";
+import React, { MouseEventHandler } from 'react';
+import { motion } from 'framer-motion';
+import { XMarkIcon } from '@heroicons/react/24/solid';
+import classNames from 'classnames';
+import { XCircle } from '@phosphor-icons/react';
 
 export interface IModal {
   children: JSX.Element;
@@ -28,14 +28,11 @@ const Modal = ({
   return (
     <>
       {isOpen && (
-        <motion.div
-          className={parentDivStyle}
-          onClick={onClose}
-        >
+        <motion.div className={parentDivStyle} onClick={onClose}>
           <motion.div
             className={classNames(
-              "m-x-6 md:m-0 md:w-1/2 bg-white transition duration-700 ease-in-out p-6 relative",
-              square ? "" : "rounded-lg",
+              'm-x-6 md:m-0 md:w-1/2 bg-white transition duration-700 ease-in-out p-6 relative',
+              square ? '' : 'rounded-lg',
               className
             )}
             onClick={(e) => e.stopPropagation()}

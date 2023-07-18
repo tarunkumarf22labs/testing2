@@ -141,11 +141,11 @@ export interface villaInterface {
       paymentReturnDate: string;
     };
     amenities: {
-      data: Iamenities[]
+      data: Iamenities[];
     };
     rooms: {
       data: Iroom[];
-    }
+    };
   };
 }
 export interface IHomeInterface {
@@ -157,97 +157,97 @@ export interface IHomeInterface {
 }
 
 export interface IImage {
-  id:     number;
-  type:   string;
+  id: number;
+  type: string;
   image?: IImageAmenity;
 }
 
 interface IImageAmenity {
   data: {
     id: number;
-    attributes: FluffyAttributes
-  }
+    attributes: FluffyAttributes;
+  };
 }
 
 export interface FluffyAttributes {
-  name:               string;
-  createdAt:          Date;
-  updatedAt:          Date;
-  publishedAt?:       Date;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt?: Date;
   // banner?:            Amenities;
-  alternativeText?:   null;
-  caption?:           null;
-  width?:             number | null;
-  height?:            number | null;
-  formats?:           Formats | null;
-  hash?:              string;
-  ext?:               AttributesEXT;
-  mime?:              AttributesMIME;
-  size?:              number;
-  url?:               string;
-  previewUrl?:        null;
-  provider?:          Provider;
+  alternativeText?: null;
+  caption?: null;
+  width?: number | null;
+  height?: number | null;
+  formats?: Formats | null;
+  hash?: string;
+  ext?: AttributesEXT;
+  mime?: AttributesMIME;
+  size?: number;
+  url?: string;
+  previewUrl?: null;
+  provider?: Provider;
   provider_metadata?: null;
 }
 
 export interface Formats {
-  l_webp:    LWebp;
-  m_webp:    LWebp;
-  s_webp:    LWebp;
-  xl_webp:   LWebp;
+  l_webp: LWebp;
+  m_webp: LWebp;
+  s_webp: LWebp;
+  xl_webp: LWebp;
   thumbnail: LWebp;
 }
 
 export interface LWebp {
-  ext:    LWebpEXT;
-  url:    string;
-  hash:   string;
-  mime:   LWebpMIME;
-  name:   string;
-  size:   number;
-  width:  number;
+  ext: LWebpEXT;
+  url: string;
+  hash: string;
+  mime: LWebpMIME;
+  name: string;
+  size: number;
+  width: number;
   height: number;
-  path?:  null;
+  path?: null;
 }
 export enum Provider {
-  AwsS3 = "aws-s3",
+  AwsS3 = 'aws-s3'
 }
 export enum LWebpEXT {
-  Jpg = ".jpg",
-  Webp = ".webp",
+  Jpg = '.jpg',
+  Webp = '.webp'
 }
 export enum LWebpMIME {
-  ImageJPEG = "image/jpeg",
-  ImageWebp = "image/webp",
+  ImageJPEG = 'image/jpeg',
+  ImageWebp = 'image/webp'
 }
 
- export enum AttributesEXT {
-    Jpg = ".jpg",
-    PDF = ".pdf",
-    SVG = ".svg",
-  }
-  
-  export enum AttributesMIME {
-    ApplicationPDF = "application/pdf",
-    ImageJPEG = "image/jpeg",
-    ImageSVGXML = "image/svg+xml",
-  }
+export enum AttributesEXT {
+  Jpg = ".jpg",
+  PDF = ".pdf",
+  SVG = ".svg",
+}
 
-export  interface Iamenities {
+export enum AttributesMIME {
+  ApplicationPDF = "application/pdf",
+  ImageJPEG = "image/jpeg",
+  ImageSVGXML = "image/svg+xml",
+}
+
+export interface Iamenities {
   // data: {
-    id: number;
-    attributes: {
-      title: string;
-      createdAt: string;
-      updatedAt: Date | null;
-      publishedAt: Date | null;
-      icon: {
-        data: {
-          id: number;
-          attributes: FluffyAttributes
-        }
-      }
-    }
+  id: number;
+  attributes: {
+    title: string;
+    createdAt: string;
+    updatedAt: Date | null;
+    publishedAt: Date | null;
+    icon: {
+      data: {
+        id: number;
+        attributes: FluffyAttributes;
+      };
+    };
+  };
 }
 
 export interface IlocalExperiences {
@@ -259,11 +259,11 @@ export interface IlocalExperiences {
 }
 
 interface IguestCapacity {
-    id: number;
-    minAdultAndChildren: number;
-    maxAdultAndChildren: number;
-    infant: number;
-    pet: number | null;
+  id: number;
+  minAdultAndChildren: number;
+  maxAdultAndChildren: number;
+  infant: number;
+  pet: number | null;
 }
 
 interface Iroom {
@@ -287,7 +287,7 @@ interface Iroom {
           updatedAt: string;
           publishedAt: string;
           icon: {
-            data : {
+            data: {
               id: number;
               attributes: {
                 name: string;
@@ -295,7 +295,7 @@ interface Iroom {
                 caption: string;
                 width: number;
                 height: number;
-                formats: any; 
+                formats: any;
                 hash: string;
                 ext: string;
                 mime: string;
@@ -306,10 +306,10 @@ interface Iroom {
                 provider_metadata: null | string;
                 createdAt: string;
                 updatedAt: string;
-              }
-            }
-          }
-        }
+              };
+            };
+          };
+        };
       }[];
     };
     pricing: {
@@ -319,8 +319,8 @@ interface Iroom {
       extraGuest: number;
     };
     property: any;
-    channels :{
-      id:number;
+    channels: {
+      id: number;
       name: string;
     }[];
     images: IImage[];
@@ -328,7 +328,7 @@ interface Iroom {
     //   id: number;
     //   type: string;
     // }[];
-  }
+  };
 }
 
 interface IRoomAmenity {
@@ -342,8 +342,42 @@ interface IRoomAmenity {
 }
 
 interface IPrice {
+  id: number;
+  basic: number;
+  pet: number;
+  extraGuest: number;
+}
+
+interface QuestionAndAnswer {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+interface IFAQAttributes {
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  questionAndAnswers: QuestionAndAnswer[];
+  property: { data: villaInterface };
+  portraitImages: {
+    data: {
+      id: number;
+      attributes: FluffyAttributes;
+    }[];
+  };
+  landscapeImage: {
+    data: {
+      id: number;
+      attributes: FluffyAttributes;
+    };
+  };
+}
+
+export interface IVillaFAQ {
+  data: {
     id: number;
-    basic: number;
-    pet: number;
-    extraGuest: number;
+    attributes: IFAQAttributes;
+  }[];
+  error: string | null;
 }

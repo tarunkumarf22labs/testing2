@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import HeaderLogo from "./HeaderLogo";
-import MobileNavbar from "./MobileNavbar";
-import Navbar from "./Navbar";
-import googleIcon from "../../public/images/googleIcon.svg";
-import Image from "next/image";
+import HeaderLogo from './HeaderLogo';
+import MobileNavbar from './MobileNavbar';
+import Navbar from './Navbar';
+import googleIcon from '../../public/images/googleIcon.svg';
+import Image from 'next/image';
 
 interface optionsInterface {
   id: number;
@@ -19,65 +19,67 @@ interface IMenu {
 
 const options: IMenu[] = [
   {
-    title: "DESTINATIONS",
+    title: 'DESTINATIONS',
     options: [
-      { id: 2, value: "Villas in Conoor", path: "coonoor" },
-      { id: 3, value: "Villas in Chettinad", path: "chettinad" },
-      { id: 4, value: "Villas in Gulf Of Mannar", path: "gulf-of-mannar" },
-      { id: 5, value: "Villas in Goa", path: "goa" },
-      { id: 6, value: "Villas in Kerala", path: "kerala" },
-      { id: 7, value: "Villas in Kodaikanal", path: "kodaikanal" },
-      { id: 8, value: "Villas in Mamallapuram", path: "mamallapuram" },
-      { id: 9, value: "Villas in Ooty", path: "ooty" },
-      { id: 10, value: "Villas in Pondicherry", path: "pondicherry" },
-      { id: 11, value: "Villas in Sri Lanka", path: "sri-lanka" },
-      { id: 12, value: "Villas in Alampara Coast", path: "alampara-coast" },
-      { id: 13, value: "Villas in The Nilgiris", path: "the-nilgiris" },
-      { id: 14, value: "Villas in Thirupugalpur", path: "thirupugalpur" },
-      { id: 15, value: "Wayanand", path: "wayanand" },
+      { id: 2, value: 'Villas in Conoor', path: 'coonoor' },
+      { id: 3, value: 'Villas in Chettinad', path: 'chettinad' },
+      { id: 4, value: 'Villas in Gulf Of Mannar', path: 'gulf-of-mannar' },
+      { id: 5, value: 'Villas in Goa', path: 'goa' },
+      { id: 6, value: 'Villas in Kerala', path: 'kerala' },
+      { id: 7, value: 'Villas in Kodaikanal', path: 'kodaikanal' },
+      { id: 8, value: 'Villas in Mamallapuram', path: 'mamallapuram' },
+      { id: 9, value: 'Villas in Ooty', path: 'ooty' },
+      { id: 10, value: 'Villas in Pondicherry', path: 'pondicherry' },
+      { id: 11, value: 'Villas in Sri Lanka', path: 'sri-lanka' },
+      { id: 12, value: 'Villas in Alampara Coast', path: 'alampara-coast' },
+      { id: 13, value: 'Villas in The Nilgiris', path: 'the-nilgiris' },
+      { id: 14, value: 'Villas in Thirupugalpur', path: 'thirupugalpur' },
+      { id: 15, value: 'Wayanand', path: 'wayanand' }
     ],
-    path: "destinations",
+    path: 'destinations'
   },
   {
-    title: "LUX LOYALITY",
+    title: 'LUX LOYALITY',
     options: [],
-    path: "lux-loyality",
+    path: 'lux-loyality'
   },
   {
-    title: "JOURNAL",
+    title: 'JOURNAL',
     options: [],
-    path: "journal",
+    path: 'journal'
   },
   {
-    title: "HOME OWNER",
+    title: 'HOME OWNER',
     options: [],
-    path: "home-owner",
+    path: 'home-owner'
   },
   {
-    title: "CONTACT US",
+    title: 'CONTACT US',
     options: [],
-    path: "contact-us",
-  },
+    path: 'contact-us'
+  }
 ];
 
-function Topbar() {
+function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [navbarColor, setNavbarColor] = useState("text-white");
+  const [navbarColor, setNavbarColor] = useState('text-white');
   const [animate, setAnimate] = useState(false);
+
+  const scrolledNavClass = "bg-white shadow-sm text-[#8A1E61] group isScrolled";
 
   useEffect(() => {
     function changeColor() {
       if (window?.scrollY > 100) {
-        setNavbarColor("bg-white shadow-md text-[#8A1E61] group isScrolled");
+        setNavbarColor(scrolledNavClass);
       } else {
-        setNavbarColor("text-white");
+        setNavbarColor('text-white');
       }
     }
     // adding the event when scroll change Logo
-    window.addEventListener("scroll", changeColor);
+    window.addEventListener('scroll', changeColor);
     // Clean up the event listener on component unmount
     return () => {
-      window.removeEventListener("scroll", changeColor);
+      window.removeEventListener('scroll', changeColor);
     };
   }, []);
 
@@ -95,7 +97,9 @@ function Topbar() {
   return (
     <>
       <div
-        className={`hidden animate-fade-in-down z-50 sticky top-0 ${navbarColor} h-[100px] font-bold md:block`}
+        className={`hidden animate-fade-in-down z-50 sticky top-0 ${
+          animateHeader ? navbarColor : scrolledNavClass
+        } h-[100px] font-bold md:block`}
       >
         <div
           className={`flex flex-1 w-full h-full max-w-7xl mx-auto font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
@@ -105,15 +109,30 @@ function Topbar() {
           </div>
           <div className="flex items-center justify-between h-8">
             <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
-          <div className="cursor-pointer">
-            <Image src={googleIcon} height={28} width={28} alt="google icon" />
-          </div>
+            <div className="cursor-pointer">
+              <Image
+                src={googleIcon}
+                height={28}
+                width={28}
+                alt="google icon"
+              />
+            </div>
           </div>
         </div>
       </div>
-      <div className={`${animate ? 'block animate-fade-in-down' : 'hidden'}  duration-75 animate-fade-in-down sticky top-16  z-[150] w-full ${navbarColor == 'text-white' ? '' : 'hidden'}`}>
-      <hr className={` h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`} />
-      </div>
+      {animateHeader === false ? null : (
+        <div
+          className={`${
+            animate ? "block animate-fade-in-down" : "hidden"
+          }  duration-75 animate-fade-in-down sticky top-16  z-[150] w-full ${
+            navbarColor == "text-white" ? "" : "hidden"
+          }`}
+        >
+          <hr
+            className={` h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`}
+          />
+        </div>
+      )}
       {/* ${animate ? 'animate-spin' : ''} */}
       <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden  ">
         <div className="flex items-center justify-between w-5/12 sm:w-4/12">
@@ -161,7 +180,6 @@ function Topbar() {
           onMenuSelectedHandler={(menu: optionsInterface) => {}}
           showMobileMenu={showMobileMenu}
         />
-
       </div>
     </>
   );

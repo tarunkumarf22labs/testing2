@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
 type ExperienceCardTypes = {
   imageUrl: string;
@@ -18,7 +18,7 @@ const ExperienceCard = ({
   longDescription,
   subHeading,
   onClick,
-  toggleModal,
+  toggleModal
 }: ExperienceCardTypes) => {
   const handleOnClick = () => {
     if (!onClick) {
@@ -27,7 +27,7 @@ const ExperienceCard = ({
     onClick();
     toggleModal();
   };
- 
+
   return (
     <div
       className="w-full max-w-[290px] md:max-w-[373px]"

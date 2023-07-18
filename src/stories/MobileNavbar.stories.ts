@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import MobileNavbar from "./MobileNavbar";
+import type { Meta, StoryObj } from '@storybook/react';
+import MobileNavbar from './MobileNavbar';
 
 const meta: Meta<typeof MobileNavbar> = {
-  title: "MobileNavbar",
-  component: MobileNavbar,
+  title: 'MobileNavbar',
+  component: MobileNavbar
 };
 
 export default meta;
