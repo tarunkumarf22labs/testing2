@@ -9,10 +9,11 @@ export const ourDestinationsProps = (villa: villaInterface[]) => {
     let city = villaData.attributes.address.city.data.attributes.name;
     let state = villaData.attributes.address.state.data.attributes.name;
     let image = {
-      image: filteredthumbnail[0].image.data.attributes.formats.m_webp.url,
-      width: filteredthumbnail[0].image.data.attributes.formats.m_webp.width,
-      height: filteredthumbnail[0].image.data.attributes.formats.m_webp.height,
-      alt: filteredthumbnail[0].image.data.attributes.formats.m_webp.name
+      image: filteredthumbnail?.[0]?.image.data.attributes.formats.m_webp.url,
+      width: filteredthumbnail?.[0]?.image.data.attributes.formats.m_webp.width,
+      height:
+        filteredthumbnail?.[0]?.image.data.attributes.formats.m_webp.height,
+      alt: filteredthumbnail?.[0]?.image.data.attributes.formats.m_webp.name
     };
     let amenities = [
       `${villaData.attributes.guestCapacity.minAdultAndChildren}-${
