@@ -70,13 +70,13 @@ export const DetailedDescriptionSection = ({
                         <p className="mb-4 text-base uppercase">{item.title}</p>
                         <ul
                           key={index}
-                          className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc"
+                          className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc flex flex-col gap-4"
                         >
                           {list.map((item: string, id: number) => {
                             return (
                               <li
                                 key={id}
-                                className="text-xl text-[#545456] ml-2 md:ml-0 font-centaur leading-8 "
+                                className="text-xl text-[#545456] font-[400] ml-2 md:ml-0 font-centaur leading-8"
                               >
                                 {item}
                               </li>

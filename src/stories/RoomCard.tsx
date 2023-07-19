@@ -99,21 +99,20 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
 
   return (
     <>
-      <div className="p-3 flex flex-col sm:p-4 border border-[#7B8084] sm:flex-row">
-        <div
-          className="w-full mb-3 cursor-pointer sm:mb-0 sm:mr-4"
-          onClick={showOrHideRoomModal}
-        >
+      <div className="w-full p-3 flex flex-col gap-4 sm:p-4 border border-[#7B8084] sm:flex-row lg:max-h-[218px]">
+        <div className="lg:max-w-[290px] flex-1">
           <Image
+            onClick={showOrHideRoomModal}
             src={mainImage[0].image}
             alt={room.title}
-            width={326}
-            height={209}
-            className="w-full"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-full h-full cursor-pointer"
           />
         </div>
-        <div className="flex flex-col justify-between capitalize min-h-full w-full sm:max-w-[410px]">
-          <div className="">
+        <div className="flex flex-1 flex-col justify-between capitalize">
+          <div>
             <div
               className="mb-1 text-xl font-bold cursor-pointer"
               onClick={showOrHideRoomModal}
@@ -131,7 +130,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
                 room.guestCapacity.maxAdultAndChildren}{' '}
               Guests . {room.bathRoomType && room.bathRoomType}
             </div>
-            <div className="flex items-center justify-between w-20 pr-20 mb-4 sm:mb-0 sm:pr-0">
+            <div className="flex items-center justify-between w-20 pr-20 mt-4 mb-8 gap-x-2 sm:pr-0">
               <div
                 onClick={() => {
                   handleSelectRoom(room?.id, room?.title, 'decrease');
@@ -161,7 +160,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
 
           <div className="flex items-center justify-between space-x-6">
             <div className="flex justify-between">
-              <div className="hidden space-x-6 md:flex md:flex-row">
+              <div className="hidden gap-6 md:flex md:flex-row md:flex-wrap">
                 {maxEightIcons.map((icon, index) => (
                   <Image
                     src={icon}
@@ -172,7 +171,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
                   />
                 ))}
               </div>
-              <div className="flex space-x-6 md:hidden">
+              <div className="flex gap-6 md:hidden">
                 {maxFourIcons.map((icon, index) => (
                   <Image
                     src={icon}
