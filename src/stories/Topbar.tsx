@@ -62,7 +62,7 @@ const options: IMenu[] = [
 
 function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [navbarColor, setNavbarColor] = useState('text-white');
+  const [navbarColor, setNavbarColor] = useState('text-[#8A1E61] ');
   const [animate, setAnimate] = useState(false);
 
   const scrolledNavClass = "bg-white shadow-sm text-[#8A1E61] group isScrolled";
@@ -72,7 +72,7 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
       if (window?.scrollY > 100) {
         setNavbarColor(scrolledNavClass);
       } else {
-        setNavbarColor('text-white');
+        setNavbarColor('text-[#8A1E61] ');
       }
     }
     // adding the event when scroll change Logo
@@ -99,7 +99,7 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
       <div
         className={`hidden animate-fade-in-down z-50 sticky top-0 ${
           animateHeader ? navbarColor : scrolledNavClass
-        } h-[100px] font-bold md:block`}
+        } h-[100px] font-bold md:block text-[#8A1E61] `}
       >
         <div
           className={`flex flex-1 w-full h-full max-w-7xl mx-auto font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
@@ -109,13 +109,14 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
           </div>
           <div className="flex items-center justify-between h-8">
             <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
-            <div className="cursor-pointer">
-              <Image
+            <div className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs">
+              {/* <Image
                 src={googleIcon}
                 height={28}
                 width={28}
                 alt="google icon"
-              />
+              /> */}
+              LOGIN
             </div>
           </div>
         </div>
