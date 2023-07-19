@@ -3,6 +3,8 @@ import Guests from './Guests';
 import SelectRooms from './SelectRooms';
 import { AppContext } from 'src/Context';
 import Datepicker from './DatePicker';
+import PrimaryButton from './PrimaryButton';
+import { reserve } from 'src/data/constants';
 
 interface IReserve {
   infant: number;
@@ -175,8 +177,9 @@ const Reserve = ({
 
   return (
     <div>
-      <p className="text-center">
-        <b>₹{basicPrice}</b>/ night
+      <p className="text-center text-[#545456]">
+        <span className="font-[420] text-xl">₹{basicPrice}</span>{' '}
+        <span className="font-[390] text-xs">/ night</span>
       </p>
       <div className="flex items-center justify-between h-12  mt-5 text-center">
         <div
@@ -324,7 +327,7 @@ const Reserve = ({
         className="flex items-center justify-between h-12 p-5  mt-5 text-center bg-[#f8f8f9] text-xs"
         onClick={() => setGuestsSelectorOpen(!guestsSelectorOpen)}
       >
-        <p className="flex items-center justify-start h-full">
+        <p className="flex items-center justify-start h-full uppercase">
           {TotalGuests}
           {TotalGuests > 1 ? ' Guests' : ' Guest'}
         </p>
@@ -366,7 +369,7 @@ const Reserve = ({
         </div>
       )}
 
-      <div className="flex items-center justify-between h-3  mt-6 text-center">
+      <div className="flex items-center justify-between h-3  mt-6 text-center text-[#545456]">
         <p className="flex items-center justify-start h-full ml-1">
           ₹{totalCapacityInSelectedRooms()} {'X '}
           {Number_In_Days} {'Nights'}
@@ -375,13 +378,13 @@ const Reserve = ({
           ₹{totalCapacityInSelectedRooms() * Number_In_Days}
         </p>
       </div>
-      <div className="flex items-center justify-between h-3  mt-6 text-center">
+      <div className="flex items-center justify-between h-3  mt-6 text-center text-[#545456]">
         <p className="flex items-center justify-start h-full ml-1">VAT / GST</p>
         <p className="flex items-center justify-end h-full">
           ₹{(totalCapacityInSelectedRooms() * Number_In_Days * 18) / 100}
         </p>
       </div>
-      <div className="flex items-center justify-between h-3  mt-6 font-bold text-center">
+      <div className="flex items-center justify-between h-3  mt-6 font-bold text-center text-[#545456]">
         <p className="flex items-center justify-start h-full">Total Price</p>
         <p className="flex items-center justify-end h-full">
           ₹
@@ -389,9 +392,11 @@ const Reserve = ({
             (totalCapacityInSelectedRooms() * Number_In_Days * 18) / 100}
         </p>
       </div>
-      <div className="flex justify-center items-center h-12  mt-5 font-bold bg-[#8A1E61] text-white p-auto hover:text-[#8A1E61] hover:bg-[#F8F8F9] rounded-sm">
-        RESERVE
-      </div>
+      <PrimaryButton
+        className="w-full justify-center mt-8"
+        title={reserve}
+        onClick={() => {}}
+      />
     </div>
   );
 };

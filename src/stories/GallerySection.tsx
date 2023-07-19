@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { ScrollButton } from './ScrollButton';
@@ -48,6 +48,9 @@ export const GallerySection = ({
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
 
+  const [allowSlideNext, setAllowSlideNext] = useState(false);
+  const [allowSlidePrev, setAllowSlidePrev] = useState(false);
+
   return (
     <div className="mt-10 lg:mt-20 relative md:ml-[max(0px,(100%_-_80rem)/2)]">
       <div className="uppercase pb-6 pl-5 xl:pl-0 sm:pb-10">
@@ -63,11 +66,14 @@ export const GallerySection = ({
           ref={swiperRef}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
+            setAllowSlideNext(Boolean(swiper?.allowSlideNext));
+            setAllowSlidePrev(Boolean(swiper?.allowSlidePrev));
           }}
           slidesPerView={'auto'}
           className="relative mb-6"
           centeredSlides={isMobile}
           centeredSlidesBounds={isMobile}
+          watchOverflow={true}
         >
           {bigImages.map((image, index) => (
             <SwiperSlide
@@ -77,12 +83,14 @@ export const GallerySection = ({
               <Image src={image} alt={String(index)} width={530} height={354} />
             </SwiperSlide>
           ))}
-          <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
-            <ScrollButton
-              onNextPress={() => swiperRef?.current?.slideNext()}
-              onPrevPress={() => swiperRef?.current?.slidePrev()}
-            />
-          </div>
+          {allowSlideNext || allowSlidePrev ? (
+            <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
+              <ScrollButton
+                onNextPress={() => swiperRef?.current?.slideNext()}
+                onPrevPress={() => swiperRef?.current?.slidePrev()}
+              />
+            </div>
+          ) : null}
         </Swiper>
         <p className="text-[#8A1E61] text-xs uppercase md:hidden">VIEW ALL</p>
         <div className="hidden max-w-7xl h-[106px] pr-5 md:flex xl:pr-0">

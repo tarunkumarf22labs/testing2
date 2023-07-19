@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import SimilarStaysCard from './SimilarStaysCard';
 import { ScrollButton } from './ScrollButton';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import useIsMobile from '@/hooks/useIsMobile';
 import { Container } from './Container';
-import classNames from 'classnames';
 
 interface ISimilarStaySection {
   heading?: string;
@@ -32,8 +31,12 @@ const SimilarStaysSection = ({
 }: ISimilarStaySection) => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
+
+  const [allowSlideNext, setAllowSlideNext] = useState(false);
+  const [allowSlidePrev, setAllowSlidePrev] = useState(false);
+
   return (
-    <Container bgWhite slider={inVillaDetails ? false : true}>
+    <Container bgWhite slider={inVillaDetails ? true : false}>
       <div className="pb-6 uppercase sm:pb-10">
         {heading && (
           <>
@@ -50,11 +53,14 @@ const SimilarStaysSection = ({
         ref={swiperRef}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
+          setAllowSlideNext(Boolean(swiper?.allowSlideNext));
+          setAllowSlidePrev(Boolean(swiper?.allowSlidePrev));
         }}
         slidesPerView={'auto'}
         className="relative"
         centeredSlides={isMobile}
         centeredSlidesBounds={isMobile}
+        watchOverflow={true}
       >
         {villaData?.map((villaData, idx) => {
           return (
@@ -74,12 +80,14 @@ const SimilarStaysSection = ({
             </SwiperSlide>
           );
         })}
-        <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
-          <ScrollButton
-            onNextPress={() => swiperRef?.current?.slideNext()}
-            onPrevPress={() => swiperRef?.current?.slidePrev()}
-          />
-        </div>
+        {allowSlideNext || allowSlidePrev ? (
+          <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
+            <ScrollButton
+              onNextPress={() => swiperRef?.current?.slideNext()}
+              onPrevPress={() => swiperRef?.current?.slidePrev()}
+            />
+          </div>
+        ) : null}
       </Swiper>
     </Container>
   );

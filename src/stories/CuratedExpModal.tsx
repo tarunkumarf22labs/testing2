@@ -1,5 +1,5 @@
 import useIsMobile from '@/hooks/useIsMobile';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { curratedCollectionsModelData } from 'src/data/constants';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ScrollButton } from './ScrollButton';
@@ -26,17 +26,24 @@ export const CuratedExpModal = ({ props }: ICuratedExpModal) => {
   const propertyCuratedExperience = props;
   const swiperOneRef = useRef(null);
   const isMobile = useIsMobile();
+
+  const [allowSlideNext, setAllowSlideNext] = useState(false);
+  const [allowSlidePrev, setAllowSlidePrev] = useState(false);
+
   return (
     <div className="relative md:pb-24 max-w-[350px] md:max-w-[512px]">
       <Swiper
         ref={swiperOneRef}
         onSwiper={(swiper) => {
           swiperOneRef.current = swiper;
+          setAllowSlideNext(Boolean(swiper?.allowSlideNext));
+          setAllowSlidePrev(Boolean(swiper?.allowSlidePrev));
         }}
         slidesPerView="auto"
         className="relative"
         centeredSlides={isMobile}
         centeredSlidesBounds={isMobile}
+        watchOverflow={true}
       >
         {propertyCuratedExperience?.map((el, idx) => {
           const bulletPoints = el.longDecription.split(/\n-|\n -/);
@@ -74,12 +81,14 @@ export const CuratedExpModal = ({ props }: ICuratedExpModal) => {
           );
         })}
       </Swiper>
-      <div className="hidden md:block absolute bottom-0 translate-x-[50%] right-[50%] z-10">
-        <ScrollButton
-          onNextPress={() => swiperOneRef?.current?.slideNext()}
-          onPrevPress={() => swiperOneRef?.current?.slidePrev()}
-        />
-      </div>
+      {allowSlideNext || allowSlidePrev ? (
+        <div className="hidden md:block absolute bottom-0 translate-x-[50%] right-[50%] z-10">
+          <ScrollButton
+            onNextPress={() => swiperOneRef?.current?.slideNext()}
+            onPrevPress={() => swiperOneRef?.current?.slidePrev()}
+          />
+        </div>
+      ) : null}
     </div>
   );
 };

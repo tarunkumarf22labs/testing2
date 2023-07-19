@@ -13,7 +13,7 @@ export const PropertyReviewSection = ({
   return (
     <Container>
       <NameTitle propertyName="Deja View's" title="GUEST EXPERIENCE" />
-      <div className="grid md:grid-cols-2 md:gap-x-[100px]">
+      <div className="grid items-start md:grid-cols-2 md:gap-x-[100px]">
         {reviewCardsCollection.map((review, index) => {
           const { reviewText, name, state, img } = review;
           return (

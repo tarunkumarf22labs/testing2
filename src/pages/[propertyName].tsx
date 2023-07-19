@@ -174,7 +174,7 @@ export const getServerSideProps: GetServerSideProps<{
   error: string | null;
 }> = async (): Promise<any> => {
   const { data, error, status } = await NetWrapper(
-    'api/properties/2?populate=deep'
+    'api/properties/3?populate=deep'
   );
 
   return { props: { data, error } };

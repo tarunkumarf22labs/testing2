@@ -27,42 +27,44 @@ export const AmenitiesSection = ({
 
   return (
     <Container bgWhite={false}>
-      <div className="uppercase pb-7">
-        <p className="text-sm text-[#8A1E61] pb-2 tracking-wider">
-          {heading && heading}
-        </p>
-        <p className="text-3xl font-light">Amenities</p>
-      </div>
       <div className="flex justify-between">
-        <div className="flex-1 mt-0 lg:mt-[60px] grid md:grid-cols-2 lg:auto-rows-min gap-y-6 text-[#545456]">
-          {(iconsArray?.length > maxItemsToShow
-            ? iconsArray?.slice(0, maxItemsToShow)
-            : iconsArray
-          )?.map((icon, index) => {
-            return (
-              <p key={index} className="flex items-center">
-                <Image
-                  src={icon.image.image}
-                  width={20}
-                  height={20}
-                  alt={icon.image.alt}
-                />
-                <span className="pl-3 text-base font-centaur max-w-[288px]">
-                  {icon.text}
-                </span>
-              </p>
-            );
-          })}
-          {iconsArray?.length > maxItemsToShow ? (
-            <div
-              className="uppercase text-xs text-[#8A1E61] mt-5"
-              onClick={() => setShowAmenites(!showAmenities)}
-            >
-              VIEW ALL {iconsArray?.length} AMENITIES
-            </div>
-          ) : null}
+        <div className="flex-1 lg:mt-[60px]">
+          <div className="uppercase pb-7">
+            <p className="text-sm text-[#8A1E61] pb-2 tracking-wider">
+              {heading && heading}
+            </p>
+            <p className="text-[28px] lg:text-[52px] font-light">Amenities</p>
+          </div>
+          <div className="flex-1 mt-0 lg:mt-[32px] grid lg:grid-cols-2 lg:auto-rows-min gap-y-6 text-[#545456]">
+            {(iconsArray?.length > maxItemsToShow
+              ? iconsArray?.slice(0, maxItemsToShow)
+              : iconsArray
+            )?.map((icon, index) => {
+              return (
+                <p key={index} className="flex items-start">
+                  <Image
+                    src={icon.image.image}
+                    width={20}
+                    height={20}
+                    alt={icon.image.alt}
+                    className="relative top-[2px]"
+                  />
+                  <span className="pl-3 text-base font-centaur flex-1">
+                    {icon.text}
+                  </span>
+                </p>
+              );
+            })}
+            {iconsArray?.length > maxItemsToShow ? (
+              <div
+                className="uppercase text-xs text-[#8A1E61] mt-5"
+                onClick={() => setShowAmenites(!showAmenities)}
+              >
+                VIEW ALL {iconsArray?.length} AMENITIES
+              </div>
+            ) : null}
+          </div>
         </div>
-
         <div className="hidden lg:block relative h-[673px]">
           <Image
             src={portraitImage}

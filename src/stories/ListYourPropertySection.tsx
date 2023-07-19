@@ -12,10 +12,10 @@ export const ListYourPropertySection = () => {
     if (inView) {
       animation.start({
         scale: 1,
-        transition: { duration: 1 }
+        transition: { duration: 0.5 }
       });
     } else {
-      animation.start({ scale: 1.5, transition: { duration: 1 } });
+      animation.start({ scale: 1.5, transition: { duration: 0.5 } });
     }
   }, [inView, animation]);
 

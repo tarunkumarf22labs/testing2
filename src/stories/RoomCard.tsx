@@ -3,6 +3,12 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from 'src/Context';
 import RoomModal from './RoomModal';
 import ToastAlert from 'src/Toast';
+import {
+  PlusIcon,
+  MinusIcon,
+  MinusCircleIcon,
+  PlusCircleIcon
+} from '@heroicons/react/24/outline';
 
 interface IRoomCard {
   selectRoom: (value: React.SetStateAction<number>) => void;
@@ -93,7 +99,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
 
   return (
     <>
-      <div className="p-3 flex flex-col sm:p-4 border border-[#7B8084] sm:flex-row sm:max-w-3xl">
+      <div className="p-3 flex flex-col sm:p-4 border border-[#7B8084] sm:flex-row">
         <div
           className="w-full mb-3 cursor-pointer sm:mb-0 sm:mr-4"
           onClick={showOrHideRoomModal}
@@ -115,44 +121,24 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
               {room.title && room.title}
             </div>
             <div
-              className="text-xs text-[#545456] mb-4 cursor-pointer"
+              className="text-xs text-[#545456] mb-4 cursor-pointer font-[400] font-centaur"
               onClick={showOrHideRoomModal}
             >
-              {room.guestCapacity.minAdultAndChildren && room.guestCapacity.minAdultAndChildren}-
-              {room.guestCapacity.maxAdultAndChildren && room.guestCapacity.maxAdultAndChildren} Guests .{' '}
-              {room.bathRoomType && room.bathRoomType}
+              {room.guestCapacity.minAdultAndChildren &&
+                room.guestCapacity.minAdultAndChildren}
+              -
+              {room.guestCapacity.maxAdultAndChildren &&
+                room.guestCapacity.maxAdultAndChildren}{' '}
+              Guests . {room.bathRoomType && room.bathRoomType}
             </div>
-            <div className="flex items-center justify-between w-3/5 pr-20 mb-4 sm:mb-0 sm:pr-0">
+            <div className="flex items-center justify-between w-20 pr-20 mb-4 sm:mb-0 sm:pr-0">
               <div
-                className="cursor-pointer"
                 onClick={() => {
-                  handleSelectRoom(room?.id, room?.title, 'increase');
+                  handleSelectRoom(room?.id, room?.title, 'decrease');
                 }}
+                className="cursor-pointer"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <circle cx="12" cy="12" r="11" fill="#e9e9e9" />
-                  <line
-                    x1="12"
-                    y1="7"
-                    x2="12"
-                    y2="17"
-                    stroke="#000"
-                    stroke-width="2"
-                  />
-                  <line
-                    x1="7"
-                    y1="12"
-                    x2="17"
-                    y2="12"
-                    stroke="#000"
-                    stroke-width="2"
-                  />
-                </svg>
+                <MinusCircleIcon fill="#8A1E61" color="white" className="w-6" />
               </div>
               <div>
                 {selectedNumberOfRooms.find((object) => object.id === room.id)
@@ -163,27 +149,12 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
                   : 0}
               </div>
               <div
-                onClick={() => {
-                  handleSelectRoom(room?.id, room?.title, 'decrease');
-                }}
                 className="cursor-pointer"
+                onClick={() => {
+                  handleSelectRoom(room?.id, room?.title, 'increase');
+                }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <circle cx="12" cy="12" r="11" fill="#e9e9e9" />
-                  <line
-                    x1="7"
-                    y1="12"
-                    x2="17"
-                    y2="12"
-                    stroke="#000"
-                    stroke-width="2"
-                  />
-                </svg>
+                <PlusCircleIcon fill="#8A1E61" color="white" className="w-6" />
               </div>
             </div>
           </div>

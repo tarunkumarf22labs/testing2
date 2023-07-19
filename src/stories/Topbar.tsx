@@ -125,14 +125,14 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
       </div>
       {animateHeader === false ? null : (
         <div
-          className={`${
+          className={`hidden md:block ${
             animate ? 'block animate-fade-in-down' : 'hidden'
           }  duration-75 animate-fade-in-down sticky top-[100px] z-[150] w-full ${
             navbarColor == 'text-white' ? '' : 'hidden'
           }`}
         >
           <hr
-            className={` h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`}
+            className={`h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`}
           />
         </div>
       )}
