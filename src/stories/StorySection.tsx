@@ -37,8 +37,8 @@ export const StorySection = ({
       <Container bgWhite={false}>
         <div className="relative z-10 px-4 py-8 -mt-16 bg-white sm:-mt-24 xl:-mt-60 md:px-8 md:py-11">
           {isStory && (
-            <p className="uppercase text-sm text-[#8A1E61] mb-2 sm:mb-5  tracking-wider">
-              {heading && heading}
+            <p className="uppercase text-sm text-[#8A1E61] mb-2 sm:mb-5 md:tracking-[4.2px] md:font-[450]">
+              {heading && heading}'s
             </p>
           )}
           <p className="mb-6 text-3xl font-light uppercase md:text-5xl">

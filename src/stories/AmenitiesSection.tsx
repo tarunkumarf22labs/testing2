@@ -30,7 +30,7 @@ export const AmenitiesSection = ({
       <div className="flex justify-between">
         <div className="flex-1 lg:mt-[60px]">
           <div className="uppercase pb-7">
-            <p className="text-sm text-[#8A1E61] pb-2 tracking-wider">
+            <p className="text-sm text-[#8A1E61] pb-2 md:tracking-[4.2px] md:font-[450]">
               {heading && heading}
             </p>
             <p className="text-[28px] lg:text-[52px] font-light">Amenities</p>

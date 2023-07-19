@@ -31,7 +31,7 @@ export const BeforeYouBook = ({ title, beforeYouBook }: IBeforeYouBook) => {
     >
       <div className="relative border-y md:border-y-0 py-10 lg:py-20">
         <div className="uppercase md:pb-10" onClick={() => setIsOpen(!isOpen)}>
-          <p className="text-sm text-[#8A1E61] mb-2 tracking-widest md:mb-5">
+          <p className="text-sm text-[#8A1E61] mb-2 md:tracking-[4.2px] md:font-[450] md:mb-5">
             {title && `${title}'s`}
           </p>
           <p className="text-[28px] md:text-5xl text-[#18181B] font-light">

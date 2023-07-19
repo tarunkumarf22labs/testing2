@@ -47,7 +47,7 @@ export const DetailedDescriptionSection = ({
       </div>
       <Container bgWhite={false}>
         <div className="relative bg-white px-4 py-8 -mt-16 sm:-mt-24 xl:-mt-60 md:px-8 md:py-11">
-          <NameTitle propertyName={propertyName} title={title} />
+          <NameTitle propertyName={`${propertyName}'s`} title={title} />
           <div className="mb-8 space-y-10">
             <div className="space-y-10">
               {filteredList.map(

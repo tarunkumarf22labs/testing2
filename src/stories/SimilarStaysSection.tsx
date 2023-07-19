@@ -40,7 +40,7 @@ const SimilarStaysSection = ({
       <div className="pb-6 uppercase sm:pb-10">
         {heading && (
           <>
-            <p className="text-sm text-[#8A1E61] mb-5 tracking-widest">
+            <p className="text-sm text-[#8A1E61] mb-5 md:tracking-[4.2px] md:font-[450]">
               {'LuxUNLOCK’s'}
             </p>
             <p className="text-3xl sm:text-5xl sm:text-[#1C1917] font-light">

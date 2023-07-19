@@ -43,8 +43,8 @@ export const RoomSection = ({
 
   return (
     <div className="md:px-8 py-10 uppercase flex-1 sm:p-8 lg:mt-20 bg-white">
-      <p className="text-sm text-[#8A1E61] mb-2 sm:mb-5 sm:uppercase">
-        {villaTitle && villaTitle}
+      <p className="text-sm text-[#8A1E61] mb-2 sm:mb-5 sm:uppercase md:tracking-[4.2px] md:font-[450]">
+        {villaTitle && villaTitle}'s
       </p>
       <p className="text-3xl sm:text-5xl sm:text-[#1C1917] mb-6 sm:mb-10 font-light">
         {heading && heading}
