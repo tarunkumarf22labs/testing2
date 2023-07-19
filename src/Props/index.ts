@@ -1,37 +1,37 @@
 import { IVillaFAQ, villaInterface } from "src/Interface";
 
 export const PropertyDetailsHeroSectionProps = (villaData: villaInterface) => {
-  let images = villaData.attributes.images;
-  let filterdImage = images.filter((ele) => ele.type === 'Main Image');
+  let images = villaData?.attributes?.images;
+  let filterdImage = images?.filter((ele) => ele?.type === 'Main Image');
   return {
-    image: filterdImage[0].image.data.attributes.formats.xl_webp.url,
-    width: filterdImage[0].image.data.attributes.formats.xl_webp.width,
-    height: filterdImage[0].image.data.attributes.formats.xl_webp.height,
-    alt: filterdImage[0].image.data.attributes.formats.xl_webp.name
+    image: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
+    width: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
+    height: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
+    alt: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.name
   };
 };
 
 export const VillaOverviewProps = (villaData: villaInterface) => {
   return {
-    name: villaData.attributes.name,
-    city: villaData.attributes.address.city.data.attributes.name,
-    state: villaData.attributes.address.state.data.attributes.name,
-    byliner: villaData.attributes.byliner,
-    about: villaData.attributes.about,
+    name: villaData?.attributes?.name,
+    city: villaData?.attributes?.address?.city?.data?.attributes?.name,
+    state: villaData?.attributes?.address?.state?.data?.attributes?.name,
+    byliner: villaData?.attributes?.byliner,
+    about: villaData?.attributes?.about,
     amenities: [
-      `${villaData.attributes.guestCapacity.minAdultAndChildren}-${
-        villaData.attributes.guestCapacity.maxAdultAndChildren > 0 &&
-        villaData.attributes.guestCapacity.maxAdultAndChildren
+      `${villaData?.attributes?.guestCapacity?.minAdultAndChildren}-${
+        villaData?.attributes?.guestCapacity?.maxAdultAndChildren > 0 &&
+        villaData?.attributes?.guestCapacity?.maxAdultAndChildren
       } ${
-        villaData.attributes.guestCapacity.minAdultAndChildren > 1
+        villaData?.attributes?.guestCapacity?.minAdultAndChildren > 1
           ? 'Guests'
           : 'Guest'
       }`,
-      `${villaData.attributes.bedRoomCount} ${
-        villaData.attributes.bedRoomCount > 1 ? 'Bedrooms' : 'Bedroom'
+      `${villaData?.attributes?.bedRoomCount} ${
+        villaData?.attributes?.bedRoomCount > 1 ? 'Bedrooms' : 'Bedroom'
       } `,
-      `${villaData.attributes.bathRoomCount} ${
-        villaData.attributes.bathRoomCount > 1 ? 'Bathrooms' : 'Bathroom'
+      `${villaData?.attributes?.bathRoomCount} ${
+        villaData?.attributes?.bathRoomCount > 1 ? 'Bathrooms' : 'Bathroom'
       } `
     ]
   };
@@ -40,44 +40,51 @@ export const VillaOverviewProps = (villaData: villaInterface) => {
 export const ReserveAndLocationDetailsSectionProps = (
   villaData: villaInterface
 ) => {
-  let roomData = villaData.attributes.rooms.data.map((ele) => {
+  let roomData = villaData?.attributes?.rooms?.data?.map((ele) => {
     return {
-      id: ele.id,
-      title: ele.attributes.name,
+      id: ele?.id,
+      title: ele?.attributes?.name,
       guestCapacity: {
-        minAdultAndChildren: ele.attributes.guestCapacity.minAdultAndChildren,
-        maxAdultAndChildren: ele.attributes.guestCapacity.maxAdultAndChildren,
-        infant: ele.attributes.guestCapacity.infant,
-        pet: ele.attributes.guestCapacity.pet,
+        minAdultAndChildren: ele?.attributes?.guestCapacity?.minAdultAndChildren,
+        maxAdultAndChildren: ele?.attributes?.guestCapacity?.maxAdultAndChildren,
+        infant: ele?.attributes?.guestCapacity?.infant,
+        pet: ele?.attributes?.guestCapacity?.pet,
       },
-      basicPrice: ele.attributes.pricing.basic,
-      petPrice: ele.attributes.pricing.pet,
-      extraGuestsPrice: ele.attributes.pricing.extraGuest,
+      basicPrice: ele?.attributes?.pricing?.basic,
+      petPrice: ele?.attributes?.pricing?.pet,
+      extraGuestsPrice: ele?.attributes?.pricing?.extraGuest,
     };
   });
 
   return {
-    locations: villaData.attributes.gettingThere,
-    address: villaData.attributes.address.city.data.attributes.name,
-    lat: villaData.attributes.address.latitude,
-    lng: villaData.attributes.address.longitude,
-    infant: villaData.attributes.guestCapacity.infant,
-    maxAdultAndChildren: villaData.attributes.guestCapacity.maxAdultAndChildren,
-    minAdultAndChildren: villaData.attributes.guestCapacity.minAdultAndChildren,
-    pet: villaData.attributes.guestCapacity.pet,
-    basicPrice: villaData.attributes.pricing.basic,
-    petPrice: villaData.attributes.pricing.pet,
-    extraGuestPrice: villaData.attributes.pricing.extraGuest,
+    locations: villaData?.attributes?.gettingThere,
+    address: villaData?.attributes?.address?.city?.data?.attributes?.name,
+    lat: villaData?.attributes?.address?.latitude,
+    lng: villaData?.attributes?.address?.longitude,
+    infant: villaData?.attributes?.guestCapacity?.infant,
+    maxAdultAndChildren: villaData?.attributes?.guestCapacity?.maxAdultAndChildren,
+    minAdultAndChildren: villaData?.attributes?.guestCapacity?.minAdultAndChildren,
+    pet: villaData?.attributes?.guestCapacity?.pet,
+    basicPrice: villaData?.attributes?.pricing?.basic,
+    petPrice: villaData?.attributes?.pricing?.pet,
+    extraGuestPrice: villaData?.attributes?.pricing?.extraGuest,
     roomDetails: roomData,
   };
 };
 
 export const InclusionsExclusionsSectionProps = (villaData: villaInterface) => {
-  return {
-    heading: `${villaData.attributes.name}'s`,
-    inclusions: villaData.attributes.includedServices,
-    exclusions: villaData.attributes.availableServices
+  let data = {
+    heading: `${villaData?.attributes?.name}'s`,
+    inclusions: villaData?.attributes?.includedServices,
+    exclusions: villaData?.attributes?.availableServices
   };
+  if(data.exclusions && data.inclusions){
+    return data;
+  }else{
+    return {
+      heading:'',inclusions:[],exclusions:[]
+    };
+  }
 };
 
 export const BeforeYouBookProps = (villaData: villaInterface) => {
@@ -87,11 +94,11 @@ export const BeforeYouBookProps = (villaData: villaInterface) => {
       conditions: [
         {
           label: 'Modes of Payment',
-          text: villaData.attributes.paymentTerm.modesOfPayment
+          text: villaData?.attributes?.paymentTerm?.modesOfPayment
         },
         {
           label: 'Payment Deadlines',
-          text: villaData.attributes.paymentTerm.paymentDeadline
+          text: villaData?.attributes?.paymentTerm?.paymentDeadline
         }
       ]
     },
@@ -100,74 +107,74 @@ export const BeforeYouBookProps = (villaData: villaInterface) => {
       conditions: [
         {
           label: 'Amount',
-          text: villaData.attributes.refundableSecurityDeposit?.amount
+          text: villaData?.attributes?.refundableSecurityDeposit?.amount
         },
         {
           label: 'Payment Collection Date',
-          text: villaData.attributes.refundableSecurityDeposit
+          text: villaData?.attributes?.refundableSecurityDeposit
             ?.paymentCollectionDate
         },
         {
           label: 'Payment Return Date',
-          text: villaData.attributes.refundableSecurityDeposit
+          text: villaData?.attributes?.refundableSecurityDeposit
             ?.paymentReturnDate
         },
         {
           label: 'How it is used',
-          text: villaData.attributes.refundableSecurityDeposit?.howItIsUsed
+          text: villaData?.attributes?.refundableSecurityDeposit?.howItIsUsed
         }
       ]
     },
     {
       title: 'Cancellation Policy',
-      conditions: villaData.attributes.cancellationPolicy
+      conditions: villaData?.attributes?.cancellationPolicy
     },
     {
       title: 'House Rules',
       conditions: [
         {
           label: 'Check-In',
-          text: villaData.attributes.houseRule.checkIn
+          text: villaData?.attributes?.houseRule?.checkIn
         },
         {
           label: 'Check-Out',
-          text: villaData.attributes.houseRule.checkOut
+          text: villaData?.attributes?.houseRule?.checkOut
         },
         {
           label: 'Extra Guest',
-          text: villaData.attributes.houseRule.extraGuest
+          text: villaData?.attributes?.houseRule?.extraGuest
         },
         {
           label: 'Children Policy ',
-          text: villaData.attributes.houseRule.extraGuest
+          text: villaData?.attributes?.houseRule?.extraGuest
         },
         {
           label: 'Smoking & Substances',
-          text: villaData.attributes.houseRule.smokingAndSubstance
+          text: villaData?.attributes?.houseRule?.smokingAndSubstance
         },
         {
           label: 'Parties and Events',
-          text: villaData.attributes.houseRule.partiesAndEvents
+          text: villaData?.attributes?.houseRule?.partiesAndEvents
         },
         {
           label: 'Pet Policy',
-          text: 'Lorem Ipsum'
+          text: villaData.attributes.houseRule.petPolicy
         },
         {
           label: 'Alcohol Policy',
-          text: villaData.attributes.houseRule.alcoholPolicy
+          text: villaData?.attributes?.houseRule?.alcoholPolicy
         },
         {
           label: 'Music',
-          text: villaData.attributes.houseRule.music
+          text: villaData?.attributes?.houseRule?.music
         },
         {
           label: 'Villa Staff',
-          text: villaData.attributes.houseRule.villaStaff
+          text: villaData?.attributes?.houseRule?.villaStaff
         },
         {
           label: 'Accompanying Guest’s Staff',
-          text: villaData.attributes.houseRule.accompanyingGuestStaff
+          text: villaData?.attributes?.houseRule?.accompanyingGuestStaff
         }
       ]
     }
@@ -175,20 +182,20 @@ export const BeforeYouBookProps = (villaData: villaInterface) => {
 };
 
 export const HomeTruthProps = (villaData: villaInterface) => {
-  let images = villaData.attributes.images;
-  let filterdImage = images.filter((ele) => ele.type === 'Master Bedroom');
-  if (filterdImage.length === 0) {
-    filterdImage = images.filter((ele) => ele.type === 'Main Image');
+  let images = villaData?.attributes?.images;
+  let filterdImage = images?.filter((ele) => ele?.type === 'Master Bedroom');
+  if (filterdImage?.length === 0) {
+    filterdImage = images?.filter((ele) => ele?.type === 'Main Image');
   }
   return {
     secondheading: 'HOME TRUTHS',
-    heading: villaData.attributes.name,
-    story: villaData.attributes.homeTruths,
+    heading: villaData?.attributes?.name,
+    story: villaData?.attributes?.homeTruths,
     image: {
-      image: filterdImage[0].image.data.attributes.formats.xl_webp.url,
-      width: filterdImage[0].image.data.attributes.formats.xl_webp.width,
-      height: filterdImage[0].image.data.attributes.formats.xl_webp.height,
-      alt: filterdImage[0].image.data.attributes.formats.xl_webp.name
+      image: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
+      width: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
+      height: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
+      alt: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.name
     },
     stringLength: 500,
     initialListToShow: 2
@@ -196,20 +203,20 @@ export const HomeTruthProps = (villaData: villaInterface) => {
 };
 
 export const HomeStoryProps = (villaData: villaInterface) => {
-  let images = villaData.attributes.images;
-  let filterdImage = images.filter((ele) => ele.type === 'Indoor Kitchen');
-  if (filterdImage.length === 0) {
-    filterdImage = images.filter((ele) => ele.type === 'Main Image');
+  let images = villaData?.attributes?.images;
+  let filterdImage = images?.filter((ele) => ele?.type === 'Indoor Kitchen');
+  if (filterdImage?.length === 0) {
+    filterdImage = images?.filter((ele) => ele?.type === 'Main Image');
   }
   return {
     secondheading: 'STORY',
-    heading: villaData.attributes.name,
-    story: villaData.attributes.story,
+    heading: villaData?.attributes?.name,
+    story: villaData?.attributes?.story,
     image: {
-      image: filterdImage[0].image.data.attributes.formats.xl_webp.url,
-      width: filterdImage[0].image.data.attributes.formats.xl_webp.width,
-      height: filterdImage[0].image.data.attributes.formats.xl_webp.height,
-      alt: filterdImage[0].image.data.attributes.formats.xl_webp.name
+      image: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
+      width: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
+      height: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
+      alt: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.name
     },
     stringLength: 500,
     initialListToShow: 2
@@ -217,8 +224,13 @@ export const HomeStoryProps = (villaData: villaInterface) => {
 };
 
 export const DetailedDescriptionSectionProps = (villaData: villaInterface) => {
+  let images = villaData?.attributes?.images;
+  let filterdImage = images?.filter((ele) => ele?.type === 'Exterior');
+  if (filterdImage?.length === 0) {
+    filterdImage = images?.filter((ele) => ele?.type === 'Main Image');
+  }
   return {
-    image: '/images/StoryImage.png',
+    image: filterdImage[0]?.image.data.attributes.url,
     detailedDescription: {
       propertyName: villaData.attributes.name,
       title: 'DETAILED DESCRIPTION',
@@ -320,88 +332,93 @@ export const SimilarStaysSectionProps = (villaData: villaInterface) => {
 };
 
 export const AmenitiesSectionProps = (villaData: villaInterface) => {
-  let amenitiesData = villaData.attributes.amenities.data;
-  let data = amenitiesData.map((villaData) => {
+  let amenitiesData = villaData?.attributes?.amenities?.data;
+  let data = amenitiesData?.map((villaData) => {
     let image = {
-      image: villaData.attributes.icon.data.attributes.url,
-      width: villaData.attributes.icon.data.attributes.width,
-      height: villaData.attributes.icon.data.attributes.height,
-      alt: villaData.attributes.icon.data.attributes.name
+      image: villaData?.attributes?.icon?.data?.attributes?.url,
+      width: villaData?.attributes?.icon?.data?.attributes?.width,
+      height: villaData?.attributes?.icon?.data?.attributes?.height,
+      alt: villaData?.attributes?.icon?.data?.attributes?.name
     };
-    let text = villaData.attributes.title;
+    let text = villaData?.attributes?.title;
     return {
       image,
       text
     };
   });
+  let portraitImage = villaData?.attributes?.images?.filter((ele) => ele?.type === "portrait")
+  let thumbnailImage = villaData?.attributes?.images?.filter((ele) => ele?.type === "Interior")
+
   return {
-    heading: `${villaData.attributes.name}’S`,
-    iconsArray: data
+    heading: `${villaData?.attributes?.name}’S`,
+    iconsArray: data,
+    portraitImage: portraitImage[0]?.image?.data?.attributes?.url,
+    thumbnailImage: thumbnailImage[0]?.image?.data?.attributes?.url
   };
 };
 
 export const ExperiencesSectionProps = (villaData: villaInterface) => {
-  let props = villaData.attributes.localExperiences.map((ele, id) => {
+  let props = villaData?.attributes?.localExperiences?.map((ele, id) => {
     return {
-      id: ele.id,
+      id: ele?.id,
       image: {
-        image: ele.image.data.attributes.formats.thumbnail.url,
-        width: ele.image.data.attributes.formats.thumbnail.width,
-        height: ele.image.data.attributes.formats.thumbnail.height,
-        alt: ele.image.data.attributes.formats.thumbnail.name
+        image: ele?.image?.data?.attributes?.formats?.thumbnail?.url,
+        width: ele?.image?.data?.attributes?.formats?.thumbnail?.width,
+        height: ele?.image?.data?.attributes?.formats?.thumbnail?.height,
+        alt: ele?.image?.data?.attributes?.formats?.thumbnail?.name
       },
-      shortDescription: ele.shortDescription,
-      longDecription: ele.longDescription,
-      title: ele.title
+      shortDescription: ele?.shortDescription,
+      longDecription: ele?.longDescription,
+      title: ele?.title
     };
   });
-  return { villa: villaData.attributes.name, header: 'STAY LONGER', props };
+  return { villa: villaData?.attributes?.name, header: 'STAY LONGER', props };
 };
 export const ImageGalleryProps = (villaData: villaInterface) => {
-  let images = villaData.attributes.images.map((ele) => {
+  let images = villaData?.attributes?.images?.map((ele) => {
     return {
-      title: ele.image.data.attributes.formats.xl_webp.name,
-      url: ele.image.data.attributes.formats.xl_webp.url,
-      type: ele.type,
-      alt: ele.image.data.attributes.name,
-      width: ele.image.data.attributes.formats.xl_webp.width,
-      height: ele.image.data.attributes.formats.xl_webp.height
+      title: ele?.image?.data?.attributes?.formats?.xl_webp?.name,
+      url: ele?.image?.data?.attributes?.formats?.xl_webp?.url,
+      type: ele?.type,
+      alt: ele?.image?.data?.attributes?.name,
+      width: ele?.image?.data?.attributes?.formats?.xl_webp?.width,
+      height: ele?.image?.data?.attributes?.formats?.xl_webp?.height
     };
   });
   return { images };
 };
 
 export const RoomSectionProps = (villaData: villaInterface) => {
-  let data = villaData.attributes.rooms.data.map((ele) => {
-    let amenities = ele.attributes.amenities.data.map((ele) => {
+  let data = villaData?.attributes?.rooms?.data?.map((ele) => {
+    let amenities = ele?.attributes?.amenities?.data?.map((ele) => {
       return {
-        icon: ele.attributes.icon.data.attributes.url,
-        text: ele.attributes.title,
+        icon: ele?.attributes?.icon?.data?.attributes?.url,
+        text: ele?.attributes?.title,
       };
     });
-    let images = villaData.attributes.images.map((ele) => {
+    let images = villaData?.attributes?.images?.map((ele) => {
       return {
-        thumbnail: ele.image.data.attributes.formats.thumbnail.url,
-        image: ele.image.data.attributes.url,
-        type: ele.type,
+        thumbnail: ele?.image?.data?.attributes?.formats?.thumbnail?.url,
+        image: ele?.image?.data?.attributes?.url,
+        type: ele?.type,
       };
     });
     return {
-      id: ele.id,
-      title: ele.attributes.name,
-      description: ele.attributes.description,
+      id: ele?.id,
+      title: ele?.attributes?.name,
+      description: ele?.attributes?.description,
       guestCapacity: {
-        minAdultAndChildren: ele.attributes.guestCapacity.minAdultAndChildren,
-        maxAdultAndChildren: ele.attributes.guestCapacity.maxAdultAndChildren,
-        infant: ele.attributes.guestCapacity.infant,
-        pet: ele.attributes.guestCapacity.pet
+        minAdultAndChildren: ele?.attributes?.guestCapacity?.minAdultAndChildren,
+        maxAdultAndChildren: ele?.attributes?.guestCapacity?.maxAdultAndChildren,
+        infant: ele?.attributes?.guestCapacity?.infant,
+        pet: ele?.attributes?.guestCapacity?.pet
       },
-      bathRoomType: ele.attributes.bathRoomType,
-      roomCount: ele.attributes.roomCount,
+      bathRoomType: ele?.attributes?.bathRoomType,
+      roomCount: ele?.attributes?.roomCount,
       pricing: {
-        basic: ele.attributes.pricing.basic,
-        pet: ele.attributes.pricing.pet,
-        extraGuest: ele.attributes.pricing.extraGuest
+        basic: ele?.attributes?.pricing?.basic,
+        pet: ele?.attributes?.pricing?.pet,
+        extraGuest: ele?.attributes?.pricing?.extraGuest
       },
       amenities: amenities,
       images: images,
@@ -409,7 +426,7 @@ export const RoomSectionProps = (villaData: villaInterface) => {
   });
   return {
     heading: "Rooms",
-    villaTitle: villaData.attributes.name,
+    villaTitle: villaData?.attributes?.name,
     roomData: data
   };
 };

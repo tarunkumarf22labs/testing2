@@ -59,9 +59,10 @@ export default function Carousel({
       >
         <p className="capitalize animate-slide-down">{bannerText}</p>
       </div>
-      <div className="relative m-auto bg-[#FFFFFF] lg:absolute top-[60%] lg:left-14 lg:right-14 xl:left-28 xl:right-24 w-[90%]">
+      <div className="relative m-auto bg-[#FFFFFF] lg:absolute bottom-24  lg:left-14 lg:right-14 xl:left-28 xl:right-24 w-[90%]">
         <Search locations={locations} />
       </div>
     </div>
   );
 }
+// top-[60%]

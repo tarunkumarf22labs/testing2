@@ -54,7 +54,7 @@ const Home: NextPage = (data: IHomeInterface) => {
   const [elementNo, setElementNo] = useState<number>(0);
   const villaData = data?.data?.data;
   const isMobile = useIsMobile();
-  console.log(villaData);
+
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
@@ -79,7 +79,10 @@ const Home: NextPage = (data: IHomeInterface) => {
                   {...ReserveAndLocationDetailsSectionProps(villaData)}
                 />
               </div>
+              {
+                RoomSectionProps(villaData).roomData.length > 0 &&
               <RoomSection {...RoomSectionProps(villaData)} />
+              }
             </div>
             {/* Desktop */}
             <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
@@ -88,12 +91,15 @@ const Home: NextPage = (data: IHomeInterface) => {
               />
             </div>
           </div>
+          {
+            AmenitiesSectionProps(villaData).iconsArray.length > 0 &&
           <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
+          }
           {!isMobile ? (
             <>
-              {InclusionsExclusionsSectionProps(villaData).inclusions.length >
+              {InclusionsExclusionsSectionProps(villaData)?.inclusions?.length >
                 0 &&
-                InclusionsExclusionsSectionProps(villaData).exclusions.length >
+                InclusionsExclusionsSectionProps(villaData)?.exclusions?.length >
                   0 && (
                   <InclusionsExclusionsSection
                     {...InclusionsExclusionsSectionProps(villaData)}
@@ -109,10 +115,13 @@ const Home: NextPage = (data: IHomeInterface) => {
             <Accordion {...AccordionProps1(villaData)} />
           )}
 
+          {
+            BeforeYouBookProps(villaData).length > 0 &&
           <BeforeYouBook
             beforeYouBook={BeforeYouBookProps(villaData)}
-            title={villaData.attributes.name}
+            title={villaData?.attributes?.name}
           />
+          }
           {ExperiencesSectionProps(villaData).props.length > 0 && (
             <ExperiencesSection
               setItemNo={setItemNo}
@@ -125,7 +134,7 @@ const Home: NextPage = (data: IHomeInterface) => {
               {HomeStoryProps(villaData).story && (
                 <StorySection {...HomeStoryProps(villaData)} />
               )}
-              {DetailedDescriptionSectionProps(villaData).detailedDescription
+              {DetailedDescriptionSectionProps(villaData)?.detailedDescription
                 .list.length > 0 && (
                 <DetailedDescriptionSection
                   {...DetailedDescriptionSectionProps(villaData)}
@@ -171,7 +180,7 @@ export const getServerSideProps: GetServerSideProps<{
   error: string | null;
 }> = async (): Promise<any> => {
   const { data, error, status } = await NetWrapper(
-    'api/properties/3?populate=deep'
+    'api/properties/2?populate=deep'
   );
 
   return { props: { data, error } };

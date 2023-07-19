@@ -32,9 +32,9 @@ export const Calendar: FC<CalendarProps> = ({
   const { weekDays } = useContextCalendars();
   const { dayButton } = useContextDaysPropGetters();
   const { days, month } = calendar;
-  console.log(inReserve, MonthOrder, 'room');
+
   let display = MonthOrder === 'second' && inReserve ? 'none' : null;
-  console.log(display, 'room');
+
   return (
     <Section className="w-full m-auto border-red">
       <div

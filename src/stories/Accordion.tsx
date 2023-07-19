@@ -23,9 +23,9 @@ export const Accordion = (props: IAccordion) => {
   const { heading, data } = props;
   return (
     <div className="bg-white md:bg-[#f8f8f9]">
-      <div className="px-5 xl:px-0 pt-10 xl:max-w-7xl xl:mx-auto lg:py-20">
+      <div className="px-5 pt-10 xl:px-0 xl:max-w-7xl xl:mx-auto lg:py-20">
         <div className="flex flex-col divide-y">
-          {data.map((item, index) => {
+          {data?.map((item, index) => {
             return <AccordionItem key={index} item={item} heading={heading} />;
           })}
         </div>
@@ -44,37 +44,38 @@ const AccordionItem = ({ item, heading }) => {
         propertyName={heading}
         title={title}
         removeBottomPadding={true}
+        onClick={() => setIsOpen(!isOpen)}
       />
       <div
-        className="absolute right-0 top-5 p-4 cursor-pointer"
+        className="absolute right-0 p-4 cursor-pointer top-5"
         onClick={() => setIsOpen(!isOpen)}
       >
         {!isOpen ? <DownArrow /> : <UpArrow />}
       </div>
       {isOpen && (
         <div className="mt-6">
-          {!data[0].title && (
+          {!data[0]?.title && (
             <ul className="list-disc font-centaur text-base text-[#545456] flex flex-col space-y-4">
-              {data.map((itm, index) => {
+              {data?.map((itm, index) => {
                 return (
-                  <li key={index} className="ml-5 font-centaur text-base">
-                    {itm.service}
+                  <li key={index} className="ml-5 text-base font-centaur">
+                    {itm.service && itm.service}
                   </li>
                 );
               })}
             </ul>
           )}
           {data[0]?.title &&
-            data.map((itm, index) => {
+            data?.map((itm, index) => {
               const { description, title } = itm;
               const storyList = stringToArray(description);
               return (
                 <div key={index} className="pb-6">
-                  <p className="uppercase pb-6">{title}</p>
+                  <p className="pb-6 uppercase">{title}</p>
                   <ul className="list-disc font-centaur text-base text-[#545456] flex flex-col space-y-4">
                     {storyList.map((list, idx) => (
-                      <li key={idx} className="ml-5 font-centaur text-base">
-                        {list.service}
+                      <li key={idx} className="ml-5 text-base font-centaur">
+                        {list.service && list.service}
                       </li>
                     ))}
                   </ul>

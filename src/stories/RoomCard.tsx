@@ -112,21 +112,21 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
               className="mb-1 text-xl font-bold cursor-pointer"
               onClick={showOrHideRoomModal}
             >
-              {room.title}
+              {room.title && room.title}
             </div>
             <div
               className="text-xs text-[#545456] mb-4 cursor-pointer"
               onClick={showOrHideRoomModal}
             >
-              {room.guestCapacity.minAdultAndChildren}-
-              {room.guestCapacity.maxAdultAndChildren} Guests .{' '}
-              {room.bathRoomType}
+              {room.guestCapacity.minAdultAndChildren && room.guestCapacity.minAdultAndChildren}-
+              {room.guestCapacity.maxAdultAndChildren && room.guestCapacity.maxAdultAndChildren} Guests .{' '}
+              {room.bathRoomType && room.bathRoomType}
             </div>
             <div className="flex items-center justify-between w-3/5 pr-20 mb-4 sm:mb-0 sm:pr-0">
               <div
                 className="cursor-pointer"
                 onClick={() => {
-                  handleSelectRoom(room.id, room.title, 'increase');
+                  handleSelectRoom(room?.id, room?.title, 'increase');
                 }}
               >
                 <svg
@@ -164,7 +164,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
               </div>
               <div
                 onClick={() => {
-                  handleSelectRoom(room.id, room.title, 'decrease');
+                  handleSelectRoom(room?.id, room?.title, 'decrease');
                 }}
                 className="cursor-pointer"
               >

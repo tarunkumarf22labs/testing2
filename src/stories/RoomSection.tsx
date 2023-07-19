@@ -44,13 +44,13 @@ export const RoomSection = ({
   return (
     <div className="px-5 pt-10 uppercase flex-1 sm:p-8 lg:mt-20 bg-white md:max-w-[810px]">
       <p className="text-sm text-[#8A1E61] sm:mb-5 sm:uppercase">
-        {villaTitle}
+        {villaTitle && villaTitle}
       </p>
       <p className="text-3xl sm:text-5xl sm:text-[#1C1917] mb-6 sm:mb-10 font-light">
-        {heading}
+        {heading && heading}
       </p>
       <div className="space-y-5 sm:space-y-10">
-        {roomData.map((ele, id) => {
+        {roomData?.map((ele, id) => {
           return (
             <RoomCard
               room={ele}

@@ -5,12 +5,14 @@ interface INameTitle {
   propertyName: string;
   title: string;
   removeBottomPadding?: boolean;
+  onClick?: () => void
 }
 
 export const NameTitle = ({
   propertyName,
   title,
-  removeBottomPadding = false
+  removeBottomPadding = false,
+  onClick
 }: INameTitle) => {
   return (
     <div
@@ -18,6 +20,7 @@ export const NameTitle = ({
         'uppercase md:pb-10',
         removeBottomPadding ? '' : 'pb-6'
       )}
+      onClick={onClick}
     >
       <p className="text-sm text-[#8A1E61] mb-2 tracking-widest md:mb-5">
         {propertyName}

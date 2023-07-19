@@ -23,7 +23,7 @@ const ContactDetails = () => {
     const newEmail = event.target.value;
     setEmail(newEmail);
     setIsValidEmail(emailRegex.test(newEmail));
-    console.log(newEmail);
+
   };
 
   const handleBlur = () => {
@@ -43,7 +43,7 @@ const ContactDetails = () => {
         }
       );
     } else {
-      console.log('Geolocation is not supported by this browser.');
+      ToastAlert('Geolocation is not supported by this browser.','error')
     }
   };
 
@@ -91,7 +91,6 @@ const ContactDetails = () => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     if (file) {
       if (file.size <= 5 * 1024 * 1024) {
         console.log('File uploaded successfully:', file);
@@ -108,7 +107,6 @@ const ContactDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(phoneNumber.length);
     if (!name.firstName) {
       ToastAlert("Please Enter First Name", "warn");
       return;
@@ -138,7 +136,6 @@ const ContactDetails = () => {
     };
     submitData(body);
   };
-  console.log(ValidPhoneNumber);
 
   const submitData = async (body) => {
     try {
@@ -146,7 +143,6 @@ const ContactDetails = () => {
         method: "POST",
         body: JSON.stringify(body),
       });
-      console.log(status);
       if(error){
         ToastAlert("something went wrong in sending Data", "warn")
       }else{

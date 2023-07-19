@@ -62,7 +62,6 @@ const Search = ({ locations, handleshowSearch }: ISearch) => {
     let data = selectedOptionData.container
       ? JSON.parse(selectedOptionData.container)
       : null;
-    console.log(data.id);
     setCurrentlocation({
       id: data?.id,
       title: data?.title,
@@ -121,7 +120,7 @@ const Search = ({ locations, handleshowSearch }: ISearch) => {
         transition={{
           duration: 3
         }}
-        className="bg-[#FFFFFF] -mt-[50px] relative m-auto z-[49]  border md:w-11/12 lg:flex md:justify-between md:items-center  lg:w-full xl:w-9/12 font-[Brandon Grotesque] text-zinc-900 text-xs font-[Brandon Grotesque] font-bold"
+        className="bg-[#FFFFFF] -mt-[50px] relative m-auto z-[49]  border md:w-11/12 lg:flex md:justify-between md:items-center  lg:w-full xl:w-9/12 font-[Brandon Grotesque] text-zinc-900 text-xs font-[Brandon Grotesque] font-bold lg:h-[100px]"
       >
         <div className="sm:flex justify-evenly items-center lg:w-[52%]">
           <div className="mb-8 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:mb-9">
@@ -180,7 +179,7 @@ const Search = ({ locations, handleshowSearch }: ISearch) => {
         </div>
         <div className="sm:flex justify-evenly items-center  lg:w-[52%]  ">
           <div
-            className="relative flex items-center justify-between h-10 mt-4 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:m-0 sm:-top-[2px] md:-top-[7px] md:ml-[1.7em] lg:ml-0"
+            className="relative flex items-center justify-between h-10 mt-8 sm:mt-4 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:m-0 sm:-top-[2px] md:-top-[7px] md:ml-[1.7em] lg:ml-0"
             onClick={() => setShowDate(!showDate)}
           >
             {endDate ? (
@@ -209,7 +208,8 @@ const Search = ({ locations, handleshowSearch }: ISearch) => {
           <div className="flex items-center justify-between mb-4 ml-3 mr-3 border-b border-zinc-500 sm:w-5/12 md:mb-11">
             <input
               type="number"
-              className="w-full border-none placeholder-zinc-900 mt-7 focus:ring-0"
+              // className="w-full border-none placeholder-zinc-900 mt-7 focus:ring-0"
+              className="w-full placeholder-black border-none mt-7 focus:ring-0 placeholder:font-medium"
               placeholder="Guest"
               min={1}
               max={20}
