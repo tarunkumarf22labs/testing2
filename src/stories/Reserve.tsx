@@ -174,17 +174,17 @@ const Reserve = ({
   }, [roomSelected]);
 
   return (
-    <div className="m-auto">
-      <p className="mt-5 text-center">
+    <div>
+      <p className="text-center">
         <b>₹{basicPrice}</b>/ night
       </p>
-      <div className="flex items-center justify-between w-10/12 h-12 m-auto mt-5 text-center">
+      <div className="flex items-center justify-between h-12  mt-5 text-center">
         <div
           className={`${
             roomSelected
               ? ''
               : 'bg-[#8A1E61] text-white ease-in-out duration-500 rounded-sm'
-          } flex items-center justify-center w-6/12 h-full cursor-pointer`}
+          } flex items-center justify-center flex-1 h-full cursor-pointer`}
           onClick={() => {
             setNumberOfGuests({
               adults: 1,
@@ -205,7 +205,7 @@ const Reserve = ({
             roomSelected
               ? 'bg-[#8A1E61]  text-white ease-in-out duration-500'
               : ''
-          } flex items-center justify-center w-6/12 h-full cursor-pointer`}
+          } flex items-center justify-center flex-1 h-full cursor-pointer`}
           onClick={() => {
             // setGuestsSelectorOpen(!guestsSelectorOpen);
             setNumberOfGuests({
@@ -222,10 +222,10 @@ const Reserve = ({
         </div>
       </div>
       <div
-        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
+        className="flex items-center justify-between h-12 p-5 mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
         onClick={() => setShowDate(!showDate)}
       >
-        <p className="flex items-center justify-start w-6/12 h-full">
+        <p className="flex items-center justify-start h-full">
           {startDate && startDate}
         </p>
         <svg
@@ -244,10 +244,10 @@ const Reserve = ({
         </svg>
       </div>
       <div
-        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
+        className="flex items-center justify-between h-12 p-5  mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
         onClick={() => setShowDate(!showDate)}
       >
-        <p className="flex items-center justify-start w-6/12 h-full">
+        <p className="flex items-center justify-start h-full">
           {endDate && endDate}
         </p>
         <svg
@@ -266,16 +266,16 @@ const Reserve = ({
         </svg>
       </div>
       {showDate && (
-        <div className="w-10/12 m-auto mt-5 cursor-pointer">
+        <div className="mt-5 cursor-pointer">
           <Datepicker inReserve={true} inVillaDetails={true} />
         </div>
       )}
       {roomSelected && (
         <div
-          className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
+          className="flex items-center justify-between h-12 p-5 mt-5 text-center bg-[#f8f8f9] text-xs cursor-pointer"
           onClick={() => setshowRoomOption(!showRoomOption)}
         >
-          <p className="flex items-center justify-start w-6/12 h-full">
+          <p className="flex items-center justify-start h-full">
             Select Bedroom
           </p>
           {showRoomOption ? (
@@ -313,7 +313,7 @@ const Reserve = ({
       )}
       {showRoomOption && (
         <div
-          className={`flex items-center justify-between w-10/12 m-auto  text-center h-68 bg-[#F8F8F9] mt-2 text-xs ${
+          className={`flex items-center justify-between text-center h-68 bg-[#F8F8F9] mt-2 text-xs ${
             !roomSelected && 'hidden'
           }`}
         >
@@ -321,10 +321,10 @@ const Reserve = ({
         </div>
       )}
       <div
-        className="flex items-center justify-between w-10/12 h-12 p-5 m-auto mt-5 text-center bg-[#f8f8f9] text-xs"
+        className="flex items-center justify-between h-12 p-5  mt-5 text-center bg-[#f8f8f9] text-xs"
         onClick={() => setGuestsSelectorOpen(!guestsSelectorOpen)}
       >
-        <p className="flex items-center justify-start w-6/12 h-full">
+        <p className="flex items-center justify-start h-full">
           {TotalGuests}
           {TotalGuests > 1 ? ' Guests' : ' Guest'}
         </p>
@@ -361,12 +361,12 @@ const Reserve = ({
         )}
       </div>
       {guestsSelectorOpen && (
-        <div className="flex items-center justify-between w-10/12 m-auto  text-center h-68 bg-[#F8F8F9] mt-2 text-xs">
+        <div className="flex items-center justify-between text-center h-68 bg-[#F8F8F9] mt-2 text-xs">
           <Guests {...GuestProps()} />
         </div>
       )}
 
-      <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 text-center">
+      <div className="flex items-center justify-between h-3  mt-6 text-center">
         <p className="flex items-center justify-start h-full ml-1">
           ₹{totalCapacityInSelectedRooms()} {'X '}
           {Number_In_Days} {'Nights'}
@@ -375,13 +375,13 @@ const Reserve = ({
           ₹{totalCapacityInSelectedRooms() * Number_In_Days}
         </p>
       </div>
-      <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 text-center">
+      <div className="flex items-center justify-between h-3  mt-6 text-center">
         <p className="flex items-center justify-start h-full ml-1">VAT / GST</p>
         <p className="flex items-center justify-end h-full">
           ₹{(totalCapacityInSelectedRooms() * Number_In_Days * 18) / 100}
         </p>
       </div>
-      <div className="flex items-center justify-between w-10/12 h-3 m-auto mt-6 font-bold text-center">
+      <div className="flex items-center justify-between h-3  mt-6 font-bold text-center">
         <p className="flex items-center justify-start h-full">Total Price</p>
         <p className="flex items-center justify-end h-full">
           ₹
@@ -389,7 +389,7 @@ const Reserve = ({
             (totalCapacityInSelectedRooms() * Number_In_Days * 18) / 100}
         </p>
       </div>
-      <div className="flex justify-center items-center w-10/12 h-12 m-auto mt-5 font-bold bg-[#8A1E61] text-white p-auto hover:text-[#8A1E61] hover:bg-[#F8F8F9] rounded-sm">
+      <div className="flex justify-center items-center h-12  mt-5 font-bold bg-[#8A1E61] text-white p-auto hover:text-[#8A1E61] hover:bg-[#F8F8F9] rounded-sm">
         RESERVE
       </div>
     </div>

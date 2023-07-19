@@ -142,7 +142,7 @@ const Guests = ({
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-5">
       <div className="flex items-center justify-between w-full h-full mb-5 border-red">
         <div className="w-1/2 ml-5 text-xs">
           <p className="text-left">ADULTS</p>

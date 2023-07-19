@@ -20,7 +20,7 @@ interface ISelectRooms {
 const SelectRooms = ({ roomDetails }: ISelectRooms) => {
   return (
     <div className="w-full">
-      {roomDetails.map((ele) => {
+      {roomDetails?.map((ele) => {
         return <SelectRoomOption key={ele.id} {...ele} />;
       })}
     </div>

@@ -91,7 +91,7 @@ const PropertyOverview = ({
           {actions?.map(({ name, Icon }, id) => {
             return (
               <button
-                className="flex items-center justify-center p-3 md:p-5"
+                className="flex items-center justify-center py-3 md:p-5"
                 key={id}
               >
                 <Icon className="text-md md:text-2xl" />
@@ -100,12 +100,12 @@ const PropertyOverview = ({
             );
           })}
         </div>
-        <div className="px-5 md:px-8">
+        <div className="md:px-8">
           <h1 className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px]">
             {name && name}
           </h1>
           <p className="text-[#8A1E61] text-base leading-5 font-medium tracking-widest mt-3 md:text-base md:leading-[18px]">
-            {city && city}, {state && state} 
+            {city && city}, {state && state}
           </p>
           <div className="flex items-center mt-2">
             {amenities?.map((el, index) => (
@@ -125,32 +125,28 @@ const PropertyOverview = ({
           <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
             {about && about}
           </p>
-          <div className="flex flex-col items-center justify-center m-auto sm:justify-start sm:m-0 sm:flex-row sm:gap-11">
-            <div className="mt-8" onClick={showStory}>
-              <div
-                className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-44 cursor-pointer border border-[#8A1E61]"
-                // onClick={() => setReadMore(!readMore)}
-              >
-                <h3 className="">DEJA VIEW’S STORY</h3>
-              </div>
+          <div className="flex mt-8 gap-[24px] md:gap-[34px] flex-wrap">
+            <div
+              onClick={showStory}
+              className="px-[10px] text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex flex-1 md:flex-auto justify-center items-center cursor-pointer border border-[#8A1E61]"
+            >
+              <h3>DEJA VIEW’S STORY</h3>
             </div>
-            <div className="mt-8" onClick={showDetailDescription}>
-              <div
-                className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-40 sm:w-60 cursor-pointer border border-[#8A1E61]"
-                // onClick={() => setReadMore(!readMore)}
-              >
-                <h3 className="">
-                  <span className="hidden sm:block">
-                    DEJA VIEW’S DETAILED DESCRIPTION
-                  </span>
-                  <span className="sm:hidden">DETAILED DESCRIPTION</span>
-                </h3>
-              </div>
+            <div
+              onClick={showDetailDescription}
+              className="px-[10px] text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex flex-1 md:flex-auto justify-center items-center cursor-pointer border border-[#8A1E61]"
+            >
+              <h3>
+                <span className="hidden sm:block">
+                  DEJA VIEW’S DETAILED DESCRIPTION
+                </span>
+                <span className="sm:hidden">DETAILED DESCRIPTION</span>
+              </h3>
             </div>
           </div>
           <hr className="my-6" />
           <p className="text-[#545456] font-medium text-xl">{availableDays}</p>
-          <div className="w-full mt-5">
+          <div className="w-full py-5">
             <Datepicker inVillaDetails={true} />
           </div>
         </div>

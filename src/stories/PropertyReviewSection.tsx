@@ -1,7 +1,7 @@
 import React from 'react';
 import { NameTitle } from './NameTitle';
 import { IReviewCard, ReviewCard } from './ReviewCard';
-import classNames from 'classnames';
+import { Container } from './Container';
 
 interface IPropertyReviewSection {
   reviewCardsCollection: IReviewCard[];
@@ -11,13 +11,9 @@ export const PropertyReviewSection = ({
   reviewCardsCollection
 }: IPropertyReviewSection) => {
   return (
-    <div
-      className={classNames(
-        'px-5 py-10 xl:px-0 lg:py-20 lg:max-w-7xl lg:mx-auto'
-      )}
-    >
-      <NameTitle propertyName="Deja View's" title="GUEST SPEAK" />
-      <div className="flex flex-col justify-between md:flex-row md:items-start md:flex-wrap md:gap-x-24">
+    <Container>
+      <NameTitle propertyName="Deja View's" title="GUEST EXPERIENCE" />
+      <div className="grid md:grid-cols-2 md:gap-x-[100px]">
         {reviewCardsCollection.map((review, index) => {
           const { reviewText, name, state, img } = review;
           return (
@@ -34,6 +30,6 @@ export const PropertyReviewSection = ({
       <p className="text-[#8A1E61] text-xs md:text-sm font-medium tracking-wide">
         VIEW ALL 20 REVIEWS
       </p>
-    </div>
+    </Container>
   );
 };

@@ -30,7 +30,7 @@ const LocationAndDetails = ({
     splittedList[0] = splittedList[0].substring(1);
   }
   return (
-    <div className="p-5">
+    <div>
       <div className="w-full h-40">
         <Map markers={locationDetail} zoomdata={2.7} />
       </div>
