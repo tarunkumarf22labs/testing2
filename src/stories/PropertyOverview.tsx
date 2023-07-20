@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { Export, DownloadSimple, Heart } from '@phosphor-icons/react';
+import React, { useContext, useState } from 'react';
+import { Export, DownloadSimple, Heart, Share } from '@phosphor-icons/react';
 import { Button } from './Button';
-import useIsMobile from '@/hooks/useIsMobile';
+import { getUrl } from '@/hooks/useIsMobile';
 import {
   availableDays,
   checkIn,
@@ -11,6 +11,7 @@ import {
 } from 'src/data/constants';
 import Datepicker from './DatePicker';
 import { AppContext } from 'src/Context';
+import ShareUrl from './ShareUrl';
 
 interface IPropertyOverview {
   name: string;
@@ -57,10 +58,11 @@ const PropertyOverview = ({
   about,
   amenities
 }: IPropertyOverview) => {
-  const isMobile = useIsMobile();
+  const url = getUrl();
 
   const { startDate, endDate, selectedDates, ClearSelectedDate } =
     useContext(AppContext);
+  const [showShareModal, setShowShareModal] = useState(false);
 
   const firstDateString = startDate;
   const firstDateParts = firstDateString?.split('/');
@@ -86,19 +88,30 @@ const PropertyOverview = ({
 
   return (
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
+      {showShareModal && <ShareUrl url={url} setShowShareModal={setShowShareModal} showShareModal={showShareModal} />}
       <div>
         <div className="flex items-center text-[#8A1E61] mt-4 justify-between md:pl-3 md:justify-start">
-          {actions?.map(({ name, Icon }, id) => {
-            return (
-              <button
-                className="flex items-center justify-center py-3 md:p-5"
-                key={id}
-              >
-                <Icon className="text-md md:text-2xl" />
-                <p className="pl-2 text-sm md:text-base md:pl-3">{name}</p>
-              </button>
-            );
-          })}
+          <button
+            className="flex items-center justify-center py-3 md:p-5"
+            onClick={() => {
+              setShowShareModal(!showShareModal);
+            }}
+          >
+            <Export size={32} />
+            <p className="pl-2 text-sm md:text-base md:pl-3">{'Share'}</p>
+          </button>
+          <button className="flex items-center justify-center py-3 md:p-5">
+            <DownloadSimple size={32} />
+            <p className="pl-2 text-sm md:text-base md:pl-3">
+              {'Download Brochure'}
+            </p>
+          </button>
+          <button className="flex items-center justify-center py-3 md:p-5">
+            <Heart size={32} />
+            <p className="pl-2 text-sm md:text-base md:pl-3">
+              {'Add To Favourites'}
+            </p>
+          </button>
         </div>
         <div className="md:px-8">
           <h1 className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px]">
