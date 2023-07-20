@@ -28,6 +28,7 @@ interface IReserveAndLocationDetailsSection {
     petPrice: number;
     extraGuestsPrice: number;
   }[];
+  isOnlineBookingPossible:Boolean;
 }
 const ReserveAndLocationDetailsSection = ({
   locations,
@@ -41,7 +42,8 @@ const ReserveAndLocationDetailsSection = ({
   basicPrice,
   petPrice,
   extraGuestPrice,
-  roomDetails
+  roomDetails,
+  isOnlineBookingPossible
 }: IReserveAndLocationDetailsSection) => {
   const LocationProps = {
     locations,
@@ -57,7 +59,8 @@ const ReserveAndLocationDetailsSection = ({
     basicPrice,
     petPrice,
     extraGuestPrice,
-    roomDetails
+    roomDetails,
+    isOnlineBookingPossible
   };
   return (
     <>
