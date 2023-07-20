@@ -14,7 +14,7 @@ interface Attributes {
   destination: IDestination[];
   curatedCollection: ICuratedCollection[];
   spotlight: ISpotlightAndJourney[];
-  userExperience: UserExperience[];
+  userExperience: IUserExperience[];
   Journey: ISpotlightAndJourney[];
 }
 
@@ -104,7 +104,7 @@ export interface ISpotlightAndJourney {
   };
 }
 
-interface UserExperience {
+export interface IUserExperience {
   id: number;
   name: string;
   date: string;
@@ -152,4 +152,38 @@ interface IImageAttributes {
   provider_metadata: any;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ITestimonials {
+  data: ISingleTestimonial[];
+}
+
+export interface ISingleTestimonial {
+  id: number;
+  attributes: {
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    testimonial: Testimonial;
+    portraitImage: {
+      data: {
+        id: number;
+        attributes: IImageAttributes;
+      };
+    };
+  };
+}
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  date: string;
+  experience: string;
+  blogLink: string;
+  avatar: {
+    data: {
+      id: number;
+      attributes: IImageAttributes;
+    };
+  };
 }

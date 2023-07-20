@@ -538,3 +538,8 @@ export const listYourPropertySection = {
 };
 
 export const knowMore = 'KNOW MORE';
+
+export const homeTestimonialSection = {
+  theirExperience: 'Their Experience',
+  heading: 'on LuxUnlock'
+};

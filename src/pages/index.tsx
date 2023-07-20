@@ -8,24 +8,28 @@ import NetWrapper from 'src/Network/netWrapper';
 import { SearchLocationProps } from 'src/Props/Search';
 import AutoScrollingVillaCard from 'src/stories/AutoScrollingVillaCard';
 import ListYourPropertySection from 'src/stories/ListYourPropertySection';
-import { ReviewSection } from 'src/stories/ReviewSection';
 import Spotlight from 'src/stories/Spotlight';
 import CuratedCollection from 'src/stories/CuratedCollection';
 import JourneysSection from 'src/stories/JourneysSection';
 import DestinationsSection from 'src/stories/DestinationsSection';
-import { IHomePageData } from 'src/Interface/home-page';
+import { IHomePageData, ITestimonials } from 'src/Interface/home-page';
 import { Container } from 'src/stories/Container';
+import HomeTestimonialsSection from 'src/stories/HomeTestimonialsSection';
 
 const Home: NextPage = ({
   homePageData,
+  testimonialsData,
   searchData
 }: {
   homePageData: IHomePageData;
+  testimonialsData: ITestimonials;
   searchData: ISearchInterface;
 }) => {
   const bannerImageStyle = 'w-full h-full object-cover';
   const bannerTextStyle = 'text-[#F8F8F9]';
   const bannerText = `UNLOCK THE LUXURY WITH LUXUNLOCK`;
+
+  console.log(homePageData);
 
   return (
     <>
@@ -70,7 +74,9 @@ const Home: NextPage = ({
             <JourneysSection data={homePageData?.data?.attributes?.Journey} />
           ) : null}
           <ListYourPropertySection />
-          <ReviewSection />
+          {testimonialsData?.data?.length ? (
+            <HomeTestimonialsSection data={testimonialsData?.data} />
+          ) : null}
           <MediaListing mediaImages={mediaImages} />
           <AutoScrollingVillaCard />
         </>
@@ -90,8 +96,8 @@ export const getServerSideProps: GetServerSideProps<{
   const cities = await NetWrapper('api/cities');
   const countries = await NetWrapper('api/countries');
   const villa = await NetWrapper('api/properties?populate=deep');
-
   const homePage = await NetWrapper('api/homepage?populate=deep,5');
+  const testimonials = await NetWrapper('api/testimonials?populate=deep');
 
   let error = null;
   if (states.error) error = states.error;
@@ -99,10 +105,12 @@ export const getServerSideProps: GetServerSideProps<{
   if (countries.error) error = countries.error;
   if (villa.error) error = villa.error;
   if (homePage.error) error = homePage.error;
+  if (testimonials.error) error = testimonials.error;
 
   return {
     props: {
       homePageData: homePage?.data,
+      testimonialsData: testimonials?.data,
       searchData: {
         states: states?.data,
         countries: countries?.data,

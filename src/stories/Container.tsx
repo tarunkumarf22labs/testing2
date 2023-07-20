@@ -39,7 +39,7 @@ export const Container = ({
             : twMerge(
                 'py-10 lg:py-20',
                 slider
-                  ? 'md:ml-[max(0px,(100%_-_80rem)/2)] pl-5 xl:pl-0'
+                  ? 'xl:ml-[max(0px,(100%_-_80rem)/2.5)] pl-5 xl:pl-0'
                   : 'xl:max-w-7xl xl:mx-auto px-5 xl:px-0',
                 innerContainerClassName
               )
