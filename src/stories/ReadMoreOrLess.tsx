@@ -33,7 +33,7 @@ const ReadMoreOrLess = ({
     <>
       {containsPattern === false ? (
         <div className="mb-8">
-          <p className="text-base text-[#545456] font-centaur leading-[22px] md:leading-[34px] md:text-[22px]">
+          <p className="text-base text-[#545456] font-[400] font-centaur leading-[22px] md:leading-[34px] md:text-xl">
             {readMore
               ? story
               : story?.length > stringLength
@@ -43,12 +43,12 @@ const ReadMoreOrLess = ({
         </div>
       ) : (
         <div>
-          <ul className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc">
+          <ul className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc flex flex-col gap-4">
             {List?.map((ele, id) => {
               return (
                 <li
                   key={id}
-                  className="text-xl text-[#545456] ml-2 md:ml-0 font-centaur leading-8 "
+                  className="text-xl font-[400] text-[#545456] ml-2 md:ml-0 font-centaur leading-8"
                 >
                   {ele}
                 </li>

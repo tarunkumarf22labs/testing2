@@ -2,20 +2,17 @@ import { useState } from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import Layout from '@/components/Layout';
 
-import { heading, ReviewCardsCollection, faqs } from '../data/constants';
+import { ReviewCardsCollection, faqs } from '../data/constants';
 
 import {
   AmenitiesSection,
-  GallerySection,
   InclusionsExclusionsSection,
   RoomSection,
   StorySection,
   DetailedDescriptionSection,
-  FloorSection,
   PropertyReviewSection,
   FaqsSection,
   BeforeYouBook,
-  HomeTruthsSection,
   PropertyOverview,
   ExperiencesSection,
   PropertyDetailsHeroSection,
@@ -23,13 +20,12 @@ import {
   ReserveAndLocationDetailsSection
 } from 'src/stories';
 
-import { ImagesBig, ImagesSmall } from 'src/stories/GallerySection';
 import MediaListing from 'src/stories/MediaListing';
 import { mediaImages } from 'src/data/constants';
 import Modal from 'src/stories/Modal/Modal';
 import { CuratedExpModal } from 'src/stories/CuratedExpModal';
 import NetWrapper from 'src/Network/netWrapper';
-import { villaInterface, IHomeInterface } from 'src/Interface';
+import { IHomeInterface } from 'src/Interface';
 import useIsMobile from '@/hooks/useIsMobile';
 import {
   VillaOverviewProps,
@@ -48,6 +44,7 @@ import {
   RoomSectionProps
 } from 'src/Props';
 import { Accordion } from 'src/stories/Accordion';
+import { Container } from 'src/stories/Container';
 
 const Home: NextPage = (data: IHomeInterface) => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -59,10 +56,6 @@ const Home: NextPage = (data: IHomeInterface) => {
     setModalOpen(!isModalOpen);
   };
 
-  const setItemNo = (id) => {
-    setElementNo(id);
-  };
-
   return (
     <Layout title="LuxUnlock">
       {data.error === null ? (
@@ -70,42 +63,44 @@ const Home: NextPage = (data: IHomeInterface) => {
           <PropertyDetailsHeroSection
             {...PropertyDetailsHeroSectionProps(villaData)}
           />
-          <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
-            <div className="flex flex-col flex-1 lg:flex-[2]">
-              <PropertyOverview {...VillaOverviewProps(villaData)} />
-              {/* Mobile */}
-              <div className="flex flex-col flex-1 h-fit md:hidden">
+          <Container
+            bgWhite={isMobile ? true : false}
+            innerContainerClassName="py-0 lg:py-0"
+          >
+            <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
+              <div className="flex flex-col flex-1 lg:flex-[2]">
+                <PropertyOverview {...VillaOverviewProps(villaData)} />
+                {/* Mobile */}
+                <div className="flex flex-col flex-1 h-fit md:hidden">
+                  <ReserveAndLocationDetailsSection
+                    {...ReserveAndLocationDetailsSectionProps(villaData)}
+                  />
+                </div>
+                {RoomSectionProps(villaData).roomData.length > 0 && (
+                  <RoomSection {...RoomSectionProps(villaData)} />
+                )}
+              </div>
+              {/* Desktop */}
+              <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
                 <ReserveAndLocationDetailsSection
                   {...ReserveAndLocationDetailsSectionProps(villaData)}
                 />
               </div>
-              {
-                RoomSectionProps(villaData).roomData.length > 0 &&
-              <RoomSection {...RoomSectionProps(villaData)} />
-              }
             </div>
-            {/* Desktop */}
-            <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
-              <ReserveAndLocationDetailsSection
-                {...ReserveAndLocationDetailsSectionProps(villaData)}
-              />
-            </div>
-          </div>
-          {
-            AmenitiesSectionProps(villaData).iconsArray.length > 0 &&
-          <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
-          }
+          </Container>
+          {AmenitiesSectionProps(villaData).iconsArray.length > 0 && (
+            <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
+          )}
           {!isMobile ? (
             <>
               {InclusionsExclusionsSectionProps(villaData)?.inclusions?.length >
                 0 &&
-                InclusionsExclusionsSectionProps(villaData)?.exclusions?.length >
-                  0 && (
+                InclusionsExclusionsSectionProps(villaData)?.exclusions
+                  ?.length > 0 && (
                   <InclusionsExclusionsSection
                     {...InclusionsExclusionsSectionProps(villaData)}
                   />
                 )}
-              <div className="mb-20"></div>
               {/* HOME TRUTHS */}
               {HomeTruthProps(villaData).story && (
                 <StorySection {...HomeTruthProps(villaData)} />
@@ -115,16 +110,15 @@ const Home: NextPage = (data: IHomeInterface) => {
             <Accordion {...AccordionProps1(villaData)} />
           )}
 
-          {
-            BeforeYouBookProps(villaData).length > 0 &&
-          <BeforeYouBook
-            beforeYouBook={BeforeYouBookProps(villaData)}
-            title={villaData?.attributes?.name}
-          />
-          }
+          {BeforeYouBookProps(villaData).length > 0 && (
+            <BeforeYouBook
+              beforeYouBook={BeforeYouBookProps(villaData)}
+              title={villaData?.attributes?.name}
+            />
+          )}
           {ExperiencesSectionProps(villaData).props.length > 0 && (
             <ExperiencesSection
-              setItemNo={setItemNo}
+              setItemNo={setElementNo}
               toggleModal={toggleModal}
               {...ExperiencesSectionProps(villaData)}
             />
@@ -180,7 +174,7 @@ export const getServerSideProps: GetServerSideProps<{
   error: string | null;
 }> = async (): Promise<any> => {
   const { data, error, status } = await NetWrapper(
-    'api/properties/2?populate=deep'
+    'api/properties/3?populate=deep'
   );
 
   return { props: { data, error } };

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {
   availableServices,
   includedServices,
-  viewAllInclusions,
-  villaServiceDisclaimer
+  viewAllInclusions
 } from 'src/data/constants';
+import { Container } from './Container';
 
 export interface IInclusionsExclusionsSection {
   heading: string;
@@ -25,9 +25,8 @@ export const InclusionsExclusionsSection = ({
 }: IInclusionsExclusionsSection) => {
   const [readMore, setReadMore] = useState(false);
   return (
-    <div className="w-full pb-3 bg-white">
-      {/* <div className="flex flex-col px-5 py-10 space-y-16 md:flex-row lg:py-20 xl:px-0 md:space-y-0 md:space-x-20 xl:max-w-7xl xl:mx-auto"> */}
-      <div className="flex flex-col px-5 pt-10 space-y-16 md:flex-row lg:py-10 xl:px-0 md:space-y-0 md:space-x-20 xl:max-w-7xl xl:mx-auto">
+    <Container>
+      <div className="flex flex-col gap-x-20 md:flex-row">
         <InclusionsExlusions
           heading={heading}
           inclusions={inclusions}
@@ -53,7 +52,7 @@ export const InclusionsExclusionsSection = ({
             </div>
           </div>
         ))}
-    </div>
+    </Container>
   );
 };
 
@@ -69,7 +68,9 @@ const InclusionsExlusions = ({
 
   return (
     <div className="md:w-1/2">
-      <p className="uppercase text-sm text-[#8A1E61] mb-2">{heading}</p>
+      <p className="uppercase text-sm text-[#8A1E61] mb-2 md:tracking-[4.2px] md:font-[450]">
+        {heading}
+      </p>
       <p className="uppercase text-xl md:text-5xl text-[#18181B] mb-6 font-light">
         {inclusion ? includedServices : availableServices}
       </p>

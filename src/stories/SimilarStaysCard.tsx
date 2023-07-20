@@ -36,7 +36,7 @@ const SimilarStays = ({
       y: [50, 0],
       opacity: 1,
       scale: 1,
-      transition: { duration: 1, delay: duration / 10 }
+      transition: { duration: 0.5, delay: duration / 10 }
     },
     hidden: { opacity: 0, scale: 0 }
   };

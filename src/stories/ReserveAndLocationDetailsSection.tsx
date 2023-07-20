@@ -61,10 +61,10 @@ const ReserveAndLocationDetailsSection = ({
   };
   return (
     <>
-      <div className="bg-white">
+      <div className="bg-white md:p-4">
         <Reserve {...ReserveProps} />
       </div>
-      <div className="bg-white mt-[60px] md:mt-8">
+      <div className="bg-white mt-[60px] pb-4 md:mt-8 md:p-4">
         <LocationAndDetails {...LocationProps} />
       </div>
     </>

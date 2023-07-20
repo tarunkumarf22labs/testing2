@@ -58,6 +58,8 @@ const CuratedCollection = () => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
 
+  const [allowSlideNext, setAllowSlideNext] = useState(false);
+  const [allowSlidePrev, setAllowSlidePrev] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(data?.[0]);
 
@@ -91,6 +93,8 @@ const CuratedCollection = () => {
               ref={swiperRef}
               onSwiper={(swiper) => {
                 swiperRef.current = swiper;
+                setAllowSlideNext(Boolean(swiper?.allowSlideNext));
+                setAllowSlidePrev(Boolean(swiper?.allowSlidePrev));
               }}
               spaceBetween={isMobile ? 24 : 80}
               slidesPerView={'auto'}
@@ -100,7 +104,8 @@ const CuratedCollection = () => {
               }}
               slideToClickedSlide
               wrapperClass={activeIndex === 0 && '!translate-x-0'}
-              className="relative "
+              className="relative"
+              watchOverflow={true}
             >
               {selectedCategory?.properties?.map((property, idx) => {
                 return (
@@ -143,19 +148,21 @@ const CuratedCollection = () => {
                   </SwiperSlide>
                 );
               })}
-              <div
-                className={classNames(
-                  'absolute right-16 md:right-20 flex justify-end bottom-1/2 -translate-y-1/2 z-10',
-                  selectedCategory?.properties?.length === 2
-                    ? 'md:bottom-0'
-                    : 'md:bottom-10'
-                )}
-              >
-                <ScrollButton
-                  onNextPress={() => swiperRef?.current?.slideNext()}
-                  onPrevPress={() => swiperRef?.current?.slidePrev()}
-                />
-              </div>
+              {allowSlideNext || allowSlidePrev ? (
+                <div
+                  className={classNames(
+                    'absolute right-16 md:right-20 flex justify-end bottom-1/2 -translate-y-1/2 z-10',
+                    selectedCategory?.properties?.length === 2
+                      ? 'md:bottom-0'
+                      : 'md:bottom-10'
+                  )}
+                >
+                  <ScrollButton
+                    onNextPress={() => swiperRef?.current?.slideNext()}
+                    onPrevPress={() => swiperRef?.current?.slidePrev()}
+                  />
+                </div>
+              ) : null}
             </Swiper>
           </div>
         </div>

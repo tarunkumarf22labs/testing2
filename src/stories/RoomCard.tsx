@@ -3,6 +3,12 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from 'src/Context';
 import RoomModal from './RoomModal';
 import ToastAlert from 'src/Toast';
+import {
+  PlusIcon,
+  MinusIcon,
+  MinusCircleIcon,
+  PlusCircleIcon
+} from '@heroicons/react/24/outline';
 
 interface IRoomCard {
   selectRoom: (value: React.SetStateAction<number>) => void;
@@ -93,21 +99,20 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
 
   return (
     <>
-      <div className="p-3 flex flex-col sm:p-4 border border-[#7B8084] sm:flex-row sm:max-w-3xl">
-        <div
-          className="w-full mb-3 cursor-pointer sm:mb-0 sm:mr-4"
-          onClick={showOrHideRoomModal}
-        >
+      <div className="w-full p-3 flex flex-col gap-4 sm:p-4 border border-[#7B8084] sm:flex-row lg:max-h-[218px]">
+        <div className="lg:max-w-[290px] flex-1">
           <Image
+            onClick={showOrHideRoomModal}
             src={mainImage[0].image}
             alt={room.title}
-            width={326}
-            height={209}
-            className="w-full"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-full h-full cursor-pointer"
           />
         </div>
-        <div className="flex flex-col justify-between capitalize min-h-full w-full sm:max-w-[410px]">
-          <div className="">
+        <div className="flex flex-1 flex-col justify-between capitalize">
+          <div>
             <div
               className="mb-1 text-xl font-bold cursor-pointer"
               onClick={showOrHideRoomModal}
@@ -115,44 +120,24 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
               {room.title && room.title}
             </div>
             <div
-              className="text-xs text-[#545456] mb-4 cursor-pointer"
+              className="text-xs text-[#545456] mb-4 cursor-pointer font-[400] font-centaur"
               onClick={showOrHideRoomModal}
             >
-              {room.guestCapacity.minAdultAndChildren && room.guestCapacity.minAdultAndChildren}-
-              {room.guestCapacity.maxAdultAndChildren && room.guestCapacity.maxAdultAndChildren} Guests .{' '}
-              {room.bathRoomType && room.bathRoomType}
+              {room.guestCapacity.minAdultAndChildren &&
+                room.guestCapacity.minAdultAndChildren}
+              -
+              {room.guestCapacity.maxAdultAndChildren &&
+                room.guestCapacity.maxAdultAndChildren}{' '}
+              Guests . {room.bathRoomType && room.bathRoomType}
             </div>
-            <div className="flex items-center justify-between w-3/5 pr-20 mb-4 sm:mb-0 sm:pr-0">
+            <div className="flex items-center justify-between w-20 pr-20 mt-4 mb-8 gap-x-2 sm:pr-0">
               <div
-                className="cursor-pointer"
                 onClick={() => {
-                  handleSelectRoom(room?.id, room?.title, 'increase');
+                  handleSelectRoom(room?.id, room?.title, 'decrease');
                 }}
+                className="cursor-pointer"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <circle cx="12" cy="12" r="11" fill="#e9e9e9" />
-                  <line
-                    x1="12"
-                    y1="7"
-                    x2="12"
-                    y2="17"
-                    stroke="#000"
-                    stroke-width="2"
-                  />
-                  <line
-                    x1="7"
-                    y1="12"
-                    x2="17"
-                    y2="12"
-                    stroke="#000"
-                    stroke-width="2"
-                  />
-                </svg>
+                <MinusCircleIcon fill="#8A1E61" color="white" className="w-6" />
               </div>
               <div>
                 {selectedNumberOfRooms.find((object) => object.id === room.id)
@@ -163,34 +148,19 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
                   : 0}
               </div>
               <div
-                onClick={() => {
-                  handleSelectRoom(room?.id, room?.title, 'decrease');
-                }}
                 className="cursor-pointer"
+                onClick={() => {
+                  handleSelectRoom(room?.id, room?.title, 'increase');
+                }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <circle cx="12" cy="12" r="11" fill="#e9e9e9" />
-                  <line
-                    x1="7"
-                    y1="12"
-                    x2="17"
-                    y2="12"
-                    stroke="#000"
-                    stroke-width="2"
-                  />
-                </svg>
+                <PlusCircleIcon fill="#8A1E61" color="white" className="w-6" />
               </div>
             </div>
           </div>
 
           <div className="flex items-center justify-between space-x-6">
             <div className="flex justify-between">
-              <div className="hidden space-x-6 md:flex md:flex-row">
+              <div className="hidden gap-6 md:flex md:flex-row md:flex-wrap">
                 {maxEightIcons.map((icon, index) => (
                   <Image
                     src={icon}
@@ -201,7 +171,7 @@ export const RoomCard = ({ selectRoom, room }: IRoomCard) => {
                   />
                 ))}
               </div>
-              <div className="flex space-x-6 md:hidden">
+              <div className="flex gap-6 md:hidden">
                 {maxFourIcons.map((icon, index) => (
                   <Image
                     src={icon}

@@ -23,7 +23,7 @@ export const Accordion = (props: IAccordion) => {
   const { heading, data } = props;
   return (
     <div className="bg-white md:bg-[#f8f8f9]">
-      <div className="px-5 pt-10 xl:px-0 xl:max-w-7xl xl:mx-auto lg:py-20">
+      <div className="px-5 xl:px-0 xl:max-w-7xl xl:mx-auto lg:py-20">
         <div className="flex flex-col divide-y">
           {data?.map((item, index) => {
             return <AccordionItem key={index} item={item} heading={heading} />;

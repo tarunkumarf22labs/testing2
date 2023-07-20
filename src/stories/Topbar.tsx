@@ -5,6 +5,7 @@ import MobileNavbar from './MobileNavbar';
 import Navbar from './Navbar';
 import googleIcon from '../../public/images/googleIcon.svg';
 import Image from 'next/image';
+import { Container } from './Container';
 
 interface optionsInterface {
   id: number;
@@ -65,7 +66,7 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [navbarColor, setNavbarColor] = useState('text-[#8A1E61] ');
   const [animate, setAnimate] = useState(false);
 
-  const scrolledNavClass = "bg-white shadow-sm text-[#8A1E61] group isScrolled";
+  const scrolledNavClass = 'bg-white shadow-sm text-[#8A1E61] group isScrolled';
 
   useEffect(() => {
     function changeColor() {
@@ -101,8 +102,10 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
           animateHeader ? navbarColor : scrolledNavClass
         } h-[100px] font-bold md:block text-[#8A1E61] `}
       >
-        <div
-          className={`flex flex-1 w-full h-full max-w-7xl mx-auto font-[Brandon grotesque] content-center justify-between items-center text-xs md:px-5 xl:px-0`}
+        <Container
+          bgTransparent
+          className="h-full"
+          innerContainerClassName={`flex h-full font-[Brandon grotesque] content-center justify-between items-center text-xs py-0 lg:py-0`}
         >
           <div className="border">
             <HeaderLogo />
@@ -119,18 +122,18 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
               LOGIN
             </div>
           </div>
-        </div>
+        </Container>
       </div>
       {animateHeader === false ? null : (
         <div
-          className={`${
-            animate ? "block animate-fade-in-down" : "hidden"
-          }  duration-75 animate-fade-in-down sticky top-16  z-[150] w-full ${
-            navbarColor == "text-white" ? "" : "hidden"
+          className={`hidden md:block ${
+            animate ? 'block animate-fade-in-down' : 'hidden'
+          }  duration-75 animate-fade-in-down sticky top-[100px] z-[150] w-full ${
+            navbarColor == 'text-white' ? '' : 'hidden'
           }`}
         >
           <hr
-            className={` h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`}
+            className={`h-[2px] bg-white flex justify-center max-w-7xl mx-auto my-0`}
           />
         </div>
       )}

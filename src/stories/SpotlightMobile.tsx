@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { ScrollButton } from './ScrollButton';
 import { spotLightSection } from 'src/data/constants';
@@ -7,6 +7,9 @@ import 'swiper/css';
 
 const SpotlightMobile = ({ data }: { data: any[] }) => {
   const swiperRef = useRef(null);
+
+  const [allowSlideNext, setAllowSlideNext] = useState(false);
+  const [allowSlidePrev, setAllowSlidePrev] = useState(false);
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-[#18181B] uppercase text-[40px] font-light tracking-[0.8px] mt-3">
@@ -17,10 +20,13 @@ const SpotlightMobile = ({ data }: { data: any[] }) => {
           ref={swiperRef}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
+            setAllowSlideNext(Boolean(swiper?.allowSlideNext));
+            setAllowSlidePrev(Boolean(swiper?.allowSlidePrev));
           }}
           slidesPerView={1}
           centeredSlides={true}
           centeredSlidesBounds={true}
+          watchOverflow={true}
         >
           {data?.map((el, idx) => {
             return (
@@ -54,12 +60,14 @@ const SpotlightMobile = ({ data }: { data: any[] }) => {
               </SwiperSlide>
             );
           })}
-          <div className="w-full flex justify-center mt-8">
-            <ScrollButton
-              onNextPress={() => swiperRef?.current?.slideNext()}
-              onPrevPress={() => swiperRef?.current?.slidePrev()}
-            />
-          </div>
+          {allowSlideNext || allowSlidePrev ? (
+            <div className="w-full flex justify-center mt-8">
+              <ScrollButton
+                onNextPress={() => swiperRef?.current?.slideNext()}
+                onPrevPress={() => swiperRef?.current?.slidePrev()}
+              />
+            </div>
+          ) : null}
         </Swiper>
       </div>
     </div>

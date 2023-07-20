@@ -520,3 +520,9 @@ export const villaFAQ = {
 };
 
 export const viewAll = 'VIEW ALL';
+
+export const beforeYouBookSection = {
+  heading: 'BEFORE YOU BOOK'
+};
+
+export const reserve = 'RESERVE';

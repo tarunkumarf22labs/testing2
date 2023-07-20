@@ -1,13 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import ExperienceCard from './ExperienceCard';
 import { ScrollButton } from './ScrollButton';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import useIsMobile from '@/hooks/useIsMobile';
-import {
-  curatedExperiences,
-  experiencesAndAttraction
-} from 'src/data/constants';
+import { experiencesAndAttraction } from 'src/data/constants';
 interface IExperiencesSection {
   setItemNo?: (value: number) => void;
   toggleModal: () => void;
@@ -38,6 +35,13 @@ const ExperiencesSection = ({
   const swiperTwoRef = useRef(null);
 
   const isMobile = useIsMobile();
+
+  const [allowSlideOneNext, setAllowSlideOneNext] = useState(false);
+  const [allowSlideOnePrev, setAllowSlideOnePrev] = useState(false);
+
+  const [allowSlideTwoNext, setAllowSlideTwoNext] = useState(false);
+  const [allowSlideTwoPrev, setAllowSlideTwoPrev] = useState(false);
+
   return (
     <div className="md:mt-10 lg:mt-20">
       <div className="relative py-10 bg-white lg:py-20">
@@ -54,11 +58,14 @@ const ExperiencesSection = ({
             ref={swiperOneRef}
             onSwiper={(swiper) => {
               swiperOneRef.current = swiper;
+              setAllowSlideOneNext(Boolean(swiper?.allowSlideNext));
+              setAllowSlideOnePrev(Boolean(swiper?.allowSlidePrev));
             }}
             slidesPerView={'auto'}
             className="relative"
             centeredSlides={isMobile}
             centeredSlidesBounds={isMobile}
+            watchOverflow={true}
           >
             {props?.map((el, idx) => {
               return (
@@ -78,12 +85,14 @@ const ExperiencesSection = ({
                 </SwiperSlide>
               );
             })}
-            <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
-              <ScrollButton
-                onNextPress={() => swiperOneRef?.current?.slideNext()}
-                onPrevPress={() => swiperOneRef?.current?.slidePrev()}
-              />
-            </div>
+            {allowSlideOneNext || allowSlideOnePrev ? (
+              <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
+                <ScrollButton
+                  onNextPress={() => swiperOneRef?.current?.slideNext()}
+                  onPrevPress={() => swiperOneRef?.current?.slidePrev()}
+                />
+              </div>
+            ) : null}
           </Swiper>
         </div>
       </div>
@@ -101,11 +110,14 @@ const ExperiencesSection = ({
             ref={swiperTwoRef}
             onSwiper={(swiper) => {
               swiperTwoRef.current = swiper;
+              setAllowSlideTwoNext(Boolean(swiper?.allowSlideNext));
+              setAllowSlideTwoPrev(Boolean(swiper?.allowSlidePrev));
             }}
             slidesPerView={'auto'}
             className="relative"
             centeredSlides={isMobile}
             centeredSlidesBounds={isMobile}
+            watchOverflow={true}
           >
             {props?.map((el, idx) => {
               return (
@@ -123,12 +135,14 @@ const ExperiencesSection = ({
                 </SwiperSlide>
               );
             })}
-            <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
-              <ScrollButton
-                onNextPress={() => swiperTwoRef?.current?.slideNext()}
-                onPrevPress={() => swiperTwoRef?.current?.slidePrev()}
-              />
-            </div>
+            {allowSlideTwoNext || allowSlideTwoPrev ? (
+              <div className="hidden md:block absolute top-[50%] -translate-y-[50%] right-5 z-10">
+                <ScrollButton
+                  onNextPress={() => swiperTwoRef?.current?.slideNext()}
+                  onPrevPress={() => swiperTwoRef?.current?.slidePrev()}
+                />
+              </div>
+            ) : null}
           </Swiper>
         </div>
       </div>
