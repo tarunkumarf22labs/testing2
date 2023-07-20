@@ -13,6 +13,7 @@ import { ReviewSection } from 'src/stories/ReviewSection';
 import Spotlight from 'src/stories/Spotlight';
 import OurDestinations from '@/components/OurDestinations';
 import CuratedCollection from 'src/stories/CuratedCollection';
+import JourneysSection from 'src/stories/JourneysSection';
 
 const Home: NextPage = (data: ISearchInterface) => {
   const bannerImageStyle =
@@ -38,6 +39,7 @@ const Home: NextPage = (data: ISearchInterface) => {
           />
           <CuratedCollection />
           <Spotlight />
+          <JourneysSection />
           {data.villa.data?.data.length > 0 && (
             <OurDestinations OurDestinations={data.villa.data?.data} />
           )}

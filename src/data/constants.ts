@@ -506,13 +506,17 @@ export const spotLightSection = {
   heading: 'Spotlight'
 };
 
+export const journeySection = {
+  heading: 'Journeys'
+};
+
 export const curatedCollectionSection = {
-  heading: "CURATED COLLECTION",
+  heading: 'CURATED COLLECTION'
 };
 
 export const villaFAQ = {
-  heading: "faqs",
-  contactUs: "Contact Us",
+  heading: 'faqs',
+  contactUs: 'Contact Us'
 };
 
 export const viewAll = 'VIEW ALL';

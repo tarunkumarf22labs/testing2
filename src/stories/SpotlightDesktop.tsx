@@ -67,7 +67,6 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
 
   return (
     <div ref={scrollerRef} className="flex flex-col gap-y-5">
-      <p className="text-sm text-[#8A1E61] tracking-widest">{'LuxUNLOCK’s'}</p>
       <h1 className="uppercase text-4xl text-[#18181B] font-light md:text-5xl">
         {spotLightSection.heading}
       </h1>

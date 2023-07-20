@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './Container';
-import SpotlightDesktop from './SpotlightDesktop';
-import SpotlightMobile from './SpotlightMobile';
+import JourneyDesktop from './JourneyDesktop';
+import JourneyMobile from './JourneyMobile';
 
 const data = [
   {
@@ -21,17 +21,17 @@ const data = [
   }
 ];
 
-const Spotlight = () => {
+const JourneysSection = () => {
   return (
     <Container bgWhite={true}>
       <div className="hidden lg:block">
-        <SpotlightDesktop data={data} />
+        <JourneyDesktop data={data} />
       </div>
       <div className="lg:hidden">
-        <SpotlightMobile data={data} />
+        <JourneyMobile data={data} />
       </div>
     </Container>
   );
 };
 
-export default Spotlight;
+export default JourneysSection;
