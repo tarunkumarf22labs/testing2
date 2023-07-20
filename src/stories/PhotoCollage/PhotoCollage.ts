@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import PhotoCollage from '.';
+import AboutSection from './AboutSection';
 
 const meta: Meta = {
   title: 'Component/PhotoCollage',
-  component: PhotoCollage
+  component: AboutSection
 };
 
 export default meta;
-type Story = StoryObj<typeof PhotoCollage>;
+type Story = StoryObj<typeof AboutSection>;
 export const Default: Story = {
   args: {}
 };

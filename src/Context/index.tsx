@@ -8,28 +8,30 @@ interface InumberOfRooms {
 
 export const AppContext = React.createContext(undefined);
 function AppProvider({ children }) {
-  const [numberOfGuests, setNumberOfGuests] = useState<GuestsInterface>( () => {
+  const [numberOfGuests, setNumberOfGuests] = useState<GuestsInterface>(() => {
     return {
-    adults: 1,
-    children: 0,
-    infants: 0,
-    pets: 0,
-    additional_guests: 0
-  }});
-  const [startDate, setStartDate] = useState<string | undefined>(()=> '');
-  const [endDate, setEndDate] = useState<string | undefined>(()=> '');
-  const [selectedDates, onDatesChange] = useState<Date[]>(()=> []);
-  const [currentlocation, setCurrentlocation] = useState( () => {
-   return {
+      adults: 1,
+      children: 0,
+      infants: 0,
+      pets: 0,
+      additional_guests: 0
+    };
+  });
+  const [startDate, setStartDate] = useState<string | undefined>(() => '');
+  const [endDate, setEndDate] = useState<string | undefined>(() => '');
+  const [selectedDates, onDatesChange] = useState<Date[]>(() => []);
+  const [currentlocation, setCurrentlocation] = useState(() => {
+    return {
       id: 0,
       title: '',
       type: ''
-    }
+    };
   });
-  const [guestsValue, setGuestsValue] = useState(()=> '');
+  const [guestsValue, setGuestsValue] = useState(() => '');
   const [selectedNumberOfRooms, setSelectedNumberOfRooms] = useState<
     InumberOfRooms[]
-  >(()=> []);
+  >(() => []);
+  const [showSidebar, setShowSideBar] = useState<boolean>(false);
 
   function ClearSelectedDate() {
     onDatesChange([]);
@@ -53,7 +55,9 @@ function AppProvider({ children }) {
         setGuestsValue,
         guestsValue,
         selectedNumberOfRooms,
-        setSelectedNumberOfRooms
+        setSelectedNumberOfRooms,
+        showSidebar,
+        setShowSideBar
       }}
     >
       {children}

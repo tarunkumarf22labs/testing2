@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
 import { spotLightSection } from 'src/data/constants';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
+import PrimaryButton from './PrimaryButton';
 
 const SpotlightDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
   gsap.registerPlugin(ScrollTrigger);
@@ -82,6 +83,11 @@ const SpotlightDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
                 <p className="text-base md:text-[22px] leading-[34px] text-[#545456]">
                   {el?.description}
                 </p>
+                <PrimaryButton
+                  title="Know More"
+                  onClick={() => {}}
+                  className="self-start w-[317px] p-0 py-4 items-center justify-center mt-2"
+                />
               </div>
             );
           })}

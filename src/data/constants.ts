@@ -541,3 +541,8 @@ export const homeTestimonialSection = {
 };
 
 export const featuredIn = 'Featured In';
+
+export const aboutSection = {
+  about: 'About',
+  heading: 'LUXUNLOCK'
+};

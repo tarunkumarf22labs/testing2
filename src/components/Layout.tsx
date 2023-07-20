@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import SideBar from './SideBar/SideBar';
 
 interface LayoutProps {
   title: string;
@@ -12,17 +13,18 @@ interface LayoutProps {
 export default function Layout({
   title,
   children,
-  animateHeader,
+  animateHeader
 }: LayoutProps) {
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <div>
+      <div className="relative">
         <Header animateHeader={animateHeader} />
         {children}
         <Footer />
+        <SideBar />
       </div>
     </>
   );

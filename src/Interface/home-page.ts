@@ -10,7 +10,7 @@ interface Attributes {
   updatedAt: string;
   publishedAt: string;
   carousal: Carousal;
-  about: About;
+  about: IAbout;
   destination: IDestination[];
   curatedCollection: ICuratedCollection[];
   spotlight: ISpotlightAndJourney[];
@@ -29,7 +29,7 @@ interface Carousal {
   };
 }
 
-interface About {
+export interface IAbout {
   id: number;
   aboutDescription: string;
   images: {

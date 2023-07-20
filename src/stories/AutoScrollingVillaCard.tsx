@@ -4,7 +4,7 @@ import { villaInterface } from 'src/Interface';
 
 function AutoScrollingVillaCard({ data }: { data: villaInterface[] }) {
   return (
-    <div className="m-auto max-w-[1440px] py-[60px] bg-[#f8f8f9]">
+    <div className="m-auto py-[60px] bg-[#f8f8f9]">
       <Marquee>
         {data.map((villa, idx) => {
           return (

@@ -34,7 +34,7 @@ const HomeTestimonialsSection = ({ data }: { data: ISingleTestimonial[] }) => {
         {data?.map((review, idx) => {
           return (
             <SwiperSlide key={`${idx}`}>
-              <div className="flex gap-20">
+              <div className="flex gap-20 justify-center md:justify-start">
                 <div className="flex flex-col gap-8 md:gap-20 items-center md:items-start">
                   <div className="lg:mt-20">
                     <p className="text-[#8A1E61] text-center md:text-left uppercase text-sm font-[450] md:tracking-[4.2px]">

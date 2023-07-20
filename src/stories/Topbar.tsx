@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import HeaderLogo from './HeaderLogo';
 import MobileNavbar from './MobileNavbar';
 import Navbar from './Navbar';
 import { Container } from './Container';
+import { Equals } from '@phosphor-icons/react';
+import { AppContext } from 'src/Context';
 
 interface optionsInterface {
   id: number;
@@ -60,19 +62,23 @@ const options: IMenu[] = [
 ];
 
 function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
+  const { setShowSideBar } = useContext(AppContext);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [navbarColor, setNavbarColor] = useState('text-white');
   const [headerLogo, setHeaderLogo] = useState('/images/logo_white.svg');
   const [animate, setAnimate] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const scrolledNavClass = 'bg-white shadow-sm text-[#8A1E61] group isScrolled';
 
   useEffect(() => {
     function changeColor() {
       if (window?.scrollY > 100) {
+        setScrolled(true);
         setHeaderLogo('/images/logo_primary.svg');
         setNavbarColor(scrolledNavClass);
       } else {
+        setScrolled(false);
         setHeaderLogo('/images/logo_white.svg');
         setNavbarColor('text-white');
       }
@@ -101,7 +107,7 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
       <div
         className={`hidden animate-fade-in-down z-50 sticky top-0 ${
           animateHeader ? navbarColor : scrolledNavClass
-        } h-[100px] font-bold md:block text-[#8A1E61] `}
+        } h-[100px] font-bold lg:block text-[#8A1E61] `}
       >
         <Container
           bgTransparent
@@ -109,23 +115,20 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
           innerContainerClassName={`flex h-full font-[Brandon grotesque] content-center justify-between items-center text-xs py-0 lg:py-0`}
         >
           <HeaderLogo logoUrl={headerLogo} />
-          <div className="flex items-center justify-between h-8">
+          <div className="flex items-center justify-between h-8 gap-2 xl:gap-5">
             <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
             <div className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs">
-              {/* <Image
-                src={googleIcon}
-                height={28}
-                width={28}
-                alt="google icon"
-              /> */}
               LOGIN
             </div>
+            <button onClick={() => setShowSideBar(true)}>
+              <Equals size={24} />
+            </button>
           </div>
         </Container>
       </div>
-      {animateHeader === false ? null : (
+      {animateHeader === false || scrolled ? null : (
         <div
-          className={`hidden md:block ${
+          className={`hidden lg:block ${
             animate ? 'block animate-fade-in-down' : 'hidden'
           }  duration-75 animate-fade-in-down sticky top-[100px] z-[150] w-full ${
             navbarColor == 'text-white' ? '' : 'hidden'
@@ -137,7 +140,7 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
         </div>
       )}
       {/* ${animate ? 'animate-spin' : ''} */}
-      <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  md:hidden  ">
+      <div className="fixed w-[100%] z-[100] bg-white top-0  font-[Brandon grotesque] ${navbarColor} flex border h-16 justify-between items-center px-5  lg:hidden  ">
         <div className="flex items-center justify-between w-5/12 sm:w-4/12">
           {!showMobileMenu ? (
             <svg
@@ -173,11 +176,11 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
             </svg>
           )}
           <div className="ml-3">
-            <HeaderLogo logoUrl={headerLogo} />
+            <HeaderLogo logoUrl={'/images/logo_primary.svg'} />
           </div>
         </div>
       </div>
-      <div className="fixed w-[100%] flex-col z-[101] top-16 flex md:hidden">
+      <div className="fixed w-[100%] flex-col z-[101] top-16 flex lg:hidden">
         <MobileNavbar
           options={options}
           onMenuSelectedHandler={(menu: optionsInterface) => {}}

@@ -9,7 +9,7 @@ function HeaderLogo({ logoUrl }: { logoUrl: string }) {
       height={0}
       sizes="100vw"
       alt="Lux Unlock Logo"
-      className="object-contain w-[128px] h-[26px] md:w-[208px] md:h-[38px]"
+      className="object-contain w-[128px] h-[26px] xl:w-[208px] md:h-[38px]"
     />
   );
 }

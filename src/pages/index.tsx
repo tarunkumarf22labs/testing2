@@ -11,7 +11,7 @@ import ListYourPropertySection from 'src/stories/ListYourPropertySection';
 import Spotlight from 'src/stories/Spotlight';
 import CuratedCollection from 'src/stories/CuratedCollection';
 import JourneysSection from 'src/stories/JourneysSection';
-import PhotoCollage from 'src/stories/PhotoCollage';
+import AboutSection from 'src/stories/PhotoCollage/AboutSection';
 import DestinationsSection from 'src/stories/DestinationsSection';
 import { IHomePageData, ITestimonials } from 'src/Interface/home-page';
 import { Container } from 'src/stories/Container';
@@ -29,73 +29,61 @@ const Home: NextPage = ({
   const bannerImageStyle = 'w-full h-full object-cover';
   const bannerTextStyle = 'text-[#F8F8F9]';
   const bannerText = `UNLOCK THE LUXURY WITH LUXUNLOCK`;
-  const descriptiontext =
-    'LuxUnlock does exactly what it means - we unlock exclusive access to the most unique, finest and in some cases the most iconic, private luxury homes for your pleasure. They are being offered to you and the world for the first time, made possible only by owners who are willing to share their beautifully & uniquely designed homes with discerning luxury travellers.';
-
-  const PhotoCollageprops = () => {
-    return {
-      title: 'LUXUNLOCK',
-      description: descriptiontext,
-      centerimage: '/images/CurratedCollectionsModelImage1.webp',
-      leftimage: '/images/CurratedCollectionsModelImage1.webp',
-      rightimage: '/images/CurratedCollectionsModelImage1.webp'
-    };
-  };
 
   return (
-    <>
-      <Layout title="LuxUnlock">
-        <>
-          <Carousel
-            images={homePageData?.data?.attributes?.carousal?.images?.data?.map(
-              (el) => el?.attributes?.url
-            )}
-            bannerImageStyle={bannerImageStyle}
-            bannerTextStyle={bannerTextStyle}
-            bannerText={bannerText}
-            locations={SearchLocationProps(
-              searchData.states,
-              searchData.countries,
-              searchData.cities
-            )}
+    <Layout title="LuxUnlock">
+      <>
+        <Carousel
+          images={homePageData?.data?.attributes?.carousal?.images?.data?.map(
+            (el) => el?.attributes?.url
+          )}
+          bannerImageStyle={bannerImageStyle}
+          bannerTextStyle={bannerTextStyle}
+          bannerText={bannerText}
+          locations={SearchLocationProps(
+            searchData.states,
+            searchData.countries,
+            searchData.cities
+          )}
+        />
+        <Container className="block md:hidden" innerContainerClassName="pb-0">
+          <h1
+            className={`capitalize text-center leading-[68px] font-[330] text-[#18181B] text-4xl`}
+          >
+            {bannerText}
+          </h1>
+          <hr className="mt-7" />
+        </Container>
+        {homePageData?.data?.attributes?.destination?.length ? (
+          <DestinationsSection
+            destinations={homePageData?.data?.attributes?.destination}
+            villas={searchData?.villa?.data?.data}
           />
-          <Container className="block md:hidden" innerContainerClassName="pb-0">
-            <h1
-              className={`capitalize text-center leading-[68px] font-[330] text-[#18181B] text-4xl`}
-            >
-              {bannerText}
-            </h1>
-            <hr className="mt-7" />
-          </Container>
-          {homePageData?.data?.attributes?.destination?.length ? (
-            <DestinationsSection
-              destinations={homePageData?.data?.attributes?.destination}
-              villas={searchData?.villa?.data?.data}
-            />
-          ) : null}
-          {homePageData?.data?.attributes?.curatedCollection?.length ? (
-            <CuratedCollection
-              collections={homePageData?.data?.attributes?.curatedCollection}
-            />
-          ) : null}
-          {homePageData?.data?.attributes?.spotlight?.length ? (
-            <Spotlight data={homePageData?.data?.attributes?.spotlight} />
-          ) : null}
-          {homePageData?.data?.attributes?.Journey?.length ? (
-            <JourneysSection data={homePageData?.data?.attributes?.Journey} />
-          ) : null}
-          <ListYourPropertySection />
-          {testimonialsData?.data?.length ? (
-            <HomeTestimonialsSection data={testimonialsData?.data} />
-          ) : null}
-          <PhotoCollage {...PhotoCollageprops()} />
-          <MediaListing mediaImages={mediaImages} />
-          {searchData?.villa?.data?.data?.length ? (
-            <AutoScrollingVillaCard data={searchData?.villa?.data?.data} />
-          ) : null}
-        </>
-      </Layout>
-    </>
+        ) : null}
+        {homePageData?.data?.attributes?.curatedCollection?.length ? (
+          <CuratedCollection
+            collections={homePageData?.data?.attributes?.curatedCollection}
+          />
+        ) : null}
+        {homePageData?.data?.attributes?.spotlight?.length ? (
+          <Spotlight data={homePageData?.data?.attributes?.spotlight} />
+        ) : null}
+        {homePageData?.data?.attributes?.Journey?.length ? (
+          <JourneysSection data={homePageData?.data?.attributes?.Journey} />
+        ) : null}
+        <ListYourPropertySection />
+        {testimonialsData?.data?.length ? (
+          <HomeTestimonialsSection data={testimonialsData?.data} />
+        ) : null}
+        {homePageData?.data?.attributes?.about ? (
+          <AboutSection data={homePageData?.data?.attributes?.about} />
+        ) : null}
+        <MediaListing mediaImages={mediaImages} />
+        {searchData?.villa?.data?.data?.length ? (
+          <AutoScrollingVillaCard data={searchData?.villa?.data?.data} />
+        ) : null}
+      </>
+    </Layout>
   );
 };
 

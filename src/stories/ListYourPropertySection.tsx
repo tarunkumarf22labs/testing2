@@ -58,7 +58,7 @@ const ListYourPropertySection = () => {
               sizes="100vw"
               height={0}
               width={0}
-              className="absolute w-[211px] h-[170px] object-cover top-[40%] md:top-[58px] left-[40%] lg:left-[80%] shadow-xl"
+              className="absolute w-[211px] h-[170px] object-cover top-[40%] md:top-[58px] left-[40%] xl:left-[80%] shadow-xl"
             />
           </div>
         </div>
