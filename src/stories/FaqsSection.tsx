@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from './Container';
 import { NameTitle } from './NameTitle';
 import Image from 'next/image';
@@ -9,6 +9,13 @@ interface IFaqs {
 }
 
 export const FaqsSection = ({ faqs }: IFaqs) => {
+  const [path, setPath] = useState('');
+
+  useEffect(() => {
+    const parsedUrl = new URL(window.location.href);
+    const endpoint = parsedUrl.pathname;
+    setPath(endpoint);
+  }, []);
   return (
     <Container>
       <div className="flex space-x-16">
@@ -29,7 +36,7 @@ export const FaqsSection = ({ faqs }: IFaqs) => {
               );
             })}
           </div>
-          <Link href={'/faq/123'}>
+          <Link href={`/faq${path}`}>
             <p className="text-[#8A1E61] mt-5 text-xs md:text-sm font-medium tracking-wide">
               VIEW ALL FAQs
             </p>

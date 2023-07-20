@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PrimaryButton from './PrimaryButton';
 import { viewAllPhotos } from 'src/data/constants';
 import Link from 'next/link';
@@ -18,6 +18,14 @@ const PropertyDetailsHeroSection = ({
   height,
   alt
 }: IPropertyDetailsHeroSection) => {
+  const [path, setPath] = useState('');
+
+  useEffect(() => {
+    const parsedUrl = new URL(window.location.href);
+    const endpoint = parsedUrl.pathname;
+    setPath(endpoint);
+  }, []);
+
   return (
     <div className="relative mt-16 h-[219px] md:h-[min(72vh,810px)] md:-mt-[100px]">
       <Image
@@ -29,10 +37,10 @@ const PropertyDetailsHeroSection = ({
       />
       <Container
         bgTransparent
-        className="hidden md:block absolute w-full bottom-0"
+        className="absolute bottom-0 hidden w-full md:block"
         innerContainerClassName="flex justify-end"
       >
-        <Link href={'/gallery'}>
+        <Link href={`/gallery${path}`}>
           <PrimaryButton
             title={viewAllPhotos}
             onClick={() => {}}

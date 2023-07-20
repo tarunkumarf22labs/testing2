@@ -29,17 +29,17 @@ const ShareUrl = ({ url, setShowShareModal, showShareModal }: IShareUrl) => {
         className="fixed top-0 left-0 z-0 w-full h-screen"
         style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
         onClick={() => {
-          console.log('called');
           setShowShareModal(!showShareModal);
         }}
       ></div>
       <div className="w-full h-[100vh] flex justify-center items-center z-50">
-        <div
-          className="w-11/12 sm:w-[450px] h-auto m-auto bg-white rounded-md p-5 border-2 shadow-2xl relative"
-        >
-          <button className="absolute top-2 right-[3%]"   onClick={() => {
-            setShowShareModal(!showShareModal);
-          }}>
+        <div className="w-11/12 sm:w-[450px] h-auto m-auto bg-white rounded-md p-5 border-2 shadow-2xl relative">
+          <button
+            className="absolute top-2 right-[3%]"
+            onClick={() => {
+              setShowShareModal(!showShareModal);
+            }}
+          >
             <XMarkIcon className="w-5 h-5" />
           </button>
           <div className="flex flex-wrap items-center justify-between flex-grow p-5">
