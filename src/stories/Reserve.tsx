@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Guests from './Guests';
 import SelectRooms from './SelectRooms';
 import { AppContext } from 'src/Context';
@@ -28,6 +29,7 @@ interface IReserve {
     extraGuestsPrice: number;
     selectedNumberOfRooms?: number;
   }[];
+  isOnlineBookingPossible: Boolean;
 }
 
 const Reserve = ({
@@ -38,7 +40,8 @@ const Reserve = ({
   basicPrice,
   petPrice,
   extraGuestPrice,
-  roomDetails
+  roomDetails,
+  isOnlineBookingPossible
 }: IReserve) => {
   const [guestsSelectorOpen, setGuestsSelectorOpen] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
@@ -54,6 +57,8 @@ const Reserve = ({
     setSelectedNumberOfRooms,
     setNumberOfGuests
   } = useContext(AppContext);
+
+  const router = useRouter();
 
   let Number_In_Days;
 
@@ -180,7 +185,7 @@ const Reserve = ({
         <span className="font-[420] text-xl">₹{basicPrice}</span>{' '}
         <span className="font-[390] text-xs">/ night</span>
       </p>
-      <div className="flex items-center justify-between h-12  mt-5 text-center">
+      <div className="flex items-center justify-between h-12 mt-5 text-center">
         <div
           className={`${
             roomSelected
@@ -392,9 +397,13 @@ const Reserve = ({
         </p>
       </div>
       <PrimaryButton
-        className="w-full justify-center mt-8"
-        title={reserve}
-        onClick={() => {}}
+        className="justify-center w-full mt-8"
+        title={isOnlineBookingPossible ? reserve : "REQUEST TO BOOK"}
+        onClick={() => {
+          if(!isOnlineBookingPossible){
+            router.push("/inquiry")
+          }
+        }}
       />
     </div>
   );

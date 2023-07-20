@@ -69,6 +69,7 @@ export const ReserveAndLocationDetailsSectionProps = (
     petPrice: villaData?.attributes?.pricing?.pet,
     extraGuestPrice: villaData?.attributes?.pricing?.extraGuest,
     roomDetails: roomData,
+    isOnlineBookingPossible: villaData?.attributes?.isOnlineBookingPossible
   };
 };
 
