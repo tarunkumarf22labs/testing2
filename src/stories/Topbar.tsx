@@ -66,8 +66,9 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [navbarColor, setNavbarColor] = useState('text-[#8A1E61] ');
   const [animate, setAnimate] = useState(false);
-  
-  const { setShowLoginPopup,showLoginPopup} = useContext(AppContext);
+  const [token, setToken] = useState('');
+
+  const { setShowLoginPopup, showLoginPopup } = useContext(AppContext);
   const scrolledNavClass = 'bg-white shadow-sm text-[#8A1E61] group isScrolled';
 
   useEffect(() => {
@@ -97,6 +98,11 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
     }; // Clean up the timeout on component unmount
   }, []);
 
+  useEffect(() => {
+    let token = localStorage.getItem('luxunlock_login');
+    setToken(token);
+  }, [showLoginPopup]);
+ 
   return (
     <>
       <div
@@ -114,17 +120,27 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
           </div>
           <div className="flex items-center justify-between h-8">
             <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
-            <div className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs " onClick={() => {
-              setShowLoginPopup(!showLoginPopup)
-            }}>
-              {/* <Image
-                src={googleIcon}
-                height={28}
-                width={28}
-                alt="google icon"
-              /> */}
-              LOGIN
-            </div>
+            {token === null || token?.length === 0 ? (
+              <div
+                className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs "
+                onClick={() => {
+                  setShowLoginPopup(!showLoginPopup);
+                }}
+              >
+                {'LOGIN'} 
+              </div>
+            ) : (
+              <div
+                className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs "
+                onClick={() => {
+                  // setShowLoginPopup(!showLoginPopup);
+                  localStorage.removeItem('luxunlock_login');
+                  setToken("");
+                }}
+              >
+                {'LOGOUT'}
+              </div>
+            )}
           </div>
         </Container>
       </div>

@@ -7,6 +7,8 @@ import { isValidPhoneNumber } from 'libphonenumber-js';
 import ToastAlert from 'src/Toast';
 import NetWrapper from 'src/Network/netWrapper';
 import { AppContext } from 'src/Context';
+import { XMarkIcon } from '@heroicons/react/24/solid';
+import { ArrowLeft } from '@phosphor-icons/react';
 
 const Login = () => {
   const [slide, setSlide] = useState(false);
@@ -25,13 +27,21 @@ const Login = () => {
       ></div>
       <div className="w-[90%] sm:w-[450px] m-auto  items-center justify-between overflow-hidden border-2 rounded-md shadow-lg bg-white z-50">
         <div
-          className="w-[200%] m-auto flex items-center justify-between overflow-hidden"
+          className="w-[200%] m-auto flex items-center justify-between overflow-hidden relative"
           style={{
             transform: slide && 'translateX(-50%)',
             transition: slide && '1s'
           }}
+          id='login-container'
         >
-          <div className="w-[100%] h-full">
+          
+          <div className="w-[100%] h-full relative">
+          <button className="absolute top-3 right-[5%]" 
+          onClick={()=>setShowLoginPopup(false)}
+          >
+            
+            <XMarkIcon className="w-7 h-7" />
+          </button>
             <FirstChild
               setSlide={setSlide}
               slide={slide}
@@ -42,9 +52,14 @@ const Login = () => {
               code={code}
               setCode={setCode}
             />
-            <button onClick={() => setSlide(true)}>next</button>
           </div>
-          <div className="w-[100%] h-full">
+          <div className="w-[100%] h-full relative">
+          <button className="absolute -top-8 right-[5%]" 
+          onClick={()=>setShowLoginPopup(false)}
+          >
+            
+            <XMarkIcon className="w-7 h-7" />
+          </button>
             {slide && (
               <SecondChild
                 code={code}
@@ -114,7 +129,7 @@ function FirstChild({
   };
 
   console.log(ValidPhoneNumber);
-
+  
   return (
     <div className="p-2 sm:p-10">
       <div className="flex items-center justify-center m-auto">
@@ -142,7 +157,6 @@ function FirstChild({
             // dialCode
           }}
           inputStyle={{
-            // containerClass: '100%'
             width: '100%',
             background: 'none',
             backgroundColor: 'white',
@@ -163,7 +177,7 @@ function FirstChild({
         </div>
 
         <button
-          className="text-xs text-white bg-[#8A1E61] w-full font-bold mt-8 pt-4 pb-4"
+          className={`text-xs text-white bg-[#8A1E61] w-full font-bold mt-8 pt-4 pb-4 ${(!ValidPhoneNumber || phoneNumber.length < 4) && "opacity-[0.2] pointer-events-none"}`}
           onClick={handleSubmit}
         >
           CONTINUE
@@ -180,48 +194,18 @@ function SecondChild({
   setPhoneNumber,
   countryCode
 }) {
-  const [otp, setOtp] = useState(Array(6).fill(''));
+  const [otp, setOtp] = useState('');
   const inputRefs = useRef([]);
   const [seconds, setSeconds] = useState(60);
   const [showCaptcha, setShowCaptcha] = useState(false);
+  const { showLoginPopup, setShowLoginPopup } = useContext(AppContext);
   const captchaRef = useRef(null);
-  console.log(countryCode, phoneNumber);
-
-  const handleChange = (e, index) => {
-    const value = e.target.value;
-    if (isNaN(value)) return; // Allow only numbers
-    let str = [...otp];
-    str[index] = value;
-    setOtp(str);
-
-    console.log(index, otp.length - 1);
-    if (index < otp.length - 1 && value !== '') {
-      inputRefs.current[index + 1].focus();
-    }
-  };
-
-  const handleKeyDown = (e, index) => {
-    console.log(e.key, index, otp[index], e.target.value);
-    // handleChange(e, index);
-    console.log('>', e.keyCode);
-
-    if (e.keyCode == 8) {
-      console.log('Focusing');
-
-      inputRefs.current[index - 1].focus();
-    }
-    // && otp[index] === ''
-  };
-
-  useEffect(() => {
-    console.log('>>->>>', otp);
-  }, [otp]);
 
   const submitOtp = async (e) => {
     e.preventDefault();
     console.log(code);
     let body = {
-      otp: otp.join(''),
+      otp: otp,
       token: code
     };
     try {
@@ -232,15 +216,14 @@ function SecondChild({
       if (error) {
         ToastAlert(error, 'error');
       } else {
-        //   AuthorizationToken
         localStorage.setItem(
           'luxunlock_login',
           //@ts-ignore
-          JSON.stringify(data.AuthorizationToken)
+          JSON.stringify(data.token)
         );
       }
-      setOtp(Array(6).fill(''));
-      console.log(data);
+      setOtp('');
+      setShowLoginPopup(false);
     } catch (error) {
       console.log(error);
     }
@@ -282,15 +265,60 @@ function SecondChild({
     } catch (error) {}
   };
 
-  const handlePaste = (e) => {
-    e.preventDefault();
-    const pastedOTP = e.clipboardData.getData('text').slice(0, 6);
-    const newOTP = pastedOTP.padEnd(6, '');
-    setOtp(newOTP.split(''));
+  const numOfbox = Array(6).fill('');
+
+  const handleInputChange = (e, index) => {
+    const elem = e.target;
+    const val = e.target.value;
+    if (!/[0-9]{1}/.test(val) && val !== '') return;
+    console.log(otp, 'otp');
+    //@ts-ignore
+    const valueArr = otp?.split('');
+    console.log(valueArr, 'value');
+    valueArr[index] = val;
+    const newVal = valueArr?.join('').slice(0, 6);
+    onChange(newVal);
+    if (val) {
+      const next = elem.nextElementSibling as HTMLInputElement | null;
+      next?.focus();
+    }
   };
 
+  const onChange = (val) => {
+    setOtp(val);
+  };
+
+  const handlePaste = (e) => {
+    e.preventDefault();
+    const val = e.clipboardData.getData('text').substring(0, 6);
+    onChange(val);
+  };
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const current = e.currentTarget;
+    if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+      const prev = current.previousElementSibling as HTMLInputElement | null;
+      prev?.focus();
+      prev?.setSelectionRange(0, 1);
+      return;
+    }
+    if (e.key === 'ArrowRight') {
+      const prev = current.nextSibling as HTMLInputElement | null;
+      prev?.focus();
+      prev?.setSelectionRange(0, 1);
+      return;
+    }
+  };
+  console.log(otp);
+
   return (
-    <div className="p-2 sm:p-10">
+    <div className="relative p-2 sm:p-10">
+      <div className='absolute -top-8 left-5' onClick={() => {
+        document.getElementById('login-container').style.transform = 'translateX(0%)';
+        document.getElementById('login-container').style.transition = '1s'
+      }}>
+      <ArrowLeft size={32} />
+      </div>
       <div className="flex items-center justify-center m-auto">
         <HeaderLogo />
       </div>
@@ -308,16 +336,16 @@ function SecondChild({
       </p>
       <div className="mt-12 m-full">
         <div className="flex justify-between w-full gap-4 m-auto">
-          {otp.map((digit, index) => (
+          {numOfbox.map((digit, index) => (
             <input
               key={index + digit}
-              ref={(ref) => (inputRefs.current[index] = ref)}
               type="text"
-              maxLength={1}
+              pattern={'/[0-9]{1}/'}
               className="w-8 sm:w-12 h-12 text-center border-none focus:outline-none focus:ring focus:border-blue-300 border-[#7B8084] text-[#8A1E61] "
-              value={otp[index]}
-              onChange={(e) => handleChange(e, index)}
-              onKeyDownCapture={(e) => handleKeyDown(e, index)}
+              value={otp.at(index) ?? ''}
+              onChange={(e) => handleInputChange(e, index)}
+              onKeyUp={handleKeyUp}
+              maxLength={6}
               onPaste={handlePaste}
               style={{
                 borderBottom: '1px solid black',
