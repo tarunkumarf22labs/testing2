@@ -75,6 +75,7 @@ const CuratedCollection = ({
               watchOverflow={true}
             >
               {selectedCollectionVilla?.map((property, idx) => {
+                console.log(property);
                 return (
                   <SwiperSlide
                     key={`${idx}`}
@@ -109,9 +110,17 @@ const CuratedCollection = ({
                             selectedCollectionVilla?.length === 2
                         )}
                         name={property?.attributes?.name}
-                        place={'Unknown'}
-                        basePrice={1234}
-                        amenities={['']}
+                        place={
+                          property?.attributes?.address?.city?.data?.attributes
+                            ?.name +
+                          ', ' +
+                          property?.attributes?.address?.state?.data?.attributes
+                            ?.name
+                        }
+                        basePrice={property?.attributes?.pricing?.basic}
+                        amenities={property?.attributes?.amenities?.data?.map(
+                          (el) => el?.attributes?.title
+                        )}
                       />
                     </div>
                   </SwiperSlide>

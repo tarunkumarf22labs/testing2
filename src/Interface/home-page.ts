@@ -60,6 +60,18 @@ export interface IDestination {
   country: ICommonCityStateRegionCountry;
 }
 
+interface ICommonPlace {
+  data: {
+    id: string;
+    attributes: {
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+      publishedAt: string;
+    };
+  };
+}
+
 export interface ICuratedCollection {
   id: number;
   title: string;
@@ -67,6 +79,18 @@ export interface ICuratedCollection {
     data: {
       id: number;
       attributes: {
+        address: {
+          id: number;
+          street1: string;
+          street2: string;
+          postalCode: number;
+          latitude: number;
+          longitude: number;
+          city: ICommonPlace;
+          region: ICommonPlace;
+          state: ICommonPlace;
+          country: ICommonPlace;
+        };
         name: string;
         createdAt: any;
         updatedAt: string;
@@ -86,6 +110,25 @@ export interface ICuratedCollection {
         gettingThere: string;
         validFrom: string;
         validTo: string;
+        pricing: {
+          id: number;
+          basic: number;
+          pet: number;
+        };
+        amenities: {
+          data: {
+            id: number;
+            attributes: {
+              title: string;
+              createdAt: string;
+              updatedAt: string;
+              publishedAt: string;
+              icon: {
+                data: { id: string; attributes: IImageAttributes };
+              };
+            };
+          }[];
+        };
       };
     }[];
   };

@@ -60,7 +60,7 @@ const CuratedCollectionCard = ({
 
       <div
         className={classNames(
-          'hidden md:block bg-white absolute w-10/12 max-h-[123px] left-1/2 -translate-x-1/2 transition-all origin-center duration-500',
+          'hidden md:block bg-white absolute w-10/12 left-1/2 -translate-x-1/2 transition-all origin-center duration-500',
           isActive ? 'p-6 top-[85%]' : 'p-4 top-[90%]'
         )}
       >
@@ -87,7 +87,7 @@ const CuratedCollectionCard = ({
         </h1>
         <div
           className={classNames(
-            'items-center mt-[6px] truncate flex transition-all origin-center duration-500',
+            'items-center mt-[6px] flex transition-all origin-center duration-500 flex-wrap',
             isActive ? 'h-auto opacity-100' : 'h-0 opacity-0'
           )}
         >
