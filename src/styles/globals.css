@@ -197,7 +197,8 @@ body {
 .flag-dropdown {
   border: none !important;
   margin-bottom: 1px;
-  background-color: transparent !important;
+  /* background-color: rgba(0, 0, 0, 0) !important; */
+  background-color: none !important;
 }
 
 [type='text']:focus,

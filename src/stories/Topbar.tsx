@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import HeaderLogo from './HeaderLogo';
 import MobileNavbar from './MobileNavbar';
@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import googleIcon from '../../public/images/googleIcon.svg';
 import Image from 'next/image';
 import { Container } from './Container';
+import { AppContext } from 'src/Context';
 
 interface optionsInterface {
   id: number;
@@ -65,7 +66,8 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [navbarColor, setNavbarColor] = useState('text-[#8A1E61] ');
   const [animate, setAnimate] = useState(false);
-
+  
+  const { setShowLoginPopup,showLoginPopup} = useContext(AppContext);
   const scrolledNavClass = 'bg-white shadow-sm text-[#8A1E61] group isScrolled';
 
   useEffect(() => {
@@ -112,7 +114,9 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
           </div>
           <div className="flex items-center justify-between h-8">
             <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
-            <div className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs">
+            <div className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs " onClick={() => {
+              setShowLoginPopup(!showLoginPopup)
+            }}>
               {/* <Image
                 src={googleIcon}
                 height={28}
