@@ -511,7 +511,7 @@ export const journeySection = {
 };
 
 export const curatedCollectionSection = {
-  heading: 'CURATED COLLECTION'
+  heading: 'Inspiration'
 };
 
 export const villaFAQ = {
@@ -526,3 +526,15 @@ export const beforeYouBookSection = {
 };
 
 export const reserve = 'RESERVE';
+
+export const destinationsSection = {
+  heading: 'Destinations'
+};
+
+export const listYourPropertySection = {
+  homeOwners: 'Home Owners',
+  heading: 'List Your Property',
+  para: 'Unlock the value if your luxury vacation home.'
+};
+
+export const knowMore = 'KNOW MORE';

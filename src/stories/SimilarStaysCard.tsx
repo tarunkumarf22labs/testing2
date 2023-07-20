@@ -19,7 +19,7 @@ type SimilarStaysCardTypes = {
   duration?: number;
 };
 
-const SimilarStays = ({
+const SimilarStaysCard = ({
   name,
   city,
   state,
@@ -72,7 +72,7 @@ const SimilarStays = ({
         width={0}
         height={0}
         sizes="100vw"
-        className={`bg-red-500 object-cover aspect-video ${
+        className={`object-cover aspect-video ${
           inVillaDetails
             ? 'w-[290px] h-[182px] md:w-[373px] md:h-[234px]'
             : 'w-full h-[180px] md:h-[300px]'
@@ -111,4 +111,4 @@ const SimilarStays = ({
   );
 };
 
-export default SimilarStays;
+export default SimilarStaysCard;

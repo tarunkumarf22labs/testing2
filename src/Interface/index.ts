@@ -62,7 +62,18 @@ export interface villaInterface {
         };
       };
       region: {
-        data: null;
+        data: {
+          id: string;
+          attributes: {
+            name: string;
+            createdAt: string | null;
+            updatedAt: string | null;
+            publishedAt: string | null;
+            banner: {
+              data: null;
+            };
+          };
+        };
       };
       state: {
         data: {
@@ -223,15 +234,15 @@ export enum LWebpMIME {
 }
 
 export enum AttributesEXT {
-  Jpg = ".jpg",
-  PDF = ".pdf",
-  SVG = ".svg",
+  Jpg = '.jpg',
+  PDF = '.pdf',
+  SVG = '.svg'
 }
 
 export enum AttributesMIME {
-  ApplicationPDF = "application/pdf",
-  ImageJPEG = "image/jpeg",
-  ImageSVGXML = "image/svg+xml",
+  ApplicationPDF = 'application/pdf',
+  ImageJPEG = 'image/jpeg',
+  ImageSVGXML = 'image/svg+xml'
 }
 
 export interface Iamenities {

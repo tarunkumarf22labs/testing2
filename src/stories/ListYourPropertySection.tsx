@@ -1,76 +1,40 @@
-import React, { useEffect } from 'react';
-import { Container } from './Container';
 import Image from 'next/image';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React from 'react';
+import PrimaryButton from './PrimaryButton';
+import { knowMore, listYourPropertySection } from 'src/data/constants';
 
-export const ListYourPropertySection = () => {
-  const { ref, inView } = useInView({ threshold: 0.2 });
-  const animation = useAnimation();
-
-  useEffect(() => {
-    if (inView) {
-      animation.start({
-        scale: 1,
-        transition: { duration: 0.5 }
-      });
-    } else {
-      animation.start({ scale: 1.5, transition: { duration: 0.5 } });
-    }
-  }, [inView, animation]);
-
+const ListYourPropertySection = () => {
   return (
-    <Container bgWhite={false}>
-      <div className="flex flex-col space-y-10 md:flex-row md:space-y-0 md:justify-between md:space-x-16">
-        <div className="flex flex-col space-y-10 text-center md:text-left md:mt-10 md:relative md:flex-1">
-          <div>
-            <p className="uppercase text-xs text-[#8A1E61] mb-3 md:text-sm md:mb-5">
-              Home Owners
-            </p>
-            <p className="uppercase text-4xl text-[#18181B] font-light mb-8 md:text-5xl md:mb-3">
-              LIST YOUR Property
-            </p>
-            <p className="text-base text-[#545456] font-centaur mb-4 md:text-lg md:mb-10">
-              Unlock the value if your luxury vacation home.
-            </p>
-            <button className="text-xs text-white w-[250px] h-[48px] bg-[#8A1E61] uppercase">
-              Know More
-            </button>
-          </div>
-          <div className="hidden xl:absolute right-10 bottom-0 lg:block h-[242px] overflow-hidden">
-            <motion.div animate={animation}>
-              <Image
-                src="/images/ListYourPropertyImage33.webp"
-                alt="List your Property 1"
-                width={298}
-                height={242}
-              />
-            </motion.div>
-          </div>
-        </div>
-        <div className="relative h-[452px] w-[350px] mx-auto md:mx-0 md:w-[484px]">
-          <div className="absolute left-0 overflow-hidden">
-            <motion.div animate={animation} ref={ref}>
-              <Image
-                src="/images/ListYourPropertyImage11.webp"
-                alt="List your Property 1"
-                width={302}
-                height={416}
-              />
-            </motion.div>
-          </div>
-          <div className="overflow-hidden absolute right-0 top-[168px]">
-            <motion.div animate={animation}>
-              <Image
-                src="/images/ListYourPropertyImage22.webp"
-                alt="List your Property 2"
-                width={211}
-                height={202}
-              />
-            </motion.div>
-          </div>
-        </div>
+    <div className="relative w-full h-[400px]">
+      <Image
+        height={0}
+        width={0}
+        src={
+          'https://luxunlockdev.s3.ap-south-1.amazonaws.com/02_Exterior_1_1_60c6270c38.jpg'
+        }
+        alt="list_your_property_bg"
+        sizes="100vw"
+        className="absolute w-full h-full object-cover inset-0"
+      />
+      <div className="absolute bg-black/20 inset-0 w-full h-full" />
+      <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center">
+        <p className="text-white uppercase text-sm font-[450] md:tracking-[4.2px] text-center">
+          {listYourPropertySection.homeOwners}
+        </p>
+        <h1 className="text-white uppercase text-[28px] lg:text-[52px] font-[330] tracking-[1.04px] text-center mt-5">
+          {listYourPropertySection.heading}
+        </h1>
+        <p className="font-[400] text-lg text-white font-centaur text-center mt-3">
+          {listYourPropertySection.para}
+        </p>
+        <PrimaryButton
+          className="mt-10 w-[317px] justify-center"
+          title={knowMore}
+          onClick={() => {}}
+        />
       </div>
-    </Container>
+    </div>
   );
 };
+
+export default ListYourPropertySection;
