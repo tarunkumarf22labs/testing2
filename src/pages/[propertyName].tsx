@@ -55,7 +55,7 @@ const Home: NextPage = (data: IHomeInterface) => {
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
-
+console.log(villaData)
   return (
     <Layout title="LuxUnlock">
       {data.error === null ? (
