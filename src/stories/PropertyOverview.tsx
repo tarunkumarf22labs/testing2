@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Export, DownloadSimple, Heart, Share } from '@phosphor-icons/react';
 import { Button } from './Button';
 import { getUrl } from '@/hooks/useIsMobile';
+import Link from 'next/link';
 import {
   availableDays,
   checkIn,
@@ -20,6 +21,7 @@ interface IPropertyOverview {
   byliner: string;
   about: string;
   amenities: string[];
+  pdf: string;
 }
 
 const actions = [
@@ -56,7 +58,8 @@ const PropertyOverview = ({
   state,
   byliner,
   about,
-  amenities
+  amenities,
+  pdf
 }: IPropertyOverview) => {
   const url = getUrl();
 
@@ -88,7 +91,13 @@ const PropertyOverview = ({
 
   return (
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
-      {showShareModal && <ShareUrl url={url} setShowShareModal={setShowShareModal} showShareModal={showShareModal} />}
+      {showShareModal && (
+        <ShareUrl
+          url={url}
+          setShowShareModal={setShowShareModal}
+          showShareModal={showShareModal}
+        />
+      )}
       <div>
         <div className="flex items-center text-[#8A1E61] mt-4 justify-between md:pl-3 md:justify-start">
           <button
@@ -102,9 +111,11 @@ const PropertyOverview = ({
           </button>
           <button className="flex items-center justify-center py-3 md:p-5">
             <DownloadSimple size={32} />
-            <p className="pl-2 text-sm md:text-base md:pl-3">
-              {'Download Brochure'}
-            </p>
+            <Link href={pdf} target="blank">
+              <p className="pl-2 text-sm md:text-base md:pl-3">
+                {'Download Brochure'}
+              </p>
+            </Link>
           </button>
           <button className="flex items-center justify-center py-3 md:p-5">
             <Heart size={32} />

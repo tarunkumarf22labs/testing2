@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageGallery from '../components/ImageGallery/ImageGallery';
+import ImageGallery from '@/components/ImageGallery/ImageGallery';
 import { GetServerSideProps } from 'next';
 import { IHomeInterface } from 'src/Interface';
 import NetWrapper from 'src/Network/netWrapper';
@@ -27,9 +27,13 @@ export default function GalleryPage(data: IHomeInterface) {
 export const getServerSideProps: GetServerSideProps<{
   data: IHomeInterface | null;
   error: string | null;
-}> = async (): Promise<any> => {
+}> = async (context): Promise<any> => {
+  const encodedPropertyName = Array.isArray(context.params.propertyName)
+    ? encodeURIComponent(context.params.propertyName[0])
+    : encodeURIComponent(context.params.propertyName);
+
   const { data, error, status } = await NetWrapper(
-    'api/properties/2?populate=deep'
+    `api/properties/${encodedPropertyName}`
   );
 
   return { props: { data, error } };

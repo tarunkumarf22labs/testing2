@@ -19,7 +19,7 @@ const PropertyFAQ: NextPage = ({ data }: { data: IVillaFAQ }) => {
   return (
     <Layout title="LuxUnlock" animateHeader={false}>
       <Container bgWhite={false} className="pt-[60px] md:pt-0">
-        <div className="flex space-x-16 relative pb-20">
+        <div className="relative flex pb-20 space-x-16">
           <div className="flex-1">
             <NameTitle
               propertyName={`${propertyName}'s`}
@@ -28,7 +28,7 @@ const PropertyFAQ: NextPage = ({ data }: { data: IVillaFAQ }) => {
             />
             <FAQAccordion initialIndex={0} data={faqs} />
           </div>
-          <div className="hidden lg:flex justify-end">
+          <div className="justify-end hidden lg:flex">
             <div className="relative md:w-[462px] md:h-[673px]">
               <Image
                 src={potraitImageUrl}
@@ -36,7 +36,7 @@ const PropertyFAQ: NextPage = ({ data }: { data: IVillaFAQ }) => {
                 width={0}
                 height={0}
                 sizes="100vw"
-                className="w-full h-full absolute"
+                className="absolute w-full h-full"
               />
               <Image
                 src={landscapeImageUrl}
@@ -65,9 +65,14 @@ export default PropertyFAQ;
 export const getServerSideProps: GetServerSideProps<{
   data: IVillaFAQ | null;
   error: string | null;
-}> = async (): Promise<any> => {
+}> = async (context): Promise<any> => {
+  const encodedPropertyName = Array.isArray(context.params.propertyIdForFAQ)
+  ? encodeURIComponent(context.params.propertyIdForFAQ[0])
+  : encodeURIComponent(context.params.propertyIdForFAQ);
+
   const { data, error } = await NetWrapper(
-    'api/faqs?filters[isForProperty][$eq]=true&filters[property][id][$eq]=3&populate=deep,2'
+    `api/faqs?filters[isForProperty][$eq]=true&filters[property][name][$eq]=${encodedPropertyName}&populate=deep,2`
   );
+  
   return { props: { data, error } };
 };

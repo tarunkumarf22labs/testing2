@@ -1,4 +1,4 @@
-import { IVillaFAQ, villaInterface } from "src/Interface";
+import { IVillaFAQ, villaInterface } from 'src/Interface';
 
 export const PropertyDetailsHeroSectionProps = (villaData: villaInterface) => {
   let images = villaData?.attributes?.images;
@@ -18,6 +18,7 @@ export const VillaOverviewProps = (villaData: villaInterface) => {
     state: villaData?.attributes?.address?.state?.data?.attributes?.name,
     byliner: villaData?.attributes?.byliner,
     about: villaData?.attributes?.about,
+    pdf: villaData.attributes.uploadBrochure.data.attributes.url,
     amenities: [
       `${villaData?.attributes?.guestCapacity?.minAdultAndChildren}-${
         villaData?.attributes?.guestCapacity?.maxAdultAndChildren > 0 &&
@@ -45,14 +46,16 @@ export const ReserveAndLocationDetailsSectionProps = (
       id: ele?.id,
       title: ele?.attributes?.name,
       guestCapacity: {
-        minAdultAndChildren: ele?.attributes?.guestCapacity?.minAdultAndChildren,
-        maxAdultAndChildren: ele?.attributes?.guestCapacity?.maxAdultAndChildren,
+        minAdultAndChildren:
+          ele?.attributes?.guestCapacity?.minAdultAndChildren,
+        maxAdultAndChildren:
+          ele?.attributes?.guestCapacity?.maxAdultAndChildren,
         infant: ele?.attributes?.guestCapacity?.infant,
-        pet: ele?.attributes?.guestCapacity?.pet,
+        pet: ele?.attributes?.guestCapacity?.pet
       },
       basicPrice: ele?.attributes?.pricing?.basic,
       petPrice: ele?.attributes?.pricing?.pet,
-      extraGuestsPrice: ele?.attributes?.pricing?.extraGuest,
+      extraGuestsPrice: ele?.attributes?.pricing?.extraGuest
     };
   });
 
@@ -62,8 +65,10 @@ export const ReserveAndLocationDetailsSectionProps = (
     lat: villaData?.attributes?.address?.latitude,
     lng: villaData?.attributes?.address?.longitude,
     infant: villaData?.attributes?.guestCapacity?.infant,
-    maxAdultAndChildren: villaData?.attributes?.guestCapacity?.maxAdultAndChildren,
-    minAdultAndChildren: villaData?.attributes?.guestCapacity?.minAdultAndChildren,
+    maxAdultAndChildren:
+      villaData?.attributes?.guestCapacity?.maxAdultAndChildren,
+    minAdultAndChildren:
+      villaData?.attributes?.guestCapacity?.minAdultAndChildren,
     pet: villaData?.attributes?.guestCapacity?.pet,
     basicPrice: villaData?.attributes?.pricing?.basic,
     petPrice: villaData?.attributes?.pricing?.pet,
@@ -79,11 +84,13 @@ export const InclusionsExclusionsSectionProps = (villaData: villaInterface) => {
     inclusions: villaData?.attributes?.includedServices,
     exclusions: villaData?.attributes?.availableServices
   };
-  if(data.exclusions && data.inclusions){
+  if (data.exclusions && data.inclusions) {
     return data;
-  }else{
+  } else {
     return {
-      heading:'',inclusions:[],exclusions:[]
+      heading: '',
+      inclusions: [],
+      exclusions: []
     };
   }
 };
@@ -195,7 +202,8 @@ export const HomeTruthProps = (villaData: villaInterface) => {
     image: {
       image: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
       width: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
-      height: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
+      height:
+        filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
       alt: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.name
     },
     stringLength: 500,
@@ -216,7 +224,8 @@ export const HomeStoryProps = (villaData: villaInterface) => {
     image: {
       image: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
       width: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
-      height: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
+      height:
+        filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
       alt: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.name
     },
     stringLength: 500,
@@ -326,9 +335,9 @@ export const SimilarStaysSectionProps = (villaData: villaInterface) => {
     };
   });
   return {
-    heading: "SMILAR STAYS FOR YOU",
+    heading: 'SMILAR STAYS FOR YOU',
     villaData: mappedVillaData,
-    inVillaDetails: true,
+    inVillaDetails: true
   };
 };
 
@@ -347,8 +356,12 @@ export const AmenitiesSectionProps = (villaData: villaInterface) => {
       text
     };
   });
-  let portraitImage = villaData?.attributes?.images?.filter((ele) => ele?.type === "portrait")
-  let thumbnailImage = villaData?.attributes?.images?.filter((ele) => ele?.type === "Interior")
+  let portraitImage = villaData?.attributes?.images?.filter(
+    (ele) => ele?.type === 'portrait'
+  );
+  let thumbnailImage = villaData?.attributes?.images?.filter(
+    (ele) => ele?.type === 'Interior'
+  );
 
   return {
     heading: `${villaData?.attributes?.name}’S`,
@@ -373,7 +386,27 @@ export const ExperiencesSectionProps = (villaData: villaInterface) => {
       title: ele?.title
     };
   });
-  return { villa: villaData?.attributes?.name, header: 'STAY LONGER', props };
+  let secondProps = villaData?.attributes?.stayLonger?.map((ele) => {
+    return {
+      id: ele?.id,
+      image: {
+        image: ele?.image?.data?.attributes?.formats?.thumbnail?.url,
+        width: ele?.image?.data?.attributes?.formats?.thumbnail?.width,
+        height: ele?.image?.data?.attributes?.formats?.thumbnail?.height,
+        alt: ele?.image?.data?.attributes?.formats?.thumbnail?.name
+      },
+      shortDescription: ele?.shortDescription,
+      longDecription: ele?.longDescription,
+      title: ele?.title
+    };
+  });
+  return {
+    villa: villaData?.attributes?.name,
+    header: 'STAY LONGER',
+    props,
+    secondProps: secondProps,
+    secondHeading: 'LOCAL EXPERIENCES'
+  };
 };
 export const ImageGalleryProps = (villaData: villaInterface) => {
   let images = villaData?.attributes?.images?.map((ele) => {
@@ -394,14 +427,14 @@ export const RoomSectionProps = (villaData: villaInterface) => {
     let amenities = ele?.attributes?.amenities?.data?.map((ele) => {
       return {
         icon: ele?.attributes?.icon?.data?.attributes?.url,
-        text: ele?.attributes?.title,
+        text: ele?.attributes?.title
       };
     });
     let images = villaData?.attributes?.images?.map((ele) => {
       return {
         thumbnail: ele?.image?.data?.attributes?.formats?.thumbnail?.url,
         image: ele?.image?.data?.attributes?.url,
-        type: ele?.type,
+        type: ele?.type
       };
     });
     return {
@@ -409,8 +442,10 @@ export const RoomSectionProps = (villaData: villaInterface) => {
       title: ele?.attributes?.name,
       description: ele?.attributes?.description,
       guestCapacity: {
-        minAdultAndChildren: ele?.attributes?.guestCapacity?.minAdultAndChildren,
-        maxAdultAndChildren: ele?.attributes?.guestCapacity?.maxAdultAndChildren,
+        minAdultAndChildren:
+          ele?.attributes?.guestCapacity?.minAdultAndChildren,
+        maxAdultAndChildren:
+          ele?.attributes?.guestCapacity?.maxAdultAndChildren,
         infant: ele?.attributes?.guestCapacity?.infant,
         pet: ele?.attributes?.guestCapacity?.pet
       },
@@ -422,11 +457,11 @@ export const RoomSectionProps = (villaData: villaInterface) => {
         extraGuest: ele?.attributes?.pricing?.extraGuest
       },
       amenities: amenities,
-      images: images,
+      images: images
     };
   });
   return {
-    heading: "Rooms",
+    heading: 'Rooms',
     villaTitle: villaData?.attributes?.name,
     roomData: data
   };
@@ -438,12 +473,12 @@ export const VillaFullFAQProps = (faqData: IVillaFAQ) => {
       faqData?.data?.[0]?.attributes?.property?.data?.attributes?.name,
     faqs: faqData?.data?.[0]?.attributes?.questionAndAnswers?.map((el) => ({
       question: el?.question,
-      answer: el?.answer,
+      answer: el?.answer
     })),
     potraitImageUrl:
       faqData?.data?.[0]?.attributes?.portraitImages?.data?.[0]?.attributes
         ?.url,
     landscapeImageUrl:
-      faqData?.data?.[0]?.attributes?.landscapeImage?.data?.attributes?.url,
+      faqData?.data?.[0]?.attributes?.landscapeImage?.data?.attributes?.url
   };
 };
