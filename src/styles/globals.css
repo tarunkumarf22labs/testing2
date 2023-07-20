@@ -216,3 +216,8 @@ textarea:focus,
 select:focus {
   box-shadow: none;
 }
+.custom-shadow {
+  @apply shadow-[2px_28px_34px_-31px_rgba(0,0,0,0.75)];
+  -webkit-box-shadow: 2px 28px 34px -31px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 28px 34px -31px rgba(0, 0, 0, 0.75);
+}
