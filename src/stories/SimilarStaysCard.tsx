@@ -52,7 +52,7 @@ const SimilarStaysCard = ({
       className={`${
         inVillaDetails
           ? 'w-full max-w-[290px] md:max-w-[373px]'
-          : 'w-[284px] max-w-[500px] md:max-w-[500px] md:w-[500px] '
+          : 'w-full max-w-[284px] md:max-w-[500px] md:w-[500px] '
       }`}
       animate={controls}
       variants={squareVariants}

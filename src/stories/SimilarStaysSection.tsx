@@ -69,7 +69,7 @@ const SimilarStaysSection = ({
               className={`${
                 inVillaDetails
                   ? 'w-full max-w-[290px] md:max-w-[373px] pr-5'
-                  : 'w-[284px] max-w-[300px] md:w-[500px] md:max-w-[500px] mr-10'
+                  : 'w-full max-w-[284px] md:w-[500px] md:max-w-[500px] mr-10'
               }`}
             >
               <SimilarStaysCard

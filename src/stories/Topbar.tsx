@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import HeaderLogo from './HeaderLogo';
 import MobileNavbar from './MobileNavbar';
 import Navbar from './Navbar';
-import googleIcon from '../../public/images/googleIcon.svg';
-import Image from 'next/image';
 import { Container } from './Container';
 
 interface optionsInterface {
@@ -63,7 +61,8 @@ const options: IMenu[] = [
 
 function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [navbarColor, setNavbarColor] = useState('text-[#8A1E61] ');
+  const [navbarColor, setNavbarColor] = useState('text-white');
+  const [headerLogo, setHeaderLogo] = useState('/images/logo_white.svg');
   const [animate, setAnimate] = useState(false);
 
   const scrolledNavClass = 'bg-white shadow-sm text-[#8A1E61] group isScrolled';
@@ -71,9 +70,11 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   useEffect(() => {
     function changeColor() {
       if (window?.scrollY > 100) {
+        setHeaderLogo('/images/logo_primary.svg');
         setNavbarColor(scrolledNavClass);
       } else {
-        setNavbarColor('text-[#8A1E61] ');
+        setHeaderLogo('/images/logo_white.svg');
+        setNavbarColor('text-white');
       }
     }
     // adding the event when scroll change Logo
@@ -107,9 +108,7 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
           className="h-full"
           innerContainerClassName={`flex h-full font-[Brandon grotesque] content-center justify-between items-center text-xs py-0 lg:py-0`}
         >
-          <div className="border">
-            <HeaderLogo />
-          </div>
+          <HeaderLogo logoUrl={headerLogo} />
           <div className="flex items-center justify-between h-8">
             <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
             <div className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs">
@@ -174,7 +173,7 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
             </svg>
           )}
           <div className="ml-3">
-            <HeaderLogo />
+            <HeaderLogo logoUrl={headerLogo} />
           </div>
         </div>
       </div>

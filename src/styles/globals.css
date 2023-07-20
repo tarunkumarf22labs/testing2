@@ -149,10 +149,6 @@ body {
   border-radius: var(--border-radius) !important;
 }
 
-.Home-page-text-div {
-  transform: translate(-50%, -50%);
-}
-
 @keyframes slide-down {
   0% {
     transform: translateY(-100%);
@@ -179,7 +175,7 @@ body {
   visibility: hidden;
 }
 .custom-file-input::before {
-  content: "Upload Images";
+  content: 'Upload Images';
   display: inline-block;
   background: linear-gradient(top, #f9f9f9, #e3e3e3);
   /* border: 1px solid #999; */

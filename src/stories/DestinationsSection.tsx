@@ -88,7 +88,7 @@ const DestinationsSection = ({
               return (
                 <SwiperSlide
                   key={`${idx}`}
-                  className="w-[284px] max-w-[500px] md:max-w-[500px] md:w-[500px]"
+                  className="w-full max-w-[284px] md:max-w-[500px] md:w-[500px]"
                 >
                   <DestinationCard
                     name={property?.attributes?.name}

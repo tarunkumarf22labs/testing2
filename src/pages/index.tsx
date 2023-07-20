@@ -1,7 +1,6 @@
 import Layout from '@/components/Layout';
 import type { GetServerSideProps, NextPage } from 'next';
 import Carousel from 'src/stories/Carousel';
-import { HomeBannerimages } from 'src/data/constants';
 import MediaListing from 'src/stories/MediaListing';
 import { mediaImages } from 'src/data/constants';
 import { ISearchInterface } from 'src/Interface/Search';
@@ -15,6 +14,7 @@ import CuratedCollection from 'src/stories/CuratedCollection';
 import JourneysSection from 'src/stories/JourneysSection';
 import DestinationsSection from 'src/stories/DestinationsSection';
 import { IHomePageData } from 'src/Interface/home-page';
+import { Container } from 'src/stories/Container';
 
 const Home: NextPage = ({
   homePageData,
@@ -23,11 +23,9 @@ const Home: NextPage = ({
   homePageData: IHomePageData;
   searchData: ISearchInterface;
 }) => {
-  const bannerImageStyle =
-    'h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px] object-cover w-full';
-  const bannerTextStyle =
-    'text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]';
-  const bannerText = 'UNLOCK THE LUXURY WITH LUXUNLOCK';
+  const bannerImageStyle = 'w-full h-full object-cover';
+  const bannerTextStyle = 'text-[#F8F8F9]';
+  const bannerText = `UNLOCK THE LUXURY WITH LUXUNLOCK`;
 
   return (
     <>
@@ -46,6 +44,14 @@ const Home: NextPage = ({
               searchData.cities
             )}
           />
+          <Container className="block md:hidden" innerContainerClassName="pb-0">
+            <h1
+              className={`capitalize text-center leading-[68px] font-[330] text-[#18181B] text-4xl`}
+            >
+              {bannerText}
+            </h1>
+            <hr className="mt-7" />
+          </Container>
           {homePageData?.data?.attributes?.destination?.length ? (
             <DestinationsSection
               destinations={homePageData?.data?.attributes?.destination}

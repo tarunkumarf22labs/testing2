@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 
-function HeaderLogo() {
+function HeaderLogo({ logoUrl }: { logoUrl: string }) {
   return (
     <Image
-      src="/images/Logo.png"
+      src={logoUrl}
       width={0}
       height={0}
       sizes="100vw"

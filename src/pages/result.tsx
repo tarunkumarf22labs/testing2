@@ -71,9 +71,8 @@ const Result: NextPage = (data: ISearchInterface) => {
     };
   }, []);
 
-  const bannerImageStyle = 'h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px]';
-  const bannerTextStyle =
-    'hidden sm:block text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[35%] z-[48] w-1/2 text-left text-5xl ';
+  const bannerImageStyle = 'w-full h-full object-cover';
+  const bannerTextStyle = 'text-[#F8F8F9]';
   const bannerText = ['UNLOCK', <br key={10} />, 'OUR DESTINATIONS'];
   const [cardTopPosition, setCardTopPosition] = useState(0);
 
