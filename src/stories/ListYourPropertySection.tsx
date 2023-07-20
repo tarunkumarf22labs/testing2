@@ -24,7 +24,7 @@ const ListYourPropertySection = () => {
               title={knowMore}
               onClick={() => {}}
             />
-            <div className="hidden lg:block w-[298px] h-[242px] relative mt-20 shadow-xl">
+            <div className="hidden xl:block w-[298px] h-[242px] relative mt-20 shadow-xl">
               <Image
                 src={
                   'https://luxunlockdev.s3.ap-south-1.amazonaws.com/Lower_Verandah_at_Breakfast_e5e907f6b2.jpg'

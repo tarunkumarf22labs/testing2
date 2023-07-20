@@ -93,15 +93,16 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
               <div className="bg-white w-2 h-2 rounded-full" />
             </div>
           </div>
-          <div className="w-[559px] h-[369px] relative overflow-hidden">
+          <div className="w-full max-w-[559px] h-[369px] relative overflow-hidden">
             {data?.map((el, idx) => {
               return (
                 <Image
                   key={`${idx}`}
                   src={el?.images?.data?.[0]?.attributes?.url}
                   alt="journey"
-                  width={560}
-                  height={369}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                   className={`absolute w-full h-full object-cover preview-image-${idx} shadow-xl`}
                 />
               );

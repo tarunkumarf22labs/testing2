@@ -453,10 +453,6 @@ export const mediaImages = [
   '/images/architectural-digest.png',
   '/images/plateform.png',
   '/images/traveller.png',
-  '/images/the-hindu-group.png',
-  '/images/architectural-digest.png',
-  '/images/plateform.png',
-  '/images/traveller.png',
   '/images/the-hindu-group.png'
 ];
 
@@ -543,3 +539,5 @@ export const homeTestimonialSection = {
   theirExperience: 'Their Experience',
   heading: 'on LuxUnlock'
 };
+
+export const featuredIn = 'Featured In';

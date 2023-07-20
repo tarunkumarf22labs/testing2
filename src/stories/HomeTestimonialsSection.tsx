@@ -16,7 +16,7 @@ const HomeTestimonialsSection = ({ data }: { data: ISingleTestimonial[] }) => {
   const [allowSlidePrev, setAllowSlidePrev] = useState(false);
 
   return (
-    <Container bgWhite innerContainerClassName="py-0 lg:py-0">
+    <Container bgWhite slider innerContainerClassName="xl:py-0">
       <Swiper
         ref={swiperRef}
         onSwiper={(swiper) => {
@@ -34,9 +34,9 @@ const HomeTestimonialsSection = ({ data }: { data: ISingleTestimonial[] }) => {
         {data?.map((review, idx) => {
           return (
             <SwiperSlide key={`${idx}`}>
-              <div className="flex gap-20 justify-between">
+              <div className="flex gap-20">
                 <div className="flex flex-col gap-8 md:gap-20 items-center md:items-start">
-                  <div className="mt-20">
+                  <div className="lg:mt-20">
                     <p className="text-[#8A1E61] text-center md:text-left uppercase text-sm font-[450] md:tracking-[4.2px]">
                       {homeTestimonialSection.theirExperience}
                     </p>
@@ -72,7 +72,7 @@ const HomeTestimonialsSection = ({ data }: { data: ISingleTestimonial[] }) => {
                     width={0}
                     height={0}
                     sizes="100vw"
-                    className="h-full w-full"
+                    className="h-[814px] w-full object-cover"
                   />
                 </div>
               </div>

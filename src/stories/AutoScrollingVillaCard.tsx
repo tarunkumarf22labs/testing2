@@ -1,25 +1,28 @@
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
+import { villaInterface } from 'src/Interface';
 
-function App() {
-  const [content, setContent] = useState([1, 2, 3, 4, 5, 6]);
-
+function AutoScrollingVillaCard({ data }: { data: villaInterface[] }) {
   return (
-    <div className="m-auto max-w-[1440px] mt-20 mb-20">
+    <div className="m-auto max-w-[1440px] py-[60px] bg-[#f8f8f9]">
       <Marquee>
-        {content.map((ele) => {
+        {data.map((villa, idx) => {
           return (
-            <div className="w-52 h-40 mr-[5rem] relative" key={ele}>
+            <div
+              className="w-[200px] h-[133px] mr-12 relative cursor-pointer"
+              key={`${idx}`}
+            >
               <Image
                 src="https://luxunlockdev.s3.ap-south-1.amazonaws.com/Lower_Verandah_at_Breakfast_e5e907f6b2.jpg"
-                width={208}
-                height={156}
+                width={200}
+                height={133}
                 alt="image"
-                className="w-full h-full rounded-xl"
+                className="w-full h-full object-cover"
               />
-              <p className="absolute top-[50%] left-[50%] -translate-y-2 -translate-x-[40%] text-center font-[Brandon Grotesque] text-xl text-white">
-                HELLO {ele}
+              <div className="absolute inset-0 w-full h-full bg-black/40" />
+              <p className="truncate capitalize text-lg font-[390] absolute top-1/2 left-1/2 text-center -translate-x-1/2 -translate-y-1/2 text-white">
+                Villa in{' '}
+                {villa?.attributes?.address?.city?.data?.attributes?.name}
               </p>
             </div>
           );
@@ -29,4 +32,4 @@ function App() {
   );
 }
 
-export default App;
+export default AutoScrollingVillaCard;

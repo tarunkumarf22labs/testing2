@@ -1,47 +1,63 @@
 import Image from 'next/image';
-import React from 'react'
+import React from 'react';
 import { Iphotocollege } from './types';
+import { Container } from '../Container';
+import PrimaryButton from '../PrimaryButton';
+import { knowMore } from 'src/data/constants';
 
-function PhotoCollage({ title, description, centerimage, leftimage, rightimage } : Iphotocollege) {
-    return (
-        <div className='relative overflow-hidden pt-4 p-8 md:p-0 ' >
-            <div className=" w-full flex flex-col justify-center text-center gap-8 md:w-[596px] m-auto">
-                <div className=" text-[40px] sm:text-[54px] font-light">{title}</div>
-                <p className='  sm:w-full leading-[22px] font-normal sm:text-xl font-centaur sm:leading-[34px]' >{description}</p>
-                <div className="hidden sm:block">
-                    <button className=' bg-pantonepink font-Brandon py-3 px-20 text-white ' >KNOW MORE</button>
-                </div>
-                <div className="w-full mb-8">
-                    <Image
-                        width={"100"}
-                        height={"100"}
-                        alt='altag'
-                        src={centerimage}
-                        loading='lazy'
-                        className='custom-shadow w-full'
-                    />
-
-                </div>
-
-            </div>
-            <Image
-                width={"100"}
-                height={"100"}
-                alt='altag'
-                className=' hidden absolute top-1/4 -left-[10%]   w-[533px] 2xl:-left-[10%] xl:-left-[15%]   lg:-left-[25%]  lg:block custom-shadow'
-                src={leftimage}
-                loading='lazy' />
-            <Image
-                width={"100"}
-                height={"100"}
-                alt='altag'
-                className=' hidden absolute top-1/4 -right-[10%]  w-[533px] 2xl:-right-[10%] xl:-right-[15%] lg:-right-[25%] lg:block custom-shadow'
-                src={rightimage}
-                loading='lazy' />
-
-
+function PhotoCollage({
+  title,
+  description,
+  centerimage,
+  leftimage,
+  rightimage
+}: Iphotocollege) {
+  return (
+    <Container className="relative overflow-hidden" bgWhite={false}>
+      <div className="w-full flex flex-col justify-center text-center md:w-[596px] mx-auto">
+        <p className="text-[#8A1E61] text-center uppercase text-sm font-[450] md:tracking-[4.2px]">
+          ABOUT
+        </p>
+        <h1 className="text-[28px] text-center lg:text-[52px] font-[330] text-[#1C1917] uppercase mt-5">
+          {title}
+        </h1>
+        <p className="sm:w-full text-[#545456] mt-8 leading-[22px] font-normal sm:text-xl font-centaur sm:leading-[34px]">
+          {description}
+        </p>
+        <PrimaryButton
+          title={knowMore}
+          onClick={() => {}}
+          className="justify-center w-[317px] self-center mt-8"
+        />
+        <div className="w-full mt-10">
+          <Image
+            width={'100'}
+            height={'100'}
+            alt="altag"
+            src={centerimage}
+            loading="lazy"
+            className="shadow-xl w-full"
+          />
         </div>
-    )
+      </div>
+      <Image
+        width={'100'}
+        height={'100'}
+        alt="altag"
+        className="hidden absolute right-[92%] top-1/4 w-[533px] lg:block shadow-xl"
+        src={leftimage}
+        loading="lazy"
+      />
+      <Image
+        width={'100'}
+        height={'100'}
+        alt="altag"
+        className="hidden absolute left-[92%] top-1/4 w-[533px] lg:block shadow-xl"
+        src={rightimage}
+        loading="lazy"
+      />
+    </Container>
+  );
 }
 
 export default PhotoCollage;

@@ -88,11 +88,11 @@ const Home: NextPage = ({
           {testimonialsData?.data?.length ? (
             <HomeTestimonialsSection data={testimonialsData?.data} />
           ) : null}
-          <div className="pt-4">
-            <PhotoCollage {...PhotoCollageprops()} />
-          </div>
+          <PhotoCollage {...PhotoCollageprops()} />
           <MediaListing mediaImages={mediaImages} />
-          <AutoScrollingVillaCard />
+          {searchData?.villa?.data?.data?.length ? (
+            <AutoScrollingVillaCard data={searchData?.villa?.data?.data} />
+          ) : null}
         </>
       </Layout>
     </>
