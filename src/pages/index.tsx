@@ -14,6 +14,7 @@ import Spotlight from 'src/stories/Spotlight';
 import OurDestinations from '@/components/OurDestinations';
 import CuratedCollection from 'src/stories/CuratedCollection';
 import JourneysSection from 'src/stories/JourneysSection';
+import PhotoCollage from 'src/stories/PhotoCollage';
 
 const Home: NextPage = (data: ISearchInterface) => {
   const bannerImageStyle =
@@ -21,7 +22,16 @@ const Home: NextPage = (data: ISearchInterface) => {
   const bannerTextStyle =
     'text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]';
   const bannerText = 'UNLOCK THE LUXURY WITH LUXUNLOCK';
-
+  const descriptiontext = "LuxUnlock does exactly what it means - we unlock exclusive access to the most unique, finest and in some cases the most iconic, private luxury homes for your pleasure. They are being offered to you and the world for the first time, made possible only by owners who are willing to share their beautifully & uniquely designed homes with discerning luxury travellers."
+  const PhotoCollageprops = () => {
+    return {
+      title: "LUXUNLOCK",
+      description: descriptiontext,
+      centerimage: "/images/CurratedCollectionsModelImage1.webp",
+      leftimage: "/images/CurratedCollectionsModelImage1.webp",
+      rightimage: "/images/CurratedCollectionsModelImage1.webp"
+    }
+  }
   return (
     <>
       <Layout title="LuxUnlock">
@@ -45,6 +55,9 @@ const Home: NextPage = (data: ISearchInterface) => {
           )}
           <ListYourPropertySection />
           <ReviewSection />
+          <div className="pt-4">
+            <PhotoCollage  {...PhotoCollageprops()} />
+          </div>
           <MediaListing mediaImages={mediaImages} />
           <AutoScrollingVillaCard />
         </>
