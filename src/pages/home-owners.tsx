@@ -14,6 +14,7 @@ import MediaListing from "src/stories/MediaListing";
 
 
 const HomeOwners = ({data, error}) => {
+
   return (
     <Layout title="Home-Owners">
       <div>
@@ -22,8 +23,8 @@ const HomeOwners = ({data, error}) => {
         width={500}
         height={500}
         className="object-cover w-full h-full brightness-50"
-        src={data?.data[0]?.attributes?.image?.data?.attributes?.url}
-        alt={data?.data[0]?.attributes?.image?.data?.attributes?.name}
+        src={homeOwnersBannerImage(data).url}
+        alt={homeOwnersBannerImage(data).alt}
       />
         </div>
         <h1 className="absolute top-[20vh] md:top-[30vh] left-1/2 -translate-x-[50%] -translate-y-[50%] text-2xl sm:text-4xl md:text-5xl text-[#F8F8F9] uppercase font-light">
@@ -103,7 +104,7 @@ export const getServerSideProps: GetServerSideProps<{
   error: string | null;
 }> = async (): Promise<any> => {
   const { data, error, status } = await NetWrapper(
-    "api/homeowners?populate=deep"
+    "api/homeowner?populate=deep"
   );
 
   return { props: { data, error } };
