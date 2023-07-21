@@ -7,8 +7,6 @@ import PrimaryButton from './PrimaryButton';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
 
 const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
-  gsap.registerPlugin(ScrollTrigger);
-
   const scrollerRef = useRef(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
