@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { IImageTag } from 'src/Interface';
 import { XMarkIcon } from '@heroicons/react/24/solid';
@@ -12,6 +12,12 @@ interface IAmenitiesPopup {
 }
 
 const AmenitiesPopup = ({ iconsArray,hidePopup }: IAmenitiesPopup) => {
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {
+      document.body.style.overflowY = 'auto';
+    };
+  }, []);
     
   return (
     <div className="fixed left-0 w-full overflow-auto h-[100vh] top-20 ease-in-out z-[500]">

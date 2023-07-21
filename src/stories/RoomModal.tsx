@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 
@@ -36,6 +36,12 @@ interface IRoomModal {
 }
 
 const RoomModal = ({ showOrHide, roomData }: IRoomModal) => {
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {
+      document.body.style.overflowY = 'auto';
+    };
+  }, []);
   let mainImage = roomData.images.filter((ele) => ele.type === 'Main Image');
   return (
     <div className="fixed left-0 w-full overflow-auto h-[100vh] top-20 ease-in-out z-[500] rounded-3xl">
