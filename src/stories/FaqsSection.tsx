@@ -49,14 +49,20 @@ export const FaqsSection = ({ faqs, propertyName }: IFaqs) => {
         </div>
         <div className="relative hidden w-1/2 lg:block">
           <Image
-            src="/images/a02.png"
+            src={
+              faqs?.data?.[0]?.attributes?.portraitImages?.data?.[0]?.attributes
+                ?.url
+            }
             alt="faq2"
             width={326}
             height={489}
             className="absolute w-[217px] h-[326px] md:w-[326px] md:h-[489px] top-0 right-0 object-cover"
           />
           <Image
-            src="/images/a01.png"
+            src={
+              faqs?.data?.[0]?.attributes?.portraitImages?.data?.[1]?.attributes
+                ?.url
+            }
             alt="faq1"
             width={326}
             height={489}
