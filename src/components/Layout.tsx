@@ -1,8 +1,10 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import SideBar from './SideBar/SideBar';
+import { AppContext } from 'src/Context';
+import Login from 'src/stories/Login';
 
 interface LayoutProps {
   title: string;
@@ -15,6 +17,7 @@ export default function Layout({
   children,
   animateHeader
 }: LayoutProps) {
+  const { showLoginPopup } = useContext(AppContext);
   return (
     <>
       <Head>
@@ -22,6 +25,7 @@ export default function Layout({
       </Head>
       <div className="relative">
         <Header animateHeader={animateHeader} />
+        {showLoginPopup && <Login />}
         {children}
         <Footer />
         <SideBar />

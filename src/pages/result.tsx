@@ -148,9 +148,9 @@ const Result: NextPage = (data: ISearchInterface) => {
                 bannerTextStyle={bannerTextStyle}
                 bannerText={bannerText}
                 locations={SearchLocationProps(
-                  data.states,
-                  data.countries,
-                  data.cities
+                  data?.states,
+                  data?.countries,
+                  data?.cities
                 )}
               />
               {loading ? (
@@ -164,20 +164,20 @@ const Result: NextPage = (data: ISearchInterface) => {
                   <SortVilla />
                   <div className="w-11/12 m-auto">
                     <h1 className="text-5xl font-[Brandon Grotesque] mb-10">
-                      {villasResult?.data.length}{' '}
-                      {villasResult?.data.length > 1 ? 'STAYS' : 'STAY'}
+                      {villasResult?.data?.length}{' '}
+                      {villasResult?.data?.length > 1 ? 'STAYS' : 'STAY'}
                     </h1>
                   </div>
 
                   <div className="flex flex-col-reverse justify-between xl:flex-row ">
                     <div className="w-full xl:w-[60%] " ref={cardRef}>
-                      {villasResult?.data.length === 0 ? (
+                      {villasResult?.data?.length === 0 ? (
                         <div className="w-full h-[500px] flex justify-center items-center">
                           <h1>No record Found</h1>
                         </div>
                       ) : (
                         villasResult?.data &&
-                        villasResult?.data.map((ele, idx) => {
+                        villasResult?.data?.map((ele, idx) => {
                           return (
                             <div
                               className="w-full m-auto sm:max-w-2xl"

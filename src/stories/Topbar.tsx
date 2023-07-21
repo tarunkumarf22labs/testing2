@@ -68,7 +68,9 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
   const [headerLogo, setHeaderLogo] = useState('/images/logo_white.svg');
   const [animate, setAnimate] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [token, setToken] = useState('');
 
+  const { setShowLoginPopup, showLoginPopup } = useContext(AppContext);
   const scrolledNavClass = 'bg-white shadow-sm text-[#8A1E61] group isScrolled';
 
   useEffect(() => {
@@ -102,6 +104,11 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
     }; // Clean up the timeout on component unmount
   }, []);
 
+  useEffect(() => {
+    let token = localStorage.getItem('luxunlock_login');
+    setToken(token);
+  }, [showLoginPopup]);
+
   return (
     <>
       <div
@@ -117,9 +124,27 @@ function Topbar({ animateHeader = true }: { animateHeader: boolean }) {
           <HeaderLogo logoUrl={headerLogo} />
           <div className="flex items-center justify-between h-8 gap-2 xl:gap-5">
             <Navbar options={options} onMenuSelectedHandler={(menu) => {}} />
-            <div className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs">
-              LOGIN
-            </div>
+            {token === null || token?.length === 0 ? (
+              <div
+                className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs "
+                onClick={() => {
+                  setShowLoginPopup(!showLoginPopup);
+                }}
+              >
+                {'LOGIN'}
+              </div>
+            ) : (
+              <div
+                className="uppercase cursor-pointer bg-[#8A1E61] text-white text-center pl-10 pr-10 pt-2 pb-2 text-xs "
+                onClick={() => {
+                  // setShowLoginPopup(!showLoginPopup);
+                  localStorage.removeItem('luxunlock_login');
+                  setToken('');
+                }}
+              >
+                {'LOGOUT'}
+              </div>
+            )}
             <button onClick={() => setShowSideBar(true)}>
               <Equals size={24} />
             </button>

@@ -32,6 +32,7 @@ function AppProvider({ children }) {
     InumberOfRooms[]
   >(() => []);
   const [showSidebar, setShowSideBar] = useState<boolean>(false);
+  const [showLoginPopup, setShowLoginPopup] = useState<boolean>(() => false);
 
   function ClearSelectedDate() {
     onDatesChange([]);
@@ -57,7 +58,9 @@ function AppProvider({ children }) {
         selectedNumberOfRooms,
         setSelectedNumberOfRooms,
         showSidebar,
-        setShowSideBar
+        setShowSideBar,
+        showLoginPopup,
+        setShowLoginPopup
       }}
     >
       {children}
