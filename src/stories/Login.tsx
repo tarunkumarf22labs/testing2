@@ -16,6 +16,14 @@ const Login = () => {
   const [countryCode, setCountryCode] = useState('+91');
   const [code, setCode] = useState('');
   const { setShowLoginPopup, showLoginPopup } = useContext(AppContext);
+
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {
+      document.body.style.overflowY = 'auto';
+    };
+  }, []);
+  
   return (
     <div className="fixed left-0 w-full overflow-auto h-[100vh] top-40 ease-in-out z-[500] rounded-3xl">
       <div

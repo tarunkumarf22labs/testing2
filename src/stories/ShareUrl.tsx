@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -23,6 +23,13 @@ interface IShareUrl {
 }
 
 const ShareUrl = ({ url, setShowShareModal, showShareModal }: IShareUrl) => {
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {
+      document.body.style.overflowY = 'auto';
+    };
+  }, []);
+
   return (
     <div className="fixed left-0 w-full overflow-auto h-[100vh] top-20 ease-in-out z-[500] rounded-3xl">
       <div

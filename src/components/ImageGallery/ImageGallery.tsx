@@ -77,6 +77,13 @@ export default function ImageGallery(props: ImageGalleryProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentFilter]);
+
+  if(isModalOpen){
+    document.body.style.overflowY = 'hidden';
+  }else{
+    document.body.style.overflowY = 'auto';
+  }
+
   return (
     <div>
       <div>
