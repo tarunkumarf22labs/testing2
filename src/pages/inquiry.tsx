@@ -25,7 +25,6 @@ interface IInquiry {
 }
 
 const Inquiry = (data: IInquiry) => {
-  console.log(data.data);
   let villaList = data.data;
 
   return (

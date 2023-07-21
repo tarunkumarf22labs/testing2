@@ -119,7 +119,6 @@ function FirstChild({
         setCode(data.token);
         setSlide(!slide);
       }
-      console.log(data, error, status);
     } catch (error) {}
   };
 
@@ -254,8 +253,6 @@ function SecondChild({
           captcha: captchaResponse
         })
       });
-      console.log(data, error, status);
-
       if (error) {
         ToastAlert(error, 'error');
       } else {
@@ -273,10 +270,8 @@ function SecondChild({
     const elem = e.target;
     const val = e.target.value;
     if (!/[0-9]{1}/.test(val) && val !== '') return;
-    console.log(otp, 'otp');
     //@ts-ignore
     const valueArr = otp?.split('');
-    console.log(valueArr, 'value');
     valueArr[index] = val;
     const newVal = valueArr?.join('').slice(0, 6);
     onChange(newVal);

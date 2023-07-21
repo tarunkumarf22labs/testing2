@@ -6,7 +6,7 @@ export interface IHomeOwners {
         createdAt: string | null;
         updatedAt: string | null;
         publishedAt: string | null;
-        image: {
+        banner: {
           data: HomeOwnerImage;
         };
         description: {
@@ -19,12 +19,12 @@ export interface IHomeOwners {
           date: string;
           experience: string;
           blogLink: string;
-          image: {
+          avatar: {
             data: HomeOwnerImage;
           };
         }[];
       };
-    }[];
+    };
     meta: {
       pagination: {
         page: number;
