@@ -425,3 +425,34 @@ export interface IVillaFAQ {
   }[];
   error: string | null;
 }
+
+export interface IVillaReviews {
+  data: {
+    id: number;
+    attributes: {
+      createdAt: string;
+      updatedAt: string;
+      publishedAt: string;
+      experience: IVillaUserExperience[];
+      landscapeImage: {
+        data: {
+          id: number;
+          attributes: FluffyAttributes;
+        };
+      };
+    };
+  };
+}
+
+export interface IVillaUserExperience {
+  id: number;
+  name: string;
+  experience: string;
+  date: string;
+  avatar: {
+    data: {
+      id: number;
+      attributes: FluffyAttributes;
+    };
+  };
+}

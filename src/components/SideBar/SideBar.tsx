@@ -29,7 +29,11 @@ const SideBar = () => {
           <ul className="py-5">
             {navs?.map((nav) => {
               return (
-                <Link href={'/'} onClick={() => setShowSideBar(false)}>
+                <Link
+                  key={nav?.name}
+                  href={'/'}
+                  onClick={() => setShowSideBar(false)}
+                >
                   <p className="px-[26px] pt-5 uppercase text-[#27272A] text-xs font-[420] tracking-[0.24px]">
                     {nav.name}
                   </p>

@@ -137,7 +137,7 @@ const HomeSearchBar = ({ locations, handleshowSearch }: IHomeSearchBar) => {
           <select
             value={location}
             placeholder="Select Destination"
-            className="h-full w-full text-[10px] font-[420] text-black placeholder:text-[#7B8084] uppercase border-none outline-none focus:ring-0 p-0"
+            className="h-full w-full text-xs font-[420] text-black placeholder:text-[#7B8084] uppercase border-none outline-none focus:ring-0 p-0"
             onChange={handleSelect}
           >
             <option className="text-[#7B8084]" value="">
@@ -169,7 +169,7 @@ const HomeSearchBar = ({ locations, handleshowSearch }: IHomeSearchBar) => {
           )}
           onClick={() => setShowDate(!showDate)}
         >
-          <div className="text-[10px] font-[420] text-[#7B8084] uppercase">
+          <div className="text-xs font-[420] text-[#7B8084] uppercase">
             {startDate ? (
               <p className="text-black">{`${firstDay} ${firstMonthName} ${firstYear}`}</p>
             ) : (
@@ -186,7 +186,7 @@ const HomeSearchBar = ({ locations, handleshowSearch }: IHomeSearchBar) => {
           )}
           onClick={() => setShowDate(!showDate)}
         >
-          <div className="text-[10px] font-[420] text-[#7B8084] uppercase">
+          <div className="text-xs font-[420] text-[#7B8084] uppercase">
             {endDate ? (
               <p className="text-black">{`${secondDay} ${secondMonthName} ${secondYear}`}</p>
             ) : (
@@ -199,7 +199,7 @@ const HomeSearchBar = ({ locations, handleshowSearch }: IHomeSearchBar) => {
         <div className={inputContainerClassName}>
           <input
             type="number"
-            className="w-full h-full border-none focus:ring-0 text-[10px] font-[420] text-black placeholder:text-[#7B8084] uppercase p-0"
+            className="w-full h-full border-none focus:ring-0 text-xs font-[420] text-black placeholder:text-[#7B8084] uppercase p-0"
             placeholder="Guest"
             min={1}
             max={20}

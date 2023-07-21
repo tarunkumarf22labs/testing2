@@ -13,8 +13,8 @@ const ListYourPropertySection = () => {
       let timeline = gsap.timeline({
         scrollTrigger: {
           trigger: scrollerRef?.current,
-          start: 'top 20%',
-          end: 'top 20%',
+          start: 'top 40%',
+          end: 'top 40%',
           toggleActions: 'play none reverse none'
         }
       });

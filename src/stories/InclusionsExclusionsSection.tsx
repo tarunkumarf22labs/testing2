@@ -68,7 +68,7 @@ const InclusionsExlusions = ({
 
   return (
     <div className="md:w-1/2">
-      <p className="uppercase text-sm text-[#8A1E61] mb-2 md:tracking-[4.2px] md:font-[450]">
+      <p className="uppercase text-sm text-[#8A1E61] mb-2 sm:mb-5 md:tracking-[4.2px] md:font-[450]">
         {heading}
       </p>
       <p className="uppercase text-xl md:text-5xl text-[#18181B] mb-6 font-light">

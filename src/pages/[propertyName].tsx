@@ -23,7 +23,7 @@ import { mediaImages } from 'src/data/constants';
 import Modal from 'src/stories/Modal/Modal';
 import { CuratedExpModal } from 'src/stories/CuratedExpModal';
 import NetWrapper from 'src/Network/netWrapper';
-import { IPropertyDetails, IVillaFAQ } from 'src/Interface';
+import { IPropertyDetails, IVillaFAQ, IVillaReviews } from 'src/Interface';
 import useIsMobile from '@/hooks/useIsMobile';
 import {
   VillaOverviewProps,
@@ -55,7 +55,7 @@ const Home: NextPage = ({
 }: {
   propertyData: IPropertyDetails;
   propertyError: any;
-  guestSpeakData: ITestimonials;
+  guestSpeakData: IVillaReviews;
   guestSpeakError: any;
   faqData: IVillaFAQ;
   faqError: any;
@@ -151,13 +151,22 @@ const Home: NextPage = ({
           ) : (
             <Accordion {...AccordionProps2(villaData)} />
           )}
-          {guestSpeakData?.data?.length && !guestSpeakError ? (
-            <PropertyReviewSection data={guestSpeakData} />
+          {guestSpeakData?.data?.attributes?.experience?.length &&
+          !guestSpeakError ? (
+            <PropertyReviewSection
+              data={guestSpeakData?.data?.attributes?.experience}
+              propertyName={villaData?.attributes?.name}
+            />
           ) : null}
           {faqData?.data?.length && !faqError ? (
-            <FaqsSection faqs={faqData} />
+            <FaqsSection
+              faqs={faqData}
+              propertyName={villaData?.attributes?.name}
+            />
           ) : null}
-          <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
+          {SimilarStaysSectionProps(villaData)?.villaData?.length ? (
+            <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
+          ) : null}
           <MediaListing mediaImages={mediaImages} />
           <Modal
             isOpen={isModalOpen}
@@ -199,7 +208,7 @@ export const getServerSideProps: GetServerSideProps<{
   const property = await NetWrapper(`api/properties/${encodedPropertyName}`);
 
   const guestSpeak = await NetWrapper(
-    `api/guestespeaks?filter[property][id][$eq]=${encodedPropertyName}&populate=deep,2`
+    `api/guestespeaks/${encodedPropertyName}`
   );
 
   const faq = await NetWrapper(

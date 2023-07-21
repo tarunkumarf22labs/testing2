@@ -7,9 +7,10 @@ import { IVillaFAQ } from 'src/Interface';
 
 interface IFaqs {
   faqs: IVillaFAQ;
+  propertyName: string;
 }
 
-export const FaqsSection = ({ faqs }: IFaqs) => {
+export const FaqsSection = ({ faqs, propertyName }: IFaqs) => {
   const [path, setPath] = useState('');
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export const FaqsSection = ({ faqs }: IFaqs) => {
     <Container>
       <div className="flex space-x-16">
         <div className="w-full lg:w-1/2">
-          <NameTitle propertyName={"Deja View's"} title={'faqs'} />
+          <NameTitle propertyName={`${propertyName}'s`} title={'faqs'} />
           <div className="space-y-6">
             {faqs?.data?.[0]?.attributes?.questionAndAnswers?.map(
               (faq, index) => {

@@ -47,7 +47,7 @@ export default function Carousel({
         modules={[Autoplay]}
         className="mySwiper h-full w-full"
       >
-        {images.map((ele, idx) => {
+        {images?.map((ele, idx) => {
           return (
             <SwiperSlide key={idx} className="ease-in-out">
               <Image
