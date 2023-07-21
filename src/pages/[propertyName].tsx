@@ -55,7 +55,6 @@ const Home: NextPage = (data: IHomeInterface) => {
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
-console.log(villaData)
   return (
     <Layout title="LuxUnlock">
       {data.error === null ? (
@@ -172,9 +171,14 @@ export default Home;
 export const getServerSideProps: GetServerSideProps<{
   data: IHomeInterface | null;
   error: string | null;
-}> = async (): Promise<any> => {
+}> = async (context): Promise<any> => {
+
+  const encodedPropertyName = Array.isArray(context.params.propertyName)
+  ? encodeURIComponent(context.params.propertyName[0])
+  : encodeURIComponent(context.params.propertyName);
+
   const { data, error, status } = await NetWrapper(
-    'api/properties/3?populate=deep'
+    `api/properties/${encodedPropertyName}`
   );
 
   return { props: { data, error } };

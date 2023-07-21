@@ -22,6 +22,19 @@ interface IExperiencesSection {
     longDecription: string;
     title: string;
   }[];
+  secondProps: {
+    id: number;
+    image: {
+      image: string;
+      width: number;
+      height: number;
+      alt: string;
+    };
+    shortDescription: string;
+    longDecription: string;
+    title: string;
+  }[];
+  secondHeading: string;
 }
 
 const ExperiencesSection = ({
@@ -29,7 +42,9 @@ const ExperiencesSection = ({
   toggleModal,
   villa,
   header,
-  props
+  props,
+  secondProps,
+  secondHeading
 }: IExperiencesSection) => {
   const swiperOneRef = useRef(null);
   const swiperTwoRef = useRef(null);
@@ -100,10 +115,10 @@ const ExperiencesSection = ({
         <div className="relative pl-5 md:ml-[max(0px,(100%_-_80rem)/2)] xl:pl-0">
           <div className="pb-6 uppercase sm:pb-10">
             <p className="text-sm text-[#8A1E61] mb-5 tracking-widest">
-              {"DEJA VIEW'S"}
+              {villa && villa}
             </p>
             <p className="text-3xl uppercase sm:text-5xl sm:text-[#1C1917] font-light">
-              {experiencesAndAttraction}
+              {secondHeading}
             </p>
           </div>
           <Swiper
@@ -119,7 +134,7 @@ const ExperiencesSection = ({
             centeredSlidesBounds={isMobile}
             watchOverflow={true}
           >
-            {props?.map((el, idx) => {
+            {secondProps?.map((el, idx) => {
               return (
                 <SwiperSlide
                   key={`${idx + 1}`}

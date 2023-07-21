@@ -132,7 +132,13 @@ export interface villaInterface {
       name: string;
       pId: null;
     }[];
-    stayLonger: [];
+    stayLonger: {
+      id: number;
+      title: string;
+      shortDescription: string;
+      longDescription: string;
+      image: IImageAmenity
+    }[];
     paymentTerm: {
       id: number;
       modesOfPayment: string;
@@ -143,7 +149,28 @@ export interface villaInterface {
       data: villaInterface[];
     };
     uploadBrochure: {
-      data: null;
+      data: {
+        id: number;
+        attributes: {
+          name: string;
+          alternativeText: string;
+          caption: string;
+          width: number;
+          height: number;
+          formats: null;
+          hash: string;
+          ext: string;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl: string;
+          provider: string;
+          provider_metadata: string;
+          folderPath: string;
+          createdAt: string;
+          updatedAt: string;
+        }
+      };
     };
     refundableSecurityDeposit: {
       id: number;
