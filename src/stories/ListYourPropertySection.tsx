@@ -1,76 +1,98 @@
-import React, { useEffect } from 'react';
-import { Container } from './Container';
 import Image from 'next/image';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { useEffect, useRef } from 'react';
+import PrimaryButton from './PrimaryButton';
+import { knowMore, listYourPropertySection } from 'src/data/constants';
+import { Container } from './Container';
+import { gsap } from 'gsap';
 
-export const ListYourPropertySection = () => {
-  const { ref, inView } = useInView({ threshold: 0.2 });
-  const animation = useAnimation();
+const ListYourPropertySection = () => {
+  const scrollerRef = useRef(null);
 
   useEffect(() => {
-    if (inView) {
-      animation.start({
-        scale: 1,
-        transition: { duration: 0.5 }
+    let ctx = gsap.context(() => {
+      let timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: scrollerRef?.current,
+          start: 'top 40%',
+          end: 'top 40%',
+          toggleActions: 'play none reverse none'
+        }
       });
-    } else {
-      animation.start({ scale: 1.5, transition: { duration: 0.5 } });
-    }
-  }, [inView, animation]);
+
+      timeline
+        .fromTo('.list-your-prop-img-1', { scale: 1.5 }, { scale: 1 })
+        .fromTo('.list-your-prop-img-2', { scale: 1.5 }, { scale: 1 }, '<')
+        .fromTo('.list-your-prop-img-3', { scale: 1.5 }, { scale: 1 }, '<');
+    }, scrollerRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <Container bgWhite={false}>
-      <div className="flex flex-col space-y-10 md:flex-row md:space-y-0 md:justify-between md:space-x-16">
-        <div className="flex flex-col space-y-10 text-center md:text-left md:mt-10 md:relative md:flex-1">
+    <div ref={scrollerRef}>
+      <Container bgWhite={false}>
+        <div className="flex gap-[65px] flex-col md:flex-row items-center md:items-start">
           <div>
-            <p className="uppercase text-xs text-[#8A1E61] mb-3 md:text-sm md:mb-5">
-              Home Owners
+            <p className="text-[#8A1E61] text-center md:text-left uppercase text-sm font-[450] md:tracking-[4.2px]">
+              {listYourPropertySection.homeOwners}
             </p>
-            <p className="uppercase text-4xl text-[#18181B] font-light mb-8 md:text-5xl md:mb-3">
-              LIST YOUR Property
+            <h1 className="text-[#1C1917] text-center md:text-left uppercase text-[28px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5">
+              {listYourPropertySection.heading}
+            </h1>
+            <p className="font-[400] text-center md:text-left text-lg text-[#545456] font-centaur mt-3">
+              {listYourPropertySection.para}
             </p>
-            <p className="text-base text-[#545456] font-centaur mb-4 md:text-lg md:mb-10">
-              Unlock the value if your luxury vacation home.
-            </p>
-            <button className="text-xs text-white w-[250px] h-[48px] bg-[#8A1E61] uppercase">
-              Know More
-            </button>
-          </div>
-          <div className="hidden xl:absolute right-10 bottom-0 lg:block h-[242px] overflow-hidden">
-            <motion.div animate={animation}>
-              <Image
-                src="/images/ListYourPropertyImage33.webp"
-                alt="List your Property 1"
-                width={298}
-                height={242}
+            <div className="flex gap-[76px] justify-center md:justify-start">
+              <PrimaryButton
+                className="w-[317px] justify-center mt-10 self-start"
+                title={knowMore}
+                onClick={() => {}}
               />
-            </motion.div>
+              <div className="hidden xl:block w-[298px] h-[242px] relative mt-20 shadow-xl overflow-hidden">
+                <Image
+                  src={
+                    'https://luxunlockdev.s3.ap-south-1.amazonaws.com/Lower_Verandah_at_Breakfast_e5e907f6b2.jpg'
+                  }
+                  alt=""
+                  sizes="100vw"
+                  height={0}
+                  width={0}
+                  className="list-your-prop-img-1 w-full h-full absolute object-cover"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="w-[302px] h-[418px] relative shadow-xl">
+              <div className="w-[302px] h-[418px] relative overflow-hidden">
+                <Image
+                  src={
+                    'https://luxunlockdev.s3.ap-south-1.amazonaws.com/Lower_Verandah_at_Breakfast_e5e907f6b2.jpg'
+                  }
+                  alt=""
+                  sizes="100vw"
+                  height={0}
+                  width={0}
+                  className="list-your-prop-img-2 absolute w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-[211px] h-[170px] absolute top-[40%] md:top-[58px] left-[40%] xl:left-[80%] overflow-hidden">
+                <Image
+                  src={
+                    'https://luxunlockdev.s3.ap-south-1.amazonaws.com/Picnic_on_the_Lawns_b4a2953158.jpg'
+                  }
+                  alt=""
+                  sizes="100vw"
+                  height={0}
+                  width={0}
+                  className="list-your-prop-img-3 w-[211px] h-[170px] object-cover shadow-xl"
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="relative h-[452px] w-[350px] mx-auto md:mx-0 md:w-[484px]">
-          <div className="absolute left-0 overflow-hidden">
-            <motion.div animate={animation} ref={ref}>
-              <Image
-                src="/images/ListYourPropertyImage11.webp"
-                alt="List your Property 1"
-                width={302}
-                height={416}
-              />
-            </motion.div>
-          </div>
-          <div className="overflow-hidden absolute right-0 top-[168px]">
-            <motion.div animate={animation}>
-              <Image
-                src="/images/ListYourPropertyImage22.webp"
-                alt="List your Property 2"
-                width={211}
-                height={202}
-              />
-            </motion.div>
-          </div>
-        </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
+
+export default ListYourPropertySection;

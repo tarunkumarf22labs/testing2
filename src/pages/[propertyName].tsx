@@ -2,8 +2,6 @@ import { useState } from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import Layout from '@/components/Layout';
 
-import { ReviewCardsCollection, faqs } from '../data/constants';
-
 import {
   AmenitiesSection,
   InclusionsExclusionsSection,
@@ -25,7 +23,7 @@ import { mediaImages } from 'src/data/constants';
 import Modal from 'src/stories/Modal/Modal';
 import { CuratedExpModal } from 'src/stories/CuratedExpModal';
 import NetWrapper from 'src/Network/netWrapper';
-import { IHomeInterface } from 'src/Interface';
+import { IPropertyDetails, IVillaFAQ, IVillaReviews } from 'src/Interface';
 import useIsMobile from '@/hooks/useIsMobile';
 import {
   VillaOverviewProps,
@@ -45,19 +43,35 @@ import {
 } from 'src/Props';
 import { Accordion } from 'src/stories/Accordion';
 import { Container } from 'src/stories/Container';
+import { ITestimonials } from 'src/Interface/home-page';
 
-const Home: NextPage = (data: IHomeInterface) => {
+const Home: NextPage = ({
+  propertyData,
+  propertyError,
+  guestSpeakData,
+  guestSpeakError,
+  faqData,
+  faqError
+}: {
+  propertyData: IPropertyDetails;
+  propertyError: any;
+  guestSpeakData: IVillaReviews;
+  guestSpeakError: any;
+  faqData: IVillaFAQ;
+  faqError: any;
+}) => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [elementNo, setElementNo] = useState<number>(0);
-  const villaData = data?.data?.data;
+  const villaData = propertyData?.data;
   const isMobile = useIsMobile();
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
+
   return (
     <Layout title="LuxUnlock">
-      {data.error === null ? (
+      {propertyError === null ? (
         <div className="bg-[#f8f8f9]">
           <PropertyDetailsHeroSection
             {...PropertyDetailsHeroSectionProps(villaData)}
@@ -137,11 +151,22 @@ const Home: NextPage = (data: IHomeInterface) => {
           ) : (
             <Accordion {...AccordionProps2(villaData)} />
           )}
-          <PropertyReviewSection
-            reviewCardsCollection={ReviewCardsCollection}
-          />
-          <FaqsSection faqs={faqs} />
-          <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
+          {guestSpeakData?.data?.attributes?.experience?.length &&
+          !guestSpeakError ? (
+            <PropertyReviewSection
+              data={guestSpeakData?.data?.attributes?.experience}
+              propertyName={villaData?.attributes?.name}
+            />
+          ) : null}
+          {faqData?.data?.length && !faqError ? (
+            <FaqsSection
+              faqs={faqData}
+              propertyName={villaData?.attributes?.name}
+            />
+          ) : null}
+          {SimilarStaysSectionProps(villaData)?.villaData?.length ? (
+            <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
+          ) : null}
           <MediaListing mediaImages={mediaImages} />
           <Modal
             isOpen={isModalOpen}
@@ -159,7 +184,7 @@ const Home: NextPage = (data: IHomeInterface) => {
         </div>
       ) : (
         <div className="w-full h-[500px] flex justify-center items-center">
-          <h1 className="text-2xl">{data.error}</h1>
+          <h1 className="text-2xl">{propertyError}</h1>
         </div>
       )}
     </Layout>
@@ -169,17 +194,35 @@ const Home: NextPage = (data: IHomeInterface) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps<{
-  data: IHomeInterface | null;
-  error: string | null;
+  propertyData: IPropertyDetails;
+  propertyError: any;
+  guestSpeakData: ITestimonials;
+  guestSpeakError: any;
+  faqData: IVillaFAQ;
+  faqError: any;
 }> = async (context): Promise<any> => {
-
   const encodedPropertyName = Array.isArray(context.params.propertyName)
-  ? encodeURIComponent(context.params.propertyName[0])
-  : encodeURIComponent(context.params.propertyName);
+    ? encodeURIComponent(context.params.propertyName[0])
+    : encodeURIComponent(context.params.propertyName);
 
-  const { data, error, status } = await NetWrapper(
-    `api/properties/${encodedPropertyName}`
+  const property = await NetWrapper(`api/properties/${encodedPropertyName}`);
+
+  const guestSpeak = await NetWrapper(
+    `api/guestespeaks/${encodedPropertyName}`
   );
 
-  return { props: { data, error } };
+  const faq = await NetWrapper(
+    `api/faqs?filters[isForProperty][$eq]=true&filters[property][name][$eq]=${encodedPropertyName}&populate=deep,2`
+  );
+
+  return {
+    props: {
+      propertyData: property?.data,
+      propertyError: property?.error,
+      guestSpeakData: guestSpeak?.data,
+      guestSpeakError: guestSpeak?.error,
+      faqData: faq?.data,
+      faqError: faq?.error
+    }
+  };
 };

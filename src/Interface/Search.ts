@@ -24,12 +24,10 @@ export interface ILocations {
   };
 }
 export interface ISearchInterface {
-  // data: {
   states: ILocations;
   countries: ILocations;
   cities: ILocations;
   villa?: IVillas;
-  // };
   error: string | null;
 }
 

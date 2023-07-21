@@ -3,7 +3,11 @@ import '../styles/globals.css';
 import AppProvider from 'src/Context';
 import { ToastContainer } from 'react-toastify';
 
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  gsap.registerPlugin(ScrollTrigger);
   return (
     <AppProvider>
       <Component {...pageProps} />

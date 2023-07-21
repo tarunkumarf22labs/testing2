@@ -28,7 +28,7 @@ export const Container = ({
           : bgWhite
           ? 'bg-white'
           : 'bg-[#f8f8f9]',
-        slider ? 'lg:pl-[100px]' : 'lg:px-[100px]',
+        slider ? 'lg:pl-10 xl:pl-[100px]' : 'lg:px-10 xl:px-[100px]',
         className
       )}
     >
@@ -39,8 +39,8 @@ export const Container = ({
             : twMerge(
                 'py-10 lg:py-20',
                 slider
-                  ? 'md:ml-[max(0px,(100%_-_80rem)/2)] pl-5 xl:pl-0'
-                  : 'xl:max-w-7xl xl:mx-auto px-5 xl:px-0',
+                  ? 'xl:ml-[max(0px,(100%_-_80rem)/2.5)] pl-5 lg:pl-0'
+                  : 'xl:max-w-7xl xl:mx-auto px-5 lg:px-0',
                 innerContainerClassName
               )
         }

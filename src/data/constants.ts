@@ -453,10 +453,6 @@ export const mediaImages = [
   '/images/architectural-digest.png',
   '/images/plateform.png',
   '/images/traveller.png',
-  '/images/the-hindu-group.png',
-  '/images/architectural-digest.png',
-  '/images/plateform.png',
-  '/images/traveller.png',
   '/images/the-hindu-group.png'
 ];
 
@@ -511,7 +507,7 @@ export const journeySection = {
 };
 
 export const curatedCollectionSection = {
-  heading: 'CURATED COLLECTION'
+  heading: 'Inspiration'
 };
 
 export const villaFAQ = {
@@ -526,3 +522,27 @@ export const beforeYouBookSection = {
 };
 
 export const reserve = 'RESERVE';
+
+export const destinationsSection = {
+  heading: 'Destinations'
+};
+
+export const listYourPropertySection = {
+  homeOwners: 'Home Owners',
+  heading: 'List Your Property',
+  para: 'Unlock the value if your luxury vacation home.'
+};
+
+export const knowMore = 'KNOW MORE';
+
+export const homeTestimonialSection = {
+  theirExperience: 'Their Experience',
+  heading: 'on LuxUnlock'
+};
+
+export const featuredIn = 'Featured In';
+
+export const aboutSection = {
+  about: 'About',
+  heading: 'LUXUNLOCK'
+};

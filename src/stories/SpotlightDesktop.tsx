@@ -4,17 +4,14 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
 import { spotLightSection } from 'src/data/constants';
+import { ISpotlightAndJourney } from 'src/Interface/home-page';
+import PrimaryButton from './PrimaryButton';
 
-const SpotlightDesktop = ({ data }: { data: any[] }) => {
-  gsap.registerPlugin(ScrollTrigger);
-
+const SpotlightDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
   const scrollerRef = useRef(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(() => {
-    gsap.set('.small-preview-image-container', {
-      zIndex: data.length + 1
-    });
     let ctx = gsap.context(() => {
       let tl = gsap.timeline({
         scrollTrigger: {
@@ -35,11 +32,11 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
             zIndex: idx,
             translateY: '100%'
           });
-          gsap.set([`.preview-image-${idx}`, `.small-preview-image-${idx}`], {
+          gsap.set(`.preview-image-${idx}`, {
             zIndex: idx,
             translateY: '100%'
           });
-          tl.to([`.preview-image-${idx}`, `.small-preview-image-${idx}`], {
+          tl.to(`.preview-image-${idx}`, {
             translateY: 0,
             onComplete: () => setSlideIndex(idx),
             onReverseComplete: () => setSlideIndex(idx - 1)
@@ -78,52 +75,36 @@ const SpotlightDesktop = ({ data }: { data: any[] }) => {
                 key={`${idx}`}
                 className={`flex flex-col gap-y-4 flex-1 py-10 absolute text-content h-full w-full bg-white text-content-${idx}`}
               >
-                <h2 className="text-[#1C1917] text-[42px] font-light">
-                  New Villa In Sri Lanka
+                <h2 className="text-[#1C1917] text-[42px] font-light capitalize">
+                  {el?.title}
                 </h2>
                 <p className="text-base md:text-[22px] leading-[34px] text-[#545456]">
-                  {el.para}
+                  {el?.description}
                 </p>
+                <PrimaryButton
+                  title="Know More"
+                  onClick={() => {}}
+                  className="self-start w-[317px] p-0 py-4 items-center justify-center mt-2"
+                />
               </div>
             );
           })}
         </div>
         <div className="flex flex-1 items-center gap-8">
-          <div className="w-full max-w-[559px] h-[369px] relative">
-            <div className="relative w-full h-full overflow-hidden">
-              {data?.map((el, idx) => {
-                return (
-                  <Image
-                    key={`${idx}`}
-                    src={el?.big}
-                    alt="List your Property 1"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className={`absolute w-full h-full object-cover preview-image-${idx}`}
-                  />
-                );
-              })}
-            </div>
-            <div
-              className={
-                'small-preview-image-container w-[229px] h-[152px] absolute -bottom-10 right-10 overflow-hidden shadow-2xl'
-              }
-            >
-              {data?.map((el, idx) => {
-                return (
-                  <Image
-                    key={`${idx}`}
-                    src={el?.small}
-                    alt="List your Property 1"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className={`absolute h-full w-full object-cover small-preview-image-${idx}`}
-                  />
-                );
-              })}
-            </div>
+          <div className="w-full max-w-[559px] h-[369px] relative overflow-hidden">
+            {data?.map((el, idx) => {
+              return (
+                <Image
+                  key={`${idx}`}
+                  src={el?.images?.data?.[0]?.attributes?.url}
+                  alt="spotlight"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className={`absolute w-full h-full object-cover preview-image-${idx}`}
+                />
+              );
+            })}
           </div>
           <div className="flex flex-col items-center w-8">
             <ChevronUpIcon

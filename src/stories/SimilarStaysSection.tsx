@@ -41,7 +41,7 @@ const SimilarStaysSection = ({
         {heading && (
           <>
             <p className="text-sm text-[#8A1E61] mb-5 md:tracking-[4.2px] md:font-[450]">
-              {'LuxUNLOCK’s'}
+              {`LuxUNLOCK’s`}
             </p>
             <p className="text-3xl sm:text-5xl sm:text-[#1C1917] font-light">
               {heading}
@@ -69,7 +69,7 @@ const SimilarStaysSection = ({
               className={`${
                 inVillaDetails
                   ? 'w-full max-w-[290px] md:max-w-[373px] pr-5'
-                  : 'w-[284px] max-w-[300px] md:w-[500px] md:max-w-[500px] mr-10'
+                  : 'w-full max-w-[284px] md:w-[500px] md:max-w-[500px] mr-10'
               }`}
             >
               <SimilarStaysCard

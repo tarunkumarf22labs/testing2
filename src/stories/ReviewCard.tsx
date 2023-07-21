@@ -46,10 +46,10 @@ export const ReviewCard = ({
           alt="Avatar"
           width={60}
           height={60}
-          className="rounded-full bg-slate-500 text-slate-500 mr-3"
+          className="rounded-full max-w-[60px] max-h-[60px] bg-slate-500 text-slate-500 mr-3 object-cover"
         />
         <div className={classNames('flex flex-col justify-center')}>
-          <p className="text-sm text-[#8A1E61] tracking-widest font-normal">
+          <p className="text-sm text-[#8A1E61] tracking-widest font-normal capitalize">
             {name}
           </p>
           <p className="text-xs text-[#7B8084] tracking-widest">{state}</p>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -10,81 +10,48 @@ import CuratedCollectionCard from './CuratedCollectionCard';
 import classNames from 'classnames';
 import { ScrollButton } from './ScrollButton';
 import useIsMobile from '@/hooks/useIsMobile';
+import { ICuratedCollection } from 'src/Interface/home-page';
 
-const data = [
-  {
-    category: 'LUXURY INDULGENCE',
-    properties: [
-      {
-        place: 'Wayanad, Kerala',
-        name: 'Deja View'
-      },
-      {
-        place: 'Palakkad, Kerala',
-        name: 'Gramercy House'
-      },
-      {
-        place: 'Chennai, Tamil Nadu',
-        name: "John's Villa"
-      },
-      {
-        place: 'Salem, Tamil Nadu',
-        name: "Elon's House"
-      },
-      {
-        place: 'Pollachi, Tamil Nadu',
-        name: 'Dream View'
-      }
-    ]
-  },
-  {
-    category: 'PET FRIENDLY'
-  },
-  {
-    category: 'THE PEAKS'
-  },
-  {
-    category: 'CULTURAL HERITAGE'
-  },
-  {
-    category: 'FOOD TRAIL'
-  },
-  {
-    category: 'RANDOM'
-  }
-];
-
-const CuratedCollection = () => {
+const CuratedCollection = ({
+  collections
+}: {
+  collections: ICuratedCollection[];
+}) => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
 
   const [allowSlideNext, setAllowSlideNext] = useState(false);
   const [allowSlidePrev, setAllowSlidePrev] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState(data?.[0]);
+  const [selectedCategory, setSelectedCategory] = useState(collections?.[0]);
+
+  const selectedCollectionVilla = useMemo(() => {
+    return collections?.find((el) => el?.id === selectedCategory?.id)
+      ?.properties?.data;
+  }, [selectedCategory?.id]);
 
   return (
     <Container bgWhite={isMobile ? true : false} slider>
       <div>
-        <p className="uppercase text-[#8A1E61] text-center md:text-left tracking-[3px] md:tracking-[4.2px] text-[10px] md:text-sm font-[450]">
-          LuxUNLOCK’s
-        </p>
-        <h1 className="text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
+        <h1 className="uppercase text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
           {curatedCollectionSection.heading}
         </h1>
         <div>
           <div className="flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
-            {(data?.length > 5 ? data.slice(0, 5) : data)?.map((el, idx) => {
+            {(collections?.length > 5
+              ? collections.slice(0, 5)
+              : collections
+            )?.map((el, idx) => {
               return (
                 <TabButton
                   key={`${idx}`}
-                  title={el?.category}
-                  isSelected={selectedCategory?.category === el?.category}
+                  title={el?.title}
+                  isSelected={selectedCategory?.id === el?.id}
                   onClick={() => setSelectedCategory(el)}
                 />
               );
             })}
-            {data?.length > 5 ? (
+            {collections?.length > 5 ? (
               <TabButton title={viewAll} onClick={() => {}} />
             ) : null}
           </div>
@@ -107,14 +74,15 @@ const CuratedCollection = () => {
               className="relative"
               watchOverflow={true}
             >
-              {selectedCategory?.properties?.map((property, idx) => {
+              {selectedCollectionVilla?.map((property, idx) => {
+                console.log(property);
                 return (
                   <SwiperSlide
                     key={`${idx}`}
                     className={classNames(
                       'max-w-[280px]',
                       activeIndex === idx ||
-                        selectedCategory?.properties?.length === 2
+                        selectedCollectionVilla?.length === 2
                         ? 'md:max-w-[620px]'
                         : 'md:max-w-[426px]'
                     )}
@@ -133,16 +101,26 @@ const CuratedCollection = () => {
                         className={classNames(
                           'h-auto',
                           activeIndex === idx ||
-                            selectedCategory?.properties?.length === 2
+                            selectedCollectionVilla?.length === 2
                             ? 'w-full md:h-[410px]'
                             : 'w-full md:h-[282px]'
                         )}
                         isActive={Boolean(
                           activeIndex === idx ||
-                            selectedCategory?.properties?.length === 2
+                            selectedCollectionVilla?.length === 2
                         )}
-                        name={property?.name}
-                        place={property?.place}
+                        name={property?.attributes?.name}
+                        place={
+                          property?.attributes?.address?.city?.data?.attributes
+                            ?.name +
+                          ', ' +
+                          property?.attributes?.address?.state?.data?.attributes
+                            ?.name
+                        }
+                        basePrice={property?.attributes?.pricing?.basic}
+                        amenities={property?.attributes?.amenities?.data?.map(
+                          (el) => el?.attributes?.title
+                        )}
                       />
                     </div>
                   </SwiperSlide>
@@ -152,7 +130,7 @@ const CuratedCollection = () => {
                 <div
                   className={classNames(
                     'absolute right-16 md:right-20 flex justify-end bottom-1/2 -translate-y-1/2 z-10',
-                    selectedCategory?.properties?.length === 2
+                    selectedCollectionVilla?.length === 2
                       ? 'md:bottom-0'
                       : 'md:bottom-10'
                   )}

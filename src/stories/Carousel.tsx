@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
-// Import Swiper styles
+import { motion } from 'framer-motion';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -17,7 +18,9 @@ interface CarouselProps {
   }[];
 }
 import { Autoplay } from 'swiper';
-import Search from './Search';
+import HomeSearchBar from './HomeSearchBar';
+import { Container } from './Container';
+import { CalendarBlank, MagnifyingGlass, Users } from '@phosphor-icons/react';
 
 export default function Carousel({
   images,
@@ -26,8 +29,14 @@ export default function Carousel({
   bannerText,
   locations
 }: CarouselProps) {
+  const [showFilterMenu, setShowFilterMenu] = useState(false);
+
+  const toggleFilterMenu = () => {
+    setShowFilterMenu(true);
+  };
+
   return (
-    <div className="relative text-center md:-mt-28">
+    <div className="relative text-center md:-mt-[100px] h-[480px] md:h-screen">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -36,33 +45,80 @@ export default function Carousel({
           disableOnInteraction: false
         }}
         modules={[Autoplay]}
-        className="mySwiper"
+        className="mySwiper h-full w-full"
       >
-        {images.map((ele, idx) => {
+        {images?.map((ele, idx) => {
           return (
-            <SwiperSlide key={idx}>
-              <div className="w-full ease-in-out ">
-                <Image
-                  src={ele}
-                  width={1920}
-                  height={1080}
-                  alt="Poster Image"
-                  className={bannerImageStyle}
-                />
-              </div>
+            <SwiperSlide key={idx} className="ease-in-out">
+              <Image
+                src={ele}
+                width={0}
+                height={0}
+                sizes="100vw"
+                alt="Poster Image"
+                className={bannerImageStyle}
+              />
             </SwiperSlide>
           );
         })}
       </Swiper>
-      <div
-        className={`overflow-hidden ${bannerTextStyle} Home-page-text-div font-[Brandon Grotesque] tracking-wide text-4xl md:text-5xl`}
+      <Container
+        bgTransparent
+        className={`md:bg-black/20 absolute h-full inset-0 z-10 pt-16 md:pt-0`}
+        innerContainerClassName="flex h-full flex-col md:items-center px-0 xl:px-5 py-0 lg:py-20 md:justify-center"
       >
-        <p className="capitalize animate-slide-down">{bannerText}</p>
-      </div>
-      <div className="relative m-auto bg-[#FFFFFF] lg:absolute bottom-24  lg:left-14 lg:right-14 xl:left-28 xl:right-24 w-[90%]">
-        <Search locations={locations} />
-      </div>
+        {showFilterMenu ? null : (
+          <div
+            onClick={toggleFilterMenu}
+            className="flex md:hidden h-[48px] w-full bg-[#F8F8F9] items-center px-5"
+          >
+            <MagnifyingGlass size={20} />
+            <p className="flex-1 text-[#7B8084] text-[10px] font-[420] text-left pl-3">
+              Select Destination
+            </p>
+            <CalendarBlank size={20} className="mr-4" />
+            <Users size={20} />
+          </div>
+        )}
+        <div className="hidden flex-1 md:flex items-center justify-center">
+          <h1
+            className={`capitalize animate-slide-down max-w-[830px] leading-[68px] font-[330] ${bannerTextStyle} text-4xl md:text-[52px]`}
+          >
+            {bannerText}
+          </h1>
+        </div>
+        <motion.div
+          animate={{
+            opacity: 1
+          }}
+          initial={{
+            opacity: 0
+          }}
+          transition={{
+            duration: 1
+          }}
+          className={'w-full mb-20 hidden md:block'}
+        >
+          <HomeSearchBar locations={locations} />
+        </motion.div>
+
+        {showFilterMenu ? (
+          <motion.div
+            animate={{
+              opacity: 1
+            }}
+            initial={{
+              opacity: 0
+            }}
+            transition={{
+              duration: 1
+            }}
+            className={'w-full block md:hidden'}
+          >
+            <HomeSearchBar locations={locations} />
+          </motion.div>
+        ) : null}
+      </Container>
     </div>
   );
 }
-// top-[60%]

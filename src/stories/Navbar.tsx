@@ -19,21 +19,19 @@ interface NavbarProps {
 const Navbar = (props: NavbarProps) => {
   const { options, onMenuSelectedHandler } = props;
   return (
-    <>
-      <ul className="flex items-center justify-between w-full ">
-        {options.map((ele, idx) => {
-          return (
-            <Option
-              title={ele.title}
-              options={ele.options}
-              id={idx}
-              onMenuSelectedHandler={onMenuSelectedHandler}
-              key={idx}
-            />
-          );
-        })}
-      </ul>
-    </>
+    <ul className="flex items-center gap-2 xl:gap-5 w-full">
+      {options.map((ele, idx) => {
+        return (
+          <Option
+            title={ele.title}
+            options={ele.options}
+            id={idx}
+            onMenuSelectedHandler={onMenuSelectedHandler}
+            key={idx}
+          />
+        );
+      })}
+    </ul>
   );
 };
 

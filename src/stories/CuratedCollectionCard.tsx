@@ -2,24 +2,20 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import React from 'react';
 
-const amenities = [
-  '6 - 8 Guests',
-  '3 Bedrooms',
-  '4 Bathrooms',
-  'Pet Friendly',
-  'Beach Villa'
-];
-
 const CuratedCollectionCard = ({
   className,
   isActive,
   name,
-  place
+  place,
+  basePrice,
+  amenities
 }: {
   className: string;
   isActive?: boolean;
   name: string;
   place: string;
+  basePrice: number;
+  amenities: string[];
 }) => {
   return (
     <div
@@ -47,7 +43,7 @@ const CuratedCollectionCard = ({
             {name}
           </h1>
           <p className="text-sm text-[#8A1E61] font-normal truncate pl-1">
-            ₹12,589 night
+            ₹{basePrice} night
           </p>
         </div>
         <div className={'items-center mt-[8px] truncate flex flex-wrap'}>
@@ -64,7 +60,7 @@ const CuratedCollectionCard = ({
 
       <div
         className={classNames(
-          'hidden md:block bg-white absolute w-10/12 max-h-[123px] left-1/2 -translate-x-1/2 transition-all origin-center duration-500',
+          'hidden md:block bg-white absolute w-10/12 left-1/2 -translate-x-1/2 transition-all origin-center duration-500',
           isActive ? 'p-6 top-[85%]' : 'p-4 top-[90%]'
         )}
       >
@@ -78,7 +74,7 @@ const CuratedCollectionCard = ({
             {place}
           </p>
           <p className="text-sm text-[#545456] font-normal truncate flex-1 text-right">
-            ₹12,589 night
+            ₹{basePrice} night
           </p>
         </div>
         <h1
@@ -91,7 +87,7 @@ const CuratedCollectionCard = ({
         </h1>
         <div
           className={classNames(
-            'items-center mt-[6px] truncate flex transition-all origin-center duration-500',
+            'items-center mt-[6px] flex transition-all origin-center duration-500 flex-wrap',
             isActive ? 'h-auto opacity-100' : 'h-0 opacity-0'
           )}
         >

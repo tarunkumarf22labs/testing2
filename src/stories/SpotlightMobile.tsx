@@ -4,8 +4,9 @@ import { ScrollButton } from './ScrollButton';
 import { spotLightSection } from 'src/data/constants';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { ISpotlightAndJourney } from 'src/Interface/home-page';
 
-const SpotlightMobile = ({ data }: { data: any[] }) => {
+const SpotlightMobile = ({ data }: { data: ISpotlightAndJourney[] }) => {
   const swiperRef = useRef(null);
 
   const [allowSlideNext, setAllowSlideNext] = useState(false);
@@ -32,28 +33,20 @@ const SpotlightMobile = ({ data }: { data: any[] }) => {
             return (
               <SwiperSlide key={`${idx}`} className="h-full w-full pb-8">
                 <div className="h-full md:max-w-[350px] mx-auto">
-                  <h2 className="text-center text-[#1C1917] text-[32px] font-light tracking-[0.64px]">
-                    New Villa In Sri Lanka
+                  <h2 className="text-center text-[#1C1917] text-[32px] font-light tracking-[0.64px] capitalize">
+                    {el?.title}
                   </h2>
                   <p className="text-center mt-4 text-[#545456] font-normal leading-6">
-                    {el?.para}
+                    {el?.description}
                   </p>
                   <div className="w-full h-[231px] relative mt-8">
                     <Image
-                      src={el?.big}
+                      src={el?.images?.data?.[0]?.attributes?.url}
                       alt="spotlight"
                       width={0}
                       height={0}
                       sizes="100vw"
                       className={`absolute h-full w-full object-cover`}
-                    />
-                    <Image
-                      src={el?.small}
-                      alt="spotlight"
-                      width={159}
-                      height={106}
-                      sizes="100vw"
-                      className={`w-[159px] h-[106px] object-cover absolute -bottom-[30px] right-[15px]`}
                     />
                   </div>
                 </div>

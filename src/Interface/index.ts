@@ -62,7 +62,18 @@ export interface villaInterface {
         };
       };
       region: {
-        data: null;
+        data: {
+          id: string;
+          attributes: {
+            name: string;
+            createdAt: string | null;
+            updatedAt: string | null;
+            publishedAt: string | null;
+            banner: {
+              data: null;
+            };
+          };
+        };
       };
       state: {
         data: {
@@ -126,7 +137,7 @@ export interface villaInterface {
       title: string;
       shortDescription: string;
       longDescription: string;
-      image: IImageAmenity
+      image: IImageAmenity;
     }[];
     paymentTerm: {
       id: number;
@@ -158,7 +169,7 @@ export interface villaInterface {
           folderPath: string;
           createdAt: string;
           updatedAt: string;
-        }
+        };
       };
     };
     refundableSecurityDeposit: {
@@ -182,6 +193,11 @@ export interface IHomeInterface {
     meta: {};
   };
   error: string | null;
+}
+
+export interface IPropertyDetails {
+  data: villaInterface;
+  meta: {};
 }
 
 export interface IImage {
@@ -250,15 +266,15 @@ export enum LWebpMIME {
 }
 
 export enum AttributesEXT {
-  Jpg = ".jpg",
-  PDF = ".pdf",
-  SVG = ".svg",
+  Jpg = '.jpg',
+  PDF = '.pdf',
+  SVG = '.svg'
 }
 
 export enum AttributesMIME {
-  ApplicationPDF = "application/pdf",
-  ImageJPEG = "image/jpeg",
-  ImageSVGXML = "image/svg+xml",
+  ApplicationPDF = 'application/pdf',
+  ImageJPEG = 'image/jpeg',
+  ImageSVGXML = 'image/svg+xml'
 }
 
 export interface Iamenities {
@@ -408,4 +424,35 @@ export interface IVillaFAQ {
     attributes: IFAQAttributes;
   }[];
   error: string | null;
+}
+
+export interface IVillaReviews {
+  data: {
+    id: number;
+    attributes: {
+      createdAt: string;
+      updatedAt: string;
+      publishedAt: string;
+      experience: IVillaUserExperience[];
+      landscapeImage: {
+        data: {
+          id: number;
+          attributes: FluffyAttributes;
+        };
+      };
+    };
+  };
+}
+
+export interface IVillaUserExperience {
+  id: number;
+  name: string;
+  experience: string;
+  date: string;
+  avatar: {
+    data: {
+      id: number;
+      attributes: FluffyAttributes;
+    };
+  };
 }

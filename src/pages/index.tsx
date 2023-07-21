@@ -1,96 +1,125 @@
 import Layout from '@/components/Layout';
 import type { GetServerSideProps, NextPage } from 'next';
 import Carousel from 'src/stories/Carousel';
-import { HomeBannerimages } from 'src/data/constants';
 import MediaListing from 'src/stories/MediaListing';
 import { mediaImages } from 'src/data/constants';
 import { ISearchInterface } from 'src/Interface/Search';
 import NetWrapper from 'src/Network/netWrapper';
 import { SearchLocationProps } from 'src/Props/Search';
 import AutoScrollingVillaCard from 'src/stories/AutoScrollingVillaCard';
-import { ListYourPropertySection } from 'src/stories/ListYourPropertySection';
-import { ReviewSection } from 'src/stories/ReviewSection';
+import ListYourPropertySection from 'src/stories/ListYourPropertySection';
 import Spotlight from 'src/stories/Spotlight';
-import OurDestinations from '@/components/OurDestinations';
 import CuratedCollection from 'src/stories/CuratedCollection';
 import JourneysSection from 'src/stories/JourneysSection';
-import PhotoCollage from 'src/stories/PhotoCollage';
+import AboutSection from 'src/stories/PhotoCollage/AboutSection';
+import DestinationsSection from 'src/stories/DestinationsSection';
+import { IHomePageData, ITestimonials } from 'src/Interface/home-page';
+import { Container } from 'src/stories/Container';
+import HomeTestimonialsSection from 'src/stories/HomeTestimonialsSection';
 
-const Home: NextPage = (data: ISearchInterface) => {
-  const bannerImageStyle =
-    'h-[410px] sm:h-[500px] md:h-[650px] lg:h-[810px] object-cover w-full';
-  const bannerTextStyle =
-    'text-[#F8F8F9] absolute top-[35%] sm:top-[30%] left-[50%] z-[48] w-1/2 md:w-[50%] xl:w-[45%]';
-  const bannerText = 'UNLOCK THE LUXURY WITH LUXUNLOCK';
-  const descriptiontext = "LuxUnlock does exactly what it means - we unlock exclusive access to the most unique, finest and in some cases the most iconic, private luxury homes for your pleasure. They are being offered to you and the world for the first time, made possible only by owners who are willing to share their beautifully & uniquely designed homes with discerning luxury travellers."
-  const PhotoCollageprops = () => {
-    return {
-      title: "LUXUNLOCK",
-      description: descriptiontext,
-      centerimage: "/images/CurratedCollectionsModelImage1.webp",
-      leftimage: "/images/CurratedCollectionsModelImage1.webp",
-      rightimage: "/images/CurratedCollectionsModelImage1.webp"
-    }
-  }
+const Home: NextPage = ({
+  homePageData,
+  testimonialsData,
+  searchData
+}: {
+  homePageData: IHomePageData;
+  testimonialsData: ITestimonials;
+  searchData: ISearchInterface;
+}) => {
+  const bannerImageStyle = 'w-full h-full object-cover';
+  const bannerTextStyle = 'text-[#F8F8F9]';
+  const bannerText = `UNLOCK THE LUXURY WITH LUXUNLOCK`;
+
   return (
-    <>
-      <Layout title="LuxUnlock">
-        <>
-          <Carousel
-            images={HomeBannerimages}
-            bannerImageStyle={bannerImageStyle}
-            bannerTextStyle={bannerTextStyle}
-            bannerText={bannerText}
-            locations={SearchLocationProps(
-              data.states,
-              data.countries,
-              data.cities
-            )}
-          />
-          <CuratedCollection />
-          <Spotlight />
-          <JourneysSection />
-          {data.villa.data?.data.length > 0 && (
-            <OurDestinations OurDestinations={data.villa.data?.data} />
+    <Layout title="LuxUnlock">
+      <>
+        <Carousel
+          images={homePageData?.data?.attributes?.carousal?.images?.data?.map(
+            (el) => el?.attributes?.url
           )}
-          <ListYourPropertySection />
-          <ReviewSection />
-          <div className="pt-4">
-            <PhotoCollage  {...PhotoCollageprops()} />
-          </div>
-          <MediaListing mediaImages={mediaImages} />
-          <AutoScrollingVillaCard />
-        </>
-      </Layout>
-    </>
+          bannerImageStyle={bannerImageStyle}
+          bannerTextStyle={bannerTextStyle}
+          bannerText={bannerText}
+          locations={SearchLocationProps(
+            searchData.states,
+            searchData.countries,
+            searchData.cities
+          )}
+        />
+        <Container className="block md:hidden" innerContainerClassName="pb-0">
+          <h1
+            className={`capitalize text-center leading-[68px] font-[330] text-[#18181B] text-4xl`}
+          >
+            {bannerText}
+          </h1>
+          <hr className="mt-7" />
+        </Container>
+        {homePageData?.data?.attributes?.destination?.length ? (
+          <DestinationsSection
+            destinations={homePageData?.data?.attributes?.destination}
+            villas={searchData?.villa?.data?.data}
+          />
+        ) : null}
+        {homePageData?.data?.attributes?.curatedCollection?.length ? (
+          <CuratedCollection
+            collections={homePageData?.data?.attributes?.curatedCollection}
+          />
+        ) : null}
+        {homePageData?.data?.attributes?.spotlight?.length ? (
+          <Spotlight data={homePageData?.data?.attributes?.spotlight} />
+        ) : null}
+        {homePageData?.data?.attributes?.Journey?.length ? (
+          <JourneysSection data={homePageData?.data?.attributes?.Journey} />
+        ) : null}
+        <ListYourPropertySection />
+        {testimonialsData?.data?.length ? (
+          <HomeTestimonialsSection data={testimonialsData?.data} />
+        ) : null}
+        {homePageData?.data?.attributes?.about ? (
+          <AboutSection data={homePageData?.data?.attributes?.about} />
+        ) : null}
+        <MediaListing mediaImages={mediaImages} />
+        {searchData?.villa?.data?.data?.length ? (
+          <AutoScrollingVillaCard data={searchData?.villa?.data?.data} />
+        ) : null}
+      </>
+    </Layout>
   );
 };
 
 export default Home;
 
 export const getServerSideProps: GetServerSideProps<{
-  data: ISearchInterface | null;
+  homePageData: IHomePageData;
+  searchData: ISearchInterface;
   error: string | null;
 }> = async (): Promise<any> => {
   const states = await NetWrapper('api/states');
   const cities = await NetWrapper('api/cities');
   const countries = await NetWrapper('api/countries');
-
   const villa = await NetWrapper('api/properties?populate=deep');
+  const homePage = await NetWrapper('api/homepage?populate=deep,5');
+  const testimonials = await NetWrapper('api/testimonials?populate=deep');
 
   let error = null;
   if (states.error) error = states.error;
   if (cities.error) error = cities.error;
   if (countries.error) error = countries.error;
   if (villa.error) error = villa.error;
+  if (homePage.error) error = homePage.error;
+  if (testimonials.error) error = testimonials.error;
 
   return {
     props: {
-      states: states?.data,
-      countries: countries?.data,
-      cities: cities?.data,
-      villa: villa,
-      error
+      homePageData: homePage?.data,
+      testimonialsData: testimonials?.data,
+      searchData: {
+        states: states?.data,
+        countries: countries?.data,
+        cities: cities?.data,
+        villa: villa,
+        error
+      }
     }
   };
 };

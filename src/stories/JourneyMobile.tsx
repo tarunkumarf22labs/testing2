@@ -4,8 +4,9 @@ import { ScrollButton } from './ScrollButton';
 import { journeySection } from 'src/data/constants';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { ISpotlightAndJourney } from 'src/Interface/home-page';
 
-const JourneyMobile = ({ data }: { data: any[] }) => {
+const JourneyMobile = ({ data }: { data: ISpotlightAndJourney[] }) => {
   const swiperRef = useRef(null);
   return (
     <div className="flex flex-col items-center">
@@ -26,15 +27,15 @@ const JourneyMobile = ({ data }: { data: any[] }) => {
             return (
               <SwiperSlide key={`${idx}`} className="h-full w-full">
                 <div className="h-full md:max-w-[350px] mx-auto">
-                  <h2 className="text-center text-[#1C1917] text-[32px] font-light tracking-[0.64px]">
-                    New Villa In Sri Lanka
+                  <h2 className="text-center text-[#1C1917] text-[32px] font-light tracking-[0.64px] capitalize">
+                    {el?.title}
                   </h2>
                   <p className="text-center mt-4 text-[#545456] font-normal leading-6">
-                    {el?.para}
+                    {el?.description}
                   </p>
                   <div className="w-full h-[231px] relative mt-8">
                     <Image
-                      src={el?.big}
+                      src={el?.images?.data?.[0]?.attributes?.url}
                       alt="spotlight"
                       width={0}
                       height={0}

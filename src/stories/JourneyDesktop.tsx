@@ -4,10 +4,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { journeySection } from 'src/data/constants';
 import PrimaryButton from './PrimaryButton';
+import { ISpotlightAndJourney } from 'src/Interface/home-page';
 
-const JourneyDesktop = ({ data }: { data: any[] }) => {
-  gsap.registerPlugin(ScrollTrigger);
-
+const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
   const scrollerRef = useRef(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
@@ -77,7 +76,11 @@ const JourneyDesktop = ({ data }: { data: any[] }) => {
             <div className="w-[38px] h-[38px] rounded-full flex items-center justify-center overflow-hidden border border-[#8A1E61]">
               <Image
                 alt="preview"
-                src={data?.[slideIndex]?.big}
+                src={
+                  data?.[slideIndex]?.images?.data?.[0]?.attributes
+                    ?.previewUrl ||
+                  data?.[slideIndex]?.images?.data?.[0]?.attributes?.url
+                }
                 width={32}
                 height={32}
                 className="rounded-full w-8 h-8"
@@ -88,15 +91,16 @@ const JourneyDesktop = ({ data }: { data: any[] }) => {
               <div className="bg-white w-2 h-2 rounded-full" />
             </div>
           </div>
-          <div className="w-[559px] h-[369px] relative overflow-hidden">
+          <div className="w-full max-w-[559px] h-[369px] relative overflow-hidden">
             {data?.map((el, idx) => {
               return (
                 <Image
                   key={`${idx}`}
-                  src={el?.big}
-                  alt="List your Property 1"
-                  width={560}
-                  height={369}
+                  src={el?.images?.data?.[0]?.attributes?.url}
+                  alt="journey"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                   className={`absolute w-full h-full object-cover preview-image-${idx} shadow-xl`}
                 />
               );
@@ -110,11 +114,11 @@ const JourneyDesktop = ({ data }: { data: any[] }) => {
                 key={`${idx}`}
                 className={`flex flex-col gap-y-4 flex-1 py-10 absolute text-content h-full w-full bg-white text-content-${idx}`}
               >
-                <h2 className="text-[#1C1917] text-[42px] font-light">
-                  Maison Twenty Six
+                <h2 className="text-[#1C1917] text-[42px] font-light capitalize">
+                  {el?.title}
                 </h2>
                 <p className="text-base md:text-[22px] leading-[34px] text-[#545456] font-centaur">
-                  {el.para}
+                  {el?.description}
                 </p>
                 <PrimaryButton
                   title="Know More"
