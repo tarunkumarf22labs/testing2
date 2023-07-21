@@ -32,16 +32,15 @@ const Login = () => {
             transform: slide && 'translateX(-50%)',
             transition: slide && '1s'
           }}
-          id='login-container'
+          id="login-container"
         >
-          
           <div className="w-[100%] h-full relative">
-          <button className="absolute top-3 right-[5%]" 
-          onClick={()=>setShowLoginPopup(false)}
-          >
-            
-            <XMarkIcon className="w-7 h-7" />
-          </button>
+            <button
+              className="absolute top-3 right-[5%]"
+              onClick={() => setShowLoginPopup(false)}
+            >
+              <XMarkIcon className="w-7 h-7" />
+            </button>
             <FirstChild
               setSlide={setSlide}
               slide={slide}
@@ -54,12 +53,12 @@ const Login = () => {
             />
           </div>
           <div className="w-[100%] h-full relative">
-          <button className="absolute -top-8 right-[5%]" 
-          onClick={()=>setShowLoginPopup(false)}
-          >
-            
-            <XMarkIcon className="w-7 h-7" />
-          </button>
+            <button
+              className="absolute -top-8 right-[5%]"
+              onClick={() => setShowLoginPopup(false)}
+            >
+              <XMarkIcon className="w-7 h-7" />
+            </button>
             {slide && (
               <SecondChild
                 code={code}
@@ -129,11 +128,11 @@ function FirstChild({
   };
 
   console.log(ValidPhoneNumber);
-  
+
   return (
     <div className="p-2 sm:p-10">
       <div className="flex items-center justify-center m-auto">
-        <HeaderLogo />
+        <HeaderLogo logoUrl="/images/logo_primary.svg" />
       </div>
       <p className="text-[#8A1E61] text-xs font-bold mt-16 text-center">
         LOG IN
@@ -177,7 +176,10 @@ function FirstChild({
         </div>
 
         <button
-          className={`text-xs text-white bg-[#8A1E61] w-full font-bold mt-8 pt-4 pb-4 ${(!ValidPhoneNumber || phoneNumber.length < 4) && "opacity-[0.2] pointer-events-none"}`}
+          className={`text-xs text-white bg-[#8A1E61] w-full font-bold mt-8 pt-4 pb-4 ${
+            (!ValidPhoneNumber || phoneNumber.length < 4) &&
+            'opacity-[0.2] pointer-events-none'
+          }`}
           onClick={handleSubmit}
         >
           CONTINUE
@@ -313,14 +315,18 @@ function SecondChild({
 
   return (
     <div className="relative p-2 sm:p-10">
-      <div className='absolute -top-8 left-5' onClick={() => {
-        document.getElementById('login-container').style.transform = 'translateX(0%)';
-        document.getElementById('login-container').style.transition = '1s'
-      }}>
-      <ArrowLeft size={32} />
+      <div
+        className="absolute -top-8 left-5"
+        onClick={() => {
+          document.getElementById('login-container').style.transform =
+            'translateX(0%)';
+          document.getElementById('login-container').style.transition = '1s';
+        }}
+      >
+        <ArrowLeft size={32} />
       </div>
       <div className="flex items-center justify-center m-auto">
-        <HeaderLogo />
+        <HeaderLogo logoUrl="/images/logo_primary.svg" />
       </div>
       <p className="text-[#8A1E61] text-xs font-bold mt-16 text-center">
         LOG IN

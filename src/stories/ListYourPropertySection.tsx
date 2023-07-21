@@ -4,9 +4,11 @@ import PrimaryButton from './PrimaryButton';
 import { knowMore, listYourPropertySection } from 'src/data/constants';
 import { Container } from './Container';
 import { gsap } from 'gsap';
+import { useRouter } from 'next/router';
 
 const ListYourPropertySection = () => {
   const scrollerRef = useRef(null);
+  const navigation = useRouter();
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -45,7 +47,7 @@ const ListYourPropertySection = () => {
               <PrimaryButton
                 className="w-[317px] justify-center mt-10 self-start"
                 title={knowMore}
-                onClick={() => {}}
+                onClick={() => navigation.push('/home-owners')}
               />
               <div className="hidden xl:block w-[298px] h-[242px] relative mt-20 shadow-xl overflow-hidden">
                 <Image

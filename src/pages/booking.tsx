@@ -63,7 +63,7 @@ function Booking(data: IHomeInterface) {
     <>
       <div className="max-w-[1640px] my-0 mx-auto ">
         <header className="h-[102px] pl-2 flex md:justify-center items-center md:pl-0  ">
-          <HeaderLogo />
+          <HeaderLogo logoUrl="/images/logo_primary.svg" />
         </header>
 
         <div className="bg-[#F8F8F9]">
