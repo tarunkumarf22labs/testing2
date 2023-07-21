@@ -137,7 +137,7 @@ export interface villaInterface {
       title: string;
       shortDescription: string;
       longDescription: string;
-      image: IImageAmenity
+      image: IImageAmenity;
     }[];
     paymentTerm: {
       id: number;
@@ -169,7 +169,7 @@ export interface villaInterface {
           folderPath: string;
           createdAt: string;
           updatedAt: string;
-        }
+        };
       };
     };
     refundableSecurityDeposit: {
@@ -193,6 +193,11 @@ export interface IHomeInterface {
     meta: {};
   };
   error: string | null;
+}
+
+export interface IPropertyDetails {
+  data: villaInterface;
+  meta: {};
 }
 
 export interface IImage {

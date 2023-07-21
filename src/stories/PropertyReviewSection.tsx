@@ -1,28 +1,28 @@
 import React from 'react';
 import { NameTitle } from './NameTitle';
-import { IReviewCard, ReviewCard } from './ReviewCard';
+import { ReviewCard } from './ReviewCard';
 import { Container } from './Container';
+import { ITestimonials } from 'src/Interface/home-page';
 
 interface IPropertyReviewSection {
-  reviewCardsCollection: IReviewCard[];
+  data: ITestimonials;
 }
 
-export const PropertyReviewSection = ({
-  reviewCardsCollection
-}: IPropertyReviewSection) => {
+export const PropertyReviewSection = ({ data }: IPropertyReviewSection) => {
   return (
     <Container>
       <NameTitle propertyName="Deja View's" title="GUEST EXPERIENCE" />
       <div className="grid items-start md:grid-cols-2 md:gap-x-[100px]">
-        {reviewCardsCollection.map((review, index) => {
-          const { reviewText, name, state, img } = review;
+        {data?.data.map((review, index) => {
           return (
             <ReviewCard
               key={index}
-              reviewText={reviewText}
-              name={name}
-              state={state}
-              img={img}
+              reviewText={review?.attributes?.testimonial?.experience}
+              name={review?.attributes?.testimonial?.name}
+              state={review?.attributes?.testimonial?.date}
+              img={
+                review?.attributes?.testimonial?.avatar?.data?.attributes?.url
+              }
             />
           );
         })}
