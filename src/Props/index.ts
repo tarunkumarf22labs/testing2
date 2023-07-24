@@ -1,13 +1,42 @@
 import { IVillaFAQ, villaInterface } from 'src/Interface';
 
-export const PropertyDetailsHeroSectionProps = (villaData: villaInterface) => {
-  let images = villaData?.attributes?.images;
-  let filterdImage = images?.filter((ele) => ele?.type === 'Main Image');
+export function getFilteredImage(villaData, type) {
+  let filteredImage = villaData?.attributes?.images?.filter(
+    (villaData) => villaData?.type === type
+  );
+  if (filteredImage?.length > 0) {
+    return filteredImage?.[0];
+  } else {
+    return filteredImage;
+  }
+}
+
+export function getXl_webpUrl(data) {
   return {
-    image: filterdImage?.[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
-    width: filterdImage?.[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
-    height: filterdImage?.[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
-    alt: filterdImage?.[0]?.image?.data?.attributes?.formats?.xl_webp?.name
+    image: data?.image?.data?.attributes?.formats?.xl_webp?.url,
+    width: data?.image?.data?.attributes?.formats?.xl_webp?.width,
+    height: data?.image?.data?.attributes?.formats?.xl_webp?.height,
+    alt: data?.image?.data?.attributes?.formats?.xl_webp?.name
+  };
+}
+
+export function getThumbnailUrl(data) {
+  return {
+    image: data?.image?.data?.attributes?.formats?.thumbnail?.url,
+    width: data?.image?.data?.attributes?.formats?.thumbnail?.width,
+    height: data?.image?.data?.attributes?.formats?.thumbnail?.height,
+    alt: data?.image?.data?.attributes?.formats?.thumbnail?.name
+  };
+}
+
+export const PropertyDetailsHeroSectionProps = (villaData: villaInterface) => {
+  let filterdImage = getFilteredImage(villaData, 'Main Image');
+  let Image = getXl_webpUrl(filterdImage);
+  return {
+    image: Image.image,
+    width: Image.width,
+    height: Image.height,
+    alt: Image.alt
   };
 };
 
@@ -190,21 +219,21 @@ export const BeforeYouBookProps = (villaData: villaInterface) => {
 };
 
 export const HomeTruthProps = (villaData: villaInterface) => {
-  let images = villaData?.attributes?.images;
-  let filterdImage = images?.filter((ele) => ele?.type === 'Master Bedroom');
+  let filterdImage = getFilteredImage(villaData, 'Master Bedroom');
   if (filterdImage?.length === 0) {
-    filterdImage = images?.filter((ele) => ele?.type === 'Main Image');
+    filterdImage = getFilteredImage(villaData, 'Main Image');
   }
+  let Image = getXl_webpUrl(filterdImage);
+
   return {
     secondheading: 'HOME TRUTHS',
     heading: villaData?.attributes?.name,
     story: villaData?.attributes?.homeTruths,
     image: {
-      image: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
-      width: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
-      height:
-        filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
-      alt: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.name
+      image: Image.image,
+      width: Image.width,
+      height: Image.height,
+      alt: Image.alt
     },
     stringLength: 500,
     initialListToShow: 2
@@ -212,21 +241,21 @@ export const HomeTruthProps = (villaData: villaInterface) => {
 };
 
 export const HomeStoryProps = (villaData: villaInterface) => {
-  let images = villaData?.attributes?.images;
-  let filterdImage = images?.filter((ele) => ele?.type === 'Indoor Kitchen');
+  let filterdImage = getFilteredImage(villaData, 'Indoor Kitchen');
   if (filterdImage?.length === 0) {
-    filterdImage = images?.filter((ele) => ele?.type === 'Main Image');
+    filterdImage = getFilteredImage(villaData, 'Main Image');
   }
+  let Image = getXl_webpUrl(filterdImage);
+
   return {
     secondheading: 'STORY',
     heading: villaData?.attributes?.name,
     story: villaData?.attributes?.story,
     image: {
-      image: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
-      width: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
-      height:
-        filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
-      alt: filterdImage[0]?.image?.data?.attributes?.formats?.xl_webp?.name
+      image: Image.image,
+      width: Image.width,
+      height: Image.height,
+      alt: Image.alt
     },
     stringLength: 500,
     initialListToShow: 2
@@ -234,13 +263,14 @@ export const HomeStoryProps = (villaData: villaInterface) => {
 };
 
 export const DetailedDescriptionSectionProps = (villaData: villaInterface) => {
-  let images = villaData?.attributes?.images;
-  let filterdImage = images?.filter((ele) => ele?.type === 'Exterior');
+  let filterdImage = getFilteredImage(villaData, 'Indoor Kitchen');
   if (filterdImage?.length === 0) {
-    filterdImage = images?.filter((ele) => ele?.type === 'Main Image');
+    filterdImage = getFilteredImage(villaData, 'Main Image');
   }
+  let Image = getXl_webpUrl(filterdImage);
+
   return {
-    image: filterdImage?.[0]?.image.data.attributes.url,
+    image: Image.image,
     detailedDescription: {
       propertyName: villaData?.attributes?.name,
       title: 'DETAILED DESCRIPTION',
@@ -295,18 +325,18 @@ export const AccordionProps2 = (villaData: villaInterface) => {
 export const SimilarStaysSectionProps = (villaData: villaInterface) => {
   let villas = villaData?.attributes?.similarStays?.data;
   let mappedVillaData = villas?.map((villaData) => {
-    let filteredthumbnail = villaData?.attributes?.images?.filter(
-      (villaData) => villaData?.type === 'Main Image'
-    );
+    let thumbnail = getFilteredImage(villaData, 'Main Image');
+
+    let Image = getXl_webpUrl(thumbnail);
+
     let name = villaData?.attributes?.name;
     let city = villaData?.attributes?.address?.city?.data?.attributes?.name;
     let state = villaData?.attributes?.address?.state?.data?.attributes?.name;
     let image = {
-      image: filteredthumbnail?.[0]?.image?.data?.attributes?.formats?.thumbnail?.url,
-      width: filteredthumbnail?.[0]?.image?.data?.attributes?.formats?.thumbnail?.width,
-      height:
-        filteredthumbnail?.[0]?.image?.data?.attributes?.formats?.thumbnail?.height,
-      alt: filteredthumbnail?.[0]?.image?.data?.attributes?.formats?.thumbnail?.name
+      image: Image.image,
+      width: Image.width,
+      height: Image.height,
+      alt: Image.alt
     };
     let amenities = [
       `${villaData?.attributes?.guestCapacity?.minAdultAndChildren}-${
@@ -373,13 +403,14 @@ export const AmenitiesSectionProps = (villaData: villaInterface) => {
 
 export const ExperiencesSectionProps = (villaData: villaInterface) => {
   let props = villaData?.attributes?.localExperiences?.map((ele, id) => {
+    let thumbnailUrl = getThumbnailUrl(ele);
     return {
       id: ele?.id,
       image: {
-        image: ele?.image?.data?.attributes?.formats?.thumbnail?.url,
-        width: ele?.image?.data?.attributes?.formats?.thumbnail?.width,
-        height: ele?.image?.data?.attributes?.formats?.thumbnail?.height,
-        alt: ele?.image?.data?.attributes?.formats?.thumbnail?.name
+        width: thumbnailUrl.width,
+        height: thumbnailUrl.height,
+        alt: thumbnailUrl.alt,
+        image: thumbnailUrl.image
       },
       shortDescription: ele?.shortDescription,
       longDecription: ele?.longDescription,
@@ -387,13 +418,14 @@ export const ExperiencesSectionProps = (villaData: villaInterface) => {
     };
   });
   let secondProps = villaData?.attributes?.stayLonger?.map((ele) => {
+    let thumbnailUrl = getThumbnailUrl(ele);
     return {
       id: ele?.id,
       image: {
-        image: ele?.image?.data?.attributes?.formats?.thumbnail?.url,
-        width: ele?.image?.data?.attributes?.formats?.thumbnail?.width,
-        height: ele?.image?.data?.attributes?.formats?.thumbnail?.height,
-        alt: ele?.image?.data?.attributes?.formats?.thumbnail?.name
+        width: thumbnailUrl.width,
+        height: thumbnailUrl.height,
+        alt: thumbnailUrl.alt,
+        image: thumbnailUrl.image
       },
       shortDescription: ele?.shortDescription,
       longDecription: ele?.longDescription,
@@ -410,13 +442,14 @@ export const ExperiencesSectionProps = (villaData: villaInterface) => {
 };
 export const ImageGalleryProps = (villaData: villaInterface) => {
   let images = villaData?.attributes?.images?.map((ele) => {
+    let Image = getXl_webpUrl(ele);
     return {
       title: ele?.image?.data?.attributes?.formats?.xl_webp?.name,
-      url: ele?.image?.data?.attributes?.formats?.xl_webp?.url,
+      url: Image.image,
       type: ele?.type,
-      alt: ele?.image?.data?.attributes?.name,
-      width: ele?.image?.data?.attributes?.formats?.xl_webp?.width,
-      height: ele?.image?.data?.attributes?.formats?.xl_webp?.height
+      alt: Image.alt,
+      width: Image.width,
+      height: Image.height
     };
   });
   return { images };

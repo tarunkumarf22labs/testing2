@@ -1,5 +1,6 @@
 import { villaInterface } from 'src/Interface';
 import { ILocations, IVillaResultInterface } from 'src/Interface/Search';
+import { getFilteredImage, getThumbnailUrl, getXl_webpUrl } from '.';
 
 export const SearchLocationProps = (
   states: ILocations,
@@ -42,9 +43,13 @@ export const SearchedVillaCardProps = (villaData: villaInterface) => {
       roomprice = ele?.attributes?.pricing?.basic;
   });
 
-  let images = villaData?.attributes?.images;
-  let bannerImage = images?.filter((ele) => ele?.type === 'Main Image');
-  let subImage = images?.filter((ele) => ele?.type === 'Interior');
+  let bannerImage = getFilteredImage(villaData, 'Main Image');
+  let subImage = getFilteredImage(villaData, 'Interior');
+  if (subImage.length === 0) {
+    subImage = getFilteredImage(villaData, 'Exterior');
+  }
+  let bannerImageUrl = getXl_webpUrl(bannerImage);
+  const subImageUrl = getThumbnailUrl(subImage);
   let amenities = [
     `${villaData?.attributes?.guestCapacity?.minAdultAndChildren}-${
       villaData?.attributes?.guestCapacity?.maxAdultAndChildren > 0 &&
@@ -63,16 +68,16 @@ export const SearchedVillaCardProps = (villaData: villaInterface) => {
   ];
   return {
     bannerImage: {
-      image: bannerImage?.[0]?.image?.data?.attributes?.formats?.xl_webp?.url,
-      width: bannerImage?.[0]?.image?.data?.attributes?.formats?.xl_webp?.width,
-      height: bannerImage?.[0]?.image?.data?.attributes?.formats?.xl_webp?.height,
-      alt: bannerImage?.[0]?.image?.data?.attributes?.formats?.xl_webp?.name
+      image: bannerImageUrl.image,
+      width: bannerImageUrl.width,
+      height: bannerImageUrl.height,
+      alt: bannerImageUrl.alt
     },
     image: {
-      image: subImage?.[0]?.image?.data?.attributes?.formats?.thumbnail?.url,
-      width: subImage?.[0]?.image?.data?.attributes?.formats?.thumbnail?.width,
-      height: subImage?.[0]?.image?.data?.attributes?.formats?.thumbnail?.height,
-      alt: subImage?.[0]?.image?.data?.attributes?.formats?.thumbnail?.name
+      image: subImageUrl.image,
+      width: subImageUrl.width,
+      height: subImageUrl.height,
+      alt: subImageUrl.alt
     },
     amenities: amenities,
     title: villaData?.attributes?.name,

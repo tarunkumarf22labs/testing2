@@ -37,7 +37,7 @@ const CuratedCollection = ({
           {curatedCollectionSection.heading}
         </h1>
         <div>
-          <div className="flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
+          <div className="flex gap-6 pb-4 mt-8 overflow-x-auto md:mt-10">
             {(collections?.length > 5
               ? collections.slice(0, 5)
               : collections
@@ -75,7 +75,6 @@ const CuratedCollection = ({
               watchOverflow={true}
             >
               {selectedCollectionVilla?.map((property, idx) => {
-                console.log(property);
                 return (
                   <SwiperSlide
                     key={`${idx}`}

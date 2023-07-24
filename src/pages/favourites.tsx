@@ -36,7 +36,8 @@ const Favourites = () => {
               <div>
                 <Image
                   src={
-                    'https://luxunlockdev.s3.ap-south-1.amazonaws.com/Skyfall_Exterior_1_391e5b5fdb.jpg'
+                    // 'https://luxunlockdev.s3.ap-south-1.amazonaws.com/Skyfall_Exterior_1_391e5b5fdb.jpg'
+                    process.env.NEXT_PUBLIC_FAVOURITE_IMAGE
                   }
                   width={580}
                   height={360}
@@ -81,9 +82,6 @@ const Favourites = () => {
       </div>
     </div>
     </div>
-        <div className='bg-white'>
-        <p className='text-center text-[#1C1917] text-5xl font-light uppercase mt-20 mb-8'>FEATURED IN</p>
-        </div>
         <MediaListing mediaImages={mediaImages} />
     </>
     </Layout>
