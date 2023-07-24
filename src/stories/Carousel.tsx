@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -21,6 +21,7 @@ import { Autoplay } from 'swiper';
 import HomeSearchBar from './HomeSearchBar';
 import { Container } from './Container';
 import { CalendarBlank, MagnifyingGlass, Users } from '@phosphor-icons/react';
+import { gsap } from 'gsap';
 
 export default function Carousel({
   images,
@@ -30,6 +31,34 @@ export default function Carousel({
   locations
 }: CarouselProps) {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
+
+  useEffect(() => {
+    let timeline = gsap.timeline({
+      defaults: { duration: 1.5, ease: 'power4.out' }
+    });
+
+    timeline
+      .fromTo(
+        '.gsap-hero-text',
+        {
+          y: 100,
+          skewY: 5,
+          opacity: 0
+        },
+        {
+          y: 0,
+          skewY: 0,
+          opacity: 1,
+          delay: 1
+        }
+      )
+      .fromTo(
+        '.gsap-search-bar',
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1 },
+        1.5
+      );
+  }, []);
 
   const toggleFilterMenu = () => {
     setShowFilterMenu(true);
@@ -82,25 +111,18 @@ export default function Carousel({
         )}
         <div className="hidden flex-1 md:flex items-center justify-center">
           <h1
-            className={`capitalize animate-slide-down max-w-[830px] leading-[68px] font-[330] ${bannerTextStyle} text-4xl md:text-[52px]`}
+            className={`capitalize max-w-[830px] leading-[68px] font-[330] ${bannerTextStyle} text-4xl md:text-[52px]`}
           >
-            {bannerText}
+            <div className="gsap-hero-text opacity-0 overflow-hidden">
+              {bannerText}
+            </div>
           </h1>
         </div>
-        <motion.div
-          animate={{
-            opacity: 1
-          }}
-          initial={{
-            opacity: 0
-          }}
-          transition={{
-            duration: 1
-          }}
-          className={'w-full mb-20 hidden md:block'}
+        <div
+          className={'gsap-search-bar opacity-0 w-full mb-20 hidden md:block'}
         >
           <HomeSearchBar locations={locations} />
-        </motion.div>
+        </div>
 
         {showFilterMenu ? (
           <motion.div

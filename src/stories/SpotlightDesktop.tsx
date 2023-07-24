@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -7,73 +7,88 @@ import { spotLightSection } from 'src/data/constants';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
 import PrimaryButton from './PrimaryButton';
 
-const SpotlightDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
-  const scrollerRef = useRef(null);
+const SpotlightDesktop = ({
+  data,
+  scrollerStartRef
+}: {
+  data: ISpotlightAndJourney[];
+  scrollerStartRef: RefObject<HTMLDivElement>;
+}) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      let tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollerRef?.current,
-          scrub: true,
-          start: 'top 180px',
-          end: 'bottom 180px',
-          toggleActions: 'play none reverse none',
-          invalidateOnRefresh: true
-        }
+      ScrollTrigger.create({
+        trigger: scrollerStartRef?.current,
+        start: 'top 100px',
+        end: 'bottom 90%',
+        pin: '.gsap-spotlight-section-right',
+        toggleActions: 'play none reverse none',
+        invalidateOnRefresh: true
       });
 
       data?.forEach((_, idx) => {
+        let timeline: gsap.core.Timeline;
         if (idx === 0) {
           setSlideIndex(0);
+          return;
         } else {
+          timeline = gsap.timeline();
           gsap.set(`.text-content-${idx}`, {
-            zIndex: idx,
-            translateY: '100%'
+            y: 200,
+            opacity: 0
           });
           gsap.set(`.preview-image-${idx}`, {
             zIndex: idx,
             translateY: '100%'
           });
-          tl.to(`.preview-image-${idx}`, {
-            translateY: 0,
-            onComplete: () => setSlideIndex(idx),
-            onReverseComplete: () => setSlideIndex(idx - 1)
-          }).to(
-            `.text-content-${idx}`,
-            {
-              translateY: 0
-            },
-            '<'
-          );
+          timeline
+            .to(`.preview-image-${idx}`, {
+              translateY: 0,
+              onStart: () => setSlideIndex(idx),
+              onReverseComplete: () => setSlideIndex(idx - 1)
+            })
+            .to(
+              `.text-content-${idx}`,
+              {
+                y: 0,
+                opacity: 1
+              },
+              '<'
+            )
+            .to(
+              `.text-content-${idx - 1}`,
+              {
+                opacity: 0
+              },
+              '<'
+            );
+          ScrollTrigger.create({
+            trigger: `.text-content-${idx}`,
+            scrub: true,
+            start: 'top 80%',
+            end: 'top 50%',
+            invalidateOnRefresh: true,
+            animation: timeline
+          });
         }
       });
-
-      ScrollTrigger.create({
-        trigger: scrollerRef?.current,
-        scrub: true,
-        markers: false,
-        pin: true,
-        start: 'top 180px',
-        invalidateOnRefresh: true
-      });
-    }, scrollerRef);
+    }, [scrollerStartRef]);
     return () => ctx.revert();
   }, [data]);
 
   return (
-    <div ref={scrollerRef} className="flex flex-col gap-y-5">
+    <div className="flex flex-col gap-y-5">
       <h1 className="uppercase text-4xl text-[#18181B] font-light md:text-5xl">
         {spotLightSection.heading}
       </h1>
-      <div className="flex gap-x-[60px] justify-between">
-        <div className="relative flex-1 flex flex-col max-w-xl overflow-hidden">
+      <div className="flex justify-between items-start">
+        <div className="flex-1 flex flex-col max-w-[579px] pr-[60px] overflow-hidden">
           {data?.map((el, idx) => {
             return (
               <div
                 key={`${idx}`}
-                className={`flex flex-col gap-y-4 flex-1 py-10 absolute text-content h-full w-full bg-white text-content-${idx}`}
+                className={`flex flex-col gap-y-4 flex-1 py-10 h-full w-full bg-white text-content-${idx}`}
               >
                 <h2 className="text-[#1C1917] text-[42px] font-light capitalize">
                   {el?.title}
@@ -90,7 +105,7 @@ const SpotlightDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
             );
           })}
         </div>
-        <div className="flex flex-1 items-center gap-8">
+        <div className="gsap-spotlight-section-right flex flex-1 items-center gap-8">
           <div className="w-full max-w-[559px] h-[369px] relative overflow-hidden">
             {data?.map((el, idx) => {
               return (

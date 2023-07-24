@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Container } from './Container';
 import SpotlightDesktop from './SpotlightDesktop';
 import SpotlightMobile from './SpotlightMobile';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
 
 const Spotlight = ({ data }: { data: ISpotlightAndJourney[] }) => {
+  const scrollerStartRef = useRef(null);
   return (
-    <Container bgWhite={true}>
-      <div className="hidden lg:block">
-        <SpotlightDesktop data={data} />
-      </div>
-      <div className="lg:hidden">
-        <SpotlightMobile data={data} />
-      </div>
-    </Container>
+    <div ref={scrollerStartRef} className="gsap-spotlight-section">
+      <Container bgWhite={true}>
+        <div className="hidden lg:block">
+          <SpotlightDesktop scrollerStartRef={scrollerStartRef} data={data} />
+        </div>
+        <div className="lg:hidden">
+          <SpotlightMobile data={data} />
+        </div>
+      </Container>
+    </div>
   );
 };
 

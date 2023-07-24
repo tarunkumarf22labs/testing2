@@ -56,6 +56,7 @@
     "@phosphor-icons/react": "^2.0.9",
     "@react-google-maps/api": "^2.18.1",
     "@rehookify/datepicker": "^5.2.1",
+    "@studio-freight/react-lenis": "^0.0.23",
     "classnames": "2.3.2",
     "clsx": "^1.2.1",
     "framer-motion": "^10.12.16",
