@@ -16,8 +16,8 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
         scrollTrigger: {
           trigger: scrollerRef?.current,
           scrub: true,
-          start: 'top 20%',
-          end: 'bottom 20%',
+          start: 'top 180px',
+          end: 'bottom 180px',
           toggleActions: 'play none reverse none',
           invalidateOnRefresh: true
         }
@@ -54,7 +54,7 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
         scrub: true,
         markers: false,
         pin: true,
-        start: 'top 20%',
+        start: 'top 180px',
         invalidateOnRefresh: true
       });
     }, scrollerRef);
