@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import type { GetServerSideProps, NextPage } from 'next';
 import Carousel from 'src/stories/Carousel';
 import MediaListing from 'src/stories/MediaListing';
-import { mediaImages } from 'src/data/constants';
+import { curatedCollectionSection, destinationsSection, journeySection, mediaImages } from 'src/data/constants';
 import { ISearchInterface } from 'src/Interface/Search';
 import NetWrapper from 'src/Network/netWrapper';
 import { SearchLocationProps } from 'src/Props/Search';
@@ -56,12 +56,14 @@ const Home: NextPage = ({
         </Container>
         {homePageData?.data?.attributes?.destination?.length ? (
           <DestinationsSection
+            destinationSectionheading={destinationsSection.heading}
             destinations={homePageData?.data?.attributes?.destination}
             villas={searchData?.villa?.data?.data}
           />
         ) : null}
         {homePageData?.data?.attributes?.curatedCollection?.length ? (
           <CuratedCollection
+            curatedCollectionSectionheading={curatedCollectionSection.heading}
             collections={homePageData?.data?.attributes?.curatedCollection}
           />
         ) : null}
@@ -69,7 +71,9 @@ const Home: NextPage = ({
           <Spotlight data={homePageData?.data?.attributes?.spotlight} />
         ) : null}
         {homePageData?.data?.attributes?.Journey?.length ? (
-          <JourneysSection data={homePageData?.data?.attributes?.Journey} />
+          <JourneysSection data={homePageData?.data?.attributes?.Journey} 
+          journeySectionheading={journeySection.heading}
+          />
         ) : null}
         <ListYourPropertySection />
         {testimonialsData?.data?.length ? (

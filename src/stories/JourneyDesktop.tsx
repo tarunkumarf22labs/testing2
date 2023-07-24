@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { journeySection } from 'src/data/constants';
 import PrimaryButton from './PrimaryButton';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
+import { journeySection } from 'src/data/constants';
 
-const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
+const JourneyDesktop = ({ data, journeySectionheading, isbuttonvisible = true }: { data: ISpotlightAndJourney[], journeySectionheading: string, isbuttonvisible: boolean }) => {
   const scrollerRef = useRef(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
@@ -64,7 +64,7 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
   return (
     <div ref={scrollerRef} className="flex flex-col gap-y-5">
       <h1 className="uppercase text-4xl text-[#18181B] font-light md:text-5xl">
-        {journeySection.heading}
+        {journeySectionheading}
       </h1>
       <div className="flex gap-x-[60px] justify-between mt-20">
         <div className="flex flex-1 items-center gap-8">
@@ -120,11 +120,11 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
                 <p className="text-base md:text-[22px] leading-[34px] text-[#545456] font-centaur">
                   {el?.description}
                 </p>
-                <PrimaryButton
+                {isbuttonvisible && <PrimaryButton
                   title="Know More"
-                  onClick={() => {}}
+                  onClick={() => { }}
                   className="self-start w-[317px] p-0 py-4 items-center justify-center mt-2"
-                />
+                />}
               </div>
             );
           })}

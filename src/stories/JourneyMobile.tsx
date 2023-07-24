@@ -6,12 +6,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
 
-const JourneyMobile = ({ data }: { data: ISpotlightAndJourney[] }) => {
+const JourneyMobile = ({ data, journeySectionheading , }: { data: ISpotlightAndJourney[], journeySectionheading: string }) => {
   const swiperRef = useRef(null);
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-[#18181B] uppercase text-[40px] font-light tracking-[0.8px] mt-3">
-        {journeySection.heading}
+      <h1 className="text-[#18181B] uppercase text-[26px] text-center font-light tracking-[0.8px] mt-3">
+        {journeySectionheading}
       </h1>
       <div className="w-full mt-8">
         <Swiper
