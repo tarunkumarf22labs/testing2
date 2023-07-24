@@ -546,3 +546,6 @@ export const aboutSection = {
   about: 'About',
   heading: 'LUXUNLOCK'
 };
+export const celebrationpage = {
+  destinationsSectiondata : "Deja View is a beautiful 2-bedroom plantation-style luxury villa with locally-inspired design and contemporary interiors that makes it one of the most romantic vacation homes in South India. The villa is part of a private community of six homes set on top of a hill in a 14-acre coffee & cardamom plantation in Eastern Wayanad, Kerala. From your verandah enjoy sweeping and unhindered views of rainforest clad hills. Indoors, an open plan design comprising two tastefully furnished bedrooms and a gorgeous loft make for an intimate & enjoyable holiday."
+}

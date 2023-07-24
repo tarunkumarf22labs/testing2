@@ -13,9 +13,11 @@ import useIsMobile from '@/hooks/useIsMobile';
 import { ICuratedCollection } from 'src/Interface/home-page';
 
 const CuratedCollection = ({
-  collections
+  collections,
+  curatedCollectionSectionheading
 }: {
   collections: ICuratedCollection[];
+  curatedCollectionSectionheading: string
 }) => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
@@ -33,8 +35,8 @@ const CuratedCollection = ({
   return (
     <Container bgWhite={isMobile ? true : false} slider>
       <div>
-        <h1 className="uppercase text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
-          {curatedCollectionSection.heading}
+        <h1 className="uppercase text-[26px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
+          {curatedCollectionSectionheading}
         </h1>
         <div>
           <div className="flex gap-6 pb-4 mt-8 overflow-x-auto md:mt-10">

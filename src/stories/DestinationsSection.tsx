@@ -14,10 +14,16 @@ import { villaInterface } from 'src/Interface';
 
 const DestinationsSection = ({
   destinations,
-  villas
+  villas,
+  destinationSectionheading,
+  destinationSectiontext,
+  istagsdisable = true
 }: {
   destinations: IDestination[];
   villas: villaInterface[];
+  destinationSectionheading: string;
+  destinationSectiontext?: string;
+  istagsdisable?: boolean
 }) => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
@@ -47,14 +53,17 @@ const DestinationsSection = ({
         getAvailableAddress(selectedCategory)?.data?.attributes?.name
     );
   }, [selectedCategory]);
-
+  const DestinationVillas = istagsdisable ? selectedDestinationVillas : villas
   return (
     <Container bgWhite={isMobile ? true : false} slider>
-      <h1 className="uppercase text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
-        {destinationsSection.heading}
+      <h1 className="uppercase   text-[26px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
+        {destinationSectionheading}
       </h1>
+      {destinationSectiontext && <p className='py-3  max-w-[1239px]' >
+        {destinationSectiontext}
+      </p>}
       <div>
-        <div className="flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
+        {istagsdisable && <div className="flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
           {destinations?.map((el, idx) => {
             return (
               <TabButton
@@ -68,7 +77,7 @@ const DestinationsSection = ({
               />
             );
           })}
-        </div>
+        </div>}
         <div className="mt-10">
           <Swiper
             ref={swiperRef}
@@ -84,7 +93,7 @@ const DestinationsSection = ({
             className="relative"
             watchOverflow={true}
           >
-            {selectedDestinationVillas?.map((property, idx) => {
+            {DestinationVillas?.map((property, idx) => {
               return (
                 <SwiperSlide
                   key={`${idx}`}
