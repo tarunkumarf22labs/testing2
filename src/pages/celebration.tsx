@@ -8,7 +8,7 @@ import AboutSection from 'src/stories/PhotoCollage/AboutSection';
 import JourneysSection from 'src/stories/JourneysSection';
 import DestinationsSection from 'src/stories/DestinationsSection';
 import CuratedCollection from 'src/stories/CuratedCollection';
-import { faqs, mediaImages } from 'src/data/constants';
+import { celebrationpage, faqs, mediaImages } from 'src/data/constants';
 import MediaListing from 'src/stories/MediaListing';
 import AutoScrollingVillaCard from 'src/stories/AutoScrollingVillaCard';
 import Image from 'next/image';
@@ -22,7 +22,6 @@ function Celebration({
     searchData: ISearchInterface;
 }) {
 
-    let constantData = "Deja View is a beautiful 2-bedroom plantation-style luxury villa with locally-inspired design and contemporary interiors that makes it one of the most romantic vacation homes in South India. The villa is part of a private community of six homes set on top of a hill in a 14-acre coffee & cardamom plantation in Eastern Wayanad, Kerala. From your verandah enjoy sweeping and unhindered views of rainforest clad hills. Indoors, an open plan design comprising two tastefully furnished bedrooms and a gorgeous loft make for an intimate & enjoyable holiday. "
     return (
         <Layout title="LuxUnlock">
             <>
@@ -50,14 +49,14 @@ function Celebration({
                     <AboutSection data={homePageData?.data?.attributes?.about} />
                 ) : null}
                 {homePageData?.data?.attributes?.Journey?.length ? (
-                    <JourneysSection data={homePageData?.data?.attributes?.Journey} journeySectionheading='Commemorate every occasion'  isbuttonvisible = {false} />
+                    <JourneysSection data={homePageData?.data?.attributes?.Journey} journeySectionheading='Commemorate every occasion' isbuttonvisible={false} />
                 ) : null}
                 {homePageData?.data?.attributes?.destination?.length ? (
                     <DestinationsSection
                         destinations={homePageData?.data?.attributes?.destination}
                         villas={searchData?.villa?.data?.data}
                         destinationSectionheading="Create picture-perfect moments"
-                        destinationSectiontext={constantData}
+                        destinationSectiontext={celebrationpage.destinationsSectiondata}
                         istagsdisable={false}
                     />
                 ) : null}
