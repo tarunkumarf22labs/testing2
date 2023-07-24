@@ -2,8 +2,8 @@ import { IHomeOwners } from "src/Interface/home-owners";
 
 export const homeOwnersBannerImage = (data: IHomeOwners) => {
   return {
-    url: data?.data[0]?.attributes?.image?.data?.attributes?.url,
-    alt: data?.data[0]?.attributes?.image?.data?.attributes?.name,
+    url: data?.data?.attributes?.banner?.data?.attributes?.formats?.xl_webp?.url,
+    alt: data?.data?.attributes.banner?.data?.attributes?.formats?.xl_webp?.name,
   };
 };
 

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import ToastAlert from "src/Toast";
-import { isValidPhoneNumber } from "libphonenumber-js";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
-import NetWrapper from "src/Network/netWrapper";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import ToastAlert from 'src/Toast';
+import { isValidPhoneNumber } from 'libphonenumber-js';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import NetWrapper from 'src/Network/netWrapper';
 
 const ContactDetails = () => {
   const emailRegex = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/i;
@@ -14,6 +14,7 @@ const ContactDetails = () => {
   const [textAreaMessage, seTextAreaMessage] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [ValidPhoneNumber, setValidPhoneNumber] = useState(true);
+  const [images, setImages] = useState([]);
   const [name, setName] = useState({
     firstName: '',
     lastName: ''
@@ -23,7 +24,6 @@ const ContactDetails = () => {
     const newEmail = event.target.value;
     setEmail(newEmail);
     setIsValidEmail(emailRegex.test(newEmail));
-
   };
 
   const handleBlur = () => {
@@ -43,7 +43,7 @@ const ContactDetails = () => {
         }
       );
     } else {
-      ToastAlert('Geolocation is not supported by this browser.','error')
+      ToastAlert('Geolocation is not supported by this browser.', 'error');
     }
   };
 
@@ -90,15 +90,30 @@ const ContactDetails = () => {
   }
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size <= 5 * 1024 * 1024) {
-        console.log('File uploaded successfully:', file);
-      } else {
-        ToastAlert('File size exceeds the limit (5MB)', 'warn');
-        event.target.value = null;
-      }
+    const file = event.target.files;
+    console.log(file);
+    const formData = new FormData();
+
+    if (file.length > 5) {
+      ToastAlert(`Files can not be uploaded more than 5`, 'warn');
+      event.target.value = null;
+      return;
     }
+    for (let key in file) {
+      if (file[key]?.size >= 5 * 1024 * 1024) {
+        ToastAlert(
+          `File ${file[key].name} size exceeds the limit (5MB)`,
+          'warn'
+        );
+        event.target.value = null;
+        return;
+      }
+      formData.append('images', file[key]);
+    }
+    console.log(formData);
+    setImages(file);
+    ToastAlert('File uploaded successfully', 'success');
+    return;
   };
 
   const validateNumber = (phoneNumber) => {
@@ -108,19 +123,19 @@ const ContactDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name.firstName) {
-      ToastAlert("Please Enter First Name", "warn");
+      ToastAlert('Please Enter First Name', 'warn');
       return;
     } else if (!name.lastName) {
-      ToastAlert("Please Enter Last Name", "warn");
+      ToastAlert('Please Enter Last Name', 'warn');
       return;
     } else if (phoneNumber.length < 3 || !ValidPhoneNumber) {
-      ToastAlert("Please Enter a Valid Mobile Number", "warn");
+      ToastAlert('Please Enter a Valid Mobile Number', 'warn');
       return;
     } else if (!email) {
-      ToastAlert("Please Enter a Valid Email", "warn");
+      ToastAlert('Please Enter a Valid Email', 'warn');
       return;
     } else if (!address) {
-      ToastAlert("Please Enter your address", "warn");
+      ToastAlert('Please Enter your address', 'warn');
       return;
     }
 
@@ -131,35 +146,34 @@ const ContactDetails = () => {
         email: email,
         phone: phoneNumber,
         location: address,
-        message: textAreaMessage,
-      },
+        message: textAreaMessage
+      }
     };
     submitData(body);
   };
 
   const submitData = async (body) => {
     try {
-      const { data, error, status } = await NetWrapper("api/homeownerforms", {
-        method: "POST",
-        body: JSON.stringify(body),
+      const { data, error, status } = await NetWrapper('api/homeownerforms', {
+        method: 'POST',
+        body: JSON.stringify(body)
       });
-      if(error){
-        ToastAlert("something went wrong in sending Data", "warn")
-      }else{
-        ToastAlert("Form Submitted Successfully", "success");
+      if (error) {
+        ToastAlert('something went wrong in sending Data', 'warn');
+      } else {
+        ToastAlert('Form Submitted Successfully', 'success');
         setName({
-          firstName: "",
-          lastName: "",
+          firstName: '',
+          lastName: ''
         });
         setEmail('');
-        setPhoneNumber("");
+        setPhoneNumber('');
         setAddress('');
-        seTextAreaMessage("")
+        seTextAreaMessage('');
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
   };
   return (
     <div className=" bg-[#F8F8F9] sm:max-w-lg m-auto">
@@ -179,7 +193,7 @@ const ContactDetails = () => {
             type="text"
             className="w-full placeholder-[#545456] text-xs sm:w-[45%] border-none outline-none focus:ring-0 bg-[#F8F8F9]"
             style={{ borderBottom: '1px solid #545456' }}
-            placeholder="First Name"
+            placeholder="First Name*"
             value={name.firstName}
             onChange={(e) => {
               setName({ ...name, firstName: e.target.value });
@@ -189,7 +203,7 @@ const ContactDetails = () => {
             type="text"
             className="w-full placeholder-[#545456] mt-12 text-xs sm:w-[45%] sm:mt-0 border-none outline-none focus:ring-0  bg-[#F8F8F9]"
             style={{ borderBottom: '1px solid #545456' }}
-            placeholder="last Name"
+            placeholder="last Name*"
             value={name.lastName}
             onChange={(e) => {
               setName({ ...name, lastName: e.target.value });
@@ -223,7 +237,7 @@ const ContactDetails = () => {
             type="email"
             className="w-full placeholder-[#545456] text-xs mt-12 sm:mt-0 sm:w-[45%] border-none outline-none focus:ring-0 bg-[#F8F8F9]"
             style={{ borderBottom: '1px solid #545456' }}
-            placeholder="Email Address"
+            placeholder="Email Address*"
             onChange={handleEmailChange}
             onBlur={handleBlur}
           />
@@ -250,7 +264,7 @@ const ContactDetails = () => {
           <input
             type="text"
             className="w-11/12 placeholder-[#545456] text-xs border-none outline-none focus:ring-0 bg-[#F8F8F9]"
-            placeholder="Location"
+            placeholder="Location*"
             value={address}
           />
           <div className="w-1/12 h-full cursor-pointer" onClick={getLocation}>
@@ -263,24 +277,36 @@ const ContactDetails = () => {
             />
           </div>
         </div>
-        <div
-          className="flex items-center justify-center w-[90%] sm:w-[91.26%] pt-6 pb-0 m-auto mb-6 mt-6"
-          style={{ borderBottom: '1px solid #545456' }}
-        >
-          <input
-            className="w-11/12 border-none outline-none custom-file-input focus:ring-0 bg-[#F8F8F9]"
-            type="file"
-            onChange={handleFileChange}
-            accept="image/*"
-          />
-          <div className="w-1/12 h-full">
-            <Image
-              src={'./images/upload.svg'}
-              alt="location-logo"
-              width={100}
-              height={100}
-              className="w-full h-full"
+        <div>
+          <div className="relative" 
+          style={{ opacity: images?.length > 0 ? "0" : "1" }}>
+            <label className="absolute cursor-pointer top-8 left-6">
+              <div className="w-full bg-[#F8F8F9] whitespace-nowrap text-[#545456] uppercase text-[10px] cursor-pointer">
+                Upload IMAGES
+              </div>
+            </label>
+          </div>
+          <div
+            className="flex items-center justify-center w-[90%] sm:w-[91.26%] pt-6 pb-0 m-auto mb-6 mt-6"
+            style={{ borderBottom: '1px solid #545456' }}
+          >
+            <input
+              className="w-full border-none outline-none custom-file-input focus:ring-0 bg-[#F8F8F9] cursor-pointer z-50"
+              type="file"
+              onChange={handleFileChange}
+              accept="image/*"
+              multiple
+              style={{ opacity: images?.length > 0 ? "1" : "0" }}
             />
+            <div className="z-0 w-1/12 h-full -ml-1/12">
+              <Image
+                src={'./images/upload.svg'}
+                alt="location-logo"
+                width={100}
+                height={100}
+                className="w-full h-full"
+              />
+            </div>
           </div>
         </div>
         <div className="p-6">
@@ -304,7 +330,7 @@ const ContactDetails = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="bg-[#8A1E61] uppercase text-white text-xs h-10 font-bold mb-6 w-11/12 ml-[4.5%]"
+          className="bg-[#8A1E61] uppercase text-white text-xs h-10 font-bold mb-6 w-11/12 ml-[4.5%] hover:bg-white hover:text-[#8A1E61] shadow-lg"
         >
           SUBMIT
         </button>
