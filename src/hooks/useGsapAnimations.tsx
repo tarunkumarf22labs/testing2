@@ -408,7 +408,7 @@ const useGsapAnimations = (section: gsap_animation_sections) => {
 
     ScrollTrigger.create({
       trigger: '.gsap-media-listing-section',
-      start: 'top 50%',
+      start: 'top 80%',
       end: 'bottom bottom',
       animation: timeline
     });

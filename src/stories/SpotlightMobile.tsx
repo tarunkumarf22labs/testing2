@@ -35,7 +35,7 @@ const SpotlightMobile = ({ data }: { data: ISpotlightAndJourney[] }) => {
             return (
               <SwiperSlide key={`${idx}`} className="h-full w-full pb-8">
                 <div className="h-full md:max-w-[350px] mx-auto">
-                  <h2 className="gsap-spotlight-section-content text-center text-[#1C1917] text-[32px] font-light tracking-[0.64px] capitalize">
+                  <h2 className="gsap-spotlight-section-content text-center text-[#1C1917] text-[22px] font-light tracking-[0.64px] capitalize">
                     {el?.title}
                   </h2>
                   <p className="gsap-spotlight-section-content text-center mt-4 text-[#545456] font-normal leading-6">

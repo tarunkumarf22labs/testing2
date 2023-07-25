@@ -22,7 +22,7 @@ const JourneyDesktop = ({
       ScrollTrigger.create({
         trigger: scrollerStartRef?.current,
         start: 'top 100px',
-        end: 'bottom 86%',
+        end: 'bottom 88%',
         pin: '.gsap-journey-section-left',
         toggleActions: 'play none reverse none',
         invalidateOnRefresh: true
