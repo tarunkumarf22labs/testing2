@@ -135,8 +135,14 @@ export interface villaInterface {
     stayLonger: {
       id: number;
       title: string;
-      shortDescription: string;
-      longDescription: string;
+      sortDescription: string;
+      numberOfNights: number;
+      collection: {
+        id: number;
+        title: string;
+        description: string;
+        image: IImageAmenity;
+      }[];
       image: IImageAmenity;
     }[];
     paymentTerm: {

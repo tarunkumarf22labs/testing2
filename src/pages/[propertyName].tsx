@@ -39,7 +39,8 @@ import {
   ExperiencesSectionProps,
   AccordionProps1,
   AccordionProps2,
-  RoomSectionProps
+  RoomSectionProps,
+  ExperiencesSectionCollectionProps
 } from 'src/Props';
 import { Accordion } from 'src/stories/Accordion';
 import { Container } from 'src/stories/Container';
@@ -64,7 +65,6 @@ const Home: NextPage = ({
   const [elementNo, setElementNo] = useState<number>(0);
   const villaData = propertyData?.data;
   const isMobile = useIsMobile();
-
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
@@ -168,19 +168,16 @@ const Home: NextPage = ({
             <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
           ) : null}
           <MediaListing mediaImages={mediaImages} />
-          <Modal
-            isOpen={isModalOpen}
-            onClose={toggleModal}
-            square={true}
-            className="max-w-[560px]"
-            segregated={false}
-            parentDivStyle="fixed top-0 left-0 z-50 flex items-start justify-center w-full h-screen px-6 overflow-y-scroll bg-gray-900 bg-opacity-50 md:px-0"
-          >
+          {
+            elementNo &&
             <CuratedExpModal
               id={elementNo}
-              {...ExperiencesSectionProps(villaData)}
+              propsData = {ExperiencesSectionCollectionProps(villaData,elementNo)}
+              setId = { ( id ) => {
+                setElementNo(id);
+              }}
             />
-          </Modal>
+          }
         </div>
       ) : (
         <div className="w-full h-[500px] flex justify-center items-center">

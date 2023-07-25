@@ -50,9 +50,13 @@ const RoomModal = ({ showOrHide, roomData }: IRoomModal) => {
         style={{ backgroundColor: 'rgba(0,0,0,0.1)' }}
         onClick={showOrHide}
       ></div>
-      <div className="relative w-11/12 px-4 py-6 m-auto capitalize bg-white rounded-sm shadow-md md:w-2/3 md:p-8">
-        <button className="absolute top-10 right-[5%]" onClick={showOrHide}>
-          <XMarkIcon className="w-7 h-7" />
+      <div className="relative w-11/12 px-4 py-6 m-auto capitalize bg-white rounded-sm shadow-md md:w-2/3 md:p-8 max-h-[70vh] h-auto overflow-y-scroll scrollbar-hide">
+          <button
+          className="absolute right-[6%] top-7 sm:right-[5%] rounded-full text-white bg-gray w-7 h-7 flex justify-center items-center"
+          onClick={showOrHide}
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.50)' }}
+        >
+          <XMarkIcon className="w-5 h-5" />
         </button>
         <div className="flex flex-col-reverse items-start w-full gap-4 md:w-2/3 md:flex-row ">
           <div

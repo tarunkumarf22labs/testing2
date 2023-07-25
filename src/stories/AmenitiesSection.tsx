@@ -49,7 +49,7 @@ export const AmenitiesSection = ({
                     alt={icon.image.alt}
                     className="relative top-[2px]"
                   />
-                  <span className="pl-3 text-base font-centaur flex-1">
+                  <span className="flex-1 pl-3 text-base font-centaur">
                     {icon.text}
                   </span>
                 </p>
