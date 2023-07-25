@@ -1,51 +1,38 @@
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PrimaryButton from './PrimaryButton';
 import { knowMore, listYourPropertySection } from 'src/data/constants';
 import { Container } from './Container';
-import { gsap } from 'gsap';
 import { useRouter } from 'next/router';
+import useGsapAnimations from '@/hooks/useGsapAnimations';
+import { gsap_animation_sections } from 'src/types/enum';
 
 const ListYourPropertySection = () => {
-  const scrollerRef = useRef(null);
   const navigation = useRouter();
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      let timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollerRef?.current,
-          start: 'top 40%',
-          end: 'top 40%',
-          toggleActions: 'play none reverse none'
-        }
-      });
-
-      timeline
-        .fromTo('.list-your-prop-img-1', { scale: 1.5 }, { scale: 1 })
-        .fromTo('.list-your-prop-img-2', { scale: 1.5 }, { scale: 1 }, '<')
-        .fromTo('.list-your-prop-img-3', { scale: 1.5 }, { scale: 1 }, '<');
-    }, scrollerRef);
-    return () => ctx.revert();
-  }, []);
+  useGsapAnimations(gsap_animation_sections.list_your_property);
 
   return (
-    <div ref={scrollerRef}>
+    <div className="gsap-list-your-property-section">
       <Container bgWhite={false}>
         <div className="flex gap-[65px] flex-col md:flex-row items-center md:items-start">
           <div>
-            <p className="text-[#8A1E61] text-center md:text-left uppercase text-sm font-[450] md:tracking-[4.2px]">
-              {listYourPropertySection.homeOwners}
-            </p>
-            <h1 className="text-[#1C1917] text-center md:text-left uppercase text-[28px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5">
-              {listYourPropertySection.heading}
-            </h1>
-            <p className="font-[400] text-center md:text-left text-lg text-[#545456] font-centaur mt-3">
+            <div className="text-[#8A1E61] text-center md:text-left uppercase text-sm font-[450] md:tracking-[4.2px] overflow-hidden">
+              <p className="gsap-list-your-property-section-heading-text opacity-0">
+                {listYourPropertySection.homeOwners}
+              </p>
+            </div>
+            <div className="text-[#1C1917] text-center md:text-left uppercase text-[26px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5 overflow-hidden">
+              <h1 className="gsap-list-your-property-section-heading-text opacity-0">
+                {listYourPropertySection.heading}
+              </h1>
+            </div>
+            <p className="gsap-list-your-property-section-content opacity-0 font-[400] text-center md:text-left text-lg text-[#545456] font-centaur mt-3">
               {listYourPropertySection.para}
             </p>
             <div className="flex gap-[76px] justify-center md:justify-start">
               <PrimaryButton
-                className="w-[317px] justify-center mt-10 self-start"
+                className="gsap-list-your-property-section-button opacity-0 w-[317px] justify-center mt-10 self-start"
                 title={knowMore}
                 onClick={() => navigation.push('/home-owners')}
               />
@@ -58,7 +45,7 @@ const ListYourPropertySection = () => {
                   sizes="100vw"
                   height={0}
                   width={0}
-                  className="list-your-prop-img-1 w-full h-full absolute object-cover"
+                  className="gsap-list-your-prop-img-1 w-full h-full absolute object-cover"
                 />
               </div>
             </div>
@@ -74,10 +61,10 @@ const ListYourPropertySection = () => {
                   sizes="100vw"
                   height={0}
                   width={0}
-                  className="list-your-prop-img-2 absolute w-full h-full object-cover"
+                  className="gsap-list-your-prop-img-2 absolute w-full h-full object-cover"
                 />
               </div>
-              <div className="w-[211px] h-[170px] absolute top-[40%] md:top-[58px] left-[40%] xl:left-[80%] overflow-hidden">
+              <div className="gsap-list-your-prop-img-3-parallax w-[211px] h-[170px] absolute top-[40%] md:top-[58px] left-[40%] xl:left-[80%] shadow-xl overflow-hidden">
                 <Image
                   src={
                     'https://luxunlockdev.s3.ap-south-1.amazonaws.com/Picnic_on_the_Lawns_b4a2953158.jpg'
@@ -86,7 +73,7 @@ const ListYourPropertySection = () => {
                   sizes="100vw"
                   height={0}
                   width={0}
-                  className="list-your-prop-img-3 w-[211px] h-[170px] object-cover shadow-xl"
+                  className="gsap-list-your-prop-img-3 w-[211px] h-[170px] object-cover"
                 />
               </div>
             </div>

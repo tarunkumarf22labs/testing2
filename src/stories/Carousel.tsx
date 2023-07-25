@@ -21,6 +21,8 @@ import { Autoplay } from 'swiper';
 import HomeSearchBar from './HomeSearchBar';
 import { Container } from './Container';
 import { CalendarBlank, MagnifyingGlass, Users } from '@phosphor-icons/react';
+import useGsapAnimations from '@/hooks/useGsapAnimations';
+import { gsap_animation_sections } from 'src/types/enum';
 
 export default function Carousel({
   images,
@@ -30,6 +32,8 @@ export default function Carousel({
   locations
 }: CarouselProps) {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
+
+  useGsapAnimations(gsap_animation_sections.hero);
 
   const toggleFilterMenu = () => {
     setShowFilterMenu(true);
@@ -49,7 +53,7 @@ export default function Carousel({
       >
         {images?.map((ele, idx) => {
           return (
-            <SwiperSlide key={idx} className="ease-in-out">
+            <SwiperSlide key={idx} className="ease-in-out w-full">
               <Image
                 src={ele}
                 width={0}
@@ -81,26 +85,17 @@ export default function Carousel({
           </div>
         )}
         <div className="hidden flex-1 md:flex items-center justify-center">
-          <h1
-            className={`capitalize animate-slide-down max-w-[830px] leading-[68px] font-[330] ${bannerTextStyle} text-4xl md:text-[52px]`}
+          <div
+            className={`capitalize max-w-[830px] leading-[68px] font-[330] ${bannerTextStyle} text-4xl md:text-[52px] overflow-hidden`}
           >
-            {bannerText}
-          </h1>
+            <h1 className="gsap-hero-text opacity-0">{bannerText}</h1>
+          </div>
         </div>
-        <motion.div
-          animate={{
-            opacity: 1
-          }}
-          initial={{
-            opacity: 0
-          }}
-          transition={{
-            duration: 1
-          }}
-          className={'w-full mb-20 hidden md:block'}
+        <div
+          className={'gsap-search-bar opacity-0 w-full mb-20 hidden md:block'}
         >
           <HomeSearchBar locations={locations} />
-        </motion.div>
+        </div>
 
         {showFilterMenu ? (
           <motion.div
