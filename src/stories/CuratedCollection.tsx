@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -11,8 +11,8 @@ import classNames from 'classnames';
 import { ScrollButton } from './ScrollButton';
 import useIsMobile from '@/hooks/useIsMobile';
 import { ICuratedCollection } from 'src/Interface/home-page';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import useGsapAnimations from '@/hooks/useGsapAnimations';
+import { gsap_animation_sections } from 'src/types/enum';
 
 const CuratedCollection = ({
   collections
@@ -27,48 +27,7 @@ const CuratedCollection = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(collections?.[0]);
 
-  useEffect(() => {
-    let timeline = gsap.timeline({
-      defaults: {
-        duration: 1.5,
-        ease: 'power4.out'
-      }
-    });
-
-    timeline
-      .fromTo(
-        '.gsap-inspiration-section-heading-text',
-        {
-          y: 100,
-          skewY: 5,
-          opacity: 0
-        },
-        {
-          y: 0,
-          skewY: 0,
-          opacity: 1
-        }
-      )
-      .fromTo(
-        '.gsap-inspiration-section-tab',
-        { opacity: 0 },
-        { opacity: 1 },
-        0.5
-      )
-      .fromTo(
-        '.gsap-inspiration-section-item',
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1 },
-        '<'
-      );
-
-    ScrollTrigger.create({
-      trigger: '.gsap-inspiration-section',
-      start: 'top 50%',
-      end: 'bottom bottom',
-      animation: timeline
-    });
-  }, []);
+  useGsapAnimations(gsap_animation_sections.inspiration);
 
   const selectedCollectionVilla = useMemo(() => {
     return collections?.find((el) => el?.id === selectedCategory?.id)
@@ -79,9 +38,11 @@ const CuratedCollection = ({
     <div className="gsap-inspiration-section">
       <Container bgWhite={isMobile ? true : false} slider>
         <div>
-          <h1 className="gsap-inspiration-section-heading-text opacity-0 uppercase text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
-            {curatedCollectionSection.heading}
-          </h1>
+          <div className="uppercase text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5 overflow-hidden">
+            <h1 className="gsap-inspiration-section-heading-text opacity-0">
+              {curatedCollectionSection.heading}
+            </h1>
+          </div>
           <div>
             <div className="gsap-inspiration-section-tab opacity-0 flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
               {(collections?.length > 5

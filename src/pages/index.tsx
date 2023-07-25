@@ -47,11 +47,11 @@ const Home: NextPage = ({
           )}
         />
         <Container className="block md:hidden" innerContainerClassName="pb-0">
-          <h1
-            className={`capitalize text-center leading-[68px] font-[330] text-[#18181B] text-4xl`}
+          <div
+            className={`capitalize text-center leading-[68px] font-[330] text-[#18181B] text-4xl overflow-hidden`}
           >
-            {bannerText}
-          </h1>
+            <h1 className={'gsap-hero-text opacity-0 '}>{bannerText}</h1>
+          </div>
           <hr className="mt-7" />
         </Container>
         {homePageData?.data?.attributes?.destination?.length ? (

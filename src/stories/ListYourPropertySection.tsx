@@ -1,84 +1,32 @@
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React from 'react';
 import PrimaryButton from './PrimaryButton';
 import { knowMore, listYourPropertySection } from 'src/data/constants';
 import { Container } from './Container';
-import { gsap } from 'gsap';
 import { useRouter } from 'next/router';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import useGsapAnimations from '@/hooks/useGsapAnimations';
+import { gsap_animation_sections } from 'src/types/enum';
 
 const ListYourPropertySection = () => {
   const navigation = useRouter();
 
-  useEffect(() => {
-    let timeline = gsap.timeline({
-      defaults: {
-        duration: 1.5,
-        ease: 'power4.out'
-      }
-    });
-
-    timeline
-      .fromTo(
-        '.gsap-list-your-property-section-heading-text',
-        {
-          y: 100,
-          skewY: 5,
-          opacity: 0
-        },
-        {
-          y: 0,
-          skewY: 0,
-          opacity: 1
-        }
-      )
-      .fromTo(
-        '.gsap-list-your-property-section-content',
-        { opacity: 0 },
-        { opacity: 1 },
-        0.5
-      )
-      .fromTo(
-        '.gsap-list-your-property-section-button',
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1 },
-        '<'
-      )
-      .fromTo('.gsap-list-your-prop-img-1', { scale: 1.5 }, { scale: 1 }, '<')
-      .fromTo('.gsap-list-your-prop-img-2', { scale: 1.5 }, { scale: 1 }, '<')
-      .fromTo('.gsap-list-your-prop-img-3', { scale: 1.5 }, { scale: 1 }, '<');
-
-    ScrollTrigger.create({
-      trigger: '.gsap-list-your-property-section',
-      start: 'top 50%',
-      end: 'bottom bottom',
-      animation: timeline
-    });
-
-    ScrollTrigger.create({
-      trigger: '.gsap-list-your-property-section',
-      start: 'top 100%',
-      end: 'bottom 0%',
-      animation: gsap.fromTo(
-        '.gsap-list-your-prop-img-3-parallax',
-        { y: 200 },
-        { y: 0 }
-      ),
-      scrub: 1
-    });
-  }, []);
+  useGsapAnimations(gsap_animation_sections.list_your_property);
 
   return (
     <div className="gsap-list-your-property-section">
       <Container bgWhite={false}>
         <div className="flex gap-[65px] flex-col md:flex-row items-center md:items-start">
           <div>
-            <p className="gsap-list-your-property-section-heading-text text-[#8A1E61] text-center md:text-left uppercase text-sm font-[450] md:tracking-[4.2px]">
-              {listYourPropertySection.homeOwners}
-            </p>
-            <h1 className="gsap-list-your-property-section-heading-text opacity-0 text-[#1C1917] text-center md:text-left uppercase text-[28px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5">
-              {listYourPropertySection.heading}
-            </h1>
+            <div className="text-[#8A1E61] text-center md:text-left uppercase text-sm font-[450] md:tracking-[4.2px] overflow-hidden">
+              <p className="gsap-list-your-property-section-heading-text opacity-0">
+                {listYourPropertySection.homeOwners}
+              </p>
+            </div>
+            <div className="text-[#1C1917] text-center md:text-left uppercase text-[28px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5 overflow-hidden">
+              <h1 className="gsap-list-your-property-section-heading-text opacity-0">
+                {listYourPropertySection.heading}
+              </h1>
+            </div>
             <p className="gsap-list-your-property-section-content opacity-0 font-[400] text-center md:text-left text-lg text-[#545456] font-centaur mt-3">
               {listYourPropertySection.para}
             </p>

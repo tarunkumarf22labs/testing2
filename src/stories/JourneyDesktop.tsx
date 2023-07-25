@@ -15,7 +15,7 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
       ScrollTrigger.create({
         trigger: scrollerStartRef?.current,
         start: 'top 100px',
-        end: 'bottom 90%',
+        end: 'bottom 86%',
         pin: '.gsap-journey-section-left',
         toggleActions: 'play none reverse none',
         invalidateOnRefresh: true
@@ -73,9 +73,11 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
 
   return (
     <div ref={scrollerStartRef} className="flex flex-col gap-y-5">
-      <h1 className="uppercase text-4xl text-[#18181B] font-light md:text-5xl">
-        {journeySection.heading}
-      </h1>
+      <div className="uppercase text-4xl text-[#18181B] font-light md:text-5xl overflow-hidden">
+        <h1 className="gsap-journey-section-heading-text opacity-0">
+          {journeySection.heading}
+        </h1>
+      </div>
       <div className="flex justify-between mt-20 items-start">
         <div className="gsap-journey-section-left flex flex-1 items-center gap-8">
           <div className="flex flex-col items-center w-8">
@@ -101,7 +103,7 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
               <div className="bg-white w-2 h-2 rounded-full" />
             </div>
           </div>
-          <div className="w-full relative max-w-[559px] h-[369px] overflow-hidden">
+          <div className="gsap-journey-section-button w-full relative max-w-[559px] h-[369px] overflow-hidden">
             {data?.map((el, idx) => {
               return (
                 <Image
@@ -124,16 +126,16 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
                 key={`${idx}`}
                 className={`flex flex-col gap-y-4 flex-1 py-10 h-full w-full bg-white text-content-${idx}`}
               >
-                <h2 className="text-[#1C1917] text-[42px] font-light capitalize">
+                <h2 className="gsap-journey-section-content text-[#1C1917] text-[42px] font-light capitalize">
                   {el?.title}
                 </h2>
-                <p className="text-base md:text-[22px] leading-[34px] text-[#545456] font-centaur">
+                <p className="gsap-journey-section-content text-base md:text-[22px] leading-[34px] text-[#545456] font-centaur">
                   {el?.description}
                 </p>
                 <PrimaryButton
                   title="Know More"
                   onClick={() => {}}
-                  className="self-start w-[317px] p-0 py-4 items-center justify-center mt-2"
+                  className="gsap-journey-section-button self-start w-[317px] p-0 py-4 items-center justify-center mt-2"
                 />
               </div>
             );

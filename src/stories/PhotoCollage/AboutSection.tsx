@@ -1,84 +1,29 @@
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container } from '../Container';
 import PrimaryButton from '../PrimaryButton';
 import { aboutSection, knowMore } from 'src/data/constants';
 import { IAbout } from 'src/Interface/home-page';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import useGsapAnimations from '@/hooks/useGsapAnimations';
+import { gsap_animation_sections } from 'src/types/enum';
 
 function AboutSection({ data }: { data: IAbout }) {
-  useEffect(() => {
-    let timeline = gsap.timeline({
-      defaults: {
-        duration: 1.5,
-        ease: 'power4.out'
-      }
-    });
-
-    timeline
-      .fromTo(
-        '.gsap-about-section-heading-text',
-        {
-          y: 100,
-          skewY: 5,
-          opacity: 0
-        },
-        {
-          y: 0,
-          skewY: 0,
-          opacity: 1
-        }
-      )
-      .fromTo(
-        '.gsap-about-section-item',
-        { opacity: 0, scale: 0.8, stagger: 0.3 },
-        { opacity: 1, scale: 1, stagger: 0.3 },
-        0.5
-      )
-      .fromTo(
-        '.gsap-about-section-main-image',
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1 },
-        0.5
-      )
-      .fromTo(
-        '.gsap-about-section-side-image',
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1 },
-        0.5
-      )
-      .fromTo(
-        '.gsap-about-section-right-image',
-        { xPercent: -100, opacity: 0 },
-        { xPercent: 0, opacity: 1 },
-        '<'
-      )
-      .fromTo(
-        '.gsap-about-section-left-image',
-        { xPercent: 100, opacity: 0 },
-        { xPercent: 0, opacity: 1 },
-        '<'
-      );
-
-    ScrollTrigger.create({
-      trigger: '.gsap-about-section',
-      start: 'top 50%',
-      end: 'bottom bottom',
-      animation: timeline
-    });
-  }, []);
+  useGsapAnimations(gsap_animation_sections.about);
 
   return (
     <div className="gsap-about-section">
       <Container className="relative overflow-hidden" bgWhite={false}>
         <div className="w-full flex flex-col justify-center text-center md:w-[596px] mx-auto">
-          <p className="gsap-about-section-heading-text opacity-0 text-[#8A1E61] text-center uppercase text-sm font-[450] md:tracking-[4.2px]">
-            {aboutSection.about}
-          </p>
-          <h1 className="gsap-about-section-heading-text opacity-0 text-[28px] text-center lg:text-[52px] font-[330] text-[#1C1917] uppercase mt-5">
-            {aboutSection.heading}
-          </h1>
+          <div className="text-[#8A1E61] text-center uppercase text-sm font-[450] md:tracking-[4.2px] overflow-hidden">
+            <p className="gsap-about-section-heading-text opacity-0">
+              {aboutSection.about}
+            </p>
+          </div>
+          <div className="text-[28px] text-center lg:text-[52px] font-[330] text-[#1C1917] uppercase mt-5 overflow-hidden">
+            <h1 className="gsap-about-section-heading-text opacity-0">
+              {aboutSection.heading}
+            </h1>
+          </div>
           <p className="gsap-about-section-item opacity-0 sm:w-full text-[#545456] mt-8 leading-[22px] font-normal sm:text-xl font-centaur sm:leading-[34px]">
             {data?.aboutDescription}
           </p>

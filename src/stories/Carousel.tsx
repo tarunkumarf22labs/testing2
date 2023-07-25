@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -21,7 +21,8 @@ import { Autoplay } from 'swiper';
 import HomeSearchBar from './HomeSearchBar';
 import { Container } from './Container';
 import { CalendarBlank, MagnifyingGlass, Users } from '@phosphor-icons/react';
-import { gsap } from 'gsap';
+import useGsapAnimations from '@/hooks/useGsapAnimations';
+import { gsap_animation_sections } from 'src/types/enum';
 
 export default function Carousel({
   images,
@@ -32,33 +33,7 @@ export default function Carousel({
 }: CarouselProps) {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
-  useEffect(() => {
-    let timeline = gsap.timeline({
-      defaults: { duration: 1.5, ease: 'power4.out' }
-    });
-
-    timeline
-      .fromTo(
-        '.gsap-hero-text',
-        {
-          y: 100,
-          skewY: 5,
-          opacity: 0
-        },
-        {
-          y: 0,
-          skewY: 0,
-          opacity: 1,
-          delay: 1
-        }
-      )
-      .fromTo(
-        '.gsap-search-bar',
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1 },
-        1.5
-      );
-  }, []);
+  useGsapAnimations(gsap_animation_sections.hero);
 
   const toggleFilterMenu = () => {
     setShowFilterMenu(true);
@@ -78,7 +53,7 @@ export default function Carousel({
       >
         {images?.map((ele, idx) => {
           return (
-            <SwiperSlide key={idx} className="ease-in-out">
+            <SwiperSlide key={idx} className="ease-in-out w-full">
               <Image
                 src={ele}
                 width={0}
@@ -110,13 +85,11 @@ export default function Carousel({
           </div>
         )}
         <div className="hidden flex-1 md:flex items-center justify-center">
-          <h1
-            className={`capitalize max-w-[830px] leading-[68px] font-[330] ${bannerTextStyle} text-4xl md:text-[52px]`}
+          <div
+            className={`capitalize max-w-[830px] leading-[68px] font-[330] ${bannerTextStyle} text-4xl md:text-[52px] overflow-hidden`}
           >
-            <div className="gsap-hero-text opacity-0 overflow-hidden">
-              {bannerText}
-            </div>
-          </h1>
+            <h1 className="gsap-hero-text opacity-0">{bannerText}</h1>
+          </div>
         </div>
         <div
           className={'gsap-search-bar opacity-0 w-full mb-20 hidden md:block'}
