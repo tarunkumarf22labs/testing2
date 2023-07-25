@@ -40,7 +40,7 @@ const CuratedCollection = ({
     <div className="gsap-inspiration-section">
       <Container bgWhite={isMobile ? true : false} slider>
         <div>
-          <h1 className="uppercase text-[26px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
+          <h1 className="uppercase text-[26px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5 overflow-hidden">
             <div className="gsap-inspiration-section-heading-text opacity-0">
               {curatedCollectionSectionheading}
             </div>

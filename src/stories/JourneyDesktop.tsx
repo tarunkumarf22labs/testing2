@@ -85,7 +85,7 @@ const JourneyDesktop = ({
           {journeySectionheading}
         </h1>
       </div>
-      <div className="flex gap-x-[60px] justify-between mt-20">
+      <div className="flex gap-x-[60px] justify-between mt-20 items-start">
         <div className="gsap-journey-section-left flex flex-1 items-center gap-8">
           <div className="flex flex-col items-center w-8">
             <div className="w-5 h-5 rounded-full bg-[#8A1E61] flex items-center justify-center">
