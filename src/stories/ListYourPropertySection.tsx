@@ -22,7 +22,7 @@ const ListYourPropertySection = () => {
                 {listYourPropertySection.homeOwners}
               </p>
             </div>
-            <div className="text-[#1C1917] text-center md:text-left uppercase text-[28px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5 overflow-hidden">
+            <div className="text-[#1C1917] text-center md:text-left uppercase text-[26px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5 overflow-hidden">
               <h1 className="gsap-list-your-property-section-heading-text opacity-0">
                 {listYourPropertySection.heading}
               </h1>

@@ -16,10 +16,16 @@ import { gsap_animation_sections } from 'src/types/enum';
 
 const DestinationsSection = ({
   destinations,
-  villas
+  villas,
+  destinationSectionheading,
+  destinationSectiontext,
+  istagsdisable = true
 }: {
   destinations: IDestination[];
   villas: villaInterface[];
+  destinationSectionheading: string;
+  destinationSectiontext?: string;
+  istagsdisable?: boolean;
 }) => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
@@ -51,31 +57,37 @@ const DestinationsSection = ({
         getAvailableAddress(selectedCategory)?.data?.attributes?.name
     );
   }, [selectedCategory]);
-
+  const DestinationVillas = istagsdisable ? selectedDestinationVillas : villas;
   return (
     <div className="gsap-destination-section">
       <Container bgWhite={isMobile ? true : false} slider>
-        <div className="uppercase text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5 overflow-hidden">
+        <div className="uppercase text-[26px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5 overflow-hidden">
           <h1 className="gsap-destination-section-heading-text opacity-0">
-            {destinationsSection.heading}
+            {destinationSectionheading}
           </h1>
         </div>
+        {destinationSectiontext && (
+          <p className="py-3  max-w-[1239px]">{destinationSectiontext}</p>
+        )}
         <div>
-          <div className="gsap-destination-section-tab opacity-0 flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
-            {destinations?.map((el, idx) => {
-              return (
-                <TabButton
-                  key={`${idx}`}
-                  title={getAvailableAddress(el)?.data?.attributes?.name}
-                  isSelected={
-                    getAvailableAddress(selectedCategory)?.data?.attributes
-                      ?.name === getAvailableAddress(el)?.data?.attributes?.name
-                  }
-                  onClick={() => setSelectedCategory(el)}
-                />
-              );
-            })}
-          </div>
+          {istagsdisable && (
+            <div className="gsap-destination-section-tab opacity-0 flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
+              {destinations?.map((el, idx) => {
+                return (
+                  <TabButton
+                    key={`${idx}`}
+                    title={getAvailableAddress(el)?.data?.attributes?.name}
+                    isSelected={
+                      getAvailableAddress(selectedCategory)?.data?.attributes
+                        ?.name ===
+                      getAvailableAddress(el)?.data?.attributes?.name
+                    }
+                    onClick={() => setSelectedCategory(el)}
+                  />
+                );
+              })}
+            </div>
+          )}
           <div className="mt-10">
             <Swiper
               ref={swiperRef}
@@ -91,11 +103,11 @@ const DestinationsSection = ({
               className="relative"
               watchOverflow={true}
             >
-              {selectedDestinationVillas?.map((property, idx) => {
+              {DestinationVillas?.map((property, idx) => {
                 return (
                   <SwiperSlide
                     key={`${idx}`}
-                    className="gsap-destination-section-item w-full max-w-[284px] md:max-w-[500px] md:w-[500px]"
+                    className="gsap-destination-section-item w-full max-w-[284px] md:max-w-[500px]"
                   >
                     <DestinationCard
                       name={property?.attributes?.name}

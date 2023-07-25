@@ -11,9 +11,10 @@ interface ISearch {
     title: string;
   }[];
   handleshowSearch?: () => void;
+  inFavouritePage?: Boolean;
 }
 
-const Search = ({ locations, handleshowSearch }: ISearch) => {
+const Search = ({ locations, handleshowSearch,inFavouritePage }: ISearch) => {
   const router = useRouter();
   const [showDate, setShowDate] = useState(false);
   const { startDate, endDate } = useContext(AppContext);
@@ -222,9 +223,10 @@ const Search = ({ locations, handleshowSearch }: ISearch) => {
         <div
           className="bg-[#8A1E61] flex justify-between items-center ml-3 mr-3 mb-4 h-12 sm:mt-5 md:w-11/12 md:-mt-4 md:m-auto md:mb-2 lg:w-[10%] lg:mr-[3%] rounded-sm"
           onClick={() => {
+            let pathName = inFavouritePage ? "/favourites" : "/result"
             handleshowSearch && handleshowSearch();
             router.push({
-              pathname: '/result',
+              pathname: pathName,
               query: {
                 locationtype: currentlocation.type,
                 location: currentlocation.title,

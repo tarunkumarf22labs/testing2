@@ -47,7 +47,7 @@ const HomeTestimonialsSection = ({ data }: { data: ISingleTestimonial[] }) => {
                           {homeTestimonialSection.theirExperience}
                         </p>
                       </div>
-                      <div className="text-[28px] text-center md:text-left lg:text-[52px] font-[330] text-[#1C1917] uppercase mt-5 overflow-hidden">
+                      <div className="text-[26px] text-center md:text-left lg:text-[52px] font-[330] text-[#1C1917] uppercase mt-5 overflow-hidden">
                         <h1 className="gsap-home-testimonial-section-heading-text">
                           {homeTestimonialSection.heading}
                         </h1>

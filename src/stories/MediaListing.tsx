@@ -14,7 +14,7 @@ const MediaListing = ({ mediaImages }: IMediaListing) => {
   return (
     <div className="gsap-media-listing-section">
       <Container>
-        <div className="uppercase text-[#1C1917] text-center text-[28px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5 overflow-hidden">
+        <div className="uppercase text-[#1C1917] text-center text-[26px] lg:text-[52px] font-[330] tracking-[1.04px] mt-5 overflow-hidden">
           <h1 className="gsap-media-listing-section-heading-text opacity-0">
             {featuredIn}
           </h1>

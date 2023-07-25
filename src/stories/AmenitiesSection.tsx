@@ -33,7 +33,7 @@ export const AmenitiesSection = ({
             <p className="text-sm text-[#8A1E61] pb-2 md:tracking-[4.2px] md:font-[450]">
               {heading && heading}
             </p>
-            <p className="text-[28px] lg:text-[52px] font-light">Amenities</p>
+            <p className="text-[26px] lg:text-[52px] font-light">Amenities</p>
           </div>
           <div className="flex-1 mt-0 lg:mt-[32px] grid lg:grid-cols-2 lg:auto-rows-min gap-y-6 text-[#545456]">
             {(iconsArray?.length > maxItemsToShow

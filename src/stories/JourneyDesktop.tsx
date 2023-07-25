@@ -2,11 +2,18 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { journeySection } from 'src/data/constants';
 import PrimaryButton from './PrimaryButton';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
 
-const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
+const JourneyDesktop = ({
+  data,
+  journeySectionheading,
+  isbuttonvisible = true
+}: {
+  data: ISpotlightAndJourney[];
+  journeySectionheading: string;
+  isbuttonvisible: boolean;
+}) => {
   const scrollerStartRef = useRef(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
@@ -75,10 +82,10 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
     <div ref={scrollerStartRef} className="flex flex-col gap-y-5">
       <div className="uppercase text-4xl text-[#18181B] font-light md:text-5xl overflow-hidden">
         <h1 className="gsap-journey-section-heading-text opacity-0">
-          {journeySection.heading}
+          {journeySectionheading}
         </h1>
       </div>
-      <div className="flex justify-between mt-20 items-start">
+      <div className="flex gap-x-[60px] justify-between mt-20">
         <div className="gsap-journey-section-left flex flex-1 items-center gap-8">
           <div className="flex flex-col items-center w-8">
             <div className="w-5 h-5 rounded-full bg-[#8A1E61] flex items-center justify-center">
@@ -132,11 +139,13 @@ const JourneyDesktop = ({ data }: { data: ISpotlightAndJourney[] }) => {
                 <p className="gsap-journey-section-content text-base md:text-[22px] leading-[34px] text-[#545456] font-centaur">
                   {el?.description}
                 </p>
-                <PrimaryButton
-                  title="Know More"
-                  onClick={() => {}}
-                  className="gsap-journey-section-button self-start w-[317px] p-0 py-4 items-center justify-center mt-2"
-                />
+                {isbuttonvisible && (
+                  <PrimaryButton
+                    title="Know More"
+                    onClick={() => {}}
+                    className="gsap-journey-section-button self-start w-[317px] p-0 py-4 items-center justify-center mt-2"
+                  />
+                )}
               </div>
             );
           })}

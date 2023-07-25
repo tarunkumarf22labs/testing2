@@ -5,7 +5,7 @@ import 'swiper/css';
 
 import { Container } from './Container';
 import TabButton from './TabButton';
-import { curatedCollectionSection, viewAll } from 'src/data/constants';
+import { viewAll } from 'src/data/constants';
 import CuratedCollectionCard from './CuratedCollectionCard';
 import classNames from 'classnames';
 import { ScrollButton } from './ScrollButton';
@@ -15,9 +15,11 @@ import useGsapAnimations from '@/hooks/useGsapAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 const CuratedCollection = ({
-  collections
+  collections,
+  curatedCollectionSectionheading
 }: {
   collections: ICuratedCollection[];
+  curatedCollectionSectionheading: string;
 }) => {
   const swiperRef = useRef(null);
   const isMobile = useIsMobile();
@@ -38,13 +40,13 @@ const CuratedCollection = ({
     <div className="gsap-inspiration-section">
       <Container bgWhite={isMobile ? true : false} slider>
         <div>
-          <div className="uppercase text-[40px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5 overflow-hidden">
-            <h1 className="gsap-inspiration-section-heading-text opacity-0">
-              {curatedCollectionSection.heading}
-            </h1>
-          </div>
+          <h1 className="uppercase text-[26px] md:text-[52px] text-center md:text-left tracking-[0.8px] md:tracking-[1.04px] font-light leading-[48px] md:leading-[68px] text-[#1C1917] mt-3 md:mt-5">
+            <div className="gsap-inspiration-section-heading-text opacity-0">
+              {curatedCollectionSectionheading}
+            </div>
+          </h1>
           <div>
-            <div className="gsap-inspiration-section-tab opacity-0 flex gap-6 mt-8 md:mt-10 overflow-x-auto pb-4">
+            <div className="gsap-inspiration-section-tab opacity-0 flex gap-6 pb-4 mt-8 overflow-x-auto md:mt-10">
               {(collections?.length > 5
                 ? collections.slice(0, 5)
                 : collections
