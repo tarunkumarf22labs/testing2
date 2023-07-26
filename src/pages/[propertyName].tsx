@@ -20,7 +20,6 @@ import {
 
 import MediaListing from 'src/stories/MediaListing';
 import { mediaImages } from 'src/data/constants';
-import Modal from 'src/stories/Modal/Modal';
 import { CuratedExpModal } from 'src/stories/CuratedExpModal';
 import NetWrapper from 'src/Network/netWrapper';
 import { IPropertyDetails, IVillaFAQ, IVillaReviews } from 'src/Interface';
@@ -45,6 +44,8 @@ import {
 import { Accordion } from 'src/stories/Accordion';
 import { Container } from 'src/stories/Container';
 import { ITestimonials } from 'src/Interface/home-page';
+import { ReactLenis } from '@studio-freight/react-lenis';
+import { gsap_property_details_animation_sections } from 'src/types/enum';
 
 const Home: NextPage = ({
   propertyData,
@@ -70,121 +71,136 @@ const Home: NextPage = ({
   };
 
   return (
-    <Layout title="LuxUnlock">
-      {propertyError === null ? (
-        <div className="bg-[#f8f8f9]">
-          <PropertyDetailsHeroSection
-            {...PropertyDetailsHeroSectionProps(villaData)}
-          />
-          <Container
-            bgWhite={isMobile ? true : false}
-            innerContainerClassName="py-0 lg:py-0"
-          >
-            <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
-              <div className="flex flex-col flex-1 lg:flex-[2]">
-                <PropertyOverview {...VillaOverviewProps(villaData)} />
-                {/* Mobile */}
-                <div className="flex flex-col flex-1 h-fit md:hidden">
+    <ReactLenis
+      root
+      options={{
+        duration: 2.2
+      }}
+    >
+      <Layout title="LuxUnlock">
+        {propertyError === null ? (
+          <div className="bg-[#f8f8f9]">
+            <PropertyDetailsHeroSection
+              {...PropertyDetailsHeroSectionProps(villaData)}
+            />
+            <Container
+              bgWhite={isMobile ? true : false}
+              innerContainerClassName="py-0 lg:py-0"
+            >
+              <div className="relative z-10 flex flex-col md:px-5 md:flex-row md:justify-between md:max-w-7xl md:mx-auto md:gap-x-5 xl:px-0">
+                <div className="flex flex-col flex-1 lg:flex-[2]">
+                  <PropertyOverview {...VillaOverviewProps(villaData)} />
+                  {/* Mobile */}
+                  <div className="flex flex-col flex-1 h-fit md:hidden">
+                    <ReserveAndLocationDetailsSection
+                      {...ReserveAndLocationDetailsSectionProps(villaData)}
+                    />
+                  </div>
+                  {RoomSectionProps(villaData).roomData.length > 0 && (
+                    <RoomSection {...RoomSectionProps(villaData)} />
+                  )}
+                </div>
+                {/* Desktop */}
+                <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
                   <ReserveAndLocationDetailsSection
                     {...ReserveAndLocationDetailsSectionProps(villaData)}
                   />
                 </div>
-                {RoomSectionProps(villaData).roomData.length > 0 && (
-                  <RoomSection {...RoomSectionProps(villaData)} />
-                )}
               </div>
-              {/* Desktop */}
-              <div className="hidden flex-1 flex-col mt-[60px] max-w-[350px] h-fit md:flex">
-                <ReserveAndLocationDetailsSection
-                  {...ReserveAndLocationDetailsSectionProps(villaData)}
-                />
-              </div>
-            </div>
-          </Container>
-          {AmenitiesSectionProps(villaData).iconsArray.length > 0 && (
-            <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
-          )}
-          {!isMobile ? (
-            <>
-              {InclusionsExclusionsSectionProps(villaData)?.inclusions?.length >
-                0 &&
-                InclusionsExclusionsSectionProps(villaData)?.exclusions
-                  ?.length > 0 && (
-                  <InclusionsExclusionsSection
-                    {...InclusionsExclusionsSectionProps(villaData)}
+            </Container>
+            {AmenitiesSectionProps(villaData).iconsArray.length > 0 && (
+              <AmenitiesSection {...AmenitiesSectionProps(villaData)} />
+            )}
+            {!isMobile ? (
+              <>
+                {InclusionsExclusionsSectionProps(villaData)?.inclusions
+                  ?.length > 0 &&
+                  InclusionsExclusionsSectionProps(villaData)?.exclusions
+                    ?.length > 0 && (
+                    <InclusionsExclusionsSection
+                      {...InclusionsExclusionsSectionProps(villaData)}
+                    />
+                  )}
+                {/* HOME TRUTHS */}
+                {HomeTruthProps(villaData).story && (
+                  <StorySection
+                    {...HomeTruthProps(villaData)}
+                    gsapClassName="gsap-pd-home-truths-section"
+                    gsapEnum={
+                      gsap_property_details_animation_sections.home_truths
+                    }
                   />
                 )}
-              {/* HOME TRUTHS */}
-              {HomeTruthProps(villaData).story && (
-                <StorySection {...HomeTruthProps(villaData)} />
-              )}
-            </>
-          ) : (
-            <Accordion {...AccordionProps1(villaData)} />
-          )}
+              </>
+            ) : (
+              <Accordion {...AccordionProps1(villaData)} />
+            )}
 
-          {BeforeYouBookProps(villaData).length > 0 && (
-            <BeforeYouBook
-              beforeYouBook={BeforeYouBookProps(villaData)}
-              title={villaData?.attributes?.name}
-            />
-          )}
-          {ExperiencesSectionProps(villaData).props.length > 0 && (
-            <ExperiencesSection
-              setItemNo={setElementNo}
-              toggleModal={toggleModal}
-              {...ExperiencesSectionProps(villaData)}
-            />
-          )}
-          {!isMobile ? (
-            <>
-              {HomeStoryProps(villaData).story && (
-                <StorySection {...HomeStoryProps(villaData)} />
-              )}
-              {DetailedDescriptionSectionProps(villaData)?.detailedDescription
-                .list.length > 0 && (
-                <DetailedDescriptionSection
-                  {...DetailedDescriptionSectionProps(villaData)}
-                />
-              )}
-            </>
-          ) : (
-            <Accordion {...AccordionProps2(villaData)} />
-          )}
-          {guestSpeakData?.data?.attributes?.experience?.length &&
-          !guestSpeakError ? (
-            <PropertyReviewSection
-              data={guestSpeakData?.data?.attributes?.experience}
-              propertyName={villaData?.attributes?.name}
-            />
-          ) : null}
-          {faqData?.data?.length && !faqError ? (
-            <FaqsSection
-              faqs={faqData}
-              propertyName={villaData?.attributes?.name}
-            />
-          ) : null}
-          {SimilarStaysSectionProps(villaData)?.villaData?.length ? (
-            <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
-          ) : null}
-          <MediaListing mediaImages={mediaImages} />
-          {
-            elementNo &&
-            <CuratedExpModal
-              id={elementNo}
-              propsData = {ExperiencesSectionCollectionProps(villaData,elementNo)}
-              setId = { ( id ) => {
-                setElementNo(id);
-              }}
-            />
-          }
-        </div>
-      ) : (
-        <div className="w-full h-[500px] flex justify-center items-center">
-          <h1 className="text-2xl">{propertyError}</h1>
-        </div>
-      )}
-    </Layout>
+            {BeforeYouBookProps(villaData).length > 0 && (
+              <BeforeYouBook
+                beforeYouBook={BeforeYouBookProps(villaData)}
+                title={villaData?.attributes?.name}
+              />
+            )}
+            {ExperiencesSectionProps(villaData).props.length > 0 && (
+              <ExperiencesSection
+                setItemNo={setElementNo}
+                toggleModal={toggleModal}
+                {...ExperiencesSectionProps(villaData)}
+              />
+            )}
+            {!isMobile ? (
+              <>
+                {HomeStoryProps(villaData).story && (
+                  <StorySection {...HomeStoryProps(villaData)} />
+                )}
+                {DetailedDescriptionSectionProps(villaData)?.detailedDescription
+                  .list.length > 0 && (
+                  <DetailedDescriptionSection
+                    {...DetailedDescriptionSectionProps(villaData)}
+                  />
+                )}
+              </>
+            ) : (
+              <Accordion {...AccordionProps2(villaData)} />
+            )}
+            {guestSpeakData?.data?.attributes?.experience?.length &&
+            !guestSpeakError ? (
+              <PropertyReviewSection
+                data={guestSpeakData?.data?.attributes?.experience}
+                propertyName={villaData?.attributes?.name}
+              />
+            ) : null}
+            {faqData?.data?.length && !faqError ? (
+              <FaqsSection
+                faqs={faqData}
+                propertyName={villaData?.attributes?.name}
+              />
+            ) : null}
+            {SimilarStaysSectionProps(villaData)?.villaData?.length ? (
+              <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
+            ) : null}
+            <MediaListing mediaImages={mediaImages} />
+            {elementNo && (
+              <CuratedExpModal
+                id={elementNo}
+                propsData={ExperiencesSectionCollectionProps(
+                  villaData,
+                  elementNo
+                )}
+                setId={(id) => {
+                  setElementNo(id);
+                }}
+              />
+            )}
+          </div>
+        ) : (
+          <div className="w-full h-[500px] flex justify-center items-center">
+            <h1 className="text-2xl">{propertyError}</h1>
+          </div>
+        )}
+      </Layout>
+    </ReactLenis>
   );
 };
 

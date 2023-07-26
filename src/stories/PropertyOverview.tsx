@@ -12,6 +12,8 @@ import {
 import Datepicker from './DatePicker';
 import { AppContext } from 'src/Context';
 import ShareUrl from './ShareUrl';
+import useGsapPropertyDetailsAnimatons from '@/hooks/useGsapPropertyDetailsAnimatons';
+import { gsap_property_details_animation_sections } from 'src/types/enum';
 
 interface IPropertyOverview {
   name: string;
@@ -64,6 +66,10 @@ const PropertyOverview = ({
     useContext(AppContext);
   const [showShareModal, setShowShareModal] = useState(false);
 
+  useGsapPropertyDetailsAnimatons(
+    gsap_property_details_animation_sections.property_overview
+  );
+
   const firstDateString = startDate;
   const firstDateParts = firstDateString?.split('/');
   const firstMonth = parseInt(firstDateParts[1]);
@@ -87,7 +93,7 @@ const PropertyOverview = ({
   });
 
   return (
-    <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
+    <div className="gsap-pd-overview-section bg-white w-full md:-mt-10 md:max-w-[810px]">
       {showShareModal && (
         <ShareUrl
           url={window.location.href}
@@ -98,37 +104,39 @@ const PropertyOverview = ({
       <div>
         <div className="flex items-center text-[#8A1E61] mt-4 justify-between md:pl-3 md:justify-start">
           <button
-            className="flex items-center justify-center py-3 md:p-5"
+            className="gsap-pd-overview-section-action-button opacity-0 flex items-center justify-center py-3 md:p-5"
             onClick={() => {
               setShowShareModal(!showShareModal);
             }}
           >
-            <Export size={32} />
+            <Export className="w-4 h-4 md:w-8 md:h-8" />
             <p className="pl-2 text-sm md:text-base md:pl-3">{'Share'}</p>
           </button>
-          <button className="flex items-center justify-center py-3 md:p-5">
-            <DownloadSimple size={32} />
+          <button className="gsap-pd-overview-section-action-button opacity-0 flex items-center justify-center py-3 md:p-5">
+            <DownloadSimple className="w-4 h-4 md:w-8 md:h-8" />
             <Link href={pdf} target="blank">
               <p className="pl-2 text-sm md:text-base md:pl-3">
                 {'Download Brochure'}
               </p>
             </Link>
           </button>
-          <button className="flex items-center justify-center py-3 md:p-5">
-            <Heart size={32} />
+          <button className="gsap-pd-overview-section-action-button opacity-0 flex items-center justify-center py-3 md:p-5">
+            <Heart className="w-4 h-4 md:w-8 md:h-8" />
             <p className="pl-2 text-sm md:text-base md:pl-3">
               {'Add To Favourites'}
             </p>
           </button>
         </div>
         <div className="md:px-8">
-          <h1 className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px]">
-            {name && name}
-          </h1>
-          <p className="text-[#8A1E61] text-base leading-5 font-medium tracking-widest mt-3 md:text-base md:leading-[18px]">
+          <div className="text-[#18181B] text-[26px] font-bold leading-9 md:text-[62px] md:leading-[89px] overflow-hidden">
+            <h1 className="gsap-pd-overview-section-heading-text opacity-0">
+              {name && name}
+            </h1>
+          </div>
+          <p className="gsap-pd-overview-section-info-text opacity-0 text-[#8A1E61] text-base leading-5 font-medium tracking-widest mt-3 md:text-base md:leading-[18px]">
             {city && city}, {state && state}
           </p>
-          <div className="flex items-center mt-2">
+          <div className="gsap-pd-overview-section-info-text opacity-0 flex items-center mt-2">
             {amenities?.map((el, index) => (
               <div key={el} className="flex items-center">
                 <p className="font-centaur text-xs text-[#545456] md:text-base md:leading-[18px]">
@@ -140,22 +148,24 @@ const PropertyOverview = ({
               </div>
             ))}
           </div>
-          <p className="hidden md:block my-8 text-[#18181B] text-[22px] leading-8">
-            {byliner && byliner}
-          </p>
-          <p className="font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
+          <div className="hidden md:block my-8 text-[#18181B] text-[22px] leading-8 overflow-hidden">
+            <p className="gsap-pd-overview-section-sub-heading-text opacity-0">
+              {byliner && byliner}
+            </p>
+          </div>
+          <p className="gsap-pd-overview-section-para-text opacity-0 font-centaur text-base leading-6 text-[#545456] mt-4 md:mt-0 md:text-[22px] md:leading-8">
             {about && about}
           </p>
           <div className="flex mt-8 gap-[24px] md:gap-[34px] flex-wrap">
             <div
               onClick={showStory}
-              className="px-[10px] text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex flex-1 md:flex-auto justify-center items-center cursor-pointer border border-[#8A1E61]"
+              className="gsap-pd-overview-section-bottom-action-button opacity-0 px-[10px] text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex flex-1 md:flex-auto justify-center items-center cursor-pointer border border-[#8A1E61]"
             >
               <h3>DEJA VIEW’S STORY</h3>
             </div>
             <div
               onClick={showDetailDescription}
-              className="px-[10px] text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex flex-1 md:flex-auto justify-center items-center cursor-pointer border border-[#8A1E61]"
+              className="gsap-pd-overview-section-bottom-action-button opacity-0 px-[10px] text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex flex-1 md:flex-auto justify-center items-center cursor-pointer border border-[#8A1E61]"
             >
               <h3>
                 <span className="hidden sm:block">
@@ -166,8 +176,10 @@ const PropertyOverview = ({
             </div>
           </div>
           <hr className="my-6" />
-          <p className="text-[#545456] font-medium text-xl">{availableDays}</p>
-          <div className="w-full py-5">
+          <p className="gsap-pd-overview-section-calendar opacity-0 text-[#545456] font-medium text-xl">
+            {availableDays}
+          </p>
+          <div className="gsap-pd-overview-section-calendar opacity-0 w-full py-5">
             <Datepicker inVillaDetails={true} />
           </div>
         </div>

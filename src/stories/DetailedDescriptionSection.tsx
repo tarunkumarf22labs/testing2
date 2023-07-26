@@ -66,7 +66,7 @@ export const DetailedDescriptionSection = ({
                     let list = item.description.split(/\n-|\n -/);
                     list[0] = list[0].substring(1);
                     return (
-                      <>
+                      <React.Fragment key={`${index}`}>
                         <p className="mb-4 text-base uppercase">{item.title}</p>
                         <ul
                           key={index}
@@ -83,7 +83,7 @@ export const DetailedDescriptionSection = ({
                             );
                           })}
                         </ul>
-                      </>
+                      </React.Fragment>
                     );
                   } else {
                     return (

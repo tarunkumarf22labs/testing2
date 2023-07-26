@@ -3,13 +3,13 @@ import { Container } from './Container';
 import SpotlightDesktop from './SpotlightDesktop';
 import SpotlightMobile from './SpotlightMobile';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 const Spotlight = ({ data }: { data: ISpotlightAndJourney[] }) => {
   const scrollerStartRef = useRef(null);
 
-  useGsapAnimations(gsap_animation_sections.spotlight);
+  useGsapHomeAnimations(gsap_animation_sections.spotlight);
 
   return (
     <div ref={scrollerStartRef} className="gsap-spotlight-section">

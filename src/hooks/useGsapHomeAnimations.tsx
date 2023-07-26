@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useCallback, useEffect } from 'react';
 import { gsap_animation_sections } from 'src/types/enum';
 
-const useGsapAnimations = (section: gsap_animation_sections) => {
+const useGsapHomeAnimations = (section: gsap_animation_sections) => {
   const heroBannerSection = useCallback(() => {
     let timeline = gsap.timeline({
       defaults: { duration: 1.5, ease: 'power4.out' }
@@ -446,8 +446,19 @@ const useGsapAnimations = (section: gsap_animation_sections) => {
       default:
         break;
     }
-  }, [heroBannerSection, destinationSection, curatedCollectionSection]);
+  }, [
+    section,
+    heroBannerSection,
+    destinationSection,
+    curatedCollectionSection,
+    spotlightSection,
+    journeySection,
+    listYourPropertySection,
+    testimonialSection,
+    aboutSection,
+    featureInSection
+  ]);
   return null;
 };
 
-export default useGsapAnimations;
+export default useGsapHomeAnimations;

@@ -4,11 +4,11 @@ import { Container } from '../Container';
 import PrimaryButton from '../PrimaryButton';
 import { aboutSection, knowMore } from 'src/data/constants';
 import { IAbout } from 'src/Interface/home-page';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 function AboutSection({ data }: { data: IAbout }) {
-  useGsapAnimations(gsap_animation_sections.about);
+  useGsapHomeAnimations(gsap_animation_sections.about);
 
   return (
     <div className="gsap-about-section">

@@ -2,14 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 import { Container } from './Container';
 import { featuredIn } from 'src/data/constants';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 interface IMediaListing {
   mediaImages: string[];
 }
 const MediaListing = ({ mediaImages }: IMediaListing) => {
-  useGsapAnimations(gsap_animation_sections.featured_in);
+  useGsapHomeAnimations(gsap_animation_sections.featured_in);
 
   return (
     <div className="gsap-media-listing-section">
