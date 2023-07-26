@@ -401,9 +401,26 @@ export const AmenitiesSectionProps = (villaData: villaInterface) => {
   };
 };
 
-export const ExperiencesSectionProps = (villaData: villaInterface) => {
-  let props = villaData?.attributes?.localExperiences?.map((ele, id) => {
-    let thumbnailUrl = getThumbnailUrl(ele);
+export const ExperiencesSectionProps = (
+  villaData: villaInterface,
+  elementNo?: number
+) => {
+  let props = villaData?.attributes?.stayLonger?.map((ele, id) => {
+    let thumbnailUrl = getXl_webpUrl(ele);
+    let collections = ele.collection.map((el) => {
+      let collectionImage = getXl_webpUrl(el);
+      return {
+        id: el.id,
+        image: {
+          width: collectionImage.width,
+          height: collectionImage.height,
+          alt: collectionImage.alt,
+          image: collectionImage.image
+        },
+        title: el.title,
+        description: el.description
+      };
+    });
     return {
       id: ele?.id,
       image: {
@@ -412,13 +429,19 @@ export const ExperiencesSectionProps = (villaData: villaInterface) => {
         alt: thumbnailUrl.alt,
         image: thumbnailUrl.image
       },
-      shortDescription: ele?.shortDescription,
-      longDecription: ele?.longDescription,
-      title: ele?.title
+      collections: collections,
+      title: ele?.title,
+      shortDescription: ele?.sortDescription
     };
   });
-  let secondProps = villaData?.attributes?.stayLonger?.map((ele) => {
-    let thumbnailUrl = getThumbnailUrl(ele);
+  // props.forEach((ele, id) => {
+  //   if(elementNo === ele.id){
+  //     let filteredElement = props.splice(id, 1);
+  //     props.unshift(filteredElement[0])
+  //   }
+  // })
+  let secondProps = villaData?.attributes?.localExperiences?.map((ele) => {
+    let thumbnailUrl = getXl_webpUrl(ele);
     return {
       id: ele?.id,
       image: {
@@ -440,6 +463,31 @@ export const ExperiencesSectionProps = (villaData: villaInterface) => {
     secondHeading: 'LOCAL EXPERIENCES'
   };
 };
+
+export const ExperiencesSectionCollectionProps = (
+  villaData: villaInterface,
+  elementNo?: number
+) => {
+  const filteredData = villaData?.attributes?.stayLonger?.filter(
+    (villa) => villa.id === elementNo
+  );
+  return filteredData?.[0]?.collection?.map((ele) => {
+    let ImageUrl = getXl_webpUrl(ele);
+    return {
+      id: ele.id,
+      image: {
+        width: ImageUrl.width,
+        height: ImageUrl.height,
+        alt: ImageUrl.alt,
+        image: ImageUrl.image
+      },
+      title: ele.title,
+      description: ele.description,
+      numberOfNights: filteredData?.[0]?.numberOfNights
+    };
+  });
+};
+
 export const ImageGalleryProps = (villaData: villaInterface) => {
   let images = villaData?.attributes?.images?.map((ele) => {
     let Image = getXl_webpUrl(ele);

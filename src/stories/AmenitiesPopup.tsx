@@ -26,16 +26,17 @@ const AmenitiesPopup = ({ iconsArray,hidePopup }: IAmenitiesPopup) => {
         style={{ backgroundColor: 'rgba(0,0,0,0.1)' }}
         onClick={hidePopup}
       ></div>
-      <div className="relative w-11/12 px-4 py-10 m-auto capitalize bg-white rounded-sm shadow-md md:w-2/3 md:p-8 xl:hidden">
-        <button
-          className="absolute top-3 right-[5%]"
-            onClick={hidePopup}
+      <div className="relative w-11/12 px-4 py-10 m-auto capitalize bg-white rounded-sm shadow-md md:w-2/3 md:p-8">
+         <button
+          className="absolute right-[6%] top-2 sm:right-[5%] rounded-full text-white bg-gray w-7 h-7 flex justify-center items-center z-50"
+          onClick={hidePopup}
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.50)' }}
         >
-          <XMarkIcon className="w-7 h-7" />
+          <XMarkIcon className="w-5 h-5" />
         </button>
+        <div className='lg:grid lg:grid-cols-2 gap-auto'>
         {iconsArray?.map((icon, index) => (
-          <p key={index} className="flex items-center mb-6">
-            {/* {icons[icon.icon]}{" "} */}
+          <p key={index} className="flex items-start mb-6">
             <Image
               src={icon.image.image}
               width={20}
@@ -45,6 +46,7 @@ const AmenitiesPopup = ({ iconsArray,hidePopup }: IAmenitiesPopup) => {
             <span className="pl-3 text-base font-centaur ">{icon.text}</span>
           </p>
         ))}
+        </div>
       </div>
     </div>
   );

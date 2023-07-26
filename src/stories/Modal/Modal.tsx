@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
@@ -25,13 +25,23 @@ const Modal = ({
   segregated = true,
   parentDivStyle
 }: IModal) => {
+  useEffect(() => {
+    if(isOpen){
+      document.body.style.overflowY = 'hidden';
+    }else{
+      document.body.style.overflowY = 'auto';
+    }
+    return (() =>{
+      document.body.style.overflowY = 'auto';
+    })
+  })
   return (
     <>
       {isOpen && (
         <motion.div className={parentDivStyle} onClick={onClose}>
           <motion.div
             className={classNames(
-              'm-x-6 md:m-0 md:w-1/2 bg-white transition duration-700 ease-in-out p-6 relative',
+              'm-x-6 md:m-0 md:w-1/2 bg-white transition duration-700 ease-in-out p-6  absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] z-[9999]',
               square ? '' : 'rounded-lg',
               className
             )}

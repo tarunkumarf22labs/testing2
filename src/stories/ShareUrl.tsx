@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -23,6 +23,7 @@ interface IShareUrl {
 }
 
 const ShareUrl = ({ url, setShowShareModal, showShareModal }: IShareUrl) => {
+  const [copyButtonText, setCopyButtonText] = useState('Copy Link');
   useEffect(() => {
     document.body.style.overflowY = 'hidden';
     return () => {
@@ -91,9 +92,10 @@ const ShareUrl = ({ url, setShowShareModal, showShareModal }: IShareUrl) => {
               className="w-[22%] -ml-4 border-2 rounded-lg bg-[#8A1E61] text-white text-md font-bold p-[5px]"
               onClick={() => {
                 navigator.clipboard.writeText(url);
+                setCopyButtonText('Link Copied')
               }}
             >
-              Copy Link
+              {copyButtonText}
             </button>
           </div>
         </div>
