@@ -17,12 +17,12 @@ function Bookingcard({
       </div>
       <div className=" h-full md:h-[186px] flex gap-6 pb-8 flex-col sm:flex-row  ">
         <div className="h-auto">
-          {/* <Image src={imagesrc}  alt={'villa'} className='h-full object-cover w-full '  height={"100"} width={"100"} /> */}
-          <img
-            src={
-              'https://a0.muscache.com/im/pictures/miso/Hosting-829319222305726312/original/6c63a08b-f6fd-4ed1-b00a-948f21f1e481.jpeg?im_w=720'
-            }
-            className="max-h-full object-cover "
+          <Image
+            src={imagesrc}
+            alt={'villa'}
+            className="h-full object-cover w-full"
+            height={100}
+            width={100}
           />
         </div>
         <div className="w-full">
