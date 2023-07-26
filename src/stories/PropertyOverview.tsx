@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Export, DownloadSimple, Heart, Share } from '@phosphor-icons/react';
 import { Button } from './Button';
-import { getUrl } from '@/hooks/useIsMobile';
 import Link from 'next/link';
 import {
   availableDays,
@@ -61,8 +60,6 @@ const PropertyOverview = ({
   amenities,
   pdf
 }: IPropertyOverview) => {
-  const url = getUrl();
-
   const { startDate, endDate, selectedDates, ClearSelectedDate } =
     useContext(AppContext);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -93,7 +90,7 @@ const PropertyOverview = ({
     <div className="bg-white w-full md:-mt-10 md:max-w-[810px]">
       {showShareModal && (
         <ShareUrl
-          url={url}
+          url={window.location.href}
           setShowShareModal={setShowShareModal}
           showShareModal={showShareModal}
         />
