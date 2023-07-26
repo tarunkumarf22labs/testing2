@@ -21,13 +21,3 @@ const useIsMobile = () => {
 };
 
 export default useIsMobile;
- 
-export const getUrl = ( ) => {
-  const [url, setUrl] = useState('');
-
-  useEffect(() => {
-  setUrl(window.location.href)
-  },[])
-
-  return url;
-}
