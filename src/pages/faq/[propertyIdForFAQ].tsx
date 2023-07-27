@@ -73,6 +73,12 @@ export const getServerSideProps: GetServerSideProps<{
   const { data, error } = await NetWrapper(
     `api/faqs?filters[isForProperty][$eq]=true&filters[property][name][$eq]=${encodedPropertyName}&populate=deep,2`
   );
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
   
   return { props: { data, error } };
 };

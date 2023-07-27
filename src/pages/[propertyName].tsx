@@ -212,6 +212,11 @@ export const getServerSideProps: GetServerSideProps<{
     `api/faqs?filters[isForProperty][$eq]=true&filters[property][name][$eq]=${encodedPropertyName}&populate=deep,2`
   );
 
+  if (!property.data) {
+    return {
+      notFound: true,
+    }
+  }
   return {
     props: {
       propertyData: property?.data,

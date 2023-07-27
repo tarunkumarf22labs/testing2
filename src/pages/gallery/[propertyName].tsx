@@ -35,6 +35,10 @@ export const getServerSideProps: GetServerSideProps<{
   const { data, error, status } = await NetWrapper(
     `api/properties/${encodedPropertyName}`
   );
-
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
   return { props: { data, error } };
 };
