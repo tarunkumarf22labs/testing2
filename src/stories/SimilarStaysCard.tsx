@@ -1,7 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React from 'react';
 
 type SimilarStaysCardTypes = {
   name: string;
@@ -16,7 +14,6 @@ type SimilarStaysCardTypes = {
   amenities: string[];
   basicPrice: number;
   inVillaDetails: boolean;
-  duration?: number;
 };
 
 const SimilarStaysCard = ({
@@ -26,46 +23,15 @@ const SimilarStaysCard = ({
   image,
   amenities,
   basicPrice,
-  inVillaDetails,
-  duration
+  inVillaDetails
 }: SimilarStaysCardTypes) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
-  const squareVariants = {
-    visible: {
-      y: [50, 0],
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, delay: duration / 10 }
-    },
-    hidden: { opacity: 0, scale: 0 }
-  };
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [controls, inView]);
-
   return (
-    <motion.div
+    <div
       className={`${
         inVillaDetails
           ? 'w-full max-w-[290px] md:max-w-[373px]'
           : 'w-full max-w-[284px] md:max-w-[500px] md:w-[500px] '
       }`}
-      animate={controls}
-      variants={squareVariants}
-      //    animate={{ y: [150, 50], opacity: 1, scale: 1 }}
-      //    transition={{
-      //        duration: 2,
-      //        delay: 0.3,
-      //     //    ease: [0.5, 0.71, 1, 1.5],
-      //    }}
-      //    initial={{ opacity: 0, scale: 0.5 }}
-      initial="hidden"
-      ref={ref}
-      //    whileHover={{ scale: 1.2 }}
     >
       <Image
         src={image.image}
@@ -107,7 +73,7 @@ const SimilarStaysCard = ({
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

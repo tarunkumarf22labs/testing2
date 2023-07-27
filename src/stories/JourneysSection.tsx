@@ -3,7 +3,7 @@ import { Container } from './Container';
 import JourneyDesktop from './JourneyDesktop';
 import JourneyMobile from './JourneyMobile';
 import { ISpotlightAndJourney } from 'src/Interface/home-page';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 const JourneysSection = ({
@@ -15,7 +15,7 @@ const JourneysSection = ({
   journeySectionheading: string;
   isbuttonvisible?: boolean;
 }) => {
-  useGsapAnimations(gsap_animation_sections.journeys);
+  useGsapHomeAnimations(gsap_animation_sections.journeys);
   return (
     <div className="gsap-journey-section">
       <Container bgWhite={true}>

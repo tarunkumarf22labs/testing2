@@ -4,6 +4,8 @@ import PrimaryButton from './PrimaryButton';
 import { viewAllPhotos } from 'src/data/constants';
 import Link from 'next/link';
 import { Container } from './Container';
+import useGsapPropertyDetailsAnimatons from '@/hooks/useGsapPropertyDetailsAnimatons';
+import { gsap_property_details_animation_sections } from 'src/types/enum';
 
 interface IPropertyDetailsHeroSection {
   image: string;
@@ -19,6 +21,10 @@ const PropertyDetailsHeroSection = ({
   alt
 }: IPropertyDetailsHeroSection) => {
   const [path, setPath] = useState('');
+
+  useGsapPropertyDetailsAnimatons(
+    gsap_property_details_animation_sections.hero
+  );
 
   useEffect(() => {
     const parsedUrl = new URL(window.location.href);
@@ -45,7 +51,7 @@ const PropertyDetailsHeroSection = ({
             title={viewAllPhotos}
             onClick={() => {}}
             disabled={false}
-            className="w-[213px] justify-center"
+            className="gsap-pd-hero-section-button opacity-0 w-[213px] justify-center"
           />
         </Link>
       </Container>

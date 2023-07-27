@@ -3,8 +3,9 @@ import Image from 'next/image';
 import { NameTitle } from './NameTitle';
 import { FloorSection } from './FloorSection';
 import { floorPlanImages } from 'src/data/constants';
-import ReadMoreOrLess from './ReadMoreOrLess';
 import { Container } from './Container';
+import useGsapPropertyDetailsAnimatons from '@/hooks/useGsapPropertyDetailsAnimatons';
+import { gsap_property_details_animation_sections } from 'src/types/enum';
 
 interface IDetailedDescriptionSection {
   image: string;
@@ -24,6 +25,10 @@ export const DetailedDescriptionSection = ({
   detailedDescription
 }: IDetailedDescriptionSection) => {
   const [readMore, setReadmore] = useState(false);
+
+  useGsapPropertyDetailsAnimatons(
+    gsap_property_details_animation_sections.detailed_description
+  );
 
   const { propertyName, title, list } = detailedDescription;
   let filteredList;
@@ -45,71 +50,81 @@ export const DetailedDescriptionSection = ({
           className="w-full h-[450px] object-cover"
         />
       </div>
-      <Container bgWhite={false}>
-        <div className="relative bg-white px-4 py-8 -mt-16 sm:-mt-24 xl:-mt-60 md:px-8 md:py-11">
-          <NameTitle propertyName={`${propertyName}'s`} title={title} />
-          <div className="mb-8 space-y-10">
-            <div className="space-y-10">
-              {filteredList.map(
-                (
-                  item: {
-                    id: number;
-                    description: string;
-                    title: string;
-                  },
-                  index: number
-                ) => {
-                  const isList =
-                    item.description.includes('\n-') ||
-                    item.description.includes('\n -');
-                  if (isList) {
-                    let list = item.description.split(/\n-|\n -/);
-                    list[0] = list[0].substring(1);
-                    return (
-                      <>
-                        <p className="mb-4 text-base uppercase">{item.title}</p>
-                        <ul
-                          key={index}
-                          className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc flex flex-col gap-4"
-                        >
-                          {list.map((item: string, id: number) => {
-                            return (
-                              <li
-                                key={id}
-                                className="text-xl text-[#545456] font-[400] ml-2 md:ml-0 font-centaur leading-8"
-                              >
-                                {item}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </>
-                    );
-                  } else {
-                    return (
-                      <div key={index}>
-                        <p className="mb-4 text-base uppercase">{item.title}</p>
-                        <p className="text-base md:text-xl text-[#545456] font-centaur leading-[22px] md:leading-[34px]">
-                          {item.description}
-                        </p>
-                      </div>
-                    );
+      <div className="gsap-pd-detailed-description-section">
+        <Container bgWhite={false}>
+          <div className="gsap-pd-detailed-description-section-container relative bg-white px-4 py-8 -mt-16 sm:-mt-24 xl:-mt-60 md:px-8 md:py-11">
+            <NameTitle
+              propertyName={`${propertyName}'s`}
+              title={title}
+              gsapClassName="gsap-pd-detailed-description-section-heading-text opacity-0"
+            />
+            <div className="gsap-pd-detailed-description-section-content mb-8 space-y-10">
+              <div className="space-y-10">
+                {filteredList.map(
+                  (
+                    item: {
+                      id: number;
+                      description: string;
+                      title: string;
+                    },
+                    index: number
+                  ) => {
+                    const isList =
+                      item.description.includes('\n-') ||
+                      item.description.includes('\n -');
+                    if (isList) {
+                      let list = item.description.split(/\n-|\n -/);
+                      list[0] = list[0].substring(1);
+                      return (
+                        <React.Fragment key={`${index}`}>
+                          <p className="mb-4 text-base uppercase">
+                            {item.title}
+                          </p>
+                          <ul
+                            key={index}
+                            className="m-auto mb-8 ml-8 mr-8 text-xl leading-8 list-disc flex flex-col gap-4"
+                          >
+                            {list.map((item: string, id: number) => {
+                              return (
+                                <li
+                                  key={id}
+                                  className="text-xl text-[#545456] font-[400] ml-2 md:ml-0 font-centaur leading-8"
+                                >
+                                  {item}
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </React.Fragment>
+                      );
+                    } else {
+                      return (
+                        <div key={index}>
+                          <p className="mb-4 text-base uppercase">
+                            {item.title}
+                          </p>
+                          <p className="text-base md:text-xl text-[#545456] font-centaur leading-[22px] md:leading-[34px]">
+                            {item.description}
+                          </p>
+                        </div>
+                      );
+                    }
                   }
-                }
-              )}
-              {readMore && <FloorSection floorPlanImages={floorPlanImages} />}
+                )}
+                {readMore && <FloorSection floorPlanImages={floorPlanImages} />}
+              </div>
+            </div>
+            <div className="gsap-pd-detailed-description-section-content mt-5 ml-5 xl:max-w-7xl xl:m-auto">
+              <div
+                className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
+                onClick={() => setReadmore(!readMore)}
+              >
+                <h3 className="">{!readMore ? 'Read More' : 'Read Less'}</h3>
+              </div>
             </div>
           </div>
-          <div className="mt-5 ml-5 xl:max-w-7xl xl:m-auto">
-            <div
-              className=" text-[#8A1E61] font-[Brandon Grotesque] font-medium text-xs h-10 flex justify-center items-center w-24 cursor-pointer border border-[#8A1E61]"
-              onClick={() => setReadmore(!readMore)}
-            >
-              <h3 className="">{!readMore ? 'Read More' : 'Read Less'}</h3>
-            </div>
-          </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
 };

@@ -4,13 +4,13 @@ import PrimaryButton from './PrimaryButton';
 import { knowMore, listYourPropertySection } from 'src/data/constants';
 import { Container } from './Container';
 import { useRouter } from 'next/router';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 const ListYourPropertySection = () => {
   const navigation = useRouter();
 
-  useGsapAnimations(gsap_animation_sections.list_your_property);
+  useGsapHomeAnimations(gsap_animation_sections.list_your_property);
 
   return (
     <div className="gsap-list-your-property-section">
