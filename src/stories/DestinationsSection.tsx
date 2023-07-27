@@ -11,7 +11,7 @@ import useIsMobile from '@/hooks/useIsMobile';
 import DestinationCard from './DestinationCard';
 import { IDestination } from 'src/Interface/home-page';
 import { villaInterface } from 'src/Interface';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 const DestinationsSection = ({
@@ -34,7 +34,7 @@ const DestinationsSection = ({
   const [allowSlidePrev, setAllowSlidePrev] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(destinations?.[0]);
 
-  useGsapAnimations(gsap_animation_sections.destination);
+  useGsapHomeAnimations(gsap_animation_sections.destination);
 
   const getAvailableAddress = useCallback((destination: IDestination) => {
     if (destination?.city?.data)

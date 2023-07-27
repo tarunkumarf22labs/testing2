@@ -21,7 +21,7 @@ import { Autoplay } from 'swiper';
 import HomeSearchBar from './HomeSearchBar';
 import { Container } from './Container';
 import { CalendarBlank, MagnifyingGlass, Users } from '@phosphor-icons/react';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 export default function Carousel({
@@ -33,7 +33,7 @@ export default function Carousel({
 }: CarouselProps) {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
-  useGsapAnimations(gsap_animation_sections.hero);
+  useGsapHomeAnimations(gsap_animation_sections.hero);
 
   const toggleFilterMenu = () => {
     setShowFilterMenu(true);

@@ -7,7 +7,7 @@ import { ScrollButton } from './ScrollButton';
 import GuestSpeakCard from './GuestSpeakCard';
 import Image from 'next/image';
 import { homeTestimonialSection } from 'src/data/constants';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 const HomeTestimonialsSection = ({ data }: { data: ISingleTestimonial[] }) => {
@@ -17,7 +17,7 @@ const HomeTestimonialsSection = ({ data }: { data: ISingleTestimonial[] }) => {
   const [allowSlideNext, setAllowSlideNext] = useState(false);
   const [allowSlidePrev, setAllowSlidePrev] = useState(false);
 
-  useGsapAnimations(gsap_animation_sections.testimonial);
+  useGsapHomeAnimations(gsap_animation_sections.testimonial);
 
   return (
     <div className="gsap-home-testimonial-section">

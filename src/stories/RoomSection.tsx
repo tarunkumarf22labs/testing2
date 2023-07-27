@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { RoomCard } from './RoomCard';
 import { AppContext } from 'src/Context';
+import useGsapPropertyDetailsAnimatons from '@/hooks/useGsapPropertyDetailsAnimatons';
+import { gsap_property_details_animation_sections } from 'src/types/enum';
 
 interface IRoomSection {
   villaTitle: string;
@@ -41,26 +43,33 @@ export const RoomSection = ({
 }: IRoomSection) => {
   const [selectedRoom, setSelectedRoom] = useState<number>();
 
+  useGsapPropertyDetailsAnimatons(
+    gsap_property_details_animation_sections.rooms
+  );
+
   return (
-    <div className="md:px-8 py-10 uppercase flex-1 sm:p-8 lg:mt-20 bg-white">
+    <div className="gsap-pd-rooms-section md:px-8 py-10 uppercase flex-1 sm:p-8 lg:mt-20 bg-white">
       {villaTitle?.length ? (
-        <p className="text-sm text-[#8A1E61] mb-2 sm:mb-5 sm:uppercase md:tracking-[4.2px] md:font-[450]">
-          {`${villaTitle}'s`}
-        </p>
+        <div className="text-sm text-[#8A1E61] mb-2 sm:mb-5 sm:uppercase md:tracking-[4.2px] md:font-[450] overflow-hidden">
+          <p className="gsap-pd-rooms-section-heading-text opacity-0">{`${villaTitle}'s`}</p>
+        </div>
       ) : null}
-      <p className="text-3xl sm:text-5xl sm:text-[#1C1917] mb-6 sm:mb-10 font-light">
-        {heading && heading}
-      </p>
+      <div className="text-3xl sm:text-5xl sm:text-[#1C1917] mb-6 sm:mb-10 font-light overflow-hidden">
+        <h1 className="gsap-pd-rooms-section-heading-text opacity-0">
+          {heading && heading}
+        </h1>
+      </div>
       <div className="space-y-5 sm:space-y-10">
         {roomData?.map((ele, id) => {
           return (
-            <RoomCard
-              room={ele}
-              key={id}
-              selectRoom={() => {
-                setSelectedRoom(ele.id);
-              }}
-            />
+            <div className="gsap-pd-rooms-section-card opacity-0" key={id}>
+              <RoomCard
+                room={ele}
+                selectRoom={() => {
+                  setSelectedRoom(ele.id);
+                }}
+              />
+            </div>
           );
         })}
       </div>

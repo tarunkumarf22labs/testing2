@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { ScrollButton } from './ScrollButton';
 import useIsMobile from '@/hooks/useIsMobile';
 import { ICuratedCollection } from 'src/Interface/home-page';
-import useGsapAnimations from '@/hooks/useGsapAnimations';
+import useGsapHomeAnimations from '@/hooks/useGsapHomeAnimations';
 import { gsap_animation_sections } from 'src/types/enum';
 
 const CuratedCollection = ({
@@ -29,7 +29,7 @@ const CuratedCollection = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(collections?.[0]);
 
-  useGsapAnimations(gsap_animation_sections.inspiration);
+  useGsapHomeAnimations(gsap_animation_sections.inspiration);
 
   const selectedCollectionVilla = useMemo(() => {
     return collections?.find((el) => el?.id === selectedCategory?.id)

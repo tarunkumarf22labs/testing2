@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import Reserve from './Reserve';
 import LocationAndDetails from './LocationAndDetails';
 import { AppContext } from 'src/Context';
+import useGsapPropertyDetailsAnimatons from '@/hooks/useGsapPropertyDetailsAnimatons';
+import { gsap_property_details_animation_sections } from 'src/types/enum';
 
 interface IReserveAndLocationDetailsSection {
   locations: string;
@@ -28,7 +30,7 @@ interface IReserveAndLocationDetailsSection {
     petPrice: number;
     extraGuestsPrice: number;
   }[];
-  isOnlineBookingPossible:Boolean;
+  isOnlineBookingPossible: Boolean;
 }
 const ReserveAndLocationDetailsSection = ({
   locations,
@@ -62,13 +64,26 @@ const ReserveAndLocationDetailsSection = ({
     roomDetails,
     isOnlineBookingPossible
   };
+
+  useGsapPropertyDetailsAnimatons(
+    gsap_property_details_animation_sections.reserve
+  );
+
+  useGsapPropertyDetailsAnimatons(
+    gsap_property_details_animation_sections.location
+  );
+
   return (
     <>
-      <div className="bg-white md:p-4">
-        <Reserve {...ReserveProps} />
+      <div className="gsap-pd-reserve-section">
+        <div className="gsap-pd-reserve-section-content opacity-0 bg-white md:p-4">
+          <Reserve {...ReserveProps} />
+        </div>
       </div>
-      <div className="bg-white mt-[60px] pb-4 md:mt-8 md:p-4">
-        <LocationAndDetails {...LocationProps} />
+      <div className="gsap-pd-location-section">
+        <div className="gsap-pd-location-section-content opacity-0 bg-white mt-[60px] pb-4 md:mt-8 md:p-4">
+          <LocationAndDetails {...LocationProps} />
+        </div>
       </div>
     </>
   );

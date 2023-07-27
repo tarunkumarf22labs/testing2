@@ -1,4 +1,5 @@
 import { IVillaFAQ, villaInterface } from 'src/Interface';
+import { gsap_property_details_animation_sections } from 'src/types/enum';
 
 export function getFilteredImage(villaData, type) {
   let filteredImage = villaData?.attributes?.images?.filter(
@@ -295,9 +296,26 @@ export const AccordionProps1 = (villaData: villaInterface) => {
   const storyList = stringToArray(story);
 
   const data = [
-    { title: 'Included services', data: inclusions },
-    { title: 'Available services', data: exclusions },
-    { title: 'Home Truths', data: storyList }
+    {
+      title: 'Included services',
+      data: inclusions,
+      gsapClassName: 'gsap-pd-included-services-mobile-section',
+      gsapEnum:
+        gsap_property_details_animation_sections.included_services_mobile
+    },
+    {
+      title: 'Available services',
+      data: exclusions,
+      gsapClassName: 'gsap-pd-available-services-mobile-section',
+      gsapEnum:
+        gsap_property_details_animation_sections.available_services_mobile
+    },
+    {
+      title: 'Home Truths',
+      data: storyList,
+      gsapClassName: 'gsap-pd-home-truths-mobile-section',
+      gsapEnum: gsap_property_details_animation_sections.home_truths_mobile
+    }
   ];
 
   return { heading, data };
@@ -315,8 +333,19 @@ export const AccordionProps2 = (villaData: villaInterface) => {
   } = DetailedDescriptionSectionProps(villaData);
 
   const data = [
-    { title: 'Story', data: storyList },
-    { title: 'Detailed Description', data: list }
+    {
+      title: 'Story',
+      data: storyList,
+      gsapClassName: 'gsap-pd-story-mobile-section',
+      gsapEnum: gsap_property_details_animation_sections.story_mobile
+    },
+    {
+      title: 'Detailed Description',
+      data: list,
+      gsapClassName: 'gsap-pd-detailed-description-mobile-section',
+      gsapEnum:
+        gsap_property_details_animation_sections.detailed_description_mobile
+    }
   ];
 
   return { heading, data };
