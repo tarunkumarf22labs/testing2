@@ -152,7 +152,11 @@ const Home: NextPage = ({
             {!isMobile ? (
               <>
                 {HomeStoryProps(villaData).story && (
-                  <StorySection {...HomeStoryProps(villaData)} />
+                  <StorySection
+                    {...HomeStoryProps(villaData)}
+                    gsapClassName="gsap-pd-story-section"
+                    gsapEnum={gsap_property_details_animation_sections.story}
+                  />
                 )}
                 {DetailedDescriptionSectionProps(villaData)?.detailedDescription
                   .list.length > 0 && (
@@ -181,7 +185,7 @@ const Home: NextPage = ({
               <SimilarStaysSection {...SimilarStaysSectionProps(villaData)} />
             ) : null}
             <MediaListing mediaImages={mediaImages} />
-            {elementNo && (
+            {elementNo ? (
               <CuratedExpModal
                 id={elementNo}
                 propsData={ExperiencesSectionCollectionProps(
@@ -192,7 +196,7 @@ const Home: NextPage = ({
                   setElementNo(id);
                 }}
               />
-            )}
+            ) : null}
           </div>
         ) : (
           <div className="w-full h-[500px] flex justify-center items-center">

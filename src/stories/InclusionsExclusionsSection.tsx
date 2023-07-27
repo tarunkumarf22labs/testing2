@@ -78,12 +78,12 @@ const InclusionsExlusions = ({
   return (
     <div className="md:w-1/2">
       <div className="uppercase text-sm text-[#8A1E61] mb-2 sm:mb-5 md:tracking-[4.2px] md:font-[450] overflow-hidden">
-        <div className="gsap-pd-inclusions-exclusions-section-header-text opacity-0">
+        <div className="gsap-pd-inclusions-exclusions-section-heading-text opacity-0">
           {heading}
         </div>
       </div>
       <div className="uppercase text-xl md:text-5xl text-[#18181B] mb-6 font-light overflow-hidden">
-        <h1 className="gsap-pd-inclusions-exclusions-section-header-text opacity-0">
+        <h1 className="gsap-pd-inclusions-exclusions-section-heading-text opacity-0">
           {inclusion ? includedServices : availableServices}
         </h1>
       </div>

@@ -14,7 +14,12 @@ export const Conditions = (props: IConditionsProps) => {
   } = props;
 
   return (
-    <div className={classNames(parentIndex === 0 ? '' : 'pt-8')}>
+    <div
+      className={classNames(
+        parentIndex === 0 ? '' : 'pt-8',
+        'gsap-pd-before-you-book-section-content'
+      )}
+    >
       <div className="text-xl text-[#18181B] mb-5">{title}</div>
       <div className="grid grid-cols-2 gap-y-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {typeof conditions === 'string' ? (
