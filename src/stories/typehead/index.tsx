@@ -1,13 +1,13 @@
 import useDebounce from '@/hooks/useDebounce'
 import React, { useEffect, useState } from 'react'
 import NetWrapper from 'src/Network/netWrapper'
-import { ISearchInterface, Istate, ILocations, ILocation } from '../../Interface/Search';
+// import { ISearchInterface, Istate } from '../../Interface/Search';
 
 
 
 
 
-function Typehead() {  
+function Typehead() {
     const [search, setsearch] = useState<string>("")
     const [suggestion, setsuggestion] = useState([])
     const debouncedValue = useDebounce<string>(search, 300)
